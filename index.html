@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AnnaSetu - Home</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+                "surface": "#faf6f0",
+                "primary": "#4a7c59",
+                "primary-container": "#78a886",
+                "on-surface": "#2e3230",
+                "secondary": "#6b6358"
+            },
+            fontFamily: {
+                "headline": ["Literata", "serif"],
+                "body": ["Nunito Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; }
+        h1, h2, h3, h4 { font-family: 'Literata', serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
+
+<!-- Top Navbar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#faf6f0] border-b border-stone-200/50 shadow-sm">
+    <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-[#4a7c59] text-3xl">eco</span>
+        <span class="text-2xl font-bold font-['Literata'] text-[#4a7c59]">AnnaSetu</span>
+    </div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-8">
+        <a class="text-stone-600 font-bold hover:text-[#4a7c59] transition-colors flex items-center gap-2" href="Admin_Dashboard.html">
+            <span class="material-symbols-outlined text-xl">dashboard</span> Dashboard
+        </a>
+        <a class="text-stone-600 font-bold hover:text-[#4a7c59] transition-colors flex items-center gap-2" href="Donation_Interface.html">
+            <span class="material-symbols-outlined text-xl">volunteer_activism</span> Donations
+        </a>
+        <a class="text-stone-600 font-bold hover:text-[#4a7c59] transition-colors flex items-center gap-2" href="Volunteer_Logistics.html">
+            <span class="material-symbols-outlined text-xl">alt_route</span> Logistics
+        </a>
+        <a class="text-stone-600 font-bold hover:text-[#4a7c59] transition-colors flex items-center gap-2" href="Impact_Hub.html">
+            <span class="material-symbols-outlined text-xl">monitoring</span> Impact
+        </a>
+    </nav>
+    <div class="flex items-center gap-4">
+        <a href="Volunteer_Logistics.html" class="hidden md:flex px-4 py-2 bg-[#4a7c59] text-white rounded-lg font-bold text-sm hover:bg-[#3a6045] transition-colors shadow-sm">Get Involved</a>
+    </div>
+</header>
+
+<!-- Hero Landing Section -->
+<main class="flex-1 flex flex-col items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
+    <!-- Abstract Design Elements -->
+    <div class="absolute top-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[80px] z-0"></div>
+    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-[#c4a66a]/15 rounded-full blur-[100px] z-0"></div>
+    
+    <div class="z-10 text-center max-w-5xl mt-12 mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm border border-stone-200 text-sm font-bold text-secondary mb-8">
+            <span class="w-2 h-2 rounded-full bg-[#4a7c59] animate-pulse"></span> Network Active
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#4a7c59] mb-8 leading-[1.1]">
+            Rooted in <span class="text-[#705c30]">Community.</span> <br>Grown with <span class="text-[#705c30]">Love.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-secondary mb-12 font-body max-w-3xl mx-auto leading-relaxed">
+            AnnaSetu bridges the gap between surplus food and necessity, seamlessly connecting donors, volunteers, and communities to achieve zero waste.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+            <a href="Donation_Interface.html" class="w-full sm:w-auto px-8 py-4 bg-[#4a7c59] text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:bg-[#3a6045] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2">
+                Make a Donation <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a href="Impact_Hub.html" class="w-full sm:w-auto px-8 py-4 bg-white text-[#4a7c59] border border-stone-200 rounded-xl font-bold text-lg shadow-sm hover:shadow-md hover:border-[#4a7c59] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2">
+                See Our Impact <span class="material-symbols-outlined">trending_up</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Quick Access Bento Grid -->
+    <div class="z-10 w-full max-w-6xl mx-auto mt-4 px-4">
+        <h2 class="text-2xl font-bold text-on-surface mb-6 font-['Literata'] text-center">Explore the System</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Dashboard Card -->
+            <a href="Admin_Dashboard.html" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200 hover:border-[#4a7c59]/30 flex flex-col items-start relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-7xl text-[#4a7c59] opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
+                    <span class="material-symbols-outlined" style="font-size: 150px">dashboard</span>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-[#4a7c59] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">dashboard</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Admin Dashboard</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Manage daily operations, view real-time logistics, and monitor overall network health.</p>
+                <div class="mt-8 flex items-center gap-2 text-sm font-bold text-[#4a7c59] group-hover:translate-x-2 transition-transform">
+                    Open Module <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                </div>
+            </a>
+            
+            <!-- Donations Card -->
+            <a href="Donation_Interface.html" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200 hover:border-[#4a7c59]/30 flex flex-col items-start relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-7xl text-[#4a7c59] opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
+                    <span class="material-symbols-outlined" style="font-size: 150px">volunteer_activism</span>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Donations</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Facilitate food donations, pledge surplus, and connect directly with community hubs.</p>
+                <div class="mt-8 flex items-center gap-2 text-sm font-bold text-amber-600 group-hover:translate-x-2 transition-transform">
+                    Open Module <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                </div>
+            </a>
+            
+            <!-- Logistics Card -->
+            <a href="Volunteer_Logistics.html" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200 hover:border-[#4a7c59]/30 flex flex-col items-start relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-7xl text-[#4a7c59] opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
+                    <span class="material-symbols-outlined" style="font-size: 150px">alt_route</span>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">alt_route</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Logistics</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Coordinate volunteer drivers, plan efficient pickup routes, and execute rescue operations.</p>
+                <div class="mt-8 flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:translate-x-2 transition-transform">
+                    Open Module <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                </div>
+            </a>
+            
+            <!-- Impact Card -->
+            <a href="Impact_Hub.html" class="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200 hover:border-[#4a7c59]/30 flex flex-col items-start relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-7xl text-[#4a7c59] opacity-5 group-hover:scale-110 group-hover:opacity-10 transition-all duration-500">
+                    <span class="material-symbols-outlined" style="font-size: 150px">monitoring</span>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-[#f5f1ea] text-[#705c30] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">monitoring</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Impact Hub</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Explore data, read real volunteer stories, and track our progression towards green living.</p>
+                <div class="mt-8 flex items-center gap-2 text-sm font-bold text-[#705c30] group-hover:translate-x-2 transition-transform">
+                    Open Module <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</main>
+
+<footer class="py-10 text-center flex flex-col items-center justify-center gap-4 bg-white border-t border-stone-200/50 mt-12">
+    <div class="text-[#4a7c59] font-bold font-['Literata'] text-xl flex items-center gap-2">
+        <span class="material-symbols-outlined">eco</span> AnnaSetu
+    </div>
+    <p class="text-sm text-gray-500 font-body">
+        &copy; 2026 Terra Network Operations. Building a sustainable future together.
+    </p>
+</footer>
+
+</body>
+</html>

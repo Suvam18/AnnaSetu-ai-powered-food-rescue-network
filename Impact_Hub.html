@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnnaSetu Impact Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;0,800;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#554020",
+                    "surface": "#faf6f0",
+                    "secondary": "#6b6358",
+                    "on-tertiary-container": "#554020",
+                    "on-secondary-fixed-variant": "#4a4538",
+                    "tertiary-fixed-dim": "#dcc48e",
+                    "secondary-container": "#f0e8db",
+                    "primary-fixed-dim": "#8ecf9e",
+                    "surface-dim": "#dbd7cf",
+                    "surface-container-low": "#f5f1ea",
+                    "surface-tint": "#4a7c59",
+                    "on-primary-fixed": "#002110",
+                    "error-container": "#ffdad8",
+                    "on-error-container": "#690005",
+                    "outline": "#74796e",
+                    "surface-bright": "#faf6f0",
+                    "secondary-fixed-dim": "#d4ccbf",
+                    "outline-variant": "#c4c8bc",
+                    "on-primary-fixed-variant": "#2a6038",
+                    "on-primary-container": "#d8f0de",
+                    "on-surface-variant": "#4a4e4a",
+                    "error": "#b83230",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#f8e0a8",
+                    "on-secondary-fixed": "#1e1a13",
+                    "primary": "#4a7c59",
+                    "background": "#faf6f0",
+                    "primary-container": "#78a886",
+                    "on-tertiary-fixed": "#221a05",
+                    "on-secondary-container": "#5e5548",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e0d8",
+                    "on-error": "#ffffff",
+                    "tertiary": "#705c30",
+                    "surface-container-highest": "#e4e0d8",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3230",
+                    "inverse-on-surface": "#f5f0e8",
+                    "on-surface": "#2e3230",
+                    "on-background": "#2e3230",
+                    "surface-container-high": "#eae6de",
+                    "inverse-primary": "#8ecf9e",
+                    "tertiary-container": "#c4a66a",
+                    "surface-container": "#f0ece4",
+                    "secondary-fixed": "#f0e8db",
+                    "primary-fixed": "#c8e8d0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Literata", "serif"],
+                    "body": ["Nunito Sans", "sans-serif"],
+                    "label": ["Nunito Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #faf6f0;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Literata', serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#faf6f0] dark:bg-stone-950 border-b border-stone-200/50 dark:border-stone-800 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold font-['Literata'] text-[#4a7c59] dark:text-emerald-400">AnnaSetu</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-stone-600 dark:text-stone-400 font-['Literata'] font-semibold hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Dashboard</a>
+<a class="text-stone-600 dark:text-stone-400 font-['Literata'] font-semibold hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Donations</a>
+<a class="text-stone-600 dark:text-stone-400 font-['Literata'] font-semibold hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Logistics</a>
+<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] font-['Literata'] px-3 py-1" href="#">Impact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-64px)] w-64 border-r border-stone-200/50 dark:border-stone-800 bg-[#faf6f0] dark:bg-stone-950 p-4 gap-2 sticky top-16">
+<div class="mb-6 px-4">
+<h2 class="text-xl font-bold text-[#4a7c59] font-['Literata']">Terra Network</h2>
+<p class="text-xs text-stone-500 font-['Nunito_Sans']">Rooted Food Rescue</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-200 ease-in-out font-['Nunito_Sans']" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-200 ease-in-out font-['Nunito_Sans']" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span>Donations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all duration-200 ease-in-out font-['Nunito_Sans']" href="#">
+<span class="material-symbols-outlined">alt_route</span>
+<span>Logistics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-950/30 text-[#4a7c59] dark:text-emerald-400 font-bold rounded-xl transition-all duration-200 ease-in-out font-['Nunito_Sans']" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Impact</span>
+</a>
+<div class="mt-auto p-4 bg-primary-container/20 rounded-xl">
+<p class="text-sm font-semibold text-primary mb-2">Rescue Goal</p>
+<div class="w-full bg-surface-container-highest rounded-full h-2 mb-2">
+<div class="bg-primary h-2 rounded-full" style="width: 78%"></div>
+</div>
+<p class="text-xs text-secondary">78% of monthly target reached</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 min-h-screen overflow-y-auto px-6 py-8 lg:px-12">
+<!-- Hero Impact Metric -->
+<section class="relative overflow-hidden rounded-xl bg-primary-fixed mb-12 shadow-sm min-h-[400px] flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="fresh organic vegetables in a wooden crate" class="w-full h-full object-cover opacity-20" data-alt="Close-up of vibrant fresh organic vegetables in a rustic wooden crate with soft morning sunlight streaming in, high-end food photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDieWdFdrpONnsCSzeSrncR4yLgieA-k5CmFUkMp9algIg1OSXkRhbcz17i-xqP4wUA1F8vUGRayA9a9am2EXfYvszQ6mJstSl7-5ADGoaHruzKmFSxNXkny8iLH5lK2aak000E9kHRXyMegszEcw-cTSD00y5uGRJgShUeP5wLTYmBuG1T0JTmTW_meXnvswh2UdHCjzNVNkdVGM6_7nbthjH-mAfH0udLHjke1EJUxhPiV9QHTfOcF9ME8Uldawa92zIE_UNo-8o"/>
+</div>
+<div class="relative z-10 p-8 lg:p-16 w-full max-w-4xl">
+<span class="inline-block px-4 py-1 bg-on-primary-fixed-variant/10 text-on-primary-fixed-variant rounded-full text-sm font-bold tracking-wide mb-6">LIVE IMPACT TRACKER</span>
+<h1 class="text-5xl lg:text-7xl font-extrabold text-on-primary-fixed mb-4 leading-tight">1,248,302</h1>
+<h2 class="text-2xl lg:text-3xl font-headline text-on-primary-fixed-variant opacity-90 mb-8">Meals Rescued &amp; Re-routed</h2>
+<p class="text-lg text-on-primary-fixed-variant max-w-xl mb-8 leading-relaxed font-body">
+                        Every single pound of food redirected is a step towards a zero-waste community. We've bridged the gap between surplus and necessity across 42 cities.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-bold shadow-md hover:brightness-110 transition-all active:scale-95">Download Report</button>
+<button class="bg-surface/50 backdrop-blur-sm border border-primary/20 text-primary px-8 py-3 rounded-lg font-bold hover:bg-surface transition-all active:scale-95">Our Methodology</button>
+</div>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute right-[-10%] top-1/2 -translate-y-1/2 hidden xl:block">
+<div class="w-96 h-96 rounded-full bg-tertiary/10 blur-3xl"></div>
+</div>
+</section>
+<!-- Bento Grid Metrics & Map -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+<!-- Interactive Network Map (Spans 2 columns) -->
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Terra Network Hubs</h3>
+<p class="text-on-surface-variant font-body">Partner shelters and community fridges across the region</p>
+</div>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-xs font-bold text-primary bg-primary-fixed px-2 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                124 ACTIVE
+                            </span>
+</div>
+</div>
+<div class="relative flex-1 min-h-[350px] bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant/30">
+<!-- Simulated Map -->
+<img alt="Map placeholder" class="w-full h-full object-cover" data-alt="A stylized minimalist topographical map with soft green and cream tones showing organic network connections and small leafy icons" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoF3H7DgDNwxrIVw0Hhf9POzCyqvHeH4r-llrd2Q29_pq07We6Agu5J3Sl-U8kqYILeiUzamavf0Ctbc9k7z2nv-9kWdJAFCbxIGsGRrjWalkQ5QTR6A6s2YybB2aKAERCtTq9tu8cdC3jGpB9idrKD4uPAzrGAHl_IWJ_LMKzPZ13cN2M-7-_fpzXqZCZ9KbOQlIhOkT0Urbx0mq7fOIsPmXEzAz5okJq5LhFAb4_khrwrToG6oST7Gd2EKV0bXJjG10LNWqdDk"/>
+<!-- Map Overlays -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/90 p-2 rounded-lg shadow-sm text-primary"><span class="material-symbols-outlined">add</span></button>
+<button class="bg-white/90 p-2 rounded-lg shadow-sm text-primary"><span class="material-symbols-outlined">remove</span></button>
+</div>
+<div class="absolute bottom-4 left-4 bg-white/90 p-4 rounded-xl shadow-lg border border-outline-variant/20 max-w-xs">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Oak Valley Community Center</h4>
+<p class="text-xs text-secondary">2,400 meals this month</p>
+</div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic leading-tight">"The quality of produce we receive from Terra has transformed our kitchen's ability to provide nutritious meals."</p>
+</div>
+</div>
+</div>
+<!-- Secondary Stats Vertical -->
+<div class="flex flex-col gap-6">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed rounded-xl p-6 flex-1 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4">eco</span>
+<h3 class="text-3xl font-bold">14,200kg</h3>
+<p class="text-on-tertiary-fixed-variant opacity-80 font-body">Carbon emissions offset through food rescue operations</p>
+</div>
+<div class="mt-4 text-xs font-bold uppercase tracking-widest border-t border-on-tertiary-fixed-variant/10 pt-4">Sustainable Future</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-xl p-6 flex-1 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4">groups</span>
+<h3 class="text-3xl font-bold">3,500+</h3>
+<p class="text-on-secondary-fixed-variant opacity-80 font-body">Active community volunteers and delivery partners</p>
+</div>
+<button class="mt-4 w-full py-2 bg-on-secondary-container text-surface rounded-lg text-sm font-bold hover:opacity-90">Join the movement</button>
+</div>
+</div>
+</div>
+<!-- Stories From the Community -->
+<section class="mb-20">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-4xl font-extrabold text-on-surface mb-2">Rooted Stories</h2>
+<p class="text-on-surface-variant text-lg">Real impact, real people, real change.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:underline" href="#">
+                        View all stories <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Story 1 -->
+<div class="group bg-surface rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="People sharing a meal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Group of diverse people laughing and sharing a healthy meal around a long wooden table in a sunlit community garden setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk3Fjey8-vGQuH76vXWcfQqvlHPApyc6ky9-BW2peg8pSM87BXeXKMuWVGRbyl9WfVQRGtJK5EE1kmKsrSVN7i4QU2S3IqwU_2h1hQMUMLDQ5CJkYEJOfhGDRdGNIfk7cb6nvpovHxVCTXmqYIMptIZgEGmPhNgfijmULvliChwQjPwy_LnEUFPVlHFdDffQHDVKFBXIQMj9LtCP7OnvKv1IcxbyDAdQNzgaDWwCapK1UM87411_i8Phl7CDHmnZ-cd1Hs19P4OeA"/>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-[10px] font-extrabold rounded text-on-tertiary-fixed uppercase tracking-wider">Volunteer Spotlight</span>
+<span class="text-xs text-secondary">March 12, 2024</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Bridging the Gap: Sarah's Morning Route</h4>
+<p class="text-on-surface-variant text-sm line-clamp-3 font-body leading-relaxed">
+                                "I start my day at 6 AM at the local farmers market. What used to be thrown away is now the highlight of the menu at the shelter I deliver to..."
+                            </p>
+</div>
+</div>
+<!-- Story 2 -->
+<div class="group bg-surface rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="Community fridge overflowing with greens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a brightly painted community fridge stocked with fresh kale, apples, and carrots, decorated with community-made stickers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFBLaJW9CSAnqjJseA1V9-umItgnTeMOj-p1s0ai3K2ZXanup3oPF4Bfs-ujcxowwE21nv51OflkK4myMF_cBuIQkDYvksM69FlR5c_QISjorfrF-V482tyq2qvviXbyw5pmkDiEulbdqsHgVcZN2NdYVvNXG1c-LoZN6kRm_pc4QFVLIE07MtYlkR5M3XVh4J4-xnzBJg4ohox7AyBImkT5O2R8EbsIVDjgMaxPFLSicTycXpNkViBy5RxOdCPRr5e2qJkzOlXwI"/>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 bg-primary-fixed text-[10px] font-extrabold rounded text-on-primary-fixed uppercase tracking-wider">The Fridge Network</span>
+<span class="text-xs text-secondary">March 08, 2024</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">The 24/7 Pantry: Dignity in Choice</h4>
+<p class="text-on-surface-variant text-sm line-clamp-3 font-body leading-relaxed">
+                                Our tenth community fridge installation has seen record engagement. Discover how accessible fresh produce is changing neighborhood health outcomes.
+                            </p>
+</div>
+</div>
+<!-- Story 3 -->
+<div class="group bg-surface rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="Waste management at a restaurant" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional chef handing over surplus bread loaves to a AnnaSetu driver, smiling, in a bright modern restaurant kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxocCHOVtf-sS4k8Sl6_A98Grj-42BhtCrS08HHi_qQz9JDk2Wv2jS3WCQQvY5YGz8nTxqKJkBRTrxxm4V-sKyOrGHQmhoQu8loG8rqEwj2bbx6mtrLKaqZHvTZ4ODs0JBRS8iVlLxgz155iI-qdROeyfLRWBVSGJzrSOtWzExLGIhWO7JtglFYdJdiGkOHb2mRn8lSQ12RemfpGCDW42jMBGNZgrbFyNRFOyVdFl8aVbUi2L372iF8HsnS4bTaJLwd0RqJwE-ppI"/>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 bg-secondary-fixed text-[10px] font-extrabold rounded text-on-secondary-fixed uppercase tracking-wider">Partner View</span>
+<span class="text-xs text-secondary">Feb 28, 2024</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">From Surplus to Soul: Artisan Bakery Collab</h4>
+<p class="text-on-surface-variant text-sm line-clamp-3 font-body leading-relaxed">
+                                "As a baker, throwing away bread was painful. Terra turned that pain into purpose by connecting us with community kitchens daily."
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-on-tertiary-container text-on-tertiary rounded-3xl p-10 lg:p-20 text-center relative overflow-hidden mb-20">
+<div class="absolute inset-0 z-0 opacity-10">
+<img alt="organic pattern" class="w-full h-full object-cover" data-alt="Abstract macro shot of a single green leaf with intricate vein patterns under soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoUcZ8zputVEe_ypLr6-T0O6DhjBxUxlrM8FUBCpcSSMWUS4bvHcnMSJZv_Om1ykjtm_cS9OPy3z8M0bNfjEqFIn_LMBDPWJs56OmuRSqRmspkxTa2HGcoEfnXmpdGYTySCMVkdd3WGniuZmXpuJrMydLnGKDeARACwbVbf5GO6Q6NifBcL7RkOQOzfF7o9T3IbkFLmSf0FZTGPieMQVQmgZYNxQ_0ztVpuZkL2v_V0A8CekSvx5hUSADCjNBZBbGQWDj_WvZyDtk"/>
+</div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="text-4xl lg:text-5xl font-extrabold mb-6">Want to multiply this impact?</h2>
+<p class="text-xl opacity-90 mb-10 font-body">Whether you have surplus food, a spare hour, or want to contribute a donation, your involvement fuels the rescue engine.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold text-lg hover:brightness-110 active:scale-95 transition-all">Become a Partner</button>
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 active:scale-95 transition-all">Donate Now</button>
+</div>
+</div>
+</section>
+<!-- Simple Footer -->
+<footer class="border-t border-outline-variant/30 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-[#4a7c59] font-headline font-bold text-xl">AnnaSetu</div>
+<p class="text-secondary text-sm font-body">© 2024 AnnaSetu Impact Network. Rooted in community, grown with love.</p>
+<div class="flex gap-6 text-primary">
+<a class="hover:underline" href="#">Transparency Reports</a>
+<a class="hover:underline" href="#">Privacy</a>
+<a class="hover:underline" href="#">Terms</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Floating Action Button - Only for Impact Hub context -->
+<button class="fixed bottom-8 right-8 bg-primary text-on-primary w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-50 group">
+<span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+<span class="absolute right-full mr-4 bg-on-surface text-surface px-3 py-1 rounded text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Give Now</span>
+</button>
+</body></html>

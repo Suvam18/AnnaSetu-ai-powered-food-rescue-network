@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnnaSetu Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#554020",
+                "surface": "#faf6f0",
+                "secondary": "#6b6358",
+                "on-tertiary-container": "#554020",
+                "on-secondary-fixed-variant": "#4a4538",
+                "tertiary-fixed-dim": "#dcc48e",
+                "secondary-container": "#f0e8db",
+                "primary-fixed-dim": "#8ecf9e",
+                "surface-dim": "#dbd7cf",
+                "surface-container-low": "#f5f1ea",
+                "surface-tint": "#4a7c59",
+                "on-primary-fixed": "#002110",
+                "error-container": "#ffdad8",
+                "on-error-container": "#690005",
+                "outline": "#74796e",
+                "surface-bright": "#faf6f0",
+                "secondary-fixed-dim": "#d4ccbf",
+                "outline-variant": "#c4c8bc",
+                "on-primary-fixed-variant": "#2a6038",
+                "on-primary-container": "#d8f0de",
+                "on-surface-variant": "#4a4e4a",
+                "error": "#b83230",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed": "#f8e0a8",
+                "on-secondary-fixed": "#1e1a13",
+                "primary": "#4a7c59",
+                "background": "#faf6f0",
+                "primary-container": "#78a886",
+                "on-tertiary-fixed": "#221a05",
+                "on-secondary-container": "#5e5548",
+                "on-tertiary": "#ffffff",
+                "on-primary": "#ffffff",
+                "surface-variant": "#e4e0d8",
+                "on-error": "#ffffff",
+                "tertiary": "#705c30",
+                "surface-container-highest": "#e4e0d8",
+                "on-secondary": "#ffffff",
+                "inverse-surface": "#2e3230",
+                "inverse-on-surface": "#f5f0e8",
+                "on-surface": "#2e3230",
+                "on-background": "#2e3230",
+                "surface-container-high": "#eae6de",
+                "inverse-primary": "#8ecf9e",
+                "tertiary-container": "#c4a66a",
+                "surface-container": "#f0ece4",
+                "secondary-fixed": "#f0e8db",
+                "primary-fixed": "#c8e8d0"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Literata"],
+                "body": ["Nunito Sans"],
+                "label": ["Nunito Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; }
+        h1, h2, h3 { font-family: 'Literata', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-gradient {
+            background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- TopNavBar Execution -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#faf6f0] dark:bg-stone-950 border-b border-stone-200/50 dark:border-stone-800 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-bold font-['Literata'] text-[#4a7c59] dark:text-emerald-400">AnnaSetu</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex items-center gap-6 text-stone-600 dark:text-stone-400 font-['Nunito_Sans']">
+<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] h-16 flex items-center" href="#">Dashboard</a>
+<a class="hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Operations</a>
+<a class="hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Network</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-stone-200 pl-6 ml-2">
+<button class="material-symbols-outlined text-[#4a7c59] hover:bg-stone-100 p-2 rounded-full transition-all active:scale-95 duration-200">notifications</button>
+<button class="material-symbols-outlined text-[#4a7c59] hover:bg-stone-100 p-2 rounded-full transition-all active:scale-95 duration-200">account_circle</button>
+</div>
+</div>
+</header>
+<div class="flex pt-16 h-screen overflow-hidden">
+<!-- SideNavBar Execution -->
+<aside class="hidden lg:flex flex-col h-full p-4 gap-2 bg-[#faf6f0] dark:bg-stone-950 border-r border-stone-200/50 dark:border-stone-800 w-64">
+<div class="px-4 py-6">
+<h2 class="text-xl font-bold text-[#4a7c59] font-['Literata']">Terra Network</h2>
+<p class="text-xs text-stone-500 font-['Nunito_Sans'] uppercase tracking-widest">Rooted Food Rescue</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-950/30 text-[#4a7c59] dark:text-emerald-400 font-bold rounded-xl transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span>Donations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">alt_route</span>
+<span>Logistics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Impact</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
+<p class="text-sm font-semibold text-primary mb-1 italic">Eco-Tip of the Day</p>
+<p class="text-xs text-secondary leading-relaxed">Optimize routes in the north sector to reduce carbon footprint by 12%.</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-surface-container-lowest p-6 lg:p-8">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold text-on-surface">Rescue Overview</h1>
+<p class="text-secondary font-body mt-1">Real-time logistics and food waste mitigation metrics.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface p-1 rounded-full border border-outline-variant/40 shadow-sm">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold shadow-md">Today</button>
+<button class="px-4 py-2 text-secondary text-sm font-semibold hover:bg-surface-container transition-colors rounded-full">Weekly</button>
+<button class="px-4 py-2 text-secondary text-sm font-semibold hover:bg-surface-container transition-colors rounded-full">Monthly</button>
+</div>
+</div>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Summary Cards Cluster -->
+<div class="md:col-span-12 lg:col-span-4 grid grid-cols-1 gap-6">
+<div class="bg-primary text-on-primary p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] relative overflow-hidden group">
+<div class="relative z-10">
+<span class="text-on-primary-container/80 text-sm font-bold uppercase tracking-wider">Active Volunteers</span>
+<div class="text-4xl font-bold mt-2">142</div>
+<div class="flex items-center gap-2 mt-4 text-sm font-medium">
+<span class="bg-on-primary/20 px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> 12%
+                                </span>
+<span class="opacity-80 text-xs">since last hour</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10 rotate-12 transition-transform group-hover:rotate-0">groups</span>
+</div>
+<div class="bg-surface border border-outline-variant/30 p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] flex flex-col justify-between">
+<div>
+<span class="text-secondary text-sm font-bold uppercase tracking-wider">Meals Saved Today</span>
+<div class="text-4xl font-bold text-on-surface mt-2">2,841</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a volunteer smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvUHhj27aGloGHM7sHRJ_OLTaBkww2Iuel5i7n080a5Zg_eYu_YD_BPF7Dr-AZ2SPsuSfDnIEFZq8FUskSgVtZIy1zpSMxBq7hLgwepZP8ukHvcuV2hvBB0Q2lf73T6KbqEKCLGShF1Ggyoku9aBIXOydEidn48RI6bNZVL16KCQCrupdXp3mpZMpqqG8Ga1C9QKWirO0xB2vyFRxDOvCCE6m8eB5LQtGwzLJ6yhg1A8bFdHv3iR_ViG9Ru8SICSGjIthKe8zklzs"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-secondary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a female professional volunteer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnIHVMz3JyGhYIkdUBTvBO3xa-ulEDa6608oIn-wziJ3TewNCA0ox_p-mn1hfAuWG6-4esNkzpVKRL_MTsNCfVYQGWoZ4fwNXqyhE7M4xGNDclI4QQDgU39D5_ok_8MTYmk5HvEdR7JmHxrCJ-Mhj5fTCu6lLOBSc8p3JI7BmfMYsDzzgpF2ZQEl_JTRbTgmP6Ou28R89WIpAr21R_j7JAjqgfqqlHPev3QtRUqPuZNfquy8Imb0DkqrvJJH0-nMU1ZVJsQEcudVk"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold text-on-tertiary-fixed">
+                                    +18
+                                </div>
+</div>
+<span class="text-xs text-primary font-bold">Goal: 3,500</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-3">
+<div class="bg-primary h-full rounded-full w-[81%] shadow-[0_0_8px_rgba(74,124,89,0.3)]"></div>
+</div>
+</div>
+<div class="bg-tertiary-container text-on-tertiary-container p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] group cursor-pointer hover:shadow-lg transition-all">
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm font-bold uppercase tracking-wider">Pending Collections</span>
+<span class="material-symbols-outlined text-on-tertiary-container">schedule</span>
+</div>
+<div class="text-4xl font-bold">24</div>
+<p class="text-sm mt-2 font-medium opacity-80">8 urgent pickups in Downtown</p>
+</div>
+</div>
+<!-- Real-time Map View -->
+<div class="md:col-span-12 lg:col-span-8 bg-surface-container rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] relative min-h-[450px] border border-outline-variant/30">
+<div class="absolute inset-0 z-0">
+<!-- Simulated Map Background -->
+<div class="w-full h-full bg-[#e8e4db] relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="abstract stylized topographical map with soft green and beige land masses and blue water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVoUo31wCyJtWwE9WVNqczCivl2OkWZDQPUflKaJLqMSoNbu0pj1tze8A2wTyc8xpl9XOjOTVkR_oLAhi8h4ljV5WrovZOGQCarVN450rzsWur4hDBVAVJQnit-pM3uRLiEEJ5m1lkryD-O0bf--uLwxRvn_nZOcVh1rxhOJwOThMBRIL79JNqKgIsIX3WNpB-sIknL2Y7_bgGbcpHC-SM_2EXLPdH9wRGkqaw297wADu24LRs8UJZNb5MatOq7mn_-1QQqc_i4rg"/>
+<!-- Pulsing Pointers -->
+<div class="absolute top-1/4 left-1/3 w-4 h-4 bg-primary rounded-full animate-pulse shadow-[0_0_15px_#4a7c59]"></div>
+<div class="absolute top-1/2 left-1/2 w-4 h-4 bg-tertiary rounded-full animate-pulse shadow-[0_0_15px_#705c30]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-4 h-4 bg-primary rounded-full animate-pulse shadow-[0_0_15px_#4a7c59]"></div>
+</div>
+</div>
+<!-- Map Overlay Controls -->
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<div class="bg-surface/90 backdrop-blur-md p-3 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="text-xs font-bold uppercase text-on-surface">Live Mission Feed</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 z-10">
+<div class="bg-surface/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant/30 shadow-lg flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">local_shipping</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Rescue #8820 - Main St. Bakery</p>
+<p class="text-xs text-secondary">ETA 4 mins • Driver: Elena M.</p>
+</div>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">Track Live</button>
+</div>
+</div>
+</div>
+<!-- AI Surplus Predictions -->
+<div class="md:col-span-12 lg:col-span-8 bg-surface border border-outline-variant/30 p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h3 class="text-xl font-bold text-on-surface">AI Surplus Prediction</h3>
+<p class="text-secondary text-sm font-body">Projected surplus peaks for the next 12 hours based on historical patterns.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary-fixed rounded-lg border border-primary/20">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-on-primary-fixed-variant">Predicted</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-secondary-fixed rounded-lg">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-bold text-on-secondary-fixed-variant">Actual</span>
+</div>
+</div>
+</div>
+<!-- Simulated Data Visualization -->
+<div class="h-64 flex items-end justify-between gap-2 px-2 border-b border-outline-variant/30 relative">
+<!-- Chart Grid Lines -->
+<div class="absolute inset-x-0 top-0 h-px bg-outline-variant/10"></div>
+<div class="absolute inset-x-0 top-1/4 h-px bg-outline-variant/10"></div>
+<div class="absolute inset-x-0 top-1/2 h-px bg-outline-variant/10"></div>
+<div class="absolute inset-x-0 top-3/4 h-px bg-outline-variant/10"></div>
+<!-- Prediction Columns -->
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[40%] rounded-t-lg transition-all group-hover:bg-secondary-container/60"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[60%] rounded-t-lg transition-all group-hover:bg-primary"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[55%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[75%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[65%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[90%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[45%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[55%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[30%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[45%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[70%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[85%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 group relative">
+<div class="absolute bottom-0 w-full bg-secondary-container/40 h-[50%] rounded-t-lg"></div>
+<div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[60%] rounded-t-lg"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-secondary uppercase tracking-widest px-1">
+<span>12 PM</span>
+<span>2 PM</span>
+<span>4 PM</span>
+<span>6 PM</span>
+<span>8 PM</span>
+<span>10 PM</span>
+<span>12 AM</span>
+</div>
+</div>
+<!-- Recent Activities Side Column -->
+<div class="md:col-span-12 lg:col-span-4 bg-surface-container-low border border-outline-variant/30 rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<h3 class="text-lg font-bold text-on-surface mb-6">Recent Activities</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">Whole Foods Market</p>
+<p class="text-xs text-secondary mt-1">Donated 45kg of organic produce. Assigned to Driver Jack.</p>
+<p class="text-[10px] text-outline mt-2 font-bold uppercase">14 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-2 h-2 mt-2 rounded-full bg-tertiary flex-shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">Alert: Logistics Delay</p>
+<p class="text-xs text-secondary mt-1">Route 4B experiencing heavy traffic near 5th Ave.</p>
+<p class="text-[10px] text-outline mt-2 font-bold uppercase">32 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">New Partner Joined</p>
+<p class="text-xs text-secondary mt-1">"The Green Bistro" is now a registered food donor.</p>
+<p class="text-[10px] text-outline mt-2 font-bold uppercase">1 hour ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-2 h-2 mt-2 rounded-full bg-surface-dim flex-shrink-0"></div>
+<div>
+<p class="text-sm font-bold text-on-surface">Collection Completed</p>
+<p class="text-xs text-secondary mt-1">Sunrise Shelter received 120 meal kits.</p>
+<p class="text-[10px] text-outline mt-2 font-bold uppercase">2 hours ago</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-surface text-primary border border-primary/20 rounded-xl text-sm font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                        View Audit Log
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button (Active only on Dashboard) -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 active:scale-90 transition-all z-[60]">
+<span class="material-symbols-outlined text-3xl">add_task</span>
+<span class="absolute right-full mr-4 px-3 py-1.5 bg-inverse-surface text-inverse-on-surface text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">New Rescue Mission</span>
+</button>
+</body></html>
