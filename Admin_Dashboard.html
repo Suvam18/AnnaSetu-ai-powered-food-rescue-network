@@ -88,66 +88,50 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface antialiased">
-<!-- TopNavBar Execution -->
-<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#faf6f0] dark:bg-stone-950 border-b border-stone-200/50 dark:border-stone-800 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
-<div class="flex items-center gap-4">
-<span class="text-2xl font-bold font-['Literata'] text-[#4a7c59] dark:text-emerald-400">AnnaSetu</span>
+<body class=\"bg-background dark:bg-[#0B0F19] text-on-surface dark:text-slate-200 antialiased">
+<!-- Top Navbar -->
+<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+    <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-[#faf6f0]/90 dark:bg-[#0B0F19]/90 backdrop-blur-xl border border-stone-200/50 dark:border-white/10 rounded-full shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-indigo-400 text-3xl">eco</span>
+            <span class="text-xl font-bold font-['Literata'] text-emerald-900 dark:text-white">AnnaSetu</span>
+        </div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8">
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Admin_Dashboard.html">
+                Admin Dashboard
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Donation_Interface.html">
+                Donations
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Volunteer_Logistics.html">
+                Logistics
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Impact_Hub.html">
+                Impact Hub
+            </a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all shadow-[0_0_15px_rgba(250,204,21,0.2)]" onclick="localStorage.removeItem('annasetu_session');">Log out</a>
+            <button id="theme-toggle" class="w-10 h-10 rounded-full bg-stone-100 dark:bg-[#1e243b] hover:bg-stone-200 dark:hover:bg-[#2a304a] flex items-center justify-center text-stone-600 hover:text-stone-900 dark:text-gray-300 dark:hover:text-white transition-colors border border-stone-200 dark:border-white/5 cursor-pointer z-50 relative pointer-events-auto">
+                <span id="theme-icon" class="material-symbols-outlined text-lg">light_mode</span>
+            </button>
+        </div>
+    </header>
 </div>
-<div class="hidden md:flex items-center gap-8">
-<nav class="flex items-center gap-6 text-stone-600 dark:text-stone-400 font-['Nunito_Sans']">
-<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] h-16 flex items-center" href="#">Dashboard</a>
-<a class="hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Operations</a>
-<a class="hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors px-3 py-1 rounded-lg" href="#">Network</a>
-</nav>
-<div class="flex items-center gap-4 border-l border-stone-200 pl-6 ml-2">
-<button class="material-symbols-outlined text-[#4a7c59] hover:bg-stone-100 p-2 rounded-full transition-all active:scale-95 duration-200">notifications</button>
-<button class="material-symbols-outlined text-[#4a7c59] hover:bg-stone-100 p-2 rounded-full transition-all active:scale-95 duration-200">account_circle</button>
-</div>
-</div>
-</header>
-<div class="flex pt-16 h-screen overflow-hidden">
-<!-- SideNavBar Execution -->
-<aside class="hidden lg:flex flex-col h-full p-4 gap-2 bg-[#faf6f0] dark:bg-stone-950 border-r border-stone-200/50 dark:border-stone-800 w-64">
-<div class="px-4 py-6">
-<h2 class="text-xl font-bold text-[#4a7c59] font-['Literata']">Terra Network</h2>
-<p class="text-xs text-stone-500 font-['Nunito_Sans'] uppercase tracking-widest">Rooted Food Rescue</p>
-</div>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-950/30 text-[#4a7c59] dark:text-emerald-400 font-bold rounded-xl transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span>Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span>Donations</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">alt_route</span>
-<span>Logistics</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-xl transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">monitoring</span>
-<span>Impact</span>
-</a>
-</nav>
-<div class="mt-auto p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
-<p class="text-sm font-semibold text-primary mb-1 italic">Eco-Tip of the Day</p>
-<p class="text-xs text-secondary leading-relaxed">Optimize routes in the north sector to reduce carbon footprint by 12%.</p>
-</div>
-</aside>
+<div class="flex pt-32 h-screen overflow-hidden">
 <!-- Main Content Canvas -->
-<main class="flex-1 overflow-y-auto bg-surface-container-lowest p-6 lg:p-8">
+<main class="flex-1 overflow-y-auto bg-surface-container-lowest dark:bg-[#121629] p-6 lg:p-8">
 <!-- Header Section -->
 <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
-<h1 class="text-3xl font-bold text-on-surface">Rescue Overview</h1>
-<p class="text-secondary font-body mt-1">Real-time logistics and food waste mitigation metrics.</p>
+<h1 class="text-3xl font-bold text-on-surface dark:text-slate-100">Rescue Overview</h1>
+<p class="text-secondary dark:text-slate-400 font-body mt-1">Real-time logistics and food waste mitigation metrics.</p>
 </div>
-<div class="flex items-center gap-3 bg-surface p-1 rounded-full border border-outline-variant/40 shadow-sm">
+<div class="flex items-center gap-3 bg-surface dark:bg-[#121629] p-1 rounded-full border border-outline-variant/40 shadow-sm">
 <button class="px-4 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold shadow-md">Today</button>
-<button class="px-4 py-2 text-secondary text-sm font-semibold hover:bg-surface-container transition-colors rounded-full">Weekly</button>
-<button class="px-4 py-2 text-secondary text-sm font-semibold hover:bg-surface-container transition-colors rounded-full">Monthly</button>
+<button class="px-4 py-2 text-secondary dark:text-slate-400 text-sm font-semibold hover:bg-surface-container dark:bg-[#1A1F35] transition-colors rounded-full">Weekly</button>
+<button class="px-4 py-2 text-secondary dark:text-slate-400 text-sm font-semibold hover:bg-surface-container dark:bg-[#1A1F35] transition-colors rounded-full">Monthly</button>
 </div>
 </div>
 <!-- Bento Grid Dashboard -->
@@ -167,10 +151,10 @@
 </div>
 <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10 rotate-12 transition-transform group-hover:rotate-0">groups</span>
 </div>
-<div class="bg-surface border border-outline-variant/30 p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] flex flex-col justify-between">
+<div class="bg-surface dark:bg-[#121629] border border-outline-variant/30 dark:border-white/20 p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] flex flex-col justify-between">
 <div>
-<span class="text-secondary text-sm font-bold uppercase tracking-wider">Meals Saved Today</span>
-<div class="text-4xl font-bold text-on-surface mt-2">2,841</div>
+<span class="text-secondary dark:text-slate-400 text-sm font-bold uppercase tracking-wider">Meals Saved Today</span>
+<div class="text-4xl font-bold text-on-surface dark:text-slate-100 mt-2">2,841</div>
 </div>
 <div class="mt-6 flex items-center justify-between">
 <div class="flex -space-x-3">
@@ -186,7 +170,7 @@
 </div>
 <span class="text-xs text-primary font-bold">Goal: 3,500</span>
 </div>
-<div class="w-full bg-surface-container h-1.5 rounded-full mt-3">
+<div class="w-full bg-surface-container dark:bg-[#1A1F35] h-1.5 rounded-full mt-3">
 <div class="bg-primary h-full rounded-full w-[81%] shadow-[0_0_8px_rgba(74,124,89,0.3)]"></div>
 </div>
 </div>
@@ -200,7 +184,7 @@
 </div>
 </div>
 <!-- Real-time Map View -->
-<div class="md:col-span-12 lg:col-span-8 bg-surface-container rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] relative min-h-[450px] border border-outline-variant/30">
+<div class="md:col-span-12 lg:col-span-8 bg-surface-container dark:bg-[#1A1F35] rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] relative min-h-[450px] border border-outline-variant/30 dark:border-white/20">
 <div class="absolute inset-0 z-0">
 <!-- Simulated Map Background -->
 <div class="w-full h-full bg-[#e8e4db] relative overflow-hidden">
@@ -213,20 +197,20 @@
 </div>
 <!-- Map Overlay Controls -->
 <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
-<div class="bg-surface/90 backdrop-blur-md p-3 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-3">
+<div class="bg-surface dark:bg-[#121629]/90 backdrop-blur-md p-3 rounded-lg border border-outline-variant/30 dark:border-white/20 shadow-sm flex items-center gap-3">
 <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-<span class="text-xs font-bold uppercase text-on-surface">Live Mission Feed</span>
+<span class="text-xs font-bold uppercase text-on-surface dark:text-slate-100">Live Mission Feed</span>
 </div>
 </div>
 <div class="absolute bottom-4 left-4 right-4 z-10">
-<div class="bg-surface/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant/30 shadow-lg flex items-center justify-between">
+<div class="bg-surface dark:bg-[#121629]/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant/30 dark:border-white/20 shadow-lg flex items-center justify-between">
 <div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
 <span class="material-symbols-outlined text-on-primary-container">local_shipping</span>
 </div>
 <div>
-<p class="text-sm font-bold text-on-surface">Rescue #8820 - Main St. Bakery</p>
-<p class="text-xs text-secondary">ETA 4 mins • Driver: Elena M.</p>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">Rescue #8820 - Main St. Bakery</p>
+<p class="text-xs text-secondary dark:text-slate-400">ETA 4 mins • Driver: Elena M.</p>
 </div>
 </div>
 <button class="text-primary font-bold text-sm hover:underline">Track Live</button>
@@ -234,11 +218,11 @@
 </div>
 </div>
 <!-- AI Surplus Predictions -->
-<div class="md:col-span-12 lg:col-span-8 bg-surface border border-outline-variant/30 p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="md:col-span-12 lg:col-span-8 bg-surface dark:bg-[#121629] border border-outline-variant/30 dark:border-white/20 p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
 <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
 <div>
-<h3 class="text-xl font-bold text-on-surface">AI Surplus Prediction</h3>
-<p class="text-secondary text-sm font-body">Projected surplus peaks for the next 12 hours based on historical patterns.</p>
+<h3 class="text-xl font-bold text-on-surface dark:text-slate-100">AI Surplus Prediction</h3>
+<p class="text-secondary dark:text-slate-400 text-sm font-body">Projected surplus peaks for the next 12 hours based on historical patterns.</p>
 </div>
 <div class="flex items-center gap-2">
 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-primary-fixed rounded-lg border border-primary/20">
@@ -252,7 +236,7 @@
 </div>
 </div>
 <!-- Simulated Data Visualization -->
-<div class="h-64 flex items-end justify-between gap-2 px-2 border-b border-outline-variant/30 relative">
+<div class="h-64 flex items-end justify-between gap-2 px-2 border-b border-outline-variant/30 dark:border-white/20 relative">
 <!-- Chart Grid Lines -->
 <div class="absolute inset-x-0 top-0 h-px bg-outline-variant/10"></div>
 <div class="absolute inset-x-0 top-1/4 h-px bg-outline-variant/10"></div>
@@ -288,7 +272,7 @@
 <div class="absolute bottom-0 w-1/2 left-1/4 bg-primary-container h-[60%] rounded-t-lg"></div>
 </div>
 </div>
-<div class="flex justify-between mt-4 text-[10px] font-bold text-secondary uppercase tracking-widest px-1">
+<div class="flex justify-between mt-4 text-[10px] font-bold text-secondary dark:text-slate-400 uppercase tracking-widest px-1">
 <span>12 PM</span>
 <span>2 PM</span>
 <span>4 PM</span>
@@ -299,43 +283,43 @@
 </div>
 </div>
 <!-- Recent Activities Side Column -->
-<div class="md:col-span-12 lg:col-span-4 bg-surface-container-low border border-outline-variant/30 rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
-<h3 class="text-lg font-bold text-on-surface mb-6">Recent Activities</h3>
+<div class="md:col-span-12 lg:col-span-4 bg-surface-container-low dark:bg-[#1A1F35] border border-outline-variant/30 dark:border-white/20 rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<h3 class="text-lg font-bold text-on-surface dark:text-slate-100 mb-6">Recent Activities</h3>
 <div class="space-y-6">
 <div class="flex gap-4">
 <div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
 <div>
-<p class="text-sm font-bold text-on-surface">Whole Foods Market</p>
-<p class="text-xs text-secondary mt-1">Donated 45kg of organic produce. Assigned to Driver Jack.</p>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">Whole Foods Market</p>
+<p class="text-xs text-secondary dark:text-slate-400 mt-1">Donated 45kg of organic produce. Assigned to Driver Jack.</p>
 <p class="text-[10px] text-outline mt-2 font-bold uppercase">14 mins ago</p>
 </div>
 </div>
 <div class="flex gap-4">
 <div class="w-2 h-2 mt-2 rounded-full bg-tertiary flex-shrink-0"></div>
 <div>
-<p class="text-sm font-bold text-on-surface">Alert: Logistics Delay</p>
-<p class="text-xs text-secondary mt-1">Route 4B experiencing heavy traffic near 5th Ave.</p>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">Alert: Logistics Delay</p>
+<p class="text-xs text-secondary dark:text-slate-400 mt-1">Route 4B experiencing heavy traffic near 5th Ave.</p>
 <p class="text-[10px] text-outline mt-2 font-bold uppercase">32 mins ago</p>
 </div>
 </div>
 <div class="flex gap-4">
 <div class="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></div>
 <div>
-<p class="text-sm font-bold text-on-surface">New Partner Joined</p>
-<p class="text-xs text-secondary mt-1">"The Green Bistro" is now a registered food donor.</p>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">New Partner Joined</p>
+<p class="text-xs text-secondary dark:text-slate-400 mt-1">"The Green Bistro" is now a registered food donor.</p>
 <p class="text-[10px] text-outline mt-2 font-bold uppercase">1 hour ago</p>
 </div>
 </div>
 <div class="flex gap-4">
-<div class="w-2 h-2 mt-2 rounded-full bg-surface-dim flex-shrink-0"></div>
+<div class="w-2 h-2 mt-2 rounded-full bg-surface dark:bg-[#121629]-dim flex-shrink-0"></div>
 <div>
-<p class="text-sm font-bold text-on-surface">Collection Completed</p>
-<p class="text-xs text-secondary mt-1">Sunrise Shelter received 120 meal kits.</p>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">Collection Completed</p>
+<p class="text-xs text-secondary dark:text-slate-400 mt-1">Sunrise Shelter received 120 meal kits.</p>
 <p class="text-[10px] text-outline mt-2 font-bold uppercase">2 hours ago</p>
 </div>
 </div>
 </div>
-<button class="w-full mt-8 py-3 bg-surface text-primary border border-primary/20 rounded-xl text-sm font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+<button class="w-full mt-8 py-3 bg-surface dark:bg-[#121629] text-primary border border-primary/20 rounded-xl text-sm font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">
                         View Audit Log
                     </button>
 </div>
@@ -345,6 +329,28 @@
 <!-- Floating Action Button (Active only on Dashboard) -->
 <button class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 active:scale-90 transition-all z-[60]">
 <span class="material-symbols-outlined text-3xl">add_task</span>
-<span class="absolute right-full mr-4 px-3 py-1.5 bg-inverse-surface text-inverse-on-surface text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">New Rescue Mission</span>
+<span class="absolute right-full mr-4 px-3 py-1.5 bg-[#121629] text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">New Rescue Mission</span>
 </button>
+
+<script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    themeToggleBtn?.addEventListener('click', () => {
+        htmlElement.classList.toggle('dark');
+        if (htmlElement.classList.contains('dark')) {
+            themeIcon.textContent = 'dark_mode';
+        } else {
+            themeIcon.textContent = 'light_mode';
+        }
+    });
+
+    // Run once on load to ensure icon matches
+    if (htmlElement.classList.contains('dark')) {
+        themeIcon.textContent = 'dark_mode';
+    } else {
+        themeIcon.textContent = 'light_mode';
+    }
+</script>
 </body></html>

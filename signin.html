@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AnnaSetu - Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+                "primary": "#4a7c59",
+                "surface": "#0b1120"
+            },
+            fontFamily: {
+                "headline": ["Literata", "serif"],
+                "body": ["Nunito Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #0b1120; color: white; margin: 0; }
+        
+        /* The "Move In Out" Animation perfectly crafted */
+        @keyframes moveInOut {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.18) translate(-1%, 1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .animate-dynamic-zoom {
+            animation: moveInOut 20s ease-in-out infinite;
+        }
+
+        /* Guarantee visibility for the container logic */
+        .showing-media {
+            opacity: 0.65;
+            transition: opacity 1s ease-in-out;
+            pointer-events: auto;
+            z-index: 10;
+        }
+        .hidden-media {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen w-full overflow-hidden flex items-center justify-center p-4 lg:p-8">
+
+    <!-- Back to Home -->
+    <a href="index.html" class="absolute top-6 right-8 text-gray-400 hover:text-white flex items-center gap-2 transition-colors z-50 group">
+        <span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span> Home
+    </a>
+
+    <!-- Main Container -->
+    <div id="auth-container" class="w-full max-w-6xl h-[85vh] lg:h-[90vh] bg-[#121629] rounded-[2rem] border border-white/5 flex flex-col lg:flex-row overflow-hidden shadow-2xl relative transition-all duration-700 ease-in-out">
+        
+        <!-- Image/Media Panel -->
+        <div id="image-panel" class="flex w-full lg:w-1/2 h-[40vh] lg:h-full relative bg-stone-900 flex-col justify-end p-6 lg:p-12 transition-all duration-700 ease-in-out order-1 overflow-hidden z-10">
+            
+            <!-- SignIn Media: Video (Children running in grass) -->
+            <div id="media-signin" class="absolute inset-0 w-full h-full showing-media">
+                <video class="w-full h-full object-cover animate-dynamic-zoom" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600">
+                    <source src="https://videos.pexels.com/video-files/8056272/8056272-hd_1920_1080_25fps.mp4" type="video/mp4">
+                    <source src="https://cdn.pixabay.com/video/2020/07/22/45304-443040981_large.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <!-- SignUp Media: Video (Volunteers giving food) -->
+            <div id="media-signup" class="absolute inset-0 w-full h-full hidden-media">
+                <video class="w-full h-full object-cover animate-dynamic-zoom" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800">
+                    <source src="https://videos.pexels.com/video-files/6980998/6980998-hd_1920_1080_25fps.mp4" type="video/mp4">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-volunteers-giving-food-to-the-poor-43171-large.mp4" type="video/mp4">
+                    <source src="https://cdn.pixabay.com/video/2022/05/25/118141-713887614_large.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-black/40 to-transparent z-20 pointer-events-none"></div>
+            
+            <div class="relative z-30 w-full mt-auto hidden lg:block mb-8">
+                <span class="px-4 py-1.5 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20 text-xs font-bold tracking-widest uppercase mb-4 inline-block shadow-md">
+                    AnnaSetu Network
+                </span>
+                <div class="relative h-32">
+                    <div id="text-signin" class="absolute inset-0 transition-opacity duration-500 opacity-100">
+                        <h2 class="text-4xl font-['Literata'] font-bold text-white mb-4 leading-tight drop-shadow-xl shadow-black">
+                            Rescue Surplus.<br>Feed the Future.
+                        </h2>
+                        <p class="text-gray-300 drop-shadow-lg shadow-black text-lg">
+                            Join our AI-powered food rescue network driving sustainable community impact.
+                        </p>
+                    </div>
+                    <div id="text-signup" class="absolute inset-0 transition-opacity duration-500 opacity-0 pointer-events-none">
+                        <h2 class="text-4xl font-['Literata'] font-bold text-white mb-4 leading-tight drop-shadow-xl shadow-black">
+                            Start Distributing<br>Surplus Today.
+                        </h2>
+                        <p class="text-gray-300 drop-shadow-lg shadow-black text-lg">
+                            Create your free account and access deep logistics & analytical tools instantly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo overlay (always visible) -->
+            <div class="absolute top-4 left-6 lg:top-8 lg:left-8 flex items-center gap-2 z-30 opacity-90 drop-shadow-lg">
+                <span class="material-symbols-outlined text-indigo-400 text-2xl lg:text-3xl">eco</span>
+                <span class="text-xl lg:text-2xl font-bold font-['Literata'] text-white">AnnaSetu</span>
+            </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div id="form-panel" class="w-full lg:w-1/2 h-full flex flex-col items-center justify-center p-6 lg:p-16 relative transition-all duration-700 flex-shrink-0 order-2 overflow-y-auto bg-[#121629] z-20">
+            
+            <div class="w-full max-w-md my-auto">
+                <div class="flex items-center justify-center gap-2 mb-6 w-full lg:hidden drop-shadow-md">
+                    <span class="material-symbols-outlined text-indigo-400 text-3xl">eco</span>
+                    <span class="text-2xl font-bold font-['Literata'] text-white">AnnaSetu</span>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex p-1.5 bg-[#1e243b] rounded-xl mb-6 relative drop-shadow-md">
+                    <button id="tab-signin" class="flex-1 py-2.5 text-sm font-bold text-white bg-[#2a304a] rounded-lg shadow transition-all duration-300 focus:outline-none">Sign In</button>
+                    <button id="tab-signup" class="flex-1 py-2.5 text-sm font-bold text-gray-400 hover:text-gray-200 rounded-lg transition-all duration-300 focus:outline-none">Sign Up</button>
+                </div>
+
+                <!-- Alert Box -->
+                <div id="auth-alert" class="hidden w-full mb-4 px-4 py-3 rounded-lg text-sm font-bold text-center transition-all bg-opacity-20 border"></div>
+
+                <!-- Sign In Form -->
+                <form id="form-signin" class="block w-full transition-opacity duration-300">
+
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">Email</label>
+                            <input type="email" id="signin-email" placeholder="you@example.com" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">Password</label>
+                            <div class="relative">
+                                <input type="password" id="signin-password" placeholder="Enter your password" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                                <span class="material-symbols-outlined text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-300 transition-colors" onclick="togglePassword(this, 'signin-password')">visibility</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="flex items-center gap-2">
+                             <input type="checkbox" id="remember" class="w-4 h-4 rounded bg-[#1b2035] border-white/10 text-indigo-500 focus:ring-indigo-500/20 cursor-pointer" />
+                             <label for="remember" class="text-xs text-gray-400 cursor-pointer select-none hover:text-gray-300">Remember me</label>
+                        </div>
+                        <a href="#" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">Forgot password?</a>
+                    </div>
+                    
+                    <button type="button" onclick="handleSignIn()" class="w-full py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-xl shadow-[0_8px_20px_rgba(99,102,241,0.25)] transition-all hover:-translate-y-1">
+                        Sign In
+                    </button>
+                    
+                    <p class="text-center mt-6 text-sm text-gray-400">
+                        No account yet? <button type="button" class="text-indigo-400 font-bold hover:underline" onclick="switchToSignup()">Sign Up</button>
+                    </p>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="form-signup" class="hidden w-full transition-opacity duration-300">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">First Name</label>
+                            <input type="text" id="signup-fname" placeholder="Jane" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-[#4a7c59] focus:ring-1 focus:ring-[#4a7c59] focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">Last Name</label>
+                            <input type="text" id="signup-lname" placeholder="Doe" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-[#4a7c59] focus:ring-1 focus:ring-[#4a7c59] focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-8">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">Email</label>
+                            <input type="email" id="signup-email" placeholder="you@example.com" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-[#4a7c59] focus:ring-1 focus:ring-[#4a7c59] focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1.5 ml-1">Password</label>
+                            <div class="relative">
+                                <input type="password" id="signup-password" placeholder="Create a strong password" class="w-full bg-[#1b2035] border border-white/5 text-white rounded-xl px-4 py-3.5 focus:border-[#4a7c59] focus:ring-1 focus:ring-[#4a7c59] focus:outline-none transition-all placeholder-gray-600 shadow-inner" required />
+                                <span class="material-symbols-outlined text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-300 transition-colors" onclick="togglePassword(this, 'signup-password')">visibility</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" onclick="handleSignUp()" class="w-full py-4 bg-[#4a7c59] hover:bg-[#3d664a] text-white font-bold rounded-xl shadow-[0_8px_20px_rgba(74,124,89,0.3)] transition-all hover:-translate-y-1">
+                        Create Account
+                    </button>
+                    
+                    <p class="text-center mt-6 text-sm text-gray-400">
+                        Already have an account? <button type="button" class="text-[#4a7c59] font-bold hover:underline" onclick="switchToSignin()">Sign In</button>
+                    </p>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Interface Controller -->
+    <script>
+        const imgPanel     = document.getElementById('image-panel');
+        const formPanel    = document.getElementById('form-panel');
+        
+        const mediaSignin  = document.getElementById('media-signin');
+        const mediaSignup  = document.getElementById('media-signup');
+        const textSignin   = document.getElementById('text-signin');
+        const textSignup   = document.getElementById('text-signup');
+        
+        const tabSignin    = document.getElementById('tab-signin');
+        const tabSignup    = document.getElementById('tab-signup');
+        const formSignin   = document.getElementById('form-signin');
+        const formSignup   = document.getElementById('form-signup');
+        const authAlert    = document.getElementById('auth-alert');
+
+        function switchToSignup() {
+            authAlert.classList.add('hidden');
+            imgPanel.classList.remove('order-1');
+            imgPanel.classList.add('order-2');
+            formPanel.classList.remove('order-2');
+            formPanel.classList.add('order-1');
+            
+            // Tab styles
+            tabSignup.classList.add('bg-[#2a304a]', 'text-white', 'shadow');
+            tabSignup.classList.remove('text-gray-400', 'hover:text-gray-200');
+            tabSignin.classList.remove('bg-[#2a304a]', 'text-white', 'shadow');
+            tabSignin.classList.add('text-gray-400', 'hover:text-gray-200');
+            
+            // Form swap
+            formSignin.classList.add('hidden');
+            formSignin.classList.remove('block');
+            formSignup.classList.remove('hidden');
+            formSignup.classList.add('block');
+            
+            // Media Swap
+            mediaSignin.classList.replace('showing-media', 'hidden-media');
+            mediaSignup.classList.replace('hidden-media', 'showing-media');
+            
+            // Text Swap
+            textSignin.classList.replace('opacity-100', 'opacity-0');
+            textSignin.classList.add('pointer-events-none');
+            
+            textSignup.classList.replace('opacity-0', 'opacity-100');
+            textSignup.classList.remove('pointer-events-none');
+        }
+
+        function switchToSignin() {
+            authAlert.classList.add('hidden');
+            imgPanel.classList.add('order-1');
+            imgPanel.classList.remove('order-2');
+            formPanel.classList.add('order-2');
+            formPanel.classList.remove('order-1');
+            
+            // Tab styles
+            tabSignin.classList.add('bg-[#2a304a]', 'text-white', 'shadow');
+            tabSignin.classList.remove('text-gray-400', 'hover:text-gray-200');
+            tabSignup.classList.remove('bg-[#2a304a]', 'text-white', 'shadow');
+            tabSignup.classList.add('text-gray-400', 'hover:text-gray-200');
+            
+            // Form swap
+            formSignup.classList.add('hidden');
+            formSignup.classList.remove('block');
+            formSignin.classList.remove('hidden');
+            formSignin.classList.add('block');
+
+            // Media Swap
+            mediaSignup.classList.replace('showing-media', 'hidden-media');
+            mediaSignin.classList.replace('hidden-media', 'showing-media');
+            
+            // Text Swap
+            textSignup.classList.replace('opacity-100', 'opacity-0');
+            textSignup.classList.add('pointer-events-none');
+            
+            textSignin.classList.replace('opacity-0', 'opacity-100');
+            textSignin.classList.remove('pointer-events-none');
+        }
+
+        tabSignup.addEventListener('click', switchToSignup);
+        tabSignin.addEventListener('click', switchToSignin);
+
+        // Helper UI
+        function togglePassword(iconElem, inputId) {
+            const input = document.getElementById(inputId);
+            if(input.type === 'password') {
+                input.type = 'text';
+                iconElem.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                iconElem.textContent = 'visibility';
+            }
+        }
+
+        function showAlert(msg, isSuccess) {
+            authAlert.innerHTML = msg;
+            authAlert.className = 'w-full mb-4 px-4 py-3 rounded-lg text-sm font-bold text-center transition-all border';
+            if(isSuccess) {
+                authAlert.classList.add('bg-green-500/20', 'text-green-400', 'border-green-500/30');
+            } else {
+                authAlert.classList.add('bg-red-500/20', 'text-red-400', 'border-red-500/30');
+            }
+        }
+
+        function handleSignUp() {
+            const fname = document.getElementById('signup-fname').value.trim();
+            const lname = document.getElementById('signup-lname').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const pass = document.getElementById('signup-password').value;
+            
+            if (!email || !pass || !fname || !lname) {
+                showAlert("Please fill out all fields to create an account.", false);
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('annasetu_users') || '[]');
+            if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+                showAlert("An account already exists with this email! Try signing in.", false);
+                return;
+            }
+            
+            users.push({ fname, lname, email, pass });
+            localStorage.setItem('annasetu_users', JSON.stringify(users));
+            
+            document.getElementById('form-signup').reset();
+            showAlert(`Success! Account created for ${fname}. Please sign in.`, true);
+            setTimeout(() => switchToSignin(), 2000);
+        }
+
+        function handleSignIn() {
+            const email = document.getElementById('signin-email').value.trim();
+            const pass = document.getElementById('signin-password').value;
+            
+            if (!email || !pass) {
+                showAlert("Please enter both email and password.", false);
+                return;
+            }
+            
+            let users = JSON.parse(localStorage.getItem('annasetu_users') || '[]');
+            let validUser = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.pass === pass);
+            
+            if (validUser) {
+                showAlert(`Welcome Back ${validUser.fname}.... Redirecting!`, true);
+                localStorage.setItem('annasetu_session', JSON.stringify(validUser));
+                
+                setTimeout(() => {
+                    window.location.href = 'Admin_Dashboard.html';
+                }, 1500);
+            } else {
+                showAlert("Invalid email or password. Please try again or Sign Up.", false);
+            }
+        }
+    </script>
+</body>
+</html>

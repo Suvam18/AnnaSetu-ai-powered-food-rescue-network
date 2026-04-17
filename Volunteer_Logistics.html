@@ -85,67 +85,43 @@
         h1, h2, h3 { font-family: 'Literata', serif; }
     </style>
 </head>
-<body class="bg-surface text-on-surface">
-<!-- Top Navigation -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#faf6f0] dark:bg-stone-950 border-b border-stone-200/50 dark:border-stone-800 shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
-<div class="flex items-center gap-4">
-<span class="text-2xl font-bold font-['Literata'] text-[#4a7c59] dark:text-emerald-400">AnnaSetu</span>
+<body class=\"bg-surface dark:bg-[#0B0F19] text-on-surface dark:text-slate-200">
+<!-- Top Navbar -->
+<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+    <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-[#faf6f0]/90 dark:bg-[#0B0F19]/90 backdrop-blur-xl border border-stone-200/50 dark:border-white/10 rounded-full shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-indigo-400 text-3xl">eco</span>
+            <span class="text-xl font-bold font-['Literata'] text-emerald-900 dark:text-white">AnnaSetu</span>
+        </div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8">
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Admin_Dashboard.html">
+                Admin Dashboard
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Donation_Interface.html">
+                Donations
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Volunteer_Logistics.html">
+                Logistics
+            </a>
+            <a class="text-sm text-stone-600 dark:text-gray-300 font-semibold hover:text-emerald-700 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="Impact_Hub.html">
+                Impact Hub
+            </a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all shadow-[0_0_15px_rgba(250,204,21,0.2)]" onclick="localStorage.removeItem('annasetu_session');">Log out</a>
+            <button id="theme-toggle" class="w-10 h-10 rounded-full bg-stone-100 dark:bg-[#1e243b] hover:bg-stone-200 dark:hover:bg-[#2a304a] flex items-center justify-center text-stone-600 hover:text-stone-900 dark:text-gray-300 dark:hover:text-white transition-colors border border-stone-200 dark:border-white/5 cursor-pointer z-50 relative pointer-events-auto">
+                <span id="theme-icon" class="material-symbols-outlined text-lg">light_mode</span>
+            </button>
+        </div>
+    </header>
 </div>
-<div class="flex items-center gap-6">
-<div class="hidden md:flex gap-8 font-['Literata'] font-semibold">
-<a class="text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors" href="#">Dashboard</a>
-<a class="text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors" href="#">Donations</a>
-<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59]" href="#">Logistics</a>
-<a class="text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors" href="#">Impact</a>
-</div>
-<div class="flex items-center gap-3">
-<button class="p-2 rounded-full hover:bg-stone-100 transition-colors active:scale-95 duration-200">
-<span class="material-symbols-outlined text-secondary">notifications</span>
-</button>
-<button class="p-2 rounded-full hover:bg-stone-100 transition-colors active:scale-95 duration-200">
-<span class="material-symbols-outlined text-secondary">account_circle</span>
-</button>
-</div>
-</div>
-</nav>
-<div class="flex pt-16 min-h-screen">
-<!-- Side Navigation -->
-<aside class="hidden lg:flex flex-col h-[calc(100vh-64px)] w-64 p-4 gap-2 bg-[#faf6f0] dark:bg-stone-950 border-r border-stone-200/50 dark:border-stone-800 sticky top-16">
-<div class="px-4 py-6">
-<h2 class="text-xl font-bold text-[#4a7c59] font-headline">Terra Network</h2>
-<p class="text-sm text-secondary font-body">Rooted Food Rescue</p>
-</div>
-<nav class="space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 transition-all duration-200 ease-in-out hover:bg-stone-100 rounded-xl" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 transition-all duration-200 ease-in-out hover:bg-stone-100 rounded-xl" href="#">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="font-body">Donations</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-950/30 text-[#4a7c59] dark:text-emerald-400 font-bold rounded-xl transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">alt_route</span>
-<span class="font-body">Logistics</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-stone-600 transition-all duration-200 ease-in-out hover:bg-stone-100 rounded-xl" href="#">
-<span class="material-symbols-outlined">monitoring</span>
-<span class="font-body">Impact</span>
-</a>
-</nav>
-<div class="mt-auto p-4 bg-tertiary/10 rounded-xl border border-tertiary/20">
-<p class="text-xs font-bold uppercase tracking-wider text-tertiary mb-1">Shift Progress</p>
-<div class="w-full bg-surface-container rounded-full h-2 mb-2">
-<div class="bg-tertiary h-2 rounded-full" style="width: 65%"></div>
-</div>
-<p class="text-xs text-on-tertiary-fixed-variant">2 of 3 stops completed</p>
-</div>
-</aside>
+<div class="flex pt-32 min-h-screen">
 <!-- Main Content Area -->
 <main class="flex-1 p-6 lg:p-10 max-w-7xl mx-auto w-full">
 <header class="mb-8">
-<h1 class="text-4xl font-bold text-on-surface mb-2">Today's Rescue Route</h1>
-<p class="text-secondary flex items-center gap-2">
+<h1 class="text-4xl font-bold text-on-surface dark:text-slate-100 mb-2">Today's Rescue Route</h1>
+<p class="text-secondary dark:text-slate-400 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary scale-75">calendar_today</span>
                     Monday, Oct 23 • Morning Shift (09:00 - 12:00)
                 </p>
@@ -156,7 +132,7 @@
 <div class="xl:col-span-5 space-y-6">
 <div class="flex items-center justify-between">
 <h3 class="text-xl font-semibold text-primary-fixed-dim bg-primary px-4 py-1 rounded-full">Optimized Sequence</h3>
-<span class="text-sm font-medium text-secondary">Estimated: 1h 45m</span>
+<span class="text-sm font-medium text-secondary dark:text-slate-400">Estimated: 1h 45m</span>
 </div>
 <!-- Stop 1: Completed -->
 <div class="relative pl-8 group">
@@ -164,7 +140,7 @@
 <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center z-10">
 <span class="material-symbols-outlined text-white text-xs">check</span>
 </div>
-<div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/30 opacity-60">
+<div class="bg-surface-container-low dark:bg-[#1A1F35] p-5 rounded-xl border border-outline-variant/30 dark:border-white/20 opacity-60">
 <div class="flex justify-between items-start mb-2">
 <div>
 <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1 block">Pickup • 09:15 AM</span>
@@ -172,7 +148,7 @@
 </div>
 <span class="material-symbols-outlined text-primary">local_shipping</span>
 </div>
-<p class="text-sm text-secondary">142 Oak St, North Park</p>
+<p class="text-sm text-secondary dark:text-slate-400">142 Oak St, North Park</p>
 <div class="mt-3 flex gap-2">
 <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded-md">12kg Produce</span>
 <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded-md">Bakery</span>
@@ -185,69 +161,69 @@
 <div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10 shadow-lg shadow-primary/20">
 <span class="text-white text-[10px] font-bold">2</span>
 </div>
-<div class="bg-surface-container-highest p-6 rounded-xl border-2 border-primary shadow-sm relative overflow-hidden">
-<div class="absolute top-0 right-0 p-3">
+<div class="bg-gradient-to-br from-emerald-600/10 to-indigo-600/10 dark:from-emerald-500/10 dark:to-indigo-500/10 backdrop-blur-2xl p-6 rounded-3xl border-2 border-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.2)] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
 <span class="flex h-3 w-3">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,1)]"></span>
 </span>
 </div>
 <div class="flex justify-between items-start mb-2">
 <div>
-<span class="text-[10px] font-bold uppercase tracking-widest text-tertiary mb-1 block">Pickup • Current Stop</span>
-<h4 class="font-bold text-xl">The Daily Crumb</h4>
+<span class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-2 block">Pickup • In Progress</span>
+<h4 class="font-black text-2xl tracking-tight">The Daily Crumb</h4>
 </div>
-<span class="material-symbols-outlined text-primary text-3xl">storefront</span>
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-4xl">storefront</span>
 </div>
-<p class="text-sm text-secondary mb-4">88 Baker Way, West Side</p>
-<div class="space-y-3 mb-6">
-<div class="flex items-center gap-3 text-sm p-3 bg-white/50 rounded-lg">
-<span class="material-symbols-outlined text-tertiary">info</span>
-<span>Enter through the side delivery gate (Code: 4211)</span>
+<p class="text-sm text-secondary dark:text-slate-300 mb-6 font-medium">88 Baker Way, West Side</p>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 text-xs font-bold p-4 bg-white/40 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-2xl backdrop-blur-md">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400">key</span>
+<span class="tracking-wide">Gate Entry: Side delivery gate (Code: 4211)</span>
 </div>
-<div class="flex items-center gap-3 text-sm p-3 bg-white/50 rounded-lg">
-<span class="material-symbols-outlined text-tertiary">inventory_2</span>
-<span>Expected: 15-20 boxes of assorted breads</span>
+<div class="flex items-center gap-4 text-xs font-bold p-4 bg-white/40 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-2xl backdrop-blur-md">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400">inventory_2</span>
+<span class="tracking-wide">Inventory: 15-20 boxes (Assorted Breads)</span>
 </div>
 </div>
-<button class="w-full bg-primary text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
-<span class="material-symbols-outlined">verified</span>
+<button class="w-full bg-emerald-600 dark:bg-emerald-500 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.5)] active:scale-[0.98] transition-all group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">verified</span>
                                 Confirm Collection
                             </button>
 </div>
 </div>
 <!-- Stop 3: Pending -->
 <div class="relative pl-8 group">
-<div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center z-10">
-<span class="text-secondary text-[10px] font-bold">3</span>
+<div class="absolute left-0 top-2 w-6 h-6 rounded-full bg-surface-container-highest dark:bg-[#242A45] border border-outline-variant flex items-center justify-center z-10">
+<span class="text-secondary dark:text-slate-400 text-[10px] font-bold">3</span>
 </div>
-<div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="bg-surface-container-low dark:bg-[#1A1F35] p-5 rounded-xl border border-outline-variant/30 dark:border-white/20 hover:border-primary/30 transition-colors">
 <div class="flex justify-between items-start mb-2">
 <div>
-<span class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-1 block">Drop-off • ~11:30 AM</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary dark:text-slate-400 mb-1 block">Drop-off • ~11:30 AM</span>
 <h4 class="font-bold text-lg">Sunrise Community Kitchen</h4>
 </div>
-<span class="material-symbols-outlined text-secondary">restaurant</span>
+<span class="material-symbols-outlined text-secondary dark:text-slate-400">restaurant</span>
 </div>
-<p class="text-sm text-secondary">404 Hope Ave, Downtown</p>
+<p class="text-sm text-secondary dark:text-slate-400">404 Hope Ave, Downtown</p>
 </div>
 </div>
 </div>
 <!-- Map and Details -->
 <div class="xl:col-span-7 space-y-6">
 <!-- Map Section -->
-<div class="bg-surface-container rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 h-[500px] relative">
+<div class="bg-surface-container dark:bg-[#1A1F35] rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 h-[500px] relative">
 <div class="absolute top-4 left-4 z-20 flex flex-col gap-2">
 <button class="bg-white/90 backdrop-blur p-2 rounded-lg shadow hover:bg-white transition-colors">
-<span class="material-symbols-outlined text-on-surface">add</span>
+<span class="material-symbols-outlined text-on-surface dark:text-slate-100">add</span>
 </button>
 <button class="bg-white/90 backdrop-blur p-2 rounded-lg shadow hover:bg-white transition-colors">
-<span class="material-symbols-outlined text-on-surface">remove</span>
+<span class="material-symbols-outlined text-on-surface dark:text-slate-100">remove</span>
 </button>
 </div>
 <!-- Map Placeholder Image -->
 <div class="w-full h-full bg-stone-200 relative group cursor-crosshair">
-<img class="w-full h-full object-cover grayscale-[20%] sepia-[10%] brightness-95" data-alt="clean minimal map view showing urban streets with a green route line connecting three location markers in a warm sunlight overlay" data-location="Seattle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAakqL4r_alrpuDPOclVoL7U9XQAQYyatXL8EUT5yGTwqt9zp7zYgjgqqE-A30CbUJAxXzHobwe0FiSo-QeII4XBgJwB8nce0FrffrdUEXfJ88f3KMvDuJjmChjynDtAXQ0Uo4GvVfm6DBXBsaYlAvGmjoY8hcDFyVMLy8nTG_armk-R2CtGjzJ6_4CGwf3rEImkB7fZFErT_3ZrJb-sLwEstFuVPS60-77in3xRjnj3dYjH8pWfZwPpyM2iVB703tUzla_LcLOh8w"/>
+<img class="w-full h-full object-cover grayscale-[20%] sepia-[10%] brightness-95 dark:invert-[0.9] dark:hue-rotate-180 dark:brightness-110 dark:contrast-125 transition-all duration-700" data-alt="clean minimal map view showing urban streets with a green route line connecting three location markers in a warm sunlight overlay" data-location="Seattle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAakqL4r_alrpuDPOclVoL7U9XQAQYyatXL8EUT5yGTwqt9zp7zYgjgqqE-A30CbUJAxXzHobwe0FiSo-QeII4XBgJwB8nce0FrffrdUEXfJ88f3KMvDuJjmChjynDtAXQ0Uo4GvVfm6DBXBsaYlAvGmjoY8hcDFyVMLy8nTG_armk-R2CtGjzJ6_4CGwf3rEImkB7fZFErT_3ZrJb-sLwEstFuVPS60-77in3xRjnj3dYjH8pWfZwPpyM2iVB703tUzla_LcLOh8w"/>
 <!-- Custom Map Overlays (Simulated) -->
 <div class="absolute top-[40%] left-[30%] -translate-x-1/2 -translate-y-1/2">
 <div class="relative">
@@ -266,34 +242,38 @@
 </div>
 </div>
 <!-- Turn-by-turn logic overview overlay -->
-<div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/50 flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="bg-primary/10 p-2 rounded-lg">
-<span class="material-symbols-outlined text-primary">navigation</span>
+<div class="absolute bottom-6 left-6 right-6 bg-[#faf6f0]/80 dark:bg-[#0B0F19]/80 backdrop-blur-2xl p-5 rounded-3xl shadow-2xl border border-white/20 dark:border-white/5 flex items-center justify-between transition-all duration-300">
+<div class="flex items-center gap-5">
+<div class="w-14 h-14 bg-emerald-600/10 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center border border-emerald-500/20">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-3xl animate-pulse">navigation</span>
 </div>
 <div>
-<p class="text-xs font-bold text-secondary uppercase tracking-tight">Next Turn</p>
-<p class="font-bold text-on-surface">450m • Right onto Elm Street</p>
+<p class="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-1">Next Instruction</p>
+<p class="font-bold text-lg leading-tight dark:text-white">Turn Right on Market St <span class="text-secondary dark:text-slate-400 font-medium">in 200m</span></p>
 </div>
 </div>
-<button class="bg-secondary text-white px-4 py-2 rounded-lg text-sm font-bold">Open GPS</button>
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 rounded-full bg-white dark:bg-white/10 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined dark:text-white">volume_up</span>
+</button>
+</div>
 </div>
 </div>
 <!-- Route Stats -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30">
+<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30 dark:border-white/20">
 <span class="material-symbols-outlined text-tertiary mb-2">distance</span>
-<p class="text-xs text-secondary font-bold uppercase">Total Distance</p>
+<p class="text-xs text-secondary dark:text-slate-400 font-bold uppercase">Total Distance</p>
 <p class="text-2xl font-bold font-headline">8.4 km</p>
 </div>
-<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30">
+<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30 dark:border-white/20">
 <span class="material-symbols-outlined text-primary mb-2">eco</span>
-<p class="text-xs text-secondary font-bold uppercase">Carbon Saved</p>
+<p class="text-xs text-secondary dark:text-slate-400 font-bold uppercase">Carbon Saved</p>
 <p class="text-2xl font-bold font-headline">4.2 kg</p>
 </div>
-<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30">
+<div class="bg-white p-5 rounded-xl shadow-sm border border-outline-variant/30 dark:border-white/20">
 <span class="material-symbols-outlined text-tertiary mb-2">skillet</span>
-<p class="text-xs text-secondary font-bold uppercase">Potential Meals</p>
+<p class="text-xs text-secondary dark:text-slate-400 font-bold uppercase">Potential Meals</p>
 <p class="text-2xl font-bold font-headline">~120</p>
 </div>
 </div>
@@ -301,23 +281,24 @@
 </div>
 </main>
 </div>
-<!-- Mobile Navigation Bar -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#faf6f0] border-t border-stone-200/50 flex justify-around items-center h-16 z-50">
-<button class="flex flex-col items-center gap-1 text-stone-600">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-[10px] font-bold">Dash</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-[#4a7c59]">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">alt_route</span>
-<span class="text-[10px] font-bold">Logistics</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-stone-600">
-<span class="material-symbols-outlined">volunteer_activism</span>
-<span class="text-[10px] font-bold">Donations</span>
-</button>
-<button class="flex flex-col items-center gap-1 text-stone-600">
-<span class="material-symbols-outlined">monitoring</span>
-<span class="text-[10px] font-bold">Impact</span>
-</button>
-</nav>
+<script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    themeToggleBtn?.addEventListener('click', () => {
+        htmlElement.classList.toggle('dark');
+        if (htmlElement.classList.contains('dark')) {
+            themeIcon.textContent = 'dark_mode';
+        } else {
+            themeIcon.textContent = 'light_mode';
+        }
+    });
+
+    if (htmlElement.classList.contains('dark')) {
+        themeIcon.textContent = 'dark_mode';
+    } else {
+        themeIcon.textContent = 'light_mode';
+    }
+</script>
 </body></html>
