@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html class="dark" lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -37,33 +37,33 @@
 
 <!-- Top Navbar -->
 <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
-    <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-[#121629]/95 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+    <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
         <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-indigo-400 text-3xl">eco</span>
-            <span class="text-xl font-bold font-['Literata'] text-white">AnnaSetu</span>
+            <span class="material-symbols-outlined text-emerald-600 dark:text-indigo-400 text-3xl">eco</span>
+            <span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
         </div>
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8">
-            <a class="text-sm text-gray-300 font-semibold hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="index.html">
+            <a class="text-sm text-gray-600 dark:text-gray-300 font-semibold hover:text-emerald-600 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="index.html">
                 Home
             </a>
-            <a class="text-sm text-gray-300 font-semibold hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#features">
+            <a class="text-sm text-gray-600 dark:text-gray-300 font-semibold hover:text-emerald-600 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#features">
                 Features
             </a>
-            <a class="text-sm text-gray-300 font-semibold hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#how-it-works">
+            <a class="text-sm text-gray-600 dark:text-gray-300 font-semibold hover:text-emerald-600 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#how-it-works">
                 How it works
             </a>
-            <a class="text-sm text-gray-300 font-semibold hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#faq">
+            <a class="text-sm text-gray-600 dark:text-gray-300 font-semibold hover:text-emerald-600 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#faq">
                 FAQ
             </a>
-            <a class="text-sm text-gray-300 font-semibold hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#stats">
+            <a class="text-sm text-gray-600 dark:text-gray-300 font-semibold hover:text-emerald-600 dark:hover:text-[#facc15] transition-all hover:-translate-y-0.5 duration-300" href="#stats">
                 Stats
             </a>
         </nav>
         <div class="flex items-center gap-4">
             <a href="signin.html" class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all shadow-[0_0_15px_rgba(250,204,21,0.2)]">Sign in</a>
-            <button id="theme-toggle" class="w-10 h-10 rounded-full bg-[#1e243b] hover:bg-[#2a304a] flex items-center justify-center text-gray-300 hover:text-white transition-colors border border-white/5 cursor-pointer z-50 relative pointer-events-auto">
-                <span id="theme-icon" class="material-symbols-outlined text-lg">light_mode</span>
+            <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] hover:bg-gray-200 dark:hover:bg-[#2a304a] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors border border-gray-200 dark:border-white/5 cursor-pointer z-50 relative pointer-events-auto">
+                <span id="theme-icon" class="material-symbols-outlined text-lg">dark_mode</span>
             </button>
         </div>
     </header>
@@ -134,7 +134,7 @@
             <p class="text-xl md:text-3xl text-white mt-6 font-medium tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 Where the next wave of food rescue happens
             </p>
-            <a href="Donation_Interface.html" class="mt-8 px-10 py-4 rounded-full border border-stone-500/50 bg-[#282522]/90 text-white font-bold hover:bg-[#3d3835] transition-all backdrop-blur-xl text-lg hover:border-stone-400 drop-shadow-lg hover:scale-105 duration-300">
+            <a href="signin.html" class="mt-8 px-10 py-4 rounded-full border border-stone-500/50 bg-[#282522]/90 text-white font-bold hover:bg-[#3d3835] transition-all backdrop-blur-xl text-lg hover:border-stone-400 drop-shadow-lg hover:scale-105 duration-300">
                 Join the Rescue
             </a>
         </div>
@@ -144,73 +144,320 @@
             <span class="text-sm text-white font-bold mb-3 opacity-90 tracking-[0.2em] drop-shadow-md uppercase">Scroll to Explore</span>
             <div class="w-[2px] h-12 bg-gradient-to-b from-white to-transparent opacity-80"></div>
         </div>
+
+        <!-- Hero bottom haze — fades into features section. Light mode: to white. Dark mode: to #111 -->
+        <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none dark:hidden"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(253,248,238,0.65) 50%, #fdf8ee 100%);"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none hidden dark:block"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(17,17,17,0.6) 50%, #111111 100%);"></div>
     </section>
-    
+
 </main>
 
 <!-- Page Body Content (Below Hero) -->
-<div class="w-full bg-[#faf6f0] dark:bg-[#111111] flex flex-col flex-1 transition-colors duration-500">
-    <!-- Easy Fishy Inspired Features Section -->
-    <section id="features" class="z-10 w-full max-w-7xl mx-auto pt-24 px-4 pb-32">
-        <div class="text-center mb-16">
-            <h2 class="text-indigo-400 font-bold tracking-[0.2em] uppercase text-sm mb-4">Why AnnaSetu?</h2>
-            <h3 class="text-4xl md:text-5xl font-black text-on-surface dark:text-white font-['Literata'] tracking-tighter mb-6">Our Capabilities</h3>
-            <p class="text-lg text-secondary dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                AnnaSetu leverages cutting-edge AI and logistics to make food rescue simple, rapid, and verifiable.
-            </p>
-        </div>
+<div class="w-full features-bg flex flex-col flex-1 transition-colors duration-500">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Feature Card 1 -->
-            <div class="group relative bg-[#161a20] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:-translate-y-3">
-                <div class="aspect-[16/10] overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="ai_food_scan_feature_1776418745197.png" alt="AI Freshness Analysis">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#161a20] via-transparent to-transparent opacity-60"></div>
+    <!-- Features Section: Full Width Background with Texture -->
+    <section id="features" class="z-10 w-full faq-pattern pt-20 pb-32">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <p class="text-sm font-bold tracking-[0.25em] uppercase text-emerald-600 dark:text-emerald-400 mb-3">Why AnnaSetu?</p>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tight mb-5">Our Capabilities</h2>
+                <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    AnnaSetu offers a range of <span class="text-emerald-600 dark:text-emerald-400 font-semibold">intelligent services</span> to make food rescue <span class="text-emerald-600 dark:text-emerald-400 font-semibold">simple, rapid, and verifiable</span>.
+                </p>
+            </div>
+
+        <!-- 6-Card Grid — 3 columns on md+, 1 on mobile -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+            <!-- Card 1: Instant Freshness Analysis -->
+            <div class="group feature-card reveal-left bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="ai_food_scan_feature_1776418745197.png" alt="AI Freshness Analysis">
                 </div>
-                <div class="p-8 pb-10 text-center relative z-10">
-                    <h4 class="text-xl font-bold text-white mb-4">Instant Freshness Analysis</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Instant Freshness Analysis</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                         Analyze food freshness and quality in under 3 seconds using our verified deep learning AI scanner from any smart device.
                     </p>
                 </div>
             </div>
 
-            <!-- Feature Card 2 -->
-            <div class="group relative bg-[#161a20] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:-translate-y-3">
-                <div class="aspect-[16/10] overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="dynamic_network_logistics_feature_1776418791336.png" alt="Quantum Network Routing">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#161a20] via-transparent to-transparent opacity-60"></div>
+            <!-- Card 2: Smart Logistics Routing -->
+            <div class="group feature-card reveal-up bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="dynamic_network_logistics_feature_1776418791336.png" alt="Smart Logistics Routing">
                 </div>
-                <div class="p-8 pb-10 text-center relative z-10">
-                    <h4 class="text-xl font-bold text-white mb-4">Quantum Network Routing</h4>
-                    <h4 class="text-xl font-bold text-white mb-4 sr-only">Species Recognition</h4> <!-- Accessibility backup line -->
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Smart Logistics Routing</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                         Automatically optimize pickup routes across 100+ points with 98.5% efficiency, reducing rescue times globally.
                     </p>
                 </div>
             </div>
 
-            <!-- Feature Card 3 -->
-            <div class="group relative bg-[#161a20] rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-700 hover:-translate-y-3">
-                <div class="aspect-[16/10] overflow-hidden">
-                    <img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="impact_analytics_report_feature_1776418825267.png" alt="Detailed Impact Reports">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#161a20] via-transparent to-transparent opacity-60"></div>
+            <!-- Card 3: Detailed Impact Reports -->
+            <div class="group feature-card reveal-right bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="impact_analytics_report_feature_1776418825267.png" alt="Detailed Impact Reports">
                 </div>
-                <div class="p-8 pb-10 text-center relative z-10">
-                    <h4 class="text-xl font-bold text-white mb-4">Detailed Impact Reports</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Detailed Impact Reports</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                         Generate downloadable, verifiable health and environmental impact certificates for your organization and community.
                     </p>
                 </div>
             </div>
+
+            <!-- Card 4: Real-Time Volunteer Map -->
+            <div class="group feature-card reveal-left bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="logistics_map.png" alt="Real-Time Volunteer Map">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Real-Time Volunteer Map</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Track every volunteer and rescue vehicle live on an interactive map, ensuring zero delays and full transparency in every operation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 5: AI Freshness Score -->
+            <div class="group feature-card reveal-up bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="freshness_ai.png" alt="AI Freshness Score">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">AI Freshness Score</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Our proprietary AI assigns a live freshness score to every food batch, helping recipients make informed decisions instantly.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 6: Donation Analytics Dashboard -->
+            <div class="group feature-card reveal-right bg-white dark:bg-[#161d2e] rounded-2xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.14)] dark:hover:shadow-[0_8px_36px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="overflow-hidden h-[200px]">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="reports_dashboard.png" alt="Donation Analytics Dashboard">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Donation Analytics Dashboard</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Visualize donation flows, rescue statistics, and community impact through a powerful, real-time analytics dashboard.
+                    </p>
+                </div>
+            </div>
+
         </div>
 
         <!-- Secondary CTA -->
-        <div class="mt-20 flex flex-col items-center gap-6">
-            <p class="text-secondary dark:text-stone-500 font-bold text-xs uppercase tracking-[0.4em] opacity-0 group-hover:opacity-100 transition-opacity">Ready to lead the change?</p>
-            <a href="signin.html" class="px-12 py-5 bg-[#1e1b4b] text-white rounded-full font-bold text-sm tracking-widest hover:bg-emerald-600 transition-all duration-500 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+        <div class="mt-20 flex flex-col items-center gap-5">
+            <p class="text-gray-400 dark:text-stone-500 font-bold text-xs uppercase tracking-[0.4em]">Ready to lead the change?</p>
+            <a href="signin.html" class="px-12 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-sm tracking-widest hover:bg-emerald-600 dark:hover:bg-emerald-400 dark:hover:text-white transition-all duration-500 shadow-lg hover:shadow-emerald-500/20">
                 JOIN THE RESCUE
             </a>
+        </div>
+    </div>
+</section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- How It Works Section                               -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 pb-32 pt-20">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <p class="text-sm font-bold tracking-[0.25em] uppercase text-emerald-600 dark:text-emerald-400 mb-3">Here's How It Works</p>
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tight mb-5">How does AnnaSetu work?</h2>
+            <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Get started in just 3 simple steps — from registering your organization to rescuing food and feeding communities in need.
+            </p>
+        </div>
+
+        <!-- How it Works Grid: Vertical columns where hovering card highlights the number -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 px-2">
+
+            <!-- Step 1 Group -->
+            <div class="group flex flex-col items-center cursor-default">
+                <!-- Row for Number + Arrow -->
+                <div class="relative w-full flex justify-center mb-8">
+                    <!-- The Circle: Highlight on parent group hover -->
+                    <div class="w-16 h-16 rounded-full bg-white dark:bg-[#1f2937] border-2 border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center text-2xl font-black text-gray-800 dark:text-white z-20 transition-all duration-300 group-hover:!bg-emerald-500 group-hover:!border-emerald-400 group-hover:!text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+                        1
+                    </div>
+                    <!-- Arrow 1→2: Positioned spanning the space between columns 1 and 2 -->
+                    <div class="hidden md:flex absolute left-1/2 w-full h-8 top-1/2 -translate-y-1/2 items-center justify-center z-10 pointer-events-none opacity-40 dark:opacity-20">
+                        <svg class="w-[180px] h-8" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 10 15 Q 90 5 170 15" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" fill="none" class="text-gray-400 dark:text-white"/>
+                            <polygon points="165,10 175,15 165,20" fill="currentColor" class="text-gray-400 dark:text-white"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- The Card -->
+                <div class="w-full reveal-left bg-white dark:bg-[#161d2e] rounded-2xl p-8 border border-gray-100 dark:border-white/5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.6)] group-hover:-translate-y-2 transition-all duration-500 text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-3xl" style="font-variation-settings:'FILL' 1;">login</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 tracking-tight">Login as Restaurant or NGO</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Sign up and create your verified profile — as a food donor (restaurant, hotel, caterer) or as a recipient (NGO, community kitchen, volunteer group).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2 Group -->
+            <div class="group flex flex-col items-center cursor-default">
+                <!-- Row for Number + Arrow -->
+                <div class="relative w-full flex justify-center mb-8">
+                    <!-- The Circle: Highlight on parent group hover -->
+                    <div class="w-16 h-16 rounded-full bg-white dark:bg-[#1f2937] border-2 border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center text-2xl font-black text-gray-800 dark:text-white z-20 transition-all duration-300 group-hover:!bg-emerald-500 group-hover:!border-emerald-400 group-hover:!text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+                        2
+                    </div>
+                    <!-- Arrow 2→3: Positioned spanning the space between columns 2 and 3 -->
+                    <div class="hidden md:flex absolute left-1/2 w-full h-8 top-1/2 -translate-y-1/2 items-center justify-center z-10 pointer-events-none opacity-40 dark:opacity-20">
+                        <svg class="w-[180px] h-8" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 10 15 Q 90 25 170 15" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" fill="none" class="text-gray-400 dark:text-white"/>
+                            <polygon points="165,10 175,15 165,20" fill="currentColor" class="text-gray-400 dark:text-white"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- The Card -->
+                <div class="w-full reveal-up bg-white dark:bg-[#161d2e] rounded-2xl p-8 border border-emerald-400/20 dark:border-emerald-500/20 shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] group-hover:shadow-[0_12px_40px_rgba(16,185,129,0.1)] group-hover:-translate-y-2 transition-all duration-500 text-center relative overflow-hidden">
+                    <div class="absolute top-3 right-3 px-2 py-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest rounded-full group-hover:!bg-emerald-500 group-hover:!text-white transition-all duration-300">Active</div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-3xl" style="font-variation-settings:'FILL' 1;">campaign</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 tracking-tight">Restaurant Notifies Excess Food</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Restaurants log surplus food with quantity, type, and pickup time. AnnaSetu's AI verifies freshness instantly and broadcasts the alert to nearby NGOs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3 Group -->
+            <div class="group flex flex-col items-center cursor-default">
+                <!-- Row for Number -->
+                <div class="relative w-full flex justify-center mb-8">
+                    <!-- The Circle: Highlight on parent group hover -->
+                    <div class="w-16 h-16 rounded-full bg-white dark:bg-[#1f2937] border-2 border-gray-200 dark:border-white/10 shadow-md flex items-center justify-center text-2xl font-black text-gray-800 dark:text-white z-20 transition-all duration-300 group-hover:!bg-emerald-500 group-hover:!border-emerald-400 group-hover:!text-white group-hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+                        3
+                    </div>
+                </div>
+                <!-- The Card -->
+                <div class="w-full reveal-right bg-white dark:bg-[#161d2e] rounded-2xl p-8 border border-gray-100 dark:border-white/5 shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.6)] group-hover:-translate-y-2 transition-all duration-500 text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-3xl" style="font-variation-settings:'FILL' 1;">volunteer_activism</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 tracking-tight">NGOs & People Collect Food</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Verified NGOs and volunteers receive real-time directions to the pickup point, collect the rescued food, and distribute it to those who need it most.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- FAQ Section                                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="faq" class="relative w-full py-32 faq-pattern overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-20 relative z-10">
+                <p class="text-xs font-black tracking-[0.3em] uppercase text-emerald-600 dark:text-emerald-400 mb-4 scale-animation">Got Questions?</p>
+                <h2 class="text-5xl md:text-6xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tighter mb-6">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    Common questions about using AnnaSetu for food rescue, distribution safety, and community eligibility.
+                </p>
+            </div>
+
+            <!-- FAQ Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                
+                <!-- FAQ Card 1 -->
+                <div class="faq-card reveal-left group bg-white/80 dark:bg-[#161d2e]/80 backdrop-blur-sm p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_48px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">What is AnnaSetu exactly?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                        AnnaSetu is a digital "Food Bridge" designed to connect establishments with surplus food directly to NGOs. Our mission is to eliminate food waste by making donations seamless and safe.
+                    </p>
+                </div>
+
+                <!-- FAQ Card 2 (Highlighted) -->
+                <div class="faq-card reveal-right group bg-white/80 dark:bg-[#161d2e]/80 backdrop-blur-sm p-10 rounded-[2.5rem] border-2 border-emerald-500/30 dark:border-emerald-500/20 shadow-[0_4px_24px_rgba(16,185,129,0.08)] hover:shadow-[0_20px_48px_rgba(16,185,129,0.15)] transition-all duration-500 hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Is there any cost for using the platform?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                        No — AnnaSetu is entirely free for both donor restaurants and recipient NGOs. Our platform is a non-profit venture aimed at building a sustainable, hunger-free future for all.
+                    </p>
+                </div>
+
+                <!-- FAQ Card 3 -->
+                <div class="faq-card reveal-left group bg-white/80 dark:bg-[#161d2e]/80 backdrop-blur-sm p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_48_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_48px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">How do you ensure food safety?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                        Safety is our top priority. Both donors and NGOs follow strict local guidelines. Our AI model also assists donors in logging freshness data to ensure all rescued food is wholesome.
+                    </p>
+                </div>
+
+                <!-- FAQ Card 4 -->
+                <div class="faq-card reveal-right group bg-white/80 dark:bg-[#161d2e]/80 backdrop-blur-sm p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_48px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Who is eligible to join?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                        Any verified food establishment (restaurants, hotels, caterers) or registered non-profit organization (NGOs, community kitchens) can join the rescue network today.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- Impact Stats Section                              -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="stats" class="relative w-full py-32 bg-[#fdf8ee] dark:bg-[#111111] overflow-hidden border-b border-gray-100 dark:border-white/5 transition-colors duration-500">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tighter mb-6">Numbers tell our story</h2>
+                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    A snapshot of the impact we create by rescuing surplus food and supporting communities every single day.
+                </p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 text-center">
+                
+                <!-- Stat 1: Meals -->
+                <div class="stat-card reveal-left group">
+                    <div class="text-6xl md:text-7xl font-black text-emerald-600 dark:text-emerald-400 mb-6 tabular-nums tracking-tighter counter" data-target="500000">0+</div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Meals Rescued</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed max-w-[260px] mx-auto font-body">
+                        Wholesome meals redistributed to those in need across India.
+                    </p>
+                </div>
+
+                <!-- Stat 2: Tonnes -->
+                <div class="stat-card reveal-up group">
+                    <div class="text-6xl md:text-7xl font-black text-emerald-600 dark:text-emerald-400 mb-6 tabular-nums tracking-tighter counter" data-target="150">0+</div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Tonnes Saved</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed max-w-[260px] mx-auto font-body">
+                        Surplus food diverted from landfills to community plates.
+                    </p>
+                </div>
+
+                <!-- Stat 3: Partners -->
+                <div class="stat-card reveal-right group">
+                    <div class="text-6xl md:text-7xl font-black text-emerald-600 dark:text-emerald-400 mb-6 tabular-nums tracking-tighter counter" data-target="1200">0+</div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Active Partners</h3>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed max-w-[260px] mx-auto font-body">
+                        Verified NGOs and food establishments working together.
+                    </p>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -223,15 +470,129 @@
         .animate-float {
             animation: float 4s ease-in-out infinite;
         }
+        /* Ensure card images don't bleed on rounded corners */
+        .feature-card > div:first-child {
+            border-radius: 0;
+        }
+        /* Features section background — warm cream in light, dark in dark mode */
+        .features-bg {
+            background-color: #fdf8ee;
+        }
+        .dark .features-bg {
+            background-color: #111111;
+        }
+
+        /* FAQ & Stats Circle Background Pattern */
+        .faq-pattern {
+            background-image: radial-gradient(circle at 16px 16px, rgba(16, 185, 129, 0.03) 12px, transparent 0);
+            background-size: 48px 48px;
+        }
+        .dark .faq-pattern {
+            background-image: radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0.02) 12px, transparent 0);
+        }
+
+        .faq-card {
+            background-size: 200% 200%;
+            background-position: left bottom;
+        }
+
+        /* Staggered Reveal Animations */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(100px);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .is-revealed {
+            opacity: 1 !important;
+            transform: translate(0) !important;
+            filter: blur(0) !important;
+        }
     </style>
 
-    <footer class="py-10 text-center flex flex-col items-center justify-center gap-4 bg-white dark:bg-[#0b1120] border-t border-stone-200/50 dark:border-white/5 transition-colors duration-500">
-        <div class="text-[#4a7c59] dark:text-indigo-400 font-bold font-['Literata'] text-xl flex items-center gap-2">
-            <span class="material-symbols-outlined">eco</span> AnnaSetu
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- Footer Section                                    -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <footer class="relative w-full pt-24 pb-12 bg-emerald-50/50 dark:bg-[#0f172a] border-t border-gray-100 dark:border-white/5 transition-colors duration-500 overflow-hidden">
+        
+        <!-- CTA Header -->
+        <div class="max-w-6xl mx-auto px-6 text-center mb-24">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tighter">
+                Ready to Build a Hunger-Free Future?
+            </h2>
         </div>
-        <p class="text-sm text-gray-500 dark:text-stone-500 font-body">
-            &copy; 2026 Terra Network Operations. Building a sustainable future together.
-        </p>
+
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+            
+            <!-- Column 1: Brand & Social -->
+            <div class="flex flex-col gap-8">
+                <div class="text-emerald-700 dark:text-emerald-400 font-bold font-['Literata'] text-2xl flex items-center gap-2">
+                    <span class="material-symbols-outlined text-3xl">eco</span> AnnaSetu
+                </div>
+                <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                    AnnaSetu was built to bring zero-waste operations to every kitchen. A digital food bridge designed with trust, speed, and community safety in mind.
+                </p>
+                <!-- Social Icons -->
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-[#1e293b] flex items-center justify-center shadow-sm border border-gray-100 dark:border-emerald-500/20 hover:scale-110 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-[#1e293b] flex items-center justify-center shadow-sm border border-gray-100 dark:border-emerald-500/20 hover:scale-110 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">language</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-[#1e293b] flex items-center justify-center shadow-sm border border-gray-100 dark:border-emerald-500/20 hover:scale-110 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">mail</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-[#1e293b] flex items-center justify-center shadow-sm border border-gray-100 dark:border-emerald-500/20 hover:scale-110 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300">
+                        <span class="material-symbols-outlined text-xl">business_center</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 class="text-xs font-black tracking-[0.2em] uppercase text-gray-400 dark:text-gray-500 mb-8">Quick Links</h3>
+                <ul class="flex flex-col gap-4 font-bold tracking-tight">
+                    <li><a href="#features" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Features</a></li>
+                    <li><a href="#how-it-works" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">How it works</a></li>
+                    <li><a href="#stats" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Our Impact</a></li>
+                    <li><a href="#faq" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Faq</a></li>
+                    <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: About -->
+            <div>
+                <h3 class="text-xs font-black tracking-[0.2em] uppercase text-gray-400 dark:text-gray-500 mb-8">About AnnaSetu</h3>
+                <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
+                    Discover our <span class="text-emerald-600 dark:text-emerald-400 font-bold">thoughtful platform</span> designed to streamline food rescue for restaurants and NGOs. From <span class="text-emerald-600 dark:text-emerald-400 font-bold">real-time bridging</span> to <span class="text-emerald-600 dark:text-emerald-400 font-bold">AI protocols</span>, our tools help communities stay connected and safe. Stay <span class="text-emerald-600 dark:text-emerald-400 font-bold">protected and informed</span> everyday.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="max-w-6xl mx-auto px-6 pt-12 border-t border-gray-100 dark:border-white/5 text-center">
+            <p class="text-sm text-gray-400 dark:text-stone-500 font-body">
+                &copy; Copyright 2026, All Rights Reserved by AnnaSetu Network Operations.
+            </p>
+        </div>
     </footer>
 
 </div>
@@ -249,6 +610,69 @@
             themeIcon.textContent = 'light_mode';
         }
     });
+
+    // Count-up Animation Logic
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the slower
+
+    const startCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace(/,/g, '').replace('+', '');
+                
+                // Lower increment to slow down the animation as it reaches the end
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc).toLocaleString() + "+";
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target.toLocaleString() + "+";
+                }
+            };
+            updateCount();
+        });
+    };
+
+    // Trigger animation when section comes into view
+    const statsSection = document.querySelector('#stats');
+    const options = {
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+
+    // Scroll Reveal Observer for Cards
+    const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add relative delay based on element type or position if needed, 
+                // but default CSS transition is usually enough.
+                entry.target.classList.add('is-revealed');
+                // stop observing once revealed
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15, // trigger when 15% visible
+        rootMargin: '0px 0px -50px 0px' // slightly before it hits the bottom
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>
