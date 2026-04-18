@@ -28,8 +28,9 @@
       }
     </script>
     <style>
-        html { background-color: #111111; }
-        body { font-family: 'Nunito Sans', sans-serif; background-color: #111111; }
+        html, body { background-color: #fdf8ee; }
+        .dark, .dark body { background-color: #0B0F19; }
+        body { font-family: 'Nunito Sans', sans-serif; }
         h1, h2, h3, h4 { font-family: 'Literata', serif; }
     </style>
 </head>
@@ -39,7 +40,7 @@
 <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
     <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
         <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-emerald-600 dark:text-indigo-400 text-3xl">eco</span>
+            <span class="material-symbols-outlined text-emerald-600 dark:text-indigo-400 text-3xl">soup_kitchen</span>
             <span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
         </div>
         <!-- Desktop Navigation -->
@@ -71,7 +72,7 @@
 
 <!-- Hero Landing Section -->
 <main class="w-full flex-col flex overflow-hidden">
-    <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-[#111111] font-sans text-white">
+    <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-[#111111] dark:bg-[#0B0F19] font-sans text-white">
         <!-- Perfectly Aligned Grid (Flat Bottom + Full Coverage) -->
         <div class="absolute w-[130vw] h-[130vh] top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none overflow-hidden flex justify-center items-start">
             <div class="columns-3 sm:columns-4 md:columns-5 lg:columns-6 xl:columns-7 gap-3 md:gap-4 w-full h-[150%] p-4 opacity-90 filter saturate-110">
@@ -149,7 +150,7 @@
         <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none dark:hidden"
              style="background: linear-gradient(to bottom, transparent 0%, rgba(253,248,238,0.65) 50%, #fdf8ee 100%);"></div>
         <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none hidden dark:block"
-             style="background: linear-gradient(to bottom, transparent 0%, rgba(17,17,17,0.6) 50%, #111111 100%);"></div>
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(11,15,25,0.6) 50%, #0B0F19 100%);"></div>
     </section>
 
 </main>
@@ -416,7 +417,7 @@
     <!-- ═══════════════════════════════════════════════════ -->
     <!-- Impact Stats Section                              -->
     <!-- ═══════════════════════════════════════════════════ -->
-    <section id="stats" class="relative w-full py-32 bg-[#fdf8ee] dark:bg-[#111111] overflow-hidden border-b border-gray-100 dark:border-white/5 transition-colors duration-500">
+    <section id="stats" class="relative w-full py-32 bg-[#fdf8ee] dark:bg-[#0B0F19] overflow-hidden transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             
             <!-- Section Header -->
@@ -459,6 +460,12 @@
 
             </div>
         </div>
+        
+        <!-- Stats bottom haze — fades into footer. Light mode: to footer bg. Dark mode: to footer dark bg -->
+        <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none dark:hidden"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(244,251,240,0.65) 50%, #f4fbf0 100%);"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none hidden dark:block"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(15,23,42,0.6) 50%, #0f172a 100%);"></div>
     </section>
 
     <!-- Floating Animation CSS -->
@@ -479,7 +486,7 @@
             background-color: #fdf8ee;
         }
         .dark .features-bg {
-            background-color: #111111;
+            background-color: #0B0F19;
         }
 
         /* FAQ & Stats Circle Background Pattern */
@@ -528,21 +535,21 @@
     <!-- ═══════════════════════════════════════════════════ -->
     <!-- Footer Section                                    -->
     <!-- ═══════════════════════════════════════════════════ -->
-    <footer class="relative w-full pt-24 pb-12 bg-emerald-50/50 dark:bg-[#0f172a] border-t border-gray-100 dark:border-white/5 transition-colors duration-500 overflow-hidden">
+    <footer class="relative w-full pt-16 pb-8 bg-[#f4fbf0] dark:bg-[#0f172a] transition-colors duration-500 overflow-hidden">
         
         <!-- CTA Header -->
-        <div class="max-w-6xl mx-auto px-6 text-center mb-24">
+        <div class="max-w-6xl mx-auto px-6 text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white font-['Literata'] tracking-tighter">
                 Ready to Build a Hunger-Free Future?
             </h2>
         </div>
 
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
             
             <!-- Column 1: Brand & Social -->
             <div class="flex flex-col gap-8">
                 <div class="text-emerald-700 dark:text-emerald-400 font-bold font-['Literata'] text-2xl flex items-center gap-2">
-                    <span class="material-symbols-outlined text-3xl">eco</span> AnnaSetu
+                    <span class="material-symbols-outlined text-3xl">soup_kitchen</span> AnnaSetu
                 </div>
                 <p class="text-gray-500 dark:text-gray-400 leading-relaxed font-body">
                     AnnaSetu was built to bring zero-waste operations to every kitchen. A digital food bridge designed with trust, speed, and community safety in mind.
@@ -588,7 +595,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="max-w-6xl mx-auto px-6 pt-12 border-t border-gray-100 dark:border-white/5 text-center">
+        <div class="max-w-6xl mx-auto px-6 pt-6 border-t border-gray-100 dark:border-white/5 text-center">
             <p class="text-sm text-gray-400 dark:text-stone-500 font-body">
                 &copy; Copyright 2026, All Rights Reserved by AnnaSetu Network Operations.
             </p>

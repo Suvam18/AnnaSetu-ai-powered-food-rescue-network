@@ -1,13 +1,18 @@
 import os
+import re
 
-files = ['Admin_Dashboard.html', 'Donation_Interface.html', 'Volunteer_Logistics.html', 'Impact_Hub.html']
-
-for fn in files:
-    with open(fn, 'r', encoding='utf-8') as f:
-        c = f.read()
+files = [f for f in os.listdir('.') if f.endswith('.html')]
+for f in files:
+    with open(f, 'r', encoding='utf-8') as file:
+        content = file.read()
     
-    # Fix the typo "\"AnnaSetu" -> ""AnnaSetu"
-    c = c.replace(r'\">AnnaSetu', '">AnnaSetu')
+    # Replace when eco is followed by an AnnaSetu span
+    new_content = re.sub(r'(<span class="material-symbols-outlined[^>]*>)eco(</span>\s*<span[^>]*>AnnaSetu)', r'\g<1>soup_kitchen\g<2>', content)
     
-    with open(fn, 'w', encoding='utf-8') as f:
-        f.write(c)
+    # Replace when eco is followed immediately by AnnaSetu text (like in footer)
+    new_content = re.sub(r'(<span class="material-symbols-outlined[^>]*>)eco(</span>\s*AnnaSetu)', r'\g<1>soup_kitchen\g<2>', new_content)
+    
+    if new_content != content:
+        with open(f, 'w', encoding='utf-8') as file:
+            file.write(new_content)
+        print(f'Updated {f}')
