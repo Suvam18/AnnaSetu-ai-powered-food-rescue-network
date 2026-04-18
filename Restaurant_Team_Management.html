@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Terra Portal - Team Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;700;900&amp;family=Nunito+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "secondary": "#6b6358",
+                  "error-container": "#ffdad8",
+                  "on-primary-container": "#d8f0de",
+                  "primary-fixed-dim": "#8ecf9e",
+                  "on-surface": "#2e3230",
+                  "inverse-surface": "#2e3230",
+                  "surface-bright": "#faf6f0",
+                  "surface-tint": "#4a7c59",
+                  "on-secondary-fixed-variant": "#4a4538",
+                  "tertiary-container": "#c4a66a",
+                  "on-primary-fixed": "#002110",
+                  "surface": "#faf6f0",
+                  "outline": "#74796e",
+                  "outline-variant": "#c4c8bc",
+                  "surface-container-highest": "#e4e0d8",
+                  "secondary-container": "#f0e8db",
+                  "on-background": "#2e3230",
+                  "error": "#b83230",
+                  "on-secondary-container": "#5e5548",
+                  "on-secondary-fixed": "#1e1a13",
+                  "secondary-fixed": "#f0e8db",
+                  "surface-container-lowest": "#ffffff",
+                  "secondary-fixed-dim": "#d4ccbf",
+                  "tertiary-fixed": "#f8e0a8",
+                  "on-error": "#ffffff",
+                  "on-tertiary-container": "#554020",
+                  "on-primary": "#ffffff",
+                  "tertiary-fixed-dim": "#dcc48e",
+                  "primary-container": "#78a886",
+                  "background": "#faf6f0",
+                  "tertiary": "#705c30",
+                  "surface-container": "#f0ece4",
+                  "on-tertiary-fixed-variant": "#554020",
+                  "inverse-primary": "#8ecf9e",
+                  "on-surface-variant": "#4a4e4a",
+                  "inverse-on-surface": "#f5f0e8",
+                  "on-secondary": "#ffffff",
+                  "primary-fixed": "#c8e8d0",
+                  "on-primary-fixed-variant": "#2a6038",
+                  "surface-dim": "#dbd7cf",
+                  "on-error-container": "#690005",
+                  "on-tertiary-fixed": "#221a05",
+                  "surface-container-low": "#f5f1ea",
+                  "surface-variant": "#e4e0d8",
+                  "surface-container-high": "#eae6de",
+                  "on-tertiary": "#ffffff",
+                  "primary": "#4a7c59"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.5rem",
+                  "lg": "1rem",
+                  "xl": "1.5rem",
+                  "full": "9999px"
+          },
+          "fontFamily": {
+                  "headline": ["Literata"],
+                  "body": ["Nunito Sans"],
+                  "label": ["Nunito Sans"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Nunito Sans', sans-serif; }
+    .headline-font { font-family: 'Literata', serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface" style=" padding-top: 7rem;">
+<!-- SideNavBar -->
+<!-- TopAppBar -->
+<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+<header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#4a7c59] dark:text-indigo-400 text-3xl">soup_kitchen</span>
+<span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Portal_Dashboard.html">Dashboard</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Excess_Notification_Center.html">Surplus Log</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Locations_Management.html">Locations</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Analytics_and_Impact.html">Analytics</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
+<button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" id="theme-toggle">
+<span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
+</button>
+</div>
+</header>
+</div>
+<!-- Main Canvas -->
+<main class="pl-64 pt-4 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12 max-w-6xl md:py-14">
+<div class="max-w-7xl mx-auto p-8">
+<!-- Top Row: Welcome & CTA -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h1 class="headline-font text-3xl font-black text-on-surface mb-2">Network Team</h1>
+<p class="text-on-surface-variant max-w-md leading-relaxed">
+            Manage your kitchen staff and coordination team. Set permissions for surplus logging and confirmation.
+          </p>
+</div>
+<button class="bg-primary text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined">person_add</span>
+          Invite New Member
+        </button>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Team Members Grid (Bento Style) -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Profile Card 1 -->
+<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="professional chef in clean white uniform smiling warmly in a commercial kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsMrB8uVhAtvjyDQ5XoPDq5sxWPheXZyLfVHUMwmPrVmoCc7NjIDR1kOHCFPSSWNux4OUD9CBNAEfmonSzZbYoDecwgoHqk34YDPlxin6M92Yux_BDf1VQAZWTvADY_wy7NhEroFnYOhlKMp0Xo-yNnPM_0N4OxrxfF4bhaH-bkL7xPDTFjgTa0JumVpjULj-lwfwFz7wAiHhxKStzB1PyD3WU1Y4qv9e5okRZNi5rgynTzHDUh82Um7RXs1Nf00-bs6yfPWVyiF4"/>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Marco Rossi</h3>
+<span class="text-xs font-label bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full">Executive Chef</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
+</div>
+<div class="space-y-3 pt-2">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">mail</span>
+                  m.rossi@terranetwork.org
+                </div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">verified_user</span>
+                  Full Access: Logging &amp; Confirmations
+                </div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: 2h ago</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">check_circle</span></div>
+</div>
+</div>
+</div>
+<!-- Profile Card 2 -->
+<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="young male kitchen assistant in a black apron holding a tray in a vibrant rustic restaurant background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLgRSeB3Zx4OFEV0nwE7tbTSpAMfi2QNh46Tz3g-Lf47_6BAqjA0HJrI-YJWZmVlIsnA0nMAH3H92f1KukNHK-Sw5ulRBHNO9eQG1AfMg591sFIt4u02hACGXC3UmTPDUlCOqNCv6YWRKZkB29X9LsqKuqjm2UxLG2U65gJpXmkG68HIlDPN9cqqyFyxglMwXOP2--fwwOU-sH76J8o4gHxHP0x4zdtHZKAgbyLHtuMSczlYNFIDWVhukZNJbz4W3Aqo57O5am60Y"/>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Julian Chen</h3>
+<span class="text-xs font-label bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full">Kitchen Staff</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
+</div>
+<div class="space-y-3 pt-2">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">mail</span>
+                  j.chen@terranetwork.org
+                </div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">lock_clock</span>
+                  Restricted: Logging Only
+                </div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: 15m ago</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
+</div>
+</div>
+</div>
+<!-- Profile Card 3 -->
+<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="smiling woman with glasses and messy bun in a cozy restaurant office setting with plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE6qT1d6yKmVx1mQBrRo3PRhq0EOmhXSxwo21IvqpPCaL__DHBqv2BCa7QK0JVIb5-TErtexkxVUgcvAI6sEi4iYMGUjPzlGhGyskStcki8pIT6ARKkxeBAArZMN-XgJxSNdiWtPNdXLzYh-K3IP1bof9ZCw0FnIKPITEy2QKvZozmWksmUozCKuRD_dBIrQdV0g9uPqAA5a8G1pF6olLliBzs8hQ-21zC2berKvEI7q3BnH5UvaIbzGILG4EJ2ghfoVuDXbbTWOU"/>
+<div>
+<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Sarah Miller</h3>
+<span class="text-xs font-label bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full">Floor Manager</span>
+</div>
+</div>
+<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
+</div>
+<div class="space-y-3 pt-2">
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">mail</span>
+                  s.miller@terranetwork.org
+                </div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">verified_user</span>
+                  Full Access: All Permissions
+                </div>
+</div>
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: Yesterday</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">check_circle</span></div>
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">settings</span></div>
+</div>
+</div>
+</div>
+<!-- Profile Card 4 (Invitation Pending) -->
+<div class="bg-surface-container/50 border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-center opacity-70">
+<div class="w-14 h-14 rounded-full bg-stone-200 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-stone-500">mail_outline</span>
+</div>
+<h3 class="font-bold text-on-surface">invite@restaurant.com</h3>
+<p class="text-xs text-on-surface-variant mb-4 italic">Invitation pending confirmation</p>
+<button class="text-primary text-xs font-bold hover:underline">Resend Invite</button>
+</div>
+</div>
+<!-- Permissions Breakdown -->
+<div class="bg-surface rounded-xl p-8 border border-outline-variant/40 shadow-sm">
+<h2 class="headline-font text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">key</span>
+              Access Matrix
+            </h2>
+<div class="overflow-hidden rounded-lg">
+<table class="w-full text-left">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Role</th>
+<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Log Surplus</th>
+<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Confirm Pickup</th>
+<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Invite Staff</th>
+<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Analytics</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr>
+<td class="px-4 py-4 text-sm font-bold">Manager</td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-sm font-bold">Chef</td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-sm font-bold">Kitchen Staff</td>
+<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Sidebar Activity Feed & Quick Stats -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Recent Activity Card -->
+<div class="bg-surface-container rounded-xl p-6 shadow-sm border border-outline-variant/20 h-fit">
+<h2 class="headline-font text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">history</span>
+              Team Activity
+            </h2>
+<div class="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
+<!-- Activity Item -->
+<div class="relative pl-8">
+<span class="absolute left-0 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ring-4 ring-surface-container">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</span>
+<p class="text-sm text-on-surface">
+<span class="font-bold">Julian Chen</span> logged 12kg of surplus pastries.
+                </p>
+<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Today • 11:42 AM</span>
+</div>
+<!-- Activity Item -->
+<div class="relative pl-8">
+<span class="absolute left-0 top-0 w-6 h-6 bg-tertiary rounded-full flex items-center justify-center ring-4 ring-surface-container">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</span>
+<p class="text-sm text-on-surface">
+<span class="font-bold">Marco Rossi</span> confirmed pickup by 'FoodShare' driver.
+                </p>
+<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Today • 09:15 AM</span>
+</div>
+<!-- Activity Item -->
+<div class="relative pl-8">
+<span class="absolute left-0 top-0 w-6 h-6 bg-secondary rounded-full flex items-center justify-center ring-4 ring-surface-container">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">person</span>
+</span>
+<p class="text-sm text-on-surface">
+<span class="font-bold">Sarah Miller</span> updated kitchen staff permissions.
+                </p>
+<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Yesterday • 4:30 PM</span>
+</div>
+<!-- Activity Item -->
+<div class="relative pl-8 opacity-60">
+<span class="absolute left-0 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ring-4 ring-surface-container">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</span>
+<p class="text-sm text-on-surface">
+<span class="font-bold">Julian Chen</span> logged 4kg of organic produce.
+                </p>
+<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Yesterday • 10:20 AM</span>
+</div>
+</div>
+<button class="w-full mt-8 py-2 text-primary font-bold text-sm hover:bg-primary/5 rounded-lg transition-colors">
+              View Full Audit Log
+            </button>
+</div>
+<!-- Quick Stats -->
+<div class="bg-primary-container rounded-xl p-6 text-on-primary-container">
+<h3 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">analytics</span>
+              Team Performance
+            </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-xs opacity-80">Accuracy Rate</span>
+<span class="font-black">98.4%</span>
+</div>
+<div class="w-full bg-on-primary/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-on-primary h-full w-[98%]"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="text-xs opacity-80">Logs this week</span>
+<span class="font-black">42</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs opacity-80">Avg. Response Time</span>
+<span class="font-black">8 mins</span>
+</div>
+</div>
+</div>
+<!-- Network Banner -->
+<div class="rounded-xl overflow-hidden relative group cursor-pointer">
+<img alt="Kitchen Environment" class="w-full h-48 object-cover transition-transform group-hover:scale-105 duration-700" data-alt="professional modern kitchen workspace with stainless steel surfaces and warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQZ2F0D0C-LxWL8qvvAN6hO8CVrwB9scB7y_w61ZmGvStJsMv031aavzCnJl6kUv0_WI94RlsmZQy7jNYm9QcBlqPlixtXjzgoIRGP0hQr0sYgvybiSfQgmnlwubgTWlJxNYy9REYOOe6ggBEYEP9htaVO1CfTOdnyRjNSqigXiuHeuXo9w7Oc79OrsdQaL2bxQ1zSz_gN9AVii_SNKKzNKIeNWs064v2TdTOYkxI40hqlIb2Yd7QduGXbXJwPeP0TzilmQiitz40"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex flex-col justify-end p-4">
+<span class="text-white text-xs font-bold uppercase tracking-widest mb-1 opacity-80">Terra Academy</span>
+<p class="text-white font-bold leading-tight">Training: How to reduce prep waste by 15%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Bar (md:hidden as per requirement) -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                htmlElement.classList.toggle('light');
+                if (htmlElement.classList.contains('dark')) {
+                    themeIcon.textContent = 'light_mode';
+                    htmlElement.style.backgroundColor = '#111';
+                } else {
+                    themeIcon.textContent = 'dark_mode';
+                    htmlElement.style.backgroundColor = '';
+                }
+            });
+        }
+    });
+</script>
+</body></html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Terra Portal - Locations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,200..900&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#6b6358",
+                    "error-container": "#ffdad8",
+                    "on-primary-container": "#d8f0de",
+                    "primary-fixed-dim": "#8ecf9e",
+                    "on-surface": "#2e3230",
+                    "inverse-surface": "#2e3230",
+                    "surface-bright": "#faf6f0",
+                    "surface-tint": "#4a7c59",
+                    "on-secondary-fixed-variant": "#4a4538",
+                    "tertiary-container": "#c4a66a",
+                    "on-primary-fixed": "#002110",
+                    "surface": "#faf6f0",
+                    "outline": "#74796e",
+                    "outline-variant": "#c4c8bc",
+                    "surface-container-highest": "#e4e0d8",
+                    "secondary-container": "#f0e8db",
+                    "on-background": "#2e3230",
+                    "error": "#b83230",
+                    "on-secondary-container": "#5e5548",
+                    "on-secondary-fixed": "#1e1a13",
+                    "secondary-fixed": "#f0e8db",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#d4ccbf",
+                    "tertiary-fixed": "#f8e0a8",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#554020",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#dcc48e",
+                    "primary-container": "#78a886",
+                    "background": "#faf6f0",
+                    "tertiary": "#705c30",
+                    "surface-container": "#f0ece4",
+                    "on-tertiary-fixed-variant": "#554020",
+                    "inverse-primary": "#8ecf9e",
+                    "on-surface-variant": "#4a4e4a",
+                    "inverse-on-surface": "#f5f0e8",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#c8e8d0",
+                    "on-primary-fixed-variant": "#2a6038",
+                    "surface-dim": "#dbd7cf",
+                    "on-error-container": "#690005",
+                    "on-tertiary-fixed": "#221a05",
+                    "surface-container-low": "#f5f1ea",
+                    "surface-variant": "#e4e0d8",
+                    "surface-container-high": "#eae6de",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#4a7c59"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Literata"],
+                    "body": ["Nunito Sans"],
+                    "label": ["Nunito Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Literata', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased" style=" padding-top: 7rem;">
+<!-- SideNavBar -->
+<!-- TopAppBar -->
+<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+<header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#4a7c59] dark:text-indigo-400 text-3xl">soup_kitchen</span>
+<span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Portal_Dashboard.html">Dashboard</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Excess_Notification_Center.html">Surplus Log</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Locations_Management.html">Locations</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Analytics_and_Impact.html">Analytics</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
+<button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" id="theme-toggle">
+<span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
+</button>
+</div>
+</header>
+</div>
+<!-- Main Content -->
+<main class="p-8 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12 max-w-6xl md:py-14">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-on-surface mb-2">Location Portfolio</h2>
+<p class="text-stone-500 font-body">Manage 12 registered locations and monitor real-time rescue status across your network.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-200 bg-white font-bold text-sm text-stone-700 hover:bg-stone-50 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Data
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/10 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Add New Location
+                    </button>
+</div>
+</div>
+<!-- Bento Grid: Stats & Map -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Map View -->
+<div class="lg:col-span-2 bg-surface-container rounded-xl overflow-hidden relative min-h-[400px] group shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
+<div class="absolute inset-0 bg-stone-200 animate-pulse">
+<img class="w-full h-full object-cover" data-alt="Detailed topographical map view of a city with green markers highlighting various restaurant locations in a clean organic style" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyMJ7QS36ChVsybGb9_j4a0hQs8pU6m0iMgc2mDXlDvdsy60vRbD1cfpXu4hG7U0xd0XQ7drOLO_-uSj2HdSPvwsD-EVj8he_7kiypp9MImrA6A-CmDgibhvIYjYhJxnjieltHOzsvAy1K3c42Gu7lIP9YYUJ2AkB-5Nk0vEyOt5AsV8bjyIUD3IrNiH-nM5D-Sj8CbSxoqxEMSgoz8B4EFHWMByf9MTEAtAdOx04gJmAqSv9drR93GL1thnXmgb7dQBUqGzBNSuY"/>
+</div>
+<!-- Map Overlays -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm border border-primary/10">Network View</span>
+<span class="bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-secondary shadow-sm">4 Active Pickups</span>
+</div>
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-stone-50"><span class="material-symbols-outlined">add</span></button>
+<button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-stone-50"><span class="material-symbols-outlined">remove</span></button>
+</div>
+</div>
+<!-- Quick Stats Column -->
+<div class="space-y-6">
+<div class="bg-primary text-on-primary p-6 rounded-xl shadow-lg shadow-primary/10 flex flex-col justify-between h-[188px]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined p-2 bg-white/20 rounded-lg" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-xs font-bold uppercase tracking-widest opacity-80">This Month</span>
+</div>
+<div>
+<p class="text-4xl font-headline font-black mb-1">1,284 kg</p>
+<p class="text-sm opacity-90 font-medium">Total Food Rescued</p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl shadow-sm flex flex-col justify-between h-[188px]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined p-2 bg-tertiary/10 rounded-lg">local_shipping</span>
+<span class="text-xs font-bold uppercase tracking-widest opacity-80">Upcoming</span>
+</div>
+<div>
+<p class="text-4xl font-headline font-black mb-1">14</p>
+<p class="text-sm opacity-90 font-medium">Scheduled Pickups Today</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Locations Grid -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Manage Locations</h3>
+<div class="flex gap-4">
+<select class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
+<option>All Statuses</option>
+<option>Active Surplus</option>
+<option>No Surplus</option>
+</select>
+<select class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
+<option>Sort by Name</option>
+<option>Sort by Volume</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Location Card 1 -->
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Cozy modern bistro interior with warm lighting, wood accents, and lush indoor plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWZ5lnjNunepMXDVuy7iMmwXC54ABVz6kxdG8cybPCwvVBKGzQUC59wje9CGRRRIkQxX7U3Hs4eVzYnvk1JPWJePhd0GgYnmjiTUi97riBrPIj03X3VuouSoqfyjr8-sZcFZba0v42uG0JVbY77B3nkNEwsJrJQCGPthx4wz55fdcRbLdebIozQk323ghFJFbF7QRp8-2oDxwWsdr5wT7njRWPgBw9tr5dpI1ReriMTl115iygjU8N9guCDc3-ZSfvZim0lom644w"/>
+</div>
+<div>
+<h4 class="font-bold text-lg leading-tight">Downtown Bistro</h4>
+<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                        Market St, District 4
+                                    </p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-on-primary-container text-primary-fixed-dim">
+                                Active Surplus
+                            </span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
+<p class="font-headline font-bold text-primary">452 kg</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
+<p class="font-headline font-bold text-on-surface">Today, 5 PM</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-stone-100">
+<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
+<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</div>
+<!-- Location Card 2 -->
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Artisan bakery shelf with freshly baked loaves of rustic bread and warm golden backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF_c82vx_3pb33qWZryQLem7fS37wEzABx9UGpQk_BhAHBnw_OXPT0lZ7Q7682Yna9_hUyyX-st8tSF9wjkiQR0U0IvFw3ASY2eOHG1xSXTe2nk2P2jPuoSznpwPDj6srsLOJJG6cN_jpbMlxyLVP9GM55IW_qOwrcNMSkrquh1bySH5vAYr1gwQPClPQAfVYpo3t0SXVab5LP7WptqTOMRkg-FLloZAAAMQb5UWnilgJvC1KyIEpLCORj6hPXXwYHZ05c0-_Rhi4"/>
+</div>
+<div>
+<h4 class="font-bold text-lg leading-tight">Terra Bakery</h4>
+<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                        West Oak Blvd
+                                    </p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-stone-100 text-stone-500">
+                                No Surplus
+                            </span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
+<p class="font-headline font-bold text-primary">891 kg</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
+<p class="font-headline font-bold text-on-surface">Tomorrow</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-stone-100">
+<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
+<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</div>
+<!-- Location Card 3 -->
+<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Charming cafe exterior with outdoor seating and lush greenery surrounding the entrance in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkRW_y1QdbEzlT_5Ro_1lmCICNizAg6qKAhTMRxREsSEY_Ko_fFKuwCw7hldYy2YqEp-oyV7ULwHdmprfejEm7mebjRFXiZJIjLzWgGhfdGSJYBzZ8Se0XlRy6yBMN8azzI7n5BlVzDpgADJ0OuoFyD76iIi6rQ0vW1Me6xOSlETmnm1t1SVmm0jic8TRLzhgUl7yYgti_rQSrxuMhPRIxb0Fje17gP4fbt8MCsb1bVfHtcFhPEBYQeBuSeofLIRBSQqv-qx6iQ58"/>
+</div>
+<div>
+<h4 class="font-bold text-lg leading-tight">Garden Cafe</h4>
+<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                        Riverside Walk
+                                    </p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-error-container text-error">
+                                Closed
+                            </span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
+<p class="font-headline font-bold text-primary">212 kg</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
+<p class="font-headline font-bold text-on-surface">None</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-stone-100">
+<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
+<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Network Activity -->
+<div class="bg-surface-container-high rounded-xl p-8 border border-stone-200/50">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold">Recent Network Activity</h3>
+<button class="text-sm font-bold text-primary">Full Logs</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<p class="flex-1 text-sm"><span class="font-bold">Downtown Bistro</span> logged 24kg of organic produce for pickup.</p>
+<span class="text-xs text-stone-400 font-medium">14 mins ago</span>
+</div>
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+<div class="w-2 h-2 bg-tertiary rounded-full"></div>
+<p class="flex-1 text-sm"><span class="font-bold">Volunteer Team Alpha</span> confirmed pickup at Terra Bakery.</p>
+<span class="text-xs text-stone-400 font-medium">2 hours ago</span>
+</div>
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+<p class="flex-1 text-sm"><span class="font-bold">Garden Cafe</span> updated its operating hours for the weekend.</p>
+<span class="text-xs text-stone-400 font-medium">5 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
+                htmlElement.classList.toggle('light');
+                if (htmlElement.classList.contains('dark')) {
+                    themeIcon.textContent = 'light_mode';
+                    htmlElement.style.backgroundColor = '#111';
+                } else {
+                    themeIcon.textContent = 'dark_mode';
+                    htmlElement.style.backgroundColor = '';
+                }
+            });
+        }
+    });
+</script>
+</body></html>

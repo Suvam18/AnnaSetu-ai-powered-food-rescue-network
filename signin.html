@@ -466,7 +466,11 @@
                 localStorage.setItem('annasetu_session', JSON.stringify(validUser));
                 
                 setTimeout(() => {
-                    window.location.href = 'Admin_Dashboard.html';
+                    if (currentRole === 'restaurant') {
+                        window.location.href = 'Restaurant_Portal_Dashboard.html';
+                    } else {
+                        window.location.href = 'Admin_Dashboard.html';
+                    }
                 }, 1500);
             } else {
                 showAlert("Invalid email or password. Please try again or Sign Up.", false);

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnnaSetu - Restaurant Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#4a7c59",
+          "surface": "#faf6f0",
+          "surface-bright": "#faf6f0",
+          "surface-container-low": "#f5f1ea",
+          "on-surface": "#2e3230",
+          "outline-variant": "#c4c8bc"
+        },
+        fontFamily: { "headline": ["Literata"], "body": ["Nunito Sans"] }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; padding-top: 7rem; }
+  h1,h2,h3,h4,.font-headline { font-family: 'Literata', serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  
+  /* Animated Route for Mini Map */
+  @keyframes route-flow {
+    to { stroke-dashoffset: -20; }
+  }
+  .route-path {
+    stroke-dasharray: 10, 10;
+    animation: route-flow 2s linear infinite;
+  }
+  @keyframes volunteer-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .volunteer-dot { animation: volunteer-bounce 2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+  <header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-[#4a7c59] text-3xl">soup_kitchen</span>
+      <span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
+    </div>
+    <nav class="hidden lg:flex items-center gap-6">
+      <a class="text-sm font-semibold text-[#4a7c59] font-bold border-b-2 border-[#4a7c59] pb-0.5" href="Restaurant_Portal_Dashboard.html">Dashboard</a>
+      <a class="text-sm font-semibold text-gray-600 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Excess_Notification_Center.html">Surplus Log</a>
+      <a class="text-sm font-semibold text-gray-600 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Locations_Management.html">Locations</a>
+      <a class="text-sm font-semibold text-gray-600 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Analytics_and_Impact.html">Analytics</a>
+      <a class="text-sm font-semibold text-gray-600 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
+      <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300">
+        <span id="theme-icon" class="material-symbols-outlined text-lg">dark_mode</span>
+      </button>
+    </div>
+  </header>
+</div>
+
+<!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+<main class="w-full max-w-6xl mx-auto px-6 py-10 md:px-10 md:py-12 space-y-12">
+  
+  <!-- Greeting Section -->
+  <div>
+    <h1 id="dashboard-greeting" class="text-4xl md:text-5xl font-black text-on-surface tracking-tight">Loading...</h1>
+    <p class="text-stone-500 mt-2 font-medium">Here's what's happening today at your restaurant.</p>
+  </div>
+
+  <!-- Today's Summary Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Surplus Generated -->
+    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+      <div class="flex items-center justify-between mb-4">
+        <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg material-symbols-outlined">restaurant</span>
+        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">+12%</span>
+      </div>
+      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Surplus Today</p>
+      <h3 id="stat-surplus" class="text-3xl font-black text-stone-800 mt-1">25</h3>
+      <p class="text-xs text-stone-400 mt-1 font-medium">meals listed for rescue</p>
+    </div>
+    <!-- Pickups Completed -->
+    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+      <div class="flex items-center justify-between mb-4">
+        <span class="p-2 bg-blue-50 text-blue-600 rounded-lg material-symbols-outlined">local_shipping</span>
+        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">Good</span>
+      </div>
+      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Pickups Done</p>
+      <h3 id="stat-pickups" class="text-3xl font-black text-stone-800 mt-1">18</h3>
+      <p class="text-xs text-stone-400 mt-1 font-medium">successfully rescued</p>
+    </div>
+    <!-- Pending / Expiry Card -->
+    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+      <div class="flex items-center justify-between mb-4">
+        <span class="p-2 bg-amber-50 text-amber-600 rounded-lg material-symbols-outlined">timer</span>
+        <span class="text-[10px] font-black text-rose-500 bg-rose-50 px-2 py-0.5 rounded-full uppercase tracking-widest" id="expiry-status-label">Monitoring</span>
+      </div>
+      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Expiration</p>
+      <div class="flex items-end gap-3 mt-1">
+        <h3 id="stat-pending" class="text-3xl font-black text-stone-800">0</h3>
+        <p id="stat-expired" class="text-xs font-black text-red-500 mb-1">0 expired</p>
+      </div>
+      <p class="text-xs text-stone-400 mt-1 font-medium">active entries monitoring</p>
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-amber-100">
+        <div id="expiry-bar" class="h-full bg-amber-400 transition-all duration-1000" style="width: 0%"></div>
+      </div>
+    </div>
+    <!-- Waste Saved -->
+    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+      <div class="flex items-center justify-between mb-4">
+        <span class="p-2 bg-purple-50 text-purple-600 rounded-lg material-symbols-outlined">eco</span>
+        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">Top 5%</span>
+      </div>
+      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Waste Saved</p>
+      <h3 id="stat-waste" class="text-3xl font-black text-stone-800 mt-1">12.4 <span class="text-lg font-semibold">kg</span></h3>
+      <p class="text-xs text-stone-400 mt-1 font-medium">CO2 offset: 25kg</p>
+    </div>
+  </div>
+
+  <!-- Realtime Monitoring Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Urgent Alerts Panel -->
+    <div class="lg:col-span-1 bg-white rounded-2xl p-6 border border-red-50 shadow-sm flex flex-col h-[400px]">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold flex items-center gap-2 text-stone-800">
+          <span class="material-symbols-outlined text-red-500">notification_important</span> Urgent Alerts
+        </h3>
+      </div>
+      <div id="alerts-list" class="flex-1 overflow-y-auto space-y-4 pr-1">
+        <!-- Live Alerts Here -->
+        <div class="flex items-center gap-3 p-4 bg-stone-50 rounded-xl text-stone-400 text-sm">
+          <span class="material-symbols-outlined">info</span>
+          <p>No critical expirations detected yet.</p>
+        </div>
+      </div>
+      <a href="Excess_Notification_Center.html" class="mt-4 w-full py-3 bg-red-50 text-red-600 text-center rounded-xl font-bold text-sm hover:bg-red-100 transition-all">
+        Manage Surplus Log
+      </a>
+    </div>
+
+    <!-- Live City Map (Animated) -->
+    <div class="lg:col-span-2 bg-[#f8fafc] rounded-3xl p-6 border border-slate-200 shadow-sm overflow-hidden relative group">
+      <div class="absolute top-6 left-6 z-10 bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-slate-100 shadow-sm">
+        <h3 class="text-slate-900 font-bold text-lg flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span> Live Rescue Network
+        </h3>
+        <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">
+          <span id="active-volunteers-count">3</span> Volunteers Online
+        </p>
+      </div>
+
+      <!-- Map Legend -->
+      <div class="absolute bottom-6 left-6 z-10 flex flex-col gap-2">
+        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 bg-white/80 px-2.5 py-1.5 rounded-full border border-slate-100">
+            <span class="material-symbols-outlined text-emerald-600 text-[14px]">restaurant</span> You
+        </div>
+        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 bg-white/80 px-2.5 py-1.5 rounded-full border border-slate-100">
+            <span class="material-symbols-outlined text-blue-600 text-[14px]">corporate_fare</span> NGO Hub
+        </div>
+      </div>
+
+      <!-- City Map SVG -->
+      <div class="w-full h-[320px] bg-slate-50 rounded-2xl relative overflow-hidden">
+        <svg id="city-map" class="w-full h-full" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice">
+          <!-- Street Network -->
+          <g id="streets" stroke="#e2e8f0" stroke-width="1.5" fill="none">
+            <path d="M0 40 H600 M0 120 H600 M0 200 H600 M0 280 H600" />
+            <path d="M80 0 V320 M180 0 V320 M280 0 V320 M380 0 V320 M480 0 V320" />
+            <!-- Diagonal Arteries -->
+            <path d="M80 40 L 480 280" stroke="#cbd5e1" stroke-width="1" />
+            <path id="route-primary" d="M180 200 L 280 200 L 280 120 L 380 120" stroke="transparent" />
+            <path id="route-secondary" d="M180 200 L 180 120 L 380 120" stroke="transparent" />
+            <path id="route-tertiary" d="M180 200 L 280 200 L 380 280 L 480 280 L 480 120 L 380 120" stroke="transparent" />
+          </g>
+
+          <!-- Main Locations -->
+          <!-- Restaurant (You) -->
+          <g transform="translate(180, 200)" class="cursor-pointer">
+            <circle r="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" />
+            <text font-family="Material Symbols Outlined" x="0" y="6" text-anchor="middle" fill="#059669" font-size="20">restaurant</text>
+            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#065f46" class="uppercase">Restaurant</text>
+          </g>
+
+          <!-- NGO Hub -->
+          <g transform="translate(380, 120)" class="cursor-pointer">
+            <circle r="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
+            <text font-family="Material Symbols Outlined" x="0" y="6" text-anchor="middle" fill="#2563eb" font-size="20">corporate_fare</text>
+            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#1e40af" class="uppercase">Rescue NGO</text>
+          </g>
+
+          <!-- Animated Volunteers Group -->
+          <g id="volunteers-overlay"></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surplus Trend & Branch Management -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Surplus Trends (Analytics) -->
+    <div class="lg:col-span-2 bg-white rounded-3xl p-8 border border-stone-100 shadow-sm relative">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h3 class="font-headline text-2xl font-bold text-stone-800">Surplus Analytics</h3>
+            <p id="chart-subtitle" class="text-xs text-stone-400 mt-1 font-medium">Last 7 days trends</p>
+          </div>
+          <select id="trend-range" onchange="renderTrendChart()" class="bg-stone-50 border-none rounded-xl text-xs font-black px-4 py-2 text-stone-600 focus:ring-2 focus:ring-[#4a7c59]/20 cursor-pointer">
+            <option value="7">Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="12">This Year (Monthly)</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- Bar Chart -->
+          <div class="flex flex-col">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 mb-4">Meals Listed Over Time</p>
+            <div class="relative h-48 flex-1">
+                <div id="trend-chart" class="absolute inset-0 flex items-end justify-between gap-1.5 px-2"></div>
+                <div id="chart-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-stone-300 bg-stone-50/50 rounded-2xl border-2 border-dashed border-stone-100">
+                    <span class="material-symbols-outlined text-4xl mb-2">bar_chart</span>
+                    <p class="text-xs font-bold">No listed data yet</p>
+                </div>
+            </div>
+            <!-- Bar Chart Legend/Summary -->
+            <div class="mt-4 pt-4 border-t border-stone-50 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span id="trend-icon" class="material-symbols-outlined text-emerald-500">trending_up</span>
+                    <span id="trend-summary" class="text-xs font-bold text-stone-600">Loading metrics...</span>
+                </div>
+                <span id="trend-total" class="text-[10px] font-black text-stone-300 uppercase"></span>
+            </div>
+          </div>
+
+          <!-- Pie Chart -->
+          <div class="flex flex-col">
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 mb-4">Surplus By Food Category</p>
+            <div class="flex items-center gap-6 flex-1">
+                <div class="relative flex-shrink-0">
+                    <svg id="pie-chart" width="140" height="140" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" fill="#faf6f0"/>
+                        <!-- Segments here -->
+                        <circle cx="60" cy="60" r="28" fill="white"/>
+                        <text x="60" y="55" text-anchor="middle" font-size="8" font-family="sans-serif" fill="#999" font-weight="bold">TOTAL</text>
+                        <text x="60" y="72" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#222" font-weight="black" id="pie-center-value">0</text>
+                    </svg>
+                    <div id="pie-empty" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="text-[10px] font-black text-stone-300">NO DATA</span>
+                    </div>
+                </div>
+                <!-- Legend -->
+                <div id="pie-legend" class="space-y-2 flex-1 min-w-0"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Branches List -->
+    <div class="bg-white rounded-3xl p-8 border border-stone-100 shadow-sm flex flex-col h-[400px]">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-stone-800">My Branches</h3>
+            <button onclick="openAddBranch()" class="p-2 bg-stone-50 text-stone-400 hover:text-[#4a7c59] hover:bg-emerald-50 rounded-lg transition-all">
+                <span class="material-symbols-outlined">add_circle</span>
+            </button>
+        </div>
+
+        <div id="branches-list" class="flex-1 overflow-y-auto space-y-3 pr-1">
+            <!-- Branches listed here -->
+        </div>
+
+        <!-- Add Branch Modal (Hidden) -->
+        <div id="add-branch-form" class="hidden mt-4 p-4 bg-stone-50 rounded-2xl space-y-3 animate-in fade-in slide-in-from-bottom-2">
+            <h4 class="text-xs font-black uppercase tracking-widest text-stone-400">Add New Location</h4>
+            <input id="branch-name" type="text" placeholder="Branch Name" class="w-full text-sm bg-white border-stone-100 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59]"/>
+            <input id="branch-address" type="text" placeholder="Address" class="w-full text-sm bg-white border-stone-100 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59]"/>
+            <div class="flex gap-2">
+                <button onclick="saveBranch()" class="flex-1 py-2.5 bg-[#4a7c59] text-white rounded-xl font-bold text-xs hover:bg-[#3d6549] transition-all">Save</button>
+                <button onclick="closeAddBranch()" class="px-4 py-2.5 bg-white text-stone-400 rounded-xl font-bold text-xs hover:bg-stone-100 transition-all">Cancel</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA LAYER (Synchronized with Surplus Log)
+═══════════════════════════════════════════════════ */
+function getSurplus()  { 
+    try { return JSON.parse(localStorage.getItem('annasetu_surplus') || '[]'); } 
+    catch(e) { return []; } 
+}
+function getHistory()  { 
+    try { return JSON.parse(localStorage.getItem('annasetu_history') || '[]'); } 
+    catch(e) { return []; } 
+}
+function getBranches() { 
+    const def = [{ id: 1, name: 'Main Branch', address: 'City Centre', icon: 'restaurant' }];
+    try { return JSON.parse(localStorage.getItem('annasetu_branches') || JSON.stringify(def)); } 
+    catch(e) { return def; } 
+}
+function saveBranches(arr) { localStorage.setItem('annasetu_branches', JSON.stringify(arr)); }
+
+/* ─── GLOBAL ACTIONS ─── */
+window.openAddBranch = function() {
+    document.getElementById('add-branch-form').classList.remove('hidden');
+    document.getElementById('branch-name').focus();
+};
+window.closeAddBranch = function() {
+    document.getElementById('add-branch-form').classList.add('hidden');
+    document.getElementById('branch-name').value = '';
+    document.getElementById('branch-address').value = '';
+};
+window.saveBranch = function() {
+    const name = document.getElementById('branch-name').value.trim();
+    const address = document.getElementById('branch-address').value.trim();
+    if (!name) return;
+    const bs = getBranches();
+    bs.push({ id: Date.now(), name, address, icon: 'location_on' });
+    saveBranches(bs);
+    closeAddBranch();
+    renderBranches();
+};
+window.deleteBranch = function(id, e) {
+    e.stopPropagation();
+    if (!confirm('Remove this location?')) return;
+    saveBranches(getBranches().filter(b => b.id !== id));
+    renderBranches();
+};
+
+/* ─── RENDERERS ─── */
+function renderBranches() {
+    const bs = getBranches();
+    const list = document.getElementById('branches-list');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    // Check local surplus vs branches
+    const surplus = getSurplus();
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    bs.forEach(b => {
+        const todayCount = surplus.filter(e => {
+            const d = new Date(e.createdAt);
+            const matchesId = (e.branchId == b.id) || (!e.branchId && b.id == 1); // fallback to main
+            return d >= todayStart && matchesId;
+        }).reduce((s, e) => s + (parseInt(e.qty) || 0), 0);
+
+        const active = todayCount > 0;
+        const div = document.createElement('div');
+        div.className = 'flex items-center gap-3 p-3 bg-stone-50/50 hover:bg-stone-50 rounded-2xl transition-all border border-transparent hover:border-stone-100 group';
+        div.innerHTML = `
+          <div class="w-12 h-12 rounded-xl bg-white border border-stone-100 flex items-center justify-center text-stone-400 group-hover:text-[#4a7c59] transition-colors">
+            <span class="material-symbols-outlined text-xl">${b.icon || 'location_on'}</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-sm text-stone-800 truncate">${b.name}</h4>
+            <p class="text-[10px] text-stone-400 font-medium truncate">${b.address}</p>
+          </div>
+          <div class="flex flex-col items-end gap-1">
+            <span class="text-[10px] font-black ${active ? 'text-[#4a7c59]' : 'text-stone-300'}">${todayCount} meals</span>
+            <div class="w-2 h-2 rounded-full ${active ? 'bg-emerald-500 animate-pulse' : 'bg-stone-200'}"></div>
+          </div>
+          <button onclick="deleteBranch(${b.id}, event)" class="ml-2 p-1 text-stone-200 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+            <span class="material-symbols-outlined text-xs">delete</span>
+          </button>
+        `;
+        list.appendChild(div);
+    });
+}
+
+const CAT_COLORS = { 'Bakery': '#4a7c59', 'Produce': '#3b82f6', 'Prepared Meals': '#fca311', 'Beverages': '#9b5de5', 'Other': '#adb5bd' };
+
+window.renderTrendChart = function() {
+    const range = parseInt(document.getElementById('trend-range').value);
+    const surplus = getSurplus();
+    const history = getHistory();
+    const all = [
+        ...surplus.map(e => ({ d: new Date(e.createdAt), q: parseInt(e.qty)||0, t: e.foodType||'Other' })),
+        ...history.map(h => ({ d: new Date(h.createdAt || h.date || Date.now()), q: parseInt(h.qty)||0, t: h.type||'Other' }))
+    ];
+    
+    const now = new Date();
+    let labels = [], data = [];
+
+    // Calculation logic
+    if (range === 12) {
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        labels = months;
+        data = months.map((_, i) => all.filter(e => e.d.getFullYear() === now.getFullYear() && e.d.getMonth() === i).reduce((s, e) => s + e.q, 0));
+        document.getElementById('chart-subtitle').textContent = 'Annual Monthly Distribution';
+    } else {
+        for (let i = range - 1; i >= 0; i--) {
+            const d = new Date(now); d.setDate(now.getDate() - i); d.setHours(0,0,0,0);
+            const next = new Date(d); next.setHours(23,59,59,999);
+            data.push(all.filter(e => e.d >= d && e.d <= next).reduce((s,e) => s + e.q, 0));
+            labels.push(range === 7 ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()] : d.getDate().toString());
+        }
+        document.getElementById('chart-subtitle').textContent = `Activity over last ${range} days`;
+    }
+
+    // Bar Rendering
+    const max = Math.max(...data, 1);
+    const total = data.reduce((s,v) => s+v, 0);
+    const chart = document.getElementById('trend-chart');
+    const empty = document.getElementById('chart-empty');
+
+    if (total === 0) {
+        chart.innerHTML = ''; empty.classList.remove('hidden');
+        document.getElementById('trend-summary').textContent = 'Waiting for input...';
+        document.getElementById('trend-total').textContent = '';
+    } else {
+        empty.classList.add('hidden'); chart.innerHTML = '';
+        data.forEach((v, i) => {
+            const pct = Math.max(5, (v/max)*100);
+            const isToday = (range === 12 && i === now.getMonth()) || (range != 12 && i === range-1);
+            const bar = document.createElement('div');
+            bar.className = 'flex-1 group flex flex-col items-center justify-end h-full min-w-0';
+            const clr = isToday ? 'bg-[#4a7c59]' : (v > max*0.7 ? 'bg-emerald-200' : 'bg-stone-100');
+            bar.innerHTML = `
+                <div class="${clr} w-full rounded-t-lg transition-all duration-700 hover:brightness-95 relative" style="height:${pct}%">
+                    ${v > 0 ? `<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-stone-800 text-white text-[8px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">${v}</div>` : ''}
+                </div>
+                <span class="text-[8px] font-black mt-2 uppercase ${isToday ? 'text-[#4a7c59]' : 'text-stone-300'}">${labels[i]}</span>
+            `;
+            chart.appendChild(bar);
+        });
+        const summary = document.getElementById('trend-summary');
+        summary.textContent = `Active Peak: ${max} meals rescued`;
+        document.getElementById('trend-total').textContent = `Total Volume: ${total}`;
+    }
+
+    // Pie Rendering
+    const cats = {};
+    all.forEach(e => { cats[e.t] = (cats[e.t] || 0) + e.q; });
+    const entries = Object.entries(cats).filter(c => c[1] > 0).sort((a,b) => b[1]-a[1]);
+    const pTotal = entries.reduce((s,c) => s+c[1], 0);
+    const pSvg = document.getElementById('pie-chart');
+    const pEmpty = document.getElementById('pie-empty');
+    const legend = document.getElementById('pie-legend');
+    document.getElementById('pie-center-value').textContent = pTotal;
+
+    pSvg.querySelectorAll('.pie-seg').forEach(s => s.remove());
+    legend.innerHTML = '';
+
+    if (pTotal === 0) {
+        pEmpty.classList.remove('hidden');
+    } else {
+        pEmpty.classList.add('hidden');
+        let angle = -Math.PI/2, cx=60, cy=60, r=54;
+        entries.forEach(([cat, val]) => {
+            const sweep = (val/pTotal)*2*Math.PI;
+            const x1 = cx + r*Math.cos(angle), y1 = cy + r*Math.sin(angle);
+            const x2 = cx + r*Math.cos(angle+sweep), y2 = cy + r*Math.sin(angle+sweep);
+            const large = sweep > Math.PI ? 1 : 0;
+            const color = CAT_COLORS[cat] || CAT_COLORS['Other'];
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('class', 'pie-seg');
+            path.setAttribute('d', `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z`);
+            path.setAttribute('fill', color);
+            path.setAttribute('stroke', 'white');
+            path.setAttribute('stroke-width', '2');
+            pSvg.insertBefore(path, pSvg.querySelector('circle:last-of-type'));
+            angle += sweep;
+            
+            const li = document.createElement('div');
+            li.className = 'flex items-center gap-3 group';
+            li.innerHTML = `
+                <div class="w-1.5 h-1.5 rounded-full" style="background:${color}"></div>
+                <p class="text-[10px] font-black text-stone-500 uppercase flex-1 truncate">${cat}</p>
+                <p class="text-[10px] font-black text-stone-800">${Math.round((val/pTotal)*100)}%</p>
+            `;
+            legend.appendChild(li);
+        });
+    }
+};
+
+function loadDashboardStats() {
+    const surplus = getSurplus();
+    const history = getHistory();
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const listedToday = surplus.filter(e => new Date(e.createdAt) >= today).reduce((s, e) => s + (parseInt(e.qty)||0), 0);
+    const rescToday = history.filter(h => h.date === now.toLocaleDateString('en-IN', {day:'numeric', month:'short'})).reduce((s,h) => s + (parseInt(h.qty)||1), 0);
+    const waste = Math.round((listedToday + rescToday) * 0.25 * 10) / 10;
+
+    document.getElementById('stat-surplus').textContent = listedToday || 0;
+    document.getElementById('stat-pickups').textContent = rescToday || 0;
+    
+    // Dynamic Expiry Stats
+    const totalPending = surplus.length;
+    const expiredCount = surplus.filter(e => e.expiry && new Date(e.expiry) < now).length;
+    const expiringSoon = surplus.filter(e => {
+        if (!e.expiry) return false;
+        const diff = (new Date(e.expiry) - now) / 60000;
+        return diff > 0 && diff < 60;
+    }).length;
+
+    document.getElementById('stat-pending').textContent = totalPending;
+    document.getElementById('stat-expired').textContent = `${expiredCount} expired`;
+    
+    // Status Label
+    const statusLabel = document.getElementById('expiry-status-label');
+    if (statusLabel) {
+        if (expiredCount > 0) {
+            statusLabel.textContent = 'CRITICAL';
+            statusLabel.className = 'text-[10px] font-black text-white bg-rose-500 px-2 py-0.5 rounded-full uppercase tracking-widest animate-pulse';
+        } else if (expiringSoon > 0) {
+            statusLabel.textContent = 'URGENT';
+            statusLabel.className = 'text-[10px] font-black text-white bg-amber-500 px-2 py-0.5 rounded-full uppercase tracking-widest';
+        } else {
+            statusLabel.textContent = 'SAFE';
+            statusLabel.className = 'text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-widest';
+        }
+    }
+
+    const bar = document.getElementById('expiry-bar');
+    if (bar) {
+        const pct = totalPending > 0 ? ((expiringSoon + expiredCount) / totalPending) * 100 : 0;
+        bar.style.width = pct + '%';
+        bar.className = expiredCount > 0 ? 'h-full bg-red-400 transition-all duration-1000' : 'h-full bg-amber-400 transition-all duration-1000';
+    }
+
+    document.getElementById('stat-waste').innerHTML = `${waste} <span class="text-lg font-semibold">kg</span>`;
+
+    // Alerts logic
+    const alerts = surplus.filter(e => {
+        if (!e.expiry) return false;
+        const diff = (new Date(e.expiry) - now) / 60000;
+        return diff < 240; // Include items expiring in the next 4 hours
+    }).sort((a,b) => new Date(a.expiry) - new Date(b.expiry));
+
+    const badge = document.getElementById('alert-badge');
+    if (badge) {
+        badge.textContent = alerts.length;
+        badge.className = `text-xs font-black px-2 py-0.5 rounded-full ${alerts.length > 0 ? 'bg-rose-500 text-white animate-pulse' : 'bg-stone-50 text-stone-300'}`;
+    }
+
+    const list = document.getElementById('alerts-list');
+    if (!list) return;
+    
+    if (alerts.length === 0) {
+        list.innerHTML = `<div class="flex items-center gap-3 p-4 bg-stone-50/50 rounded-2xl text-stone-300 text-xs font-bold uppercase tracking-widest"><span class="material-symbols-outlined">check_circle</span> All entries safe</div>`;
+    } else {
+        list.innerHTML = '';
+        
+        const expiredArr = alerts.filter(e => e.expiry && new Date(e.expiry) < now);
+        const soonArr = alerts.filter(e => {
+            const diff = (new Date(e.expiry) - now) / 60000;
+            return diff >= 0 && diff < 60;
+        });
+        const normalArr = alerts.filter(e => {
+            const diff = (new Date(e.expiry) - now) / 60000;
+            return diff >= 60 && diff < 240;
+        });
+
+        if (expiredArr.length > 0) {
+            const h = document.createElement('p');
+            h.className = 'text-[10px] font-black text-rose-500 uppercase tracking-widest mb-3 px-1';
+            h.innerHTML = '<span class="material-symbols-outlined text-[12px] align-middle mr-1">dangerous</span> Critical: Expired';
+            list.appendChild(h);
+            expiredArr.forEach(e => {
+                const card = document.createElement('div');
+                card.className = 'p-4 rounded-2xl border border-rose-100 bg-rose-50/50 flex gap-3 mb-4';
+                card.innerHTML = `
+                    <span class="material-symbols-outlined text-rose-500">cancel</span>
+                    <div>
+                        <h4 class="text-[10px] font-black uppercase text-rose-600">Expired Items</h4>
+                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        if (soonArr.length > 0) {
+            const h = document.createElement('p');
+            h.className = 'text-[10px] font-black text-amber-500 uppercase tracking-widest mb-3 mt-2 px-1';
+            h.innerHTML = '<span class="material-symbols-outlined text-[12px] align-middle mr-1">schedule</span> Urgent: < 60m';
+            list.appendChild(h);
+            soonArr.forEach(e => {
+                const min = Math.round((new Date(e.expiry) - now) / 60000);
+                const card = document.createElement('div');
+                card.className = 'p-4 rounded-2xl border border-amber-100 bg-amber-50/50 flex gap-3 mb-4';
+                card.innerHTML = `
+                    <span class="material-symbols-outlined text-amber-500">timer</span>
+                    <div>
+                        <h4 class="text-[10px] font-black uppercase text-amber-600">${min}m remaining</h4>
+                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        if (normalArr.length > 0) {
+            const h = document.createElement('p');
+            h.className = 'text-[10px] font-black text-blue-500 uppercase tracking-widest mb-3 mt-2 px-1';
+            h.innerHTML = '<span class="material-symbols-outlined text-[12px] align-middle mr-1">info</span> Upcoming: Normal';
+            list.appendChild(h);
+            normalArr.forEach(e => {
+                const hr = Math.floor((new Date(e.expiry) - now) / 3600000);
+                const min = Math.round(((new Date(e.expiry) - now) % 3600000) / 60000);
+                const card = document.createElement('div');
+                card.className = 'p-4 rounded-2xl border border-blue-100 bg-blue-50/50 flex gap-3 mb-4';
+                card.innerHTML = `
+                    <span class="material-symbols-outlined text-blue-500">more_time</span>
+                    <div>
+                        <h4 class="text-[10px] font-black uppercase text-blue-600">Expires in ${hr}h ${min}m</h4>
+                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+    }
+    const vCount = document.getElementById('active-volunteers-count');
+    if (vCount) vCount.textContent = VOLUNTEERS.length;
+}
+
+/* ─── MAP ANIMATION SYSTEM ─── */
+const VOLUNTEERS = [
+    { name: 'Arjun', routeId: 'route-primary', speed: 0.0005, progress: 0, color: '#facc15' },
+    { name: 'Priya', routeId: 'route-secondary', speed: 0.0007, progress: 0.2, color: '#4a7c59' },
+    { name: 'Sameer', routeId: 'route-tertiary', speed: 0.0004, progress: 0.5, color: '#fb923c' }
+];
+
+function initMapAnimation() {
+    const overlay = document.getElementById('volunteers-overlay');
+    if (!overlay) return;
+    
+    // Create initial markers
+    VOLUNTEERS.forEach((v, i) => {
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('id', `vol-${i}`);
+        g.innerHTML = `
+            <circle r="6" fill="white" stroke="${v.color}" stroke-width="2" />
+            <circle r="3" fill="${v.color}" />
+            <rect x="-25" y="-22" width="50" height="12" rx="4" fill="white" fill-opacity="0.9" stroke="#f1f5f9" stroke-width="0.5" />
+            <text y="-13" text-anchor="middle" font-size="7" font-weight="900" fill="#334155" class="uppercase">${v.name}</text>
+        `;
+        overlay.appendChild(g);
+    });
+
+    function animate() {
+        VOLUNTEERS.forEach((v, i) => {
+            const path = document.getElementById(v.routeId);
+            const marker = document.getElementById(`vol-${i}`);
+            if (path && marker) {
+                try {
+                    v.progress += v.speed;
+                    if (v.progress > 1) v.progress = 0;
+                    
+                    const len = path.getTotalLength();
+                    if (len > 0) {
+                        const pt = path.getPointAtLength(v.progress * len);
+                        marker.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
+                        marker.style.display = 'block';
+                    } else {
+                        marker.style.display = 'none';
+                    }
+                } catch(e) { console.error('Map animation error:', e); }
+            }
+        });
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+}
+
+/* ─── INITIALIZATION ─── */
+document.addEventListener('DOMContentLoaded', () => {
+    // Theme
+    const btn = document.getElementById('theme-toggle');
+    btn.addEventListener('click', () => {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        html.classList.toggle('light');
+        document.getElementById('theme-icon').textContent = html.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+        if (html.classList.contains('dark')) html.style.backgroundColor = '#121629';
+        else html.style.backgroundColor = '#faf6f0';
+    });
+
+    // Greeting
+    const h = new Date().getHours();
+    const g = h < 12 ? 'Good Morning \uD83C\uDF05' : (h < 17 ? 'Good Afternoon \u2600\uFE0F' : 'Good Evening \uD83C\uDF07');
+    let user = ''; try { const s = JSON.parse(localStorage.getItem('annasetu_session') || '{}'); user = s.fname || s.name || ''; } catch(e){}
+    document.getElementById('dashboard-greeting').textContent = user ? `${g.split(' ').slice(0,2).join(' ')}, ${user}! ${g.split(' ')[2]}` : g;
+
+    // First Render
+    renderTrendChart();
+    renderBranches();
+    loadDashboardStats();
+    initMapAnimation();
+
+    // Auto Refresh
+    setInterval(() => {
+        loadDashboardStats();
+        renderTrendChart();
+        renderBranches();
+    }, 15000);
+
+    // Tab Sync
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) { loadDashboardStats(); renderTrendChart(); renderBranches(); } });
+});
+</script>
+
+</body>
+</html>
