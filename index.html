@@ -260,12 +260,104 @@
             </a>
         </div>
     </div>
+    
+    <!-- Haze transition -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none dark:hidden z-20"
+         style="background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.85) 50%, #ffffff 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none hidden dark:block z-20"
+         style="background: linear-gradient(to bottom, transparent 0%, rgba(11,15,25,0.85) 50%, #0B0F19 100%);"></div>
 </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- Trusted By / Partners Marquee                      -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="trusted-by" class="relative w-full py-16 bg-white dark:bg-[#0B0F19] overflow-hidden border-y border-gray-100 dark:border-white/5 transition-colors duration-500">
+        <div class="mb-10 text-center relative z-10">
+            <p class="text-xs font-bold tracking-[0.4em] uppercase text-gray-400 dark:text-stone-500">Trusted By Governments & Global NGOs</p>
+        </div>
+        
+        <!-- Marquee Container -->
+        <div class="relative flex overflow-x-hidden group max-w-7xl mx-auto mask-edges">
+            <div class="animate-marquee flex items-center space-x-16 md:space-x-24 px-8 min-w-max">
+                <!-- Logos (Gov & NGOs) Base Array -->
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-blue-600 dark:text-blue-400" style="font-variation-settings:'FILL' 1;">account_balance</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Ministry of Health</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-sky-500" style="font-variation-settings:'FILL' 1;">public</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">World Food Programme</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-orange-500" style="font-variation-settings:'FILL' 1;">food_bank</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Feeding India</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-emerald-600 dark:text-emerald-400" style="font-variation-settings:'FILL' 1;">verified</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">FSSAI Certified</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-amber-500" style="font-variation-settings:'FILL' 1;">volunteer_activism</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Akshaya Patra</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-teal-600 dark:text-teal-400" style="font-variation-settings:'FILL' 1;">eco</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Earth Rescue</span>
+                </div>
+                
+                <!-- DUPLICATED FOR INFINITE SCROLL -->
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-blue-600 dark:text-blue-400" style="font-variation-settings:'FILL' 1;">account_balance</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Ministry of Health</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-sky-500" style="font-variation-settings:'FILL' 1;">public</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">World Food Programme</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-orange-500" style="font-variation-settings:'FILL' 1;">food_bank</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Feeding India</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-emerald-600 dark:text-emerald-400" style="font-variation-settings:'FILL' 1;">verified</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">FSSAI Certified</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-amber-500" style="font-variation-settings:'FILL' 1;">volunteer_activism</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Akshaya Patra</span>
+                </div>
+                <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="material-symbols-outlined text-5xl text-teal-600 dark:text-teal-400" style="font-variation-settings:'FILL' 1;">eco</span>
+                    <span class="font-black text-2xl tracking-tighter leading-none text-gray-800 dark:text-gray-100">Earth Rescue</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CSS Animation & Edge Masking for Marquee -->
+        <style>
+            .animate-marquee {
+                animation: marquee 35s linear infinite;
+            }
+            .group:hover .animate-marquee {
+                animation-play-state: paused;
+            }
+            @keyframes marquee {
+                0% { transform: translateX(0%); }
+                100% { transform: translateX(-50%); }
+            }
+            .mask-edges {
+                -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+                mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            }
+        </style>
+    </section>
+
 
     <!-- ═══════════════════════════════════════════════════ -->
     <!-- How It Works Section                               -->
     <!-- ═══════════════════════════════════════════════════ -->
-    <section id="how-it-works" class="w-full max-w-5xl mx-auto px-4 pb-32 pt-20">
+    <section id="how-it-works" class="relative w-full pb-32 pt-20 transition-colors duration-500">
+        <div class="max-w-5xl mx-auto px-4">
 
         <!-- Section Header -->
         <div class="text-center mb-16">
@@ -358,6 +450,13 @@
             </div>
 
         </div>
+        </div>
+        
+        <!-- Haze transition -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none dark:hidden z-20"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.85) 50%, #ffffff 100%);"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none hidden dark:block z-20"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(11,15,25,0.85) 50%, #0B0F19 100%);"></div>
     </section>
     
     <!-- ═══════════════════════════════════════════════════ -->
@@ -412,6 +511,12 @@
 
             </div>
         </div>
+        
+        <!-- Haze transition into Stats bg -->
+        <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none dark:hidden z-20"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(253,248,238,0.85) 50%, #fdf8ee 100%);"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none hidden dark:block z-20"
+             style="background: linear-gradient(to bottom, transparent 0%, rgba(11,15,25,0.85) 50%, #0B0F19 100%);"></div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════ -->
