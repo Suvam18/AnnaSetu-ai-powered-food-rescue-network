@@ -1,339 +1,1346 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Terra Portal - Locations</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,200..900&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary": "#6b6358",
-                    "error-container": "#ffdad8",
-                    "on-primary-container": "#d8f0de",
-                    "primary-fixed-dim": "#8ecf9e",
-                    "on-surface": "#2e3230",
-                    "inverse-surface": "#2e3230",
-                    "surface-bright": "#faf6f0",
-                    "surface-tint": "#4a7c59",
-                    "on-secondary-fixed-variant": "#4a4538",
-                    "tertiary-container": "#c4a66a",
-                    "on-primary-fixed": "#002110",
-                    "surface": "#faf6f0",
-                    "outline": "#74796e",
-                    "outline-variant": "#c4c8bc",
-                    "surface-container-highest": "#e4e0d8",
-                    "secondary-container": "#f0e8db",
-                    "on-background": "#2e3230",
-                    "error": "#b83230",
-                    "on-secondary-container": "#5e5548",
-                    "on-secondary-fixed": "#1e1a13",
-                    "secondary-fixed": "#f0e8db",
-                    "surface-container-lowest": "#ffffff",
-                    "secondary-fixed-dim": "#d4ccbf",
-                    "tertiary-fixed": "#f8e0a8",
-                    "on-error": "#ffffff",
-                    "on-tertiary-container": "#554020",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed-dim": "#dcc48e",
-                    "primary-container": "#78a886",
-                    "background": "#faf6f0",
-                    "tertiary": "#705c30",
-                    "surface-container": "#f0ece4",
-                    "on-tertiary-fixed-variant": "#554020",
-                    "inverse-primary": "#8ecf9e",
-                    "on-surface-variant": "#4a4e4a",
-                    "inverse-on-surface": "#f5f0e8",
-                    "on-secondary": "#ffffff",
-                    "primary-fixed": "#c8e8d0",
-                    "on-primary-fixed-variant": "#2a6038",
-                    "surface-dim": "#dbd7cf",
-                    "on-error-container": "#690005",
-                    "on-tertiary-fixed": "#221a05",
-                    "surface-container-low": "#f5f1ea",
-                    "surface-variant": "#e4e0d8",
-                    "surface-container-high": "#eae6de",
-                    "on-tertiary": "#ffffff",
-                    "primary": "#4a7c59"
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Terra Portal - Locations</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,200..900&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#6b6358",
+                        "error-container": "#ffdad8",
+                        "on-primary-container": "#d8f0de",
+                        "primary-fixed-dim": "#8ecf9e",
+                        "on-surface": "#2e3230",
+                        "inverse-surface": "#2e3230",
+                        "surface-bright": "#faf6f0",
+                        "surface-tint": "#4a7c59",
+                        "on-secondary-fixed-variant": "#4a4538",
+                        "tertiary-container": "#c4a66a",
+                        "on-primary-fixed": "#002110",
+                        "surface": "#faf6f0",
+                        "outline": "#74796e",
+                        "outline-variant": "#c4c8bc",
+                        "surface-container-highest": "#e4e0d8",
+                        "secondary-container": "#f0e8db",
+                        "on-background": "#2e3230",
+                        "error": "#b83230",
+                        "on-secondary-container": "#5e5548",
+                        "on-secondary-fixed": "#1e1a13",
+                        "secondary-fixed": "#f0e8db",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#d4ccbf",
+                        "tertiary-fixed": "#f8e0a8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#554020",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#dcc48e",
+                        "primary-container": "#78a886",
+                        "background": "#faf6f0",
+                        "tertiary": "#705c30",
+                        "surface-container": "#f0ece4",
+                        "on-tertiary-fixed-variant": "#554020",
+                        "inverse-primary": "#8ecf9e",
+                        "on-surface-variant": "#4a4e4a",
+                        "inverse-on-surface": "#f5f0e8",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#c8e8d0",
+                        "on-primary-fixed-variant": "#2a6038",
+                        "surface-dim": "#dbd7cf",
+                        "on-error-container": "#690005",
+                        "on-tertiary-fixed": "#221a05",
+                        "surface-container-low": "#f5f1ea",
+                        "surface-variant": "#e4e0d8",
+                        "surface-container-high": "#eae6de",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#4a7c59"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Literata"],
+                        "body": ["Nunito Sans"],
+                        "label": ["Nunito Sans"]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "0.5rem",
-                    "lg": "1rem",
-                    "xl": "1.5rem",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Literata"],
-                    "body": ["Nunito Sans"],
-                    "label": ["Nunito Sans"]
-            }
-          },
-        },
-      }
+        }
     </script>
-<style>
-        body { font-family: 'Nunito Sans', sans-serif; }
-        h1, h2, h3, .font-headline { font-family: 'Literata', serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    <style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-headline {
+            font-family: 'Literata', serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
     </style>
 </head>
-<body class="bg-background text-on-surface antialiased" style=" padding-top: 7rem;">
-<!-- SideNavBar -->
-<!-- TopAppBar -->
-<div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
-<header class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[#4a7c59] dark:text-indigo-400 text-3xl">soup_kitchen</span>
-<span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
-</div>
-<nav class="hidden lg:flex items-center gap-6">
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Portal_Dashboard.html">Dashboard</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Excess_Notification_Center.html">Surplus Log</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Locations_Management.html">Locations</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Analytics_and_Impact.html">Analytics</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
-</nav>
-<div class="flex items-center gap-4">
-<a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
-<button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" id="theme-toggle">
-<span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
-</button>
-</div>
-</header>
-</div>
-<!-- Main Content -->
-<main class="p-8 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12 max-w-6xl md:py-14">
-<div class="max-w-7xl mx-auto space-y-8">
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-<div>
-<h2 class="text-3xl font-bold text-on-surface mb-2">Location Portfolio</h2>
-<p class="text-stone-500 font-body">Manage 12 registered locations and monitor real-time rescue status across your network.</p>
-</div>
-<div class="flex gap-3">
-<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-200 bg-white font-bold text-sm text-stone-700 hover:bg-stone-50 transition-all">
-<span class="material-symbols-outlined text-sm">download</span>
-                        Export Data
-                    </button>
-<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/10 hover:opacity-90 transition-all active:scale-95">
-<span class="material-symbols-outlined text-sm">add</span>
-                        Add New Location
-                    </button>
-</div>
-</div>
-<!-- Bento Grid: Stats & Map -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-<!-- Map View -->
-<div class="lg:col-span-2 bg-surface-container rounded-xl overflow-hidden relative min-h-[400px] group shadow-[0_4px_20px_rgba(46,50,48,0.06)]">
-<div class="absolute inset-0 bg-stone-200 animate-pulse">
-<img class="w-full h-full object-cover" data-alt="Detailed topographical map view of a city with green markers highlighting various restaurant locations in a clean organic style" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyMJ7QS36ChVsybGb9_j4a0hQs8pU6m0iMgc2mDXlDvdsy60vRbD1cfpXu4hG7U0xd0XQ7drOLO_-uSj2HdSPvwsD-EVj8he_7kiypp9MImrA6A-CmDgibhvIYjYhJxnjieltHOzsvAy1K3c42Gu7lIP9YYUJ2AkB-5Nk0vEyOt5AsV8bjyIUD3IrNiH-nM5D-Sj8CbSxoqxEMSgoz8B4EFHWMByf9MTEAtAdOx04gJmAqSv9drR93GL1thnXmgb7dQBUqGzBNSuY"/>
-</div>
-<!-- Map Overlays -->
-<div class="absolute top-4 left-4 flex gap-2">
-<span class="bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm border border-primary/10">Network View</span>
-<span class="bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-secondary shadow-sm">4 Active Pickups</span>
-</div>
-<div class="absolute bottom-4 right-4 flex flex-col gap-2">
-<button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-stone-50"><span class="material-symbols-outlined">add</span></button>
-<button class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md hover:bg-stone-50"><span class="material-symbols-outlined">remove</span></button>
-</div>
-</div>
-<!-- Quick Stats Column -->
-<div class="space-y-6">
-<div class="bg-primary text-on-primary p-6 rounded-xl shadow-lg shadow-primary/10 flex flex-col justify-between h-[188px]">
-<div class="flex justify-between items-start">
-<span class="material-symbols-outlined p-2 bg-white/20 rounded-lg" style="font-variation-settings: 'FILL' 1;">eco</span>
-<span class="text-xs font-bold uppercase tracking-widest opacity-80">This Month</span>
-</div>
-<div>
-<p class="text-4xl font-headline font-black mb-1">1,284 kg</p>
-<p class="text-sm opacity-90 font-medium">Total Food Rescued</p>
-</div>
-</div>
-<div class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl shadow-sm flex flex-col justify-between h-[188px]">
-<div class="flex justify-between items-start">
-<span class="material-symbols-outlined p-2 bg-tertiary/10 rounded-lg">local_shipping</span>
-<span class="text-xs font-bold uppercase tracking-widest opacity-80">Upcoming</span>
-</div>
-<div>
-<p class="text-4xl font-headline font-black mb-1">14</p>
-<p class="text-sm opacity-90 font-medium">Scheduled Pickups Today</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Locations Grid -->
-<div class="space-y-4">
-<div class="flex items-center justify-between">
-<h3 class="text-xl font-bold">Manage Locations</h3>
-<div class="flex gap-4">
-<select class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
-<option>All Statuses</option>
-<option>Active Surplus</option>
-<option>No Surplus</option>
-</select>
-<select class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
-<option>Sort by Name</option>
-<option>Sort by Volume</option>
-</select>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-<!-- Location Card 1 -->
-<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
-<div class="flex justify-between items-start mb-6">
-<div class="flex gap-4">
-<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
-<img class="w-full h-full object-cover" data-alt="Cozy modern bistro interior with warm lighting, wood accents, and lush indoor plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWZ5lnjNunepMXDVuy7iMmwXC54ABVz6kxdG8cybPCwvVBKGzQUC59wje9CGRRRIkQxX7U3Hs4eVzYnvk1JPWJePhd0GgYnmjiTUi97riBrPIj03X3VuouSoqfyjr8-sZcFZba0v42uG0JVbY77B3nkNEwsJrJQCGPthx4wz55fdcRbLdebIozQk323ghFJFbF7QRp8-2oDxwWsdr5wT7njRWPgBw9tr5dpI1ReriMTl115iygjU8N9guCDc3-ZSfvZim0lom644w"/>
-</div>
-<div>
-<h4 class="font-bold text-lg leading-tight">Downtown Bistro</h4>
-<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span>
-                                        Market St, District 4
-                                    </p>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-on-primary-container text-primary-fixed-dim">
-                                Active Surplus
-                            </span>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
-<p class="font-headline font-bold text-primary">452 kg</p>
-</div>
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
-<p class="font-headline font-bold text-on-surface">Today, 5 PM</p>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4 border-t border-stone-100">
-<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
-<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
-</div>
-</div>
-<!-- Location Card 2 -->
-<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
-<div class="flex justify-between items-start mb-6">
-<div class="flex gap-4">
-<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
-<img class="w-full h-full object-cover" data-alt="Artisan bakery shelf with freshly baked loaves of rustic bread and warm golden backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF_c82vx_3pb33qWZryQLem7fS37wEzABx9UGpQk_BhAHBnw_OXPT0lZ7Q7682Yna9_hUyyX-st8tSF9wjkiQR0U0IvFw3ASY2eOHG1xSXTe2nk2P2jPuoSznpwPDj6srsLOJJG6cN_jpbMlxyLVP9GM55IW_qOwrcNMSkrquh1bySH5vAYr1gwQPClPQAfVYpo3t0SXVab5LP7WptqTOMRkg-FLloZAAAMQb5UWnilgJvC1KyIEpLCORj6hPXXwYHZ05c0-_Rhi4"/>
-</div>
-<div>
-<h4 class="font-bold text-lg leading-tight">Terra Bakery</h4>
-<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span>
-                                        West Oak Blvd
-                                    </p>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-stone-100 text-stone-500">
-                                No Surplus
-                            </span>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
-<p class="font-headline font-bold text-primary">891 kg</p>
-</div>
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
-<p class="font-headline font-bold text-on-surface">Tomorrow</p>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4 border-t border-stone-100">
-<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
-<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
-</div>
-</div>
-<!-- Location Card 3 -->
-<div class="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 hover:border-primary/20 transition-all group">
-<div class="flex justify-between items-start mb-6">
-<div class="flex gap-4">
-<div class="w-14 h-14 rounded-xl overflow-hidden shadow-sm">
-<img class="w-full h-full object-cover" data-alt="Charming cafe exterior with outdoor seating and lush greenery surrounding the entrance in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkRW_y1QdbEzlT_5Ro_1lmCICNizAg6qKAhTMRxREsSEY_Ko_fFKuwCw7hldYy2YqEp-oyV7ULwHdmprfejEm7mebjRFXiZJIjLzWgGhfdGSJYBzZ8Se0XlRy6yBMN8azzI7n5BlVzDpgADJ0OuoFyD76iIi6rQ0vW1Me6xOSlETmnm1t1SVmm0jic8TRLzhgUl7yYgti_rQSrxuMhPRIxb0Fje17gP4fbt8MCsb1bVfHtcFhPEBYQeBuSeofLIRBSQqv-qx6iQ58"/>
-</div>
-<div>
-<h4 class="font-bold text-lg leading-tight">Garden Cafe</h4>
-<p class="text-xs text-stone-400 flex items-center gap-1 mt-1">
-<span class="material-symbols-outlined text-[14px]">location_on</span>
-                                        Riverside Walk
-                                    </p>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-error-container text-error">
-                                Closed
-                            </span>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Total Rescued</p>
-<p class="font-headline font-bold text-primary">212 kg</p>
-</div>
-<div class="bg-surface-container-low p-3 rounded-lg">
-<p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mb-1">Next Pickup</p>
-<p class="font-headline font-bold text-on-surface">None</p>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4 border-t border-stone-100">
-<button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
-<button class="p-2 text-stone-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
-</div>
-</div>
-</div>
-</div>
-<!-- Recent Network Activity -->
-<div class="bg-surface-container-high rounded-xl p-8 border border-stone-200/50">
-<div class="flex items-center justify-between mb-6">
-<h3 class="text-xl font-bold">Recent Network Activity</h3>
-<button class="text-sm font-bold text-primary">Full Logs</button>
-</div>
-<div class="space-y-4">
-<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-<div class="w-2 h-2 bg-primary rounded-full"></div>
-<p class="flex-1 text-sm"><span class="font-bold">Downtown Bistro</span> logged 24kg of organic produce for pickup.</p>
-<span class="text-xs text-stone-400 font-medium">14 mins ago</span>
-</div>
-<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-<div class="w-2 h-2 bg-tertiary rounded-full"></div>
-<p class="flex-1 text-sm"><span class="font-bold">Volunteer Team Alpha</span> confirmed pickup at Terra Bakery.</p>
-<span class="text-xs text-stone-400 font-medium">2 hours ago</span>
-</div>
-<div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-<div class="w-2 h-2 bg-secondary rounded-full"></div>
-<p class="flex-1 text-sm"><span class="font-bold">Garden Cafe</span> updated its operating hours for the weekend.</p>
-<span class="text-xs text-stone-400 font-medium">5 hours ago</span>
-</div>
-</div>
-</div>
-</div>
-</main>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlElement = document.documentElement;
 
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                htmlElement.classList.toggle('dark');
-                htmlElement.classList.toggle('light');
-                if (htmlElement.classList.contains('dark')) {
-                    themeIcon.textContent = 'light_mode';
-                    htmlElement.style.backgroundColor = '#111';
-                } else {
-                    themeIcon.textContent = 'dark_mode';
-                    htmlElement.style.backgroundColor = '';
-                }
-            });
+<body class="bg-background text-on-surface antialiased" style=" padding-top: 7rem;">
+    <!-- SideNavBar -->
+    <!-- TopAppBar -->
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
+        <header
+            class="w-full flex justify-between items-center px-6 md:px-8 py-3.5 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[#4a7c59] dark:text-indigo-400 text-3xl">soup_kitchen</span>
+                <span class="text-xl font-bold font-['Literata'] text-gray-900 dark:text-white">AnnaSetu</span>
+            </div>
+            <nav class="hidden lg:flex items-center gap-6">
+                <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300"
+                    href="Restaurant_Portal_Dashboard.html">Dashboard</a>
+                <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300"
+                    href="Excess_Notification_Center.html">Surplus Log</a>
+                <a class="text-sm font-semibold text-[#4a7c59] font-bold border-b-2 border-[#4a7c59] pb-0.5 relative"
+                    href="Restaurant_Locations_Management.html">
+                    Locations
+                    <span id="nav-loc-badge" class="hidden absolute -top-2 -right-3 min-w-[16px] h-4 px-0.5 bg-red-500 text-white text-[9px] font-black rounded-full flex items-center justify-center shadow-sm animate-bounce">0</span>
+                </a>
+                <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300"
+                    href="Restaurant_Analytics_and_Impact.html">Analytics</a>
+                <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300"
+                    href="Restaurant_Team_Management.html">Team</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105"
+                    href="index.html">Logout</a>
+                <button
+                    class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                    id="theme-toggle">
+                    <span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
+                </button>
+            </div>
+        </header>
+    </div>
+    <!-- Main Content -->
+    <main class="p-8 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12 max-w-6xl md:py-14">
+        <div class="max-w-7xl mx-auto space-y-8">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-on-surface mb-2">Location Portfolio</h2>
+                    <p class="text-stone-500 font-body" id="locations-subtitle">Manage registered locations and monitor real-time rescue status across your network.</p>
+                </div>
+                <div class="flex flex-col items-end gap-2">
+                    <div class="flex gap-3">
+                        <button id="btn-export"
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-200 bg-white font-bold text-sm text-stone-700 hover:bg-stone-50 transition-all">
+                            <span class="material-symbols-outlined text-sm">download</span>
+                            Export Data
+                        </button>
+                        <!-- Add New Location button — glows when pending pickups exist -->
+                        <div class="relative" id="add-btn-wrapper">
+                            <button id="btn-add-location"
+                                class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/10 hover:opacity-90 transition-all active:scale-95">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                                Add New Location
+                            </button>
+                            <!-- Red dot badge on the Add button itself -->
+                            <span id="add-btn-badge" class="hidden absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 bg-red-500 text-white text-[9px] font-black rounded-full flex items-center justify-center shadow border-2 border-white animate-bounce z-10">0</span>
+                        </div>
+                    </div>
+                    <!-- Notification Callout (appears below the button when pending) -->
+                    <div id="add-btn-notification" class="hidden w-full max-w-sm">
+                        <div class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-start gap-3 shadow-sm">
+                            <span class="material-symbols-outlined text-red-500 text-lg mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">notification_important</span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-xs font-black text-red-700" id="add-btn-notif-text">You have surplus items waiting for location assignment!</p>
+                                <p class="text-[10px] text-red-500 mt-0.5">Click <strong>Add New Location</strong> above, or assign to an existing branch below.</p>
+                            </div>
+                            <button onclick="document.getElementById('add-btn-notification').classList.add('hidden')" class="p-0.5 text-red-400 hover:text-red-600">
+                                <span class="material-symbols-outlined text-sm">close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ⚠️ Pending Pickups Notification Banner -->
+            <div id="pending-banner" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-amber-500 text-2xl animate-pulse" style="font-variation-settings:'FILL' 1">notification_important</span>
+                <div>
+                  <p class="font-bold text-amber-800 text-sm" id="pending-banner-text">New surplus items need a pickup location assigned.</p>
+                  <p class="text-xs text-amber-600 mt-0.5">Assign a branch, access point, and volunteer ETA below.</p>
+                </div>
+              </div>
+              <button onclick="document.getElementById('pending-pickups-section').scrollIntoView({behavior:'smooth'})" class="shrink-0 px-4 py-2 bg-amber-500 text-white font-bold text-xs rounded-xl hover:bg-amber-600 transition-all flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">arrow_downward</span> Review
+              </button>
+            </div>
+            <!-- Bento Grid: Interactive Dashboard -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Live Map & Routing View (Span 8) -->
+                <div
+                    class="lg:col-span-8 bg-surface-container-lowest dark:bg-[#121629] rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 overflow-hidden flex flex-col min-h-[500px]">
+
+                    <!-- Live Map Header -->
+                    <div class="p-6 border-b border-outline-variant/20 dark:border-white/10 relative z-10 bg-surface-container-lowest dark:bg-[#121629]">
+                        <h3 class="text-xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">public</span> Live Route Map
+                        </h3>
+                        <p class="text-xs text-secondary dark:text-slate-400 mt-1">Real-time positions of restaurants, NGOs, and volunteers</p>
+                    </div>
+
+                    <!-- Google Map Iframe -->
+                    <div class="relative flex-1 bg-stone-100 overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-50/10 pointer-events-none z-0"></div>
+                        <iframe class="w-full h-full absolute inset-0 opacity-80" style="border:0;" loading="lazy" allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12091.246141381!2d-73.9912076!3d40.7441364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1713500000000!5m2!1sen!2sus"></iframe>
+
+                        <!-- Map Overlays -->
+                        <!-- Restaurant -->
+                        <div class="absolute top-[30%] left-[30%] flex flex-col items-center z-10 drop-shadow-md">
+                            <div class="bg-primary text-white p-2 rounded-full border-[3px] border-white">
+                                <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">storefront</span>
+                            </div>
+                            <span class="mt-1 px-2 py-0.5 bg-white/95 text-stone-800 text-[10px] font-bold rounded-md shadow border border-stone-200">Main Branch</span>
+                        </div>
+                        
+                        <!-- NGO -->
+                        <div class="absolute bottom-[25%] right-[20%] flex flex-col items-center z-10 drop-shadow-md">
+                            <div class="bg-emerald-600 text-white p-2 rounded-full border-[3px] border-white">
+                                <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">corporate_fare</span>
+                            </div>
+                            <span class="mt-1 px-2 py-0.5 bg-white/95 text-stone-800 text-[10px] font-bold rounded-md shadow border border-stone-200">Community Food Bank</span>
+                        </div>
+                        
+                        <!-- Volunteer -->
+                        <div class="absolute top-[45%] left-[55%] flex flex-col items-center z-10 drop-shadow-md animate-pulse">
+                            <div class="bg-amber-400 text-stone-800 p-1.5 rounded-full border-[3px] border-white">
+                                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">local_shipping</span>
+                            </div>
+                            <span class="mt-1 px-2 py-0.5 bg-white/95 text-stone-800 text-[10px] font-bold rounded-md shadow border border-stone-200">Arjun (En Route)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Features & Stats Column (Span 4) -->
+                <div class="lg:col-span-4 space-y-6 flex flex-col">
+                    <!-- Quick Stats Container (Stacked) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div
+                            class="bg-primary text-on-primary p-5 rounded-xl shadow-lg shadow-primary/10 flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                            <span class="material-symbols-outlined p-2 bg-white/20 rounded-lg self-start text-sm"
+                                style="font-variation-settings: 'FILL' 1;">eco</span>
+                            <div class="mt-4">
+                                <p class="text-2xl xl:text-3xl font-headline font-black mb-0.5" id="stat-total-rescued">1,284 kg</p>
+                                <p class="text-[10px] opacity-90 font-medium uppercase tracking-wider">Total Rescued</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-tertiary-fixed text-on-tertiary-fixed p-5 rounded-xl shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform border border-tertiary/10">
+                            <span
+                                class="material-symbols-outlined p-2 bg-tertiary/10 rounded-lg self-start text-sm">local_shipping</span>
+                            <div class="mt-4">
+                                <p class="text-2xl xl:text-3xl font-headline font-black mb-0.5" id="stat-scheduled">14</p>
+                                <p class="text-[10px] opacity-90 font-bold uppercase tracking-wider leading-tight mb-2">Active Branches</p>
+                                <div class="flex flex-col gap-1 text-[9px] uppercase tracking-widest font-black opacity-60">
+                                  <div class="flex justify-between">
+                                    <span>Main</span>
+                                    <span id="stat-count-main">0</span>
+                                  </div>
+                                  <div class="flex justify-between">
+                                    <span>Sub</span>
+                                    <span id="stat-count-sub">0</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Smart Matches -->
+                    <div
+                        class="flex-1 bg-surface-container-lowest dark:bg-[#121629] p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 flex flex-col relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-5 relative z-10">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-indigo-500 text-xl">auto_awesome</span>
+                                <h3
+                                    class="text-sm font-bold text-secondary dark:text-slate-300 uppercase tracking-widest">
+                                    Suggested NGOs</h3>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 relative z-10">
+                            <!-- Best Match -->
+                            <div
+                                class="relative bg-emerald-50/80 dark:bg-[#1A1F35] border border-emerald-200 dark:border-emerald-500/30 rounded-xl p-4 cursor-pointer hover:shadow-md transition-all group overflow-hidden">
+                                <div
+                                    class="absolute top-0 right-0 bg-emerald-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded-bl-lg shadow-sm">
+                                    Top Match</div>
+                                <h4
+                                    class="font-bold text-[15px] text-on-surface dark:text-white mt-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                                    Community Food Bank</h4>
+                                <p class="text-[11px] text-secondary dark:text-slate-400 mt-1">High Need · Ready to
+                                    receive</p>
+                                <div class="grid grid-cols-2 gap-2 mt-4">
+                                    <div
+                                        class="flex items-center gap-1.5 text-stone-600 dark:text-stone-300 bg-white/60 dark:bg-black/20 p-1.5 rounded-lg border border-stone-200/50 dark:border-white/5">
+                                        <span class="material-symbols-outlined text-[14px]">directions_car</span>
+                                        <span class="text-xs font-bold text-nowrap">1.2 mi</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 bg-white/60 dark:bg-black/20 p-1.5 rounded-lg border border-stone-200/50 dark:border-white/5">
+                                        <span class="material-symbols-outlined text-[14px]">inventory_2</span>
+                                        <span class="text-xs font-bold">120kg</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Match -->
+                            <div
+                                class="bg-surface-container-low dark:bg-[#1A1F35]/50 border border-transparent dark:border-white/5 rounded-xl p-4 cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:bg-white dark:hover:bg-[#1A1F35] transition-all">
+                                <h4 class="font-bold text-sm text-on-surface dark:text-white">City Hope Shelter</h4>
+                                <p class="text-[11px] text-secondary dark:text-slate-400 mt-1">Medium Need</p>
+                                <div class="grid grid-cols-2 gap-2 mt-4">
+                                    <div class="flex items-center gap-1.5 text-stone-600 dark:text-stone-300">
+                                        <span class="material-symbols-outlined text-[14px]">directions_car</span>
+                                        <span class="text-xs font-bold text-nowrap">2.5 mi</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+                                        <span class="material-symbols-outlined text-[14px]">inventory_2</span>
+                                        <span class="text-xs font-bold">40kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-4 relative z-10">
+                            <button
+                                class="w-full py-2.5 bg-white dark:bg-[#1e243b] border border-stone-200 dark:border-white/10 rounded-lg text-xs font-bold text-secondary dark:text-slate-300 hover:bg-stone-50 dark:hover:bg-[#2a304a] hover:border-stone-300 transition-all shadow-sm">View
+                                All Nearby Partners</button>
+                        </div>
+
+                        <!-- Abstract background shape -->
+                        <div
+                            class="absolute -bottom-10 -right-10 w-40 h-40 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 📦 Pending Pickups Section -->
+            <div id="pending-pickups-section" class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                  <span class="material-symbols-outlined text-amber-500" style="font-variation-settings:'FILL' 1">pending_actions</span>
+                  Pending Pickups
+                  <span id="pending-count-badge" class="ml-1 px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-black rounded-full">0</span>
+                </h3>
+                <a href="Excess_Notification_Center.html" class="text-sm font-bold text-primary hover:underline underline-offset-4 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">open_in_new</span> Surplus Log
+                </a>
+              </div>
+              <div id="pending-pickups-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+              <div id="no-pending" class="hidden text-center py-8 bg-stone-50 rounded-xl border-2 border-dashed border-stone-200">
+                <span class="material-symbols-outlined text-stone-300 text-3xl block mb-2">check_circle</span>
+                <p class="text-sm font-semibold text-stone-400">All pickups assigned — great work!</p>
+              </div>
+            </div>
+            <!-- Locations Grid -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold">Rescued Surplus Locations</h3>
+                    <div class="flex gap-4">
+                        <select id="filter-status"
+                            class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
+                            <option value="all">All Statuses</option>
+                            <option value="Active Surplus">Active Surplus</option>
+                            <option value="No Surplus">No Surplus</option>
+                            <option value="Closed">Closed</option>
+                            <option value="Onboarding">Onboarding</option>
+                        </select>
+                        <select id="sort-by"
+                            class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
+                            <option value="name">Sort by Name</option>
+                            <option value="rescued">Sort by Volume</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="locations-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Cards are rendered dynamically by JavaScript -->
+                </div>
+            </div>
+            <!-- Recent Network Activity -->
+            <div class="bg-surface-container-high rounded-xl p-8 border border-stone-200/50">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold">Recent Network Activity</h3>
+                    <button class="text-sm font-bold text-primary">Full Logs</button>
+                </div>
+                <div class="space-y-4" id="activity-feed">
+                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <p class="flex-1 text-sm"><span class="font-bold">Main Branch</span> logged 24kg of organic
+                            produce for pickup.</p>
+                        <span class="text-xs text-stone-400 font-medium">14 mins ago</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-tertiary rounded-full"></div>
+                        <p class="flex-1 text-sm"><span class="font-bold">Volunteer Team Alpha</span> confirmed pickup
+                            at North Branch.</p>
+                        <span class="text-xs text-stone-400 font-medium">2 hours ago</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                        <p class="flex-1 text-sm"><span class="font-bold">Eastside Branch</span> updated its operating
+                            hours for the weekend.</p>
+                        <span class="text-xs text-stone-400 font-medium">5 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<!-- ===================== ASSIGN PICKUP MODAL ===================== -->
+<div id="modal-assign-pickup" class="fixed inset-0 z-[210] flex items-center justify-center p-4 hidden">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAssignModal()"></div>
+  <div class="relative bg-white dark:bg-[#121629] rounded-2xl shadow-2xl w-full max-w-md z-10 border border-stone-100 dark:border-white/10">
+    <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-stone-100 dark:border-white/10">
+      <div>
+        <h2 class="text-xl font-bold text-on-surface dark:text-white">Assign Pickup</h2>
+        <p class="text-xs text-stone-400 mt-0.5" id="assign-modal-subtitle">Assign food pickup to a branch location</p>
+      </div>
+      <button onclick="closeAssignModal()" class="w-9 h-9 rounded-full bg-stone-100 dark:bg-white/10 flex items-center justify-center hover:bg-stone-200 transition-colors">
+        <span class="material-symbols-outlined text-stone-500 dark:text-slate-300 text-lg">close</span>
+      </button>
+    </div>
+    <input type="hidden" id="assign-pickup-id"/>
+    <div class="px-6 py-5 space-y-4">
+      <!-- Food Info Preview -->
+      <div id="assign-food-preview" class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-center gap-3">
+        <span class="text-2xl" id="assign-food-emoji">🍽️</span>
+        <div>
+          <p class="font-bold text-sm text-stone-800" id="assign-food-label"></p>
+          <p class="text-xs text-stone-500" id="assign-food-detail"></p>
+        </div>
+      </div>
+      <!-- Branch Selection -->
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5" for="assign-location">Branch Location *</label>
+        <select id="assign-location" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+           <!-- Populated by JS -->
+        </select>
+        <p id="assign-err-loc" class="text-xs text-red-500 mt-1 hidden">Select a branch.</p>
+      </div>
+      <!-- Volunteer -->
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5" for="assign-volunteer">Volunteer Name *</label>
+          <select id="assign-volunteer" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+            <option value="">Select volunteer...</option>
+            <option value="Arjun Kumar">Arjun Kumar (Nearby, Rating: 4.9)</option>
+            <option value="Priya Sharma">Priya Sharma (Available in 10m)</option>
+            <option value="Rahul Desai">Rahul Desai (Rating: 4.8)</option>
+            <option value="Sneha Patel">Sneha Patel (Frequent Driver)</option>
+          </select>
+          <p id="assign-err-vol" class="text-xs text-red-500 mt-1 hidden">Select volunteer name.</p>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5" for="assign-eta">Volunteer ETA *</label>
+          <input id="assign-eta" type="time" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+          <p id="assign-err-eta" class="text-xs text-red-500 mt-1 hidden">Set ETA.</p>
+        </div>
+      </div>
+      <!-- NGO -->
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5" for="assign-ngo">NGO Preference (AI Suggested)</label>
+        <p class="text-[10px] text-emerald-600 font-bold mb-2 flex items-center gap-1">
+          <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Best matches based on need level & distance
+        </p>
+        <select id="assign-ngo" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+          <option value="Community Food Bank">✨ Community Food Bank (1.2 mi • High Need)</option>
+          <option value="City Hope Shelter">✨ City Hope Shelter (2.5 mi • Medium Need)</option>
+          <option value="Green Meals Initiative">Green Meals Initiative (3.0 mi)</option>
+          <option value="Sunrise Relief Trust">Sunrise Relief Trust (5.1 mi)</option>
+        </select>
+      </div>
+      <div class="flex gap-3 pt-2">
+        <button type="button" onclick="closeAssignModal()" class="flex-1 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-600 font-bold text-sm hover:bg-stone-100 transition-all">Cancel</button>
+        <button type="button" id="assign-submit-btn" onclick="submitAssignPickup()" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-sm">check</span> Confirm Assignment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===================== CENTRAL HUB MODAL ===================== -->
+<div id="modal-add-location" class="fixed inset-0 z-[200] flex items-center justify-center p-4 hidden">
+  <div id="modal-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAddLocationModal()"></div>
+  <div class="relative bg-white dark:bg-[#121629] rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col z-10 border border-stone-100 dark:border-white/10">
+    
+    <div class="flex items-center justify-between px-6 pt-6 pb-2">
+      <div>
+        <h2 class="text-xl font-bold text-on-surface dark:text-white">Network Management Hub</h2>
+        <p class="text-xs text-stone-400 mt-0.5">Manage your branches, access points, and volunteer fleet.</p>
+      </div>
+      <button onclick="closeAddLocationModal()" class="w-9 h-9 rounded-full bg-stone-100 dark:bg-white/10 flex items-center justify-center hover:bg-stone-200 transition-colors">
+        <span class="material-symbols-outlined text-stone-500 dark:text-slate-300 text-lg">close</span>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-6 px-6 border-b border-stone-100 dark:border-white/10 mt-2">
+      <button onclick="switchHubTab('tab-saved')" id="btn-tab-saved" class="px-2 py-3 border-b-2 border-primary text-primary font-bold text-sm transition-all focus:outline-none">Saved Locations</button>
+      <button onclick="switchHubTab('tab-add')" id="btn-tab-add" class="px-2 py-3 border-b-2 border-transparent text-stone-400 font-bold text-sm transition-all hover:text-stone-600 focus:outline-none">Add Branch</button>
+      <button onclick="switchHubTab('tab-vol')" id="btn-tab-vol" class="px-2 py-3 border-b-2 border-transparent text-stone-400 font-bold text-sm transition-all hover:text-stone-600 focus:outline-none">Add Volunteer</button>
+    </div>
+
+    <!-- Scrollable content area -->
+    <div class="overflow-y-auto flex-1 p-6 bg-stone-50/50 dark:bg-[#121629]">
+      
+      <!-- TAB 1: SAVED LOCATIONS -->
+      <div id="tab-saved" class="hub-tab block space-y-4">
+        <div id="hub-saved-grid" class="flex flex-col gap-3">
+          <!-- Rendered dynamically by openAddLocationModal() JS -->
+        </div>
+        <button onclick="switchHubTab('tab-add')" class="w-full py-3 mt-4 rounded-xl border-2 border-dashed border-stone-300 text-stone-500 font-bold text-sm hover:border-primary hover:text-primary transition-colors">
+          + Add Another Branch
+        </button>
+      </div>
+
+      <!-- TAB 2: ADD LOCATION -->
+      <div id="tab-add" class="hub-tab hidden">
+        <form id="form-add-location" class="space-y-5" novalidate>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-name">Branch Name <span class="text-red-500">*</span></label>
+            <input id="loc-name" type="text" placeholder="e.g. Terra - South Branch"
+              class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+            <p id="err-name" class="text-xs text-red-500 mt-1 hidden">Branch name is required.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5">Branch Type <span class="text-red-500">*</span></label>
+            <div class="flex gap-3">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="loc-type" value="Main Branch" class="sr-only peer"/>
+                <div class="peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary flex items-center gap-2 px-4 py-3 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-stone-500 text-sm font-bold transition-all">
+                  <span class="material-symbols-outlined text-lg">home_pin</span> Main Branch
+                </div>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="loc-type" value="Branch" class="sr-only peer"/>
+                <div class="peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary flex items-center gap-2 px-4 py-3 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-stone-500 text-sm font-bold transition-all">
+                  <span class="material-symbols-outlined text-lg">storefront</span> Branch
+                </div>
+              </label>
+            </div>
+            <p id="err-type" class="text-xs text-red-500 mt-1 hidden">Please select a branch type.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-address">Full Address <span class="text-red-500">*</span></label>
+            <input id="loc-address" type="text" placeholder="e.g. 123 Main St, Central District"
+              class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+            <p id="err-address" class="text-xs text-red-500 mt-1 hidden">Address is required.</p>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5">Pickup Access Points <span class="text-red-500">*</span></label>
+            <p class="text-xs text-stone-400 mb-2">Select all access points available at this location</p>
+            <div class="flex gap-2 flex-wrap">
+              <label class="cursor-pointer">
+                <input type="checkbox" name="pickup-point" value="Gate" class="sr-only peer"/>
+                <div class="peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-stone-500 text-sm font-bold transition-all">
+                  <span class="material-symbols-outlined text-[16px]">gate</span> Gate
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="checkbox" name="pickup-point" value="Kitchen" class="sr-only peer"/>
+                <div class="peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-stone-500 text-sm font-bold transition-all">
+                  <span class="material-symbols-outlined text-[16px]">restaurant</span> Kitchen
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="checkbox" name="pickup-point" value="Backdoor" class="sr-only peer"/>
+                <div class="peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-stone-500 text-sm font-bold transition-all">
+                  <span class="material-symbols-outlined text-[16px]">meeting_room</span> Backdoor
+                </div>
+              </label>
+            </div>
+            <p id="err-pickup" class="text-xs text-red-500 mt-1 hidden">Select at least one pickup point.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-open">Opens At</label>
+              <input id="loc-open" type="time" value="09:00"
+                class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-close">Closes At</label>
+              <input id="loc-close" type="time" value="22:00"
+                class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+            </div>
+          </div>
+          <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl flex items-center gap-2">
+            <span class="material-symbols-outlined text-lg">error</span>
+            <span id="form-error-text">Please fill in all required fields.</span>
+          </div>
+          <div class="flex gap-3 pt-2 border-t border-stone-200 dark:border-white/10 pt-4 mt-2">
+            <button type="submit" id="modal-submit" class="w-full py-3 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">add_location_alt</span> Register Location
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- TAB 3: ADD VOLUNTEER -->
+      <div id="tab-vol" class="hub-tab hidden space-y-5">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5">Map to Saved Location <span class="text-red-500">*</span></label>
+          <select id="hub-vol-location" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+             <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5">Volunteer Name <span class="text-red-500">*</span></label>
+          <input id="hub-vol-name" type="text" placeholder="e.g. Rahul Desai" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5">Vehicle Type</label>
+          <select id="hub-vol-type" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+            <option value="Van">Van (Large Capacity)</option>
+            <option value="Car">Sedan / SUV</option>
+            <option value="Bike">Motorbike / Scooter</option>
+          </select>
+        </div>
+        <div class="pt-4 border-t border-stone-200 dark:border-white/10">
+          <button type="button" onclick="saveFleetVolunteer()" class="w-full py-3 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">person_add</span> Register Volunteer
+          </button>
+        </div>
+      </div>
+      
+    </div>
+
+<!-- Toast Notification -->
+<div id="toast-success" class="fixed bottom-6 right-6 z-[300] hidden transition-all">
+  <div class="flex items-center gap-3 bg-white dark:bg-[#1e243b] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl px-5 py-4 rounded-2xl min-w-[280px]">
+    <span class="material-symbols-outlined text-emerald-500 text-2xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+    <div>
+      <p id="toast-title" class="font-bold text-sm text-on-surface dark:text-white">Done!</p>
+      <p id="toast-body" class="text-xs text-stone-500 dark:text-slate-400 mt-0.5">Operation complete.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // =========================================================
+  // DATA STORE — localStorage
+  // =========================================================
+  const STORE_KEY = 'annasetu_locations';
+
+  const seed = [
+    { id:'loc-001', name:'Terra - Main Branch', type:'Main Branch', address:'Market St, District 4',
+      pickupPoints:['Gate','Kitchen'], openTime:'09:00', closeTime:'22:00',
+      ngo:'Community Food Bank', pickupTime:'Evening (5–7 PM)', status:'Active Surplus', totalRescued:452,
+      addedAt:'2024-01-10T00:00:00Z' },
+    { id:'loc-002', name:'Terra - North Branch', type:'Branch', address:'West Oak Blvd',
+      pickupPoints:['Backdoor'], openTime:'08:00', closeTime:'21:00',
+      ngo:'City Hope Shelter', pickupTime:'Lunch (12–2 PM)', status:'No Surplus', totalRescued:891,
+      addedAt:'2024-02-15T00:00:00Z' },
+    { id:'loc-003', name:'Terra - Eastside Branch', type:'Branch', address:'Riverside Walk',
+      pickupPoints:['Gate','Backdoor'], openTime:'10:00', closeTime:'20:00',
+      ngo:'Green Meals Initiative', pickupTime:'Morning (8–11 AM)', status:'Closed', totalRescued:212,
+      addedAt:'2024-03-05T00:00:00Z' }
+  ];
+
+  function getLocations() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || (() => { saveLocations(seed); return seed; })(); }
+    catch(e) { return seed; }
+  }
+  function saveLocations(locs) { localStorage.setItem(STORE_KEY, JSON.stringify(locs)); }
+  function addLocation(loc)    { const l = getLocations(); l.unshift(loc); saveLocations(l); }
+  function deleteLocation(id)  { saveLocations(getLocations().filter(l => l.id !== id)); }
+
+  // =========================================================
+  // RENDER ONE CARD
+  // =========================================================
+  function statusStyle(s) {
+    return { 'Active Surplus':'bg-emerald-100 text-emerald-700',
+             'No Surplus':'bg-stone-100 text-stone-500',
+             'Closed':'bg-red-100 text-red-600',
+             'Onboarding':'bg-amber-100 text-amber-700' }[s] || 'bg-stone-100 text-stone-500';
+  }
+
+  function buildCard(loc) {
+    const pts = (loc.pickupPoints||[]).map(p =>
+      `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold border border-emerald-200 text-emerald-700 bg-emerald-50">${p}</span>`
+    ).join('');
+
+    const el = document.createElement('div');
+    el.className = 'location-card bg-white dark:bg-[#1A2030] p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.07)] border border-stone-100 dark:border-white/8 hover:border-primary/30 transition-all';
+    el.dataset.id = loc.id;
+    el.dataset.status = loc.status;
+
+    el.innerHTML = `
+      <div class="flex justify-between items-start mb-4">
+        <div class="flex gap-3">
+          <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1">${loc.type==='Main Branch'?'home_pin':'storefront'}</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="font-bold text-base text-on-surface dark:text-white">${loc.name}</h4>
+              ${loc.type==='Main Branch'?'<span class="px-1.5 py-0.5 rounded text-[9px] font-black uppercase bg-primary/10 text-primary tracking-widest">MAIN</span>':''}
+            </div>
+            <p class="text-xs text-stone-400 flex items-center gap-1 mt-0.5">
+              <span class="material-symbols-outlined text-[12px]">location_on</span>${loc.address}
+            </p>
+          </div>
+        </div>
+        <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider flex-shrink-0 ${statusStyle(loc.status)}">${loc.status}</span>
+      </div>
+
+      <div class="mb-3">
+        <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold mb-1.5">Pickup Access</p>
+        <div class="flex flex-wrap gap-1.5">${pts || '<span class="text-xs text-stone-400">None set</span>'}</div>
+      </div>
+
+      ${(() => {
+        // Find if this branch has an assigned active pickup
+        const activePickup = getPickups().find(p => p.locationId === loc.id && p.status === 'assigned');
+        if (activePickup) {
+          return `
+          <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl mb-4 relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-16 h-16 bg-emerald-100/50 rounded-full blur-xl"></div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <p class="text-[10px] font-black uppercase tracking-wider text-emerald-700">Active Rescue</p>
+            </div>
+            
+            <h4 class="font-bold text-sm text-stone-800 mb-2">${activePickup.qty} × ${activePickup.foodType}</h4>
+            
+            <div class="space-y-1.5 mb-3">
+              <div class="flex items-center gap-2 text-xs text-stone-600">
+                <span class="material-symbols-outlined text-[14px] text-emerald-600">person</span>
+                <span class="font-bold">${activePickup.volunteerName}</span>
+                <span class="text-stone-400">ETA <strong class="text-stone-700">${activePickup.volunteerETA} <span class="text-emerald-600 ml-1 font-bold text-[10px]">${getTimeUntil(activePickup.volunteerETA)}</span></strong></span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-stone-600">
+                <span class="material-symbols-outlined text-[14px] text-emerald-600">corporate_fare</span>
+                <span>${activePickup.ngo}</span>
+              </div>
+            </div>
+            
+            <button onclick="markPickupRescued('${activePickup.id}')" class="w-full py-2 flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold text-xs rounded-lg hover:bg-emerald-700 transition-all active:scale-95 shadow-md shadow-emerald-600/20">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span> Mark as Rescued ✓
+            </button>
+          </div>
+          `;
         }
+        
+        // Otherwise return the general stats
+        return `
+        <div class="grid grid-cols-2 gap-2.5 mb-3">
+          <div class="bg-stone-50 dark:bg-[#141928] p-2.5 rounded-lg">
+            <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold mb-0.5">NGO Partner</p>
+            <p class="font-bold text-xs text-on-surface dark:text-white leading-tight">${loc.ngo||'Auto-assigned'}</p>
+          </div>
+          <div class="bg-stone-50 dark:bg-[#141928] p-2.5 rounded-lg">
+            <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold mb-0.5">Total Rescued</p>
+            <p class="font-headline font-bold text-primary">${(loc.totalRescued||0).toLocaleString()} kg</p>
+          </div>
+        </div>
+        `;
+      })()}
+
+      <div class="flex items-center justify-between pt-4 border-t border-stone-100 dark:border-white/8">
+        <button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
+        <button class="btn-delete p-2 text-stone-400 hover:text-red-500 transition-colors" data-id="${loc.id}" title="Remove">
+          <span class="material-symbols-outlined text-lg">delete</span>
+        </button>
+      </div>`;
+
+    el.querySelector('.btn-delete').addEventListener('click', e => {
+      e.stopPropagation();
+      if (!confirm(`Remove "${loc.name}"?`)) return;
+      deleteLocation(loc.id);
+      el.remove();
+      updateStats();
+      toast('Location Removed', `${loc.name} removed from network.`);
+      pushActivity(`<span class="font-bold">${loc.name}</span> was removed from the portal.`);
     });
+
+    return el;
+  }
+
+  // =========================================================
+  // RENDER ALL CARDS
+  // =========================================================
+  let curFilter = 'all', curSort = 'name';
+
+  function renderGrid() {
+    const grid = document.getElementById('locations-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    let locs = getLocations();
+    if (curFilter !== 'all') locs = locs.filter(l => l.status === curFilter);
+    if (curSort === 'name')    locs.sort((a,b) => a.name.localeCompare(b.name));
+    if (curSort === 'rescued') locs.sort((a,b) => (b.totalRescued||0) - (a.totalRescued||0));
+
+    if (!locs.length) {
+      grid.innerHTML = `<div class="col-span-3 text-center py-12 text-stone-400">
+        <span class="material-symbols-outlined text-4xl block mb-2">location_off</span>
+        <p class="text-sm font-medium">No locations match. Try a different filter.</p>
+      </div>`;
+      return;
+    }
+    locs.forEach(l => grid.appendChild(buildCard(l)));
+  }
+
+  // =========================================================
+  // STATS
+  // =========================================================
+  function updateStats() {
+    const locs = getLocations();
+    const tr = document.getElementById('stat-total-rescued');
+    const sc = document.getElementById('stat-scheduled');
+    const mainCnt = document.getElementById('stat-count-main');
+    const subCnt  = document.getElementById('stat-count-sub');
+
+    const activeLocs = locs.filter(l => l.status === 'Active Surplus');
+    
+    if (tr) tr.textContent = locs.reduce((s,l) => s + (l.totalRescued||0), 0).toLocaleString() + ' kg';
+    if (sc) sc.textContent = activeLocs.length;
+    
+    if (mainCnt) mainCnt.textContent = activeLocs.filter(l => l.type === 'Main Branch').length;
+    if (subCnt)  subCnt.textContent  = activeLocs.filter(l => l.type === 'Branch').length;
+  }
+
+  // =========================================================
+  // TOAST
+  // =========================================================
+  function toast(title, body) {
+    const t = document.getElementById('toast-success');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-body').textContent  = body;
+    t.classList.remove('hidden');
+    clearTimeout(t._t);
+    t._t = setTimeout(() => t.classList.add('hidden'), 4000);
+  }
+
+  // =========================================================
+  // ACTIVITY FEED
+  // =========================================================
+  function pushActivity(html) {
+    const feed = document.getElementById('activity-feed');
+    if (!feed) return;
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-4 bg-white/50 dark:bg-white/5 p-4 rounded-lg';
+    row.innerHTML = `
+      <div class="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+      <p class="flex-1 text-sm dark:text-slate-300">${html}</p>
+      <span class="text-xs text-stone-400 font-medium whitespace-nowrap">Just now</span>`;
+    feed.insertBefore(row, feed.firstChild);
+  }
+
+  // =========================================================
+  // REAL CSV EXPORT
+  // =========================================================
+  function exportCSV() {
+    const locs = getLocations();
+    const headers = ['ID','Name','Type','Address','Pickup Points','Opens','Closes','NGO Partner','Pickup Time','Status','Total Rescued (kg)','Added On'];
+    const rows = locs.map(l => [
+      l.id, `"${l.name}"`, l.type, `"${l.address}"`,
+      `"${(l.pickupPoints||[]).join(', ')}"`,
+      l.openTime, l.closeTime,
+      `"${l.ngo||'N/A'}"`, `"${l.pickupTime||'N/A'}"`,
+      l.status, l.totalRescued||0,
+      new Date(l.addedAt).toLocaleDateString()
+    ]);
+    const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8;'}));
+    a.download = `AnnaSetu_Locations_${new Date().toISOString().slice(0,10)}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  }
+
+  // =========================================================
+  // NETWORK HUB MODAL (Tabbed)
+  // =========================================================
+  function switchHubTab(tabId) {
+    // Buttons
+    const tabs = ['tab-saved', 'tab-add', 'tab-vol'];
+    tabs.forEach(t => {
+      const btn = document.getElementById('btn-' + t);
+      const content = document.getElementById(t);
+      if(t === tabId) {
+        btn.classList.add('border-primary', 'text-primary');
+        btn.classList.remove('border-transparent', 'text-stone-400');
+        content.classList.remove('hidden');
+        content.classList.add('block');
+      } else {
+        btn.classList.remove('border-primary', 'text-primary');
+        btn.classList.add('border-transparent', 'text-stone-400');
+        content.classList.add('hidden');
+        content.classList.remove('block');
+      }
+    });
+
+    // If switching to Saved, refresh list
+    if(tabId === 'tab-saved') renderHubSavedList();
+    if(tabId === 'tab-vol') populateHubVolDropdown();
+  }
+
+  function openAddLocationModal() {
+    document.getElementById('modal-add-location').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    switchHubTab('tab-saved');
+  }
+
+  function closeAddLocationModal() {
+    document.getElementById('modal-add-location').classList.add('hidden');
+    document.body.style.overflow = '';
+    document.getElementById('form-add-location').reset();
+    ['err-name', 'err-type', 'err-pickup', 'form-error'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.classList.add('hidden');
+    });
+  }
+
+  function renderHubSavedList() {
+    const grid = document.getElementById('hub-saved-grid');
+    if(!grid) return;
+    const locs = getLocations();
+    grid.innerHTML = locs.map(l => `
+      <div class="flex items-center justify-between bg-white dark:bg-[#1A1F35] p-4 rounded-xl border border-stone-100 dark:border-white/5 shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">${l.type==='Main Branch'?'home_pin':'storefront'}</span>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-on-surface dark:text-white">${l.name}</p>
+            <p class="text-[10px] text-stone-400 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]">location_on</span> ${l.address}
+            </p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-[10px] uppercase font-black text-stone-400 tracking-widest mb-0.5">Rescued</p>
+          <p class="text-xs font-bold text-primary">${l.totalRescued||0} kg</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function populateHubVolDropdown() {
+    const sel = document.getElementById('hub-vol-location');
+    if(!sel) return;
+    const locs = getLocations();
+    sel.innerHTML = locs.map(l => `<option value="${l.id}">${l.name}</option>`).join('');
+  }
+
+  function saveFleetVolunteer() {
+    const name = document.getElementById('hub-vol-name').value.trim();
+    const locId = document.getElementById('hub-vol-location').value;
+    const type = document.getElementById('hub-vol-type').value;
+
+    if(!name) { alert('Please enter a volunteer name.'); return; }
+
+    const loc = getLocations().find(l => l.id === locId);
+    toast('Volunteer Added!', `${name} is now registered to ${loc?.name}.`);
+    pushActivity(`<span class="font-bold">${name}</span> was registered as a new provider for for <span class="font-bold">${loc?.name}</span>.`);
+    
+    // Reset form
+    document.getElementById('hub-vol-name').value = '';
+    switchHubTab('tab-saved');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name    = document.getElementById('loc-name').value.trim();
+    const typeEl  = document.querySelector('input[name="loc-type"]:checked');
+    const address = document.getElementById('loc-address').value.trim();
+    const pts     = [...document.querySelectorAll('input[name="pickup-point"]:checked')].map(c => c.value);
+    let ok = true;
+    document.getElementById('err-name').classList.toggle('hidden', !!name);
+    document.getElementById('err-type').classList.toggle('hidden', !!typeEl);
+    document.getElementById('err-address').classList.toggle('hidden', !!address);
+    document.getElementById('err-pickup').classList.toggle('hidden', pts.length > 0);
+    if (!name || !typeEl || !address || !pts.length) { ok = false; }
+    if (!ok) { document.getElementById('form-error').classList.remove('hidden'); return; }
+    document.getElementById('form-error').classList.add('hidden');
+
+    const btn = document.getElementById('modal-submit');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-sm" style="animation:rotateLoop 1s linear infinite;display:inline-block">sync</span> Saving…';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      const loc = {
+        id: 'loc-' + Date.now(), name, type: typeEl.value, address,
+        pickupPoints: pts,
+        openTime:  document.getElementById('loc-open').value,
+        closeTime: document.getElementById('loc-close').value,
+        ngo: 'Community Food Bank', // Default for now since we removed NGO selection from this form
+        pickupTime: 'No set time', 
+        status: 'Onboarding', totalRescued: 0, addedAt: new Date().toISOString()
+      };
+      addLocation(loc);
+      renderGrid();
+      updateStats();
+      renderHubSavedList(); // REFRESH THE TAB LIST
+      btn.innerHTML = orig; btn.disabled = false;
+      closeAddLocationModal();
+      toast('Location Added!', `${name} is now live on your network.`);
+      pushActivity(`<span class="font-bold">${name}</span> (${loc.type}) was registered with pickup via ${pts.join(', ')}.`);
+    }, 700);
+  }
+
+  // =========================================================
+  // BOOT
+  // =========================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme
+    const themeBtn  = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    if (themeBtn) themeBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light');
+      themeIcon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+      document.documentElement.style.backgroundColor = document.documentElement.classList.contains('dark') ? '#0f1120' : '';
+    });
+
+    // Origin toggle
+    document.querySelectorAll('.origin-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.origin-btn').forEach(b => { b.classList.remove('bg-primary','text-white'); b.classList.add('bg-surface-container-low','text-secondary'); });
+        btn.classList.add('bg-primary','text-white'); btn.classList.remove('bg-surface-container-low','text-secondary');
+      });
+    });
+
+    // Access point toggle
+    document.querySelectorAll('.access-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.access-btn').forEach(b => { b.classList.remove('bg-emerald-50','text-emerald-700'); b.classList.add('bg-surface-container-low','text-secondary'); });
+        btn.classList.add('bg-emerald-50','text-emerald-700'); btn.classList.remove('bg-surface-container-low','text-secondary');
+      });
+    });
+
+    // Export CSV
+    document.getElementById('btn-export')?.addEventListener('click', function() {
+      const orig = this.innerHTML;
+      this.innerHTML = '<span class="material-symbols-outlined text-sm" style="animation:rotateLoop 1s linear infinite;display:inline-block">sync</span> Exporting…';
+      this.disabled = true;
+      setTimeout(() => {
+        exportCSV();
+        this.innerHTML = '<span class="material-symbols-outlined text-sm">check_circle</span> Exported!';
+        this.classList.replace('text-stone-700','text-emerald-700');
+        setTimeout(() => { this.innerHTML = orig; this.classList.replace('text-emerald-700','text-stone-700'); this.disabled = false; }, 2500);
+      }, 600);
+    });
+
+    // Add Location Hub
+    document.getElementById('btn-add-location')?.addEventListener('click', openAddLocationModal);
+    document.getElementById('modal-close')?.addEventListener('click', closeAddLocationModal);
+    document.getElementById('modal-cancel')?.addEventListener('click', closeAddLocationModal);
+    document.getElementById('modal-backdrop')?.addEventListener('click', closeAddLocationModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAddLocationModal(); });
+    document.getElementById('form-add-location')?.addEventListener('submit', handleSubmit);
+
+    // Filter / Sort
+    document.getElementById('filter-status')?.addEventListener('change', function() { curFilter = this.value; renderGrid(); });
+    document.getElementById('sort-by')?.addEventListener('change', function() { curSort = this.value; renderGrid(); });
+
+    // Init
+    if (!localStorage.getItem(STORE_KEY)) saveLocations(seed);
+    renderGrid();
+    updateStats();
+    renderPendingPickups();
+
+    // Handle ?notify=1
+    if (new URLSearchParams(window.location.search).get('notify') === '1') {
+      setTimeout(() => {
+        document.getElementById('pending-pickups-section')?.scrollIntoView({behavior: 'smooth', block: 'start'});
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({path:newUrl}, '', newUrl);
+      }, 300);
+    }
+
+    // Auto-refresh pending pickups every 10s
+    setInterval(renderPendingPickups, 10000);
+  });
+
+  // =========================================================
+  // PICKUP STORE (cross-page)
+  // =========================================================
+  function getPickups()       { try { return JSON.parse(localStorage.getItem('annasetu_pickups') || '[]'); } catch(e){ return []; } }
+  function savePickups(arr)   { localStorage.setItem('annasetu_pickups', JSON.stringify(arr)); }
+  function updatePickup(id, patch) {
+    const p = getPickups().map(r => r.id === id ? {...r, ...patch} : r);
+    savePickups(p);
+  }
+
+  // =========================================================
+  // FOOD EMOJIS & TIME HELPERS
+  // =========================================================
+  function getFoodEmoji(type) {
+    return {'Bakery':'🥖','Produce':'🥦','Prepared Meals':'🍛','Beverages':'☕'}[type] || '🍽️';
+  }
+
+  function getTimeUntil(etaStr) {
+    if (!etaStr) return '';
+    try {
+      const now = new Date();
+      const [time, modifier] = etaStr.split(' ');
+      if (!time) return '';
+      let [hours, minutes] = time.split(':');
+      if (hours === '12') hours = '00';
+      if (modifier && modifier.toLowerCase() === 'pm') hours = parseInt(hours, 10) + 12;
+      const etaDate = new Date();
+      etaDate.setHours(parseInt(hours, 10));
+      etaDate.setMinutes(parseInt(minutes, 10));
+      etaDate.setSeconds(0);
+      const diffMs = etaDate - now;
+      if (diffMs <= 0) return '(arrived)';
+      const diffMins = Math.floor(diffMs / 60000);
+      return `(in ${diffMins}m)`;
+    } catch(e) { return ''; }
+  }
+
+  // =========================================================
+  // PENDING PICKUPS RENDERER & NAV BADGE
+  // =========================================================
+  function renderPendingPickups() {
+    const allPickups = getPickups();
+    const unassigned = allPickups.filter(p => p.status === 'unassigned');
+    const grid = document.getElementById('pending-pickups-grid');
+    const noPending = document.getElementById('no-pending');
+    const banner = document.getElementById('pending-banner');
+    const bannerText = document.getElementById('pending-banner-text');
+    const countBadge = document.getElementById('pending-count-badge');
+
+    // Update the various UI badges
+    updateNavBadge(unassigned.length);
+
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    if (countBadge) countBadge.textContent = unassigned.length;
+
+    if (banner) {
+      if (unassigned.length > 0) {
+        banner.classList.remove('hidden');
+        if (bannerText) bannerText.textContent = `${unassigned.length} surplus item${unassigned.length > 1 ? 's' : ''} need a pickup location assigned.`;
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    if (!unassigned.length) {
+      if (noPending) noPending.classList.remove('hidden');
+      return;
+    }
+    if (noPending) noPending.classList.add('hidden');
+
+    unassigned.forEach(p => {
+      const urgColor = {'critical':'border-red-300 bg-red-50','high':'border-orange-300 bg-orange-50','normal':'border-emerald-200 bg-emerald-50'}[p.urgency] || 'border-stone-200 bg-stone-50';
+      const card = document.createElement('div');
+      card.className = `rounded-2xl border-2 p-5 space-y-3 ${urgColor}`;
+      card.innerHTML = `
+        <div class="flex justify-between items-start">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">${getFoodEmoji(p.foodType)}</span>
+            <div>
+              <h4 class="font-bold text-sm text-stone-800">${p.qty} × ${p.foodType}</h4>
+              <p class="text-[10px] text-stone-500">Pickup window: ${p.pickupFrom} – ${p.pickupTo}</p>
+            </div>
+          </div>
+          <span class="text-[9px] font-black uppercase px-2 py-1 rounded-full bg-amber-100 text-amber-700">⏳ Unassigned</span>
+        </div>
+        <button onclick="openAssignModal('${p.id}')" class="w-full py-2 flex items-center justify-center gap-2 bg-amber-500 text-white font-bold text-xs rounded-xl hover:bg-amber-600 transition-all active:scale-95">
+          <span class="material-symbols-outlined text-sm">add_location</span> Add NGO & Volunteer Details
+        </button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function updateNavBadge(unassignedCount) {
+    // 1. Dashboard locations nav badge
+    const navBadge = document.getElementById('nav-loc-badge');
+    if (navBadge) {
+      if (unassignedCount > 0) {
+        navBadge.textContent = unassignedCount;
+        navBadge.classList.remove('hidden');
+      } else {
+        navBadge.classList.add('hidden');
+      }
+    }
+
+    // 2. "Add New Location" button badge + notification callout
+    const addBadge = document.getElementById('add-btn-badge');
+    const notifPanel = document.getElementById('add-btn-notification');
+    const notifText = document.getElementById('add-btn-notif-text');
+    
+    if (addBadge && notifPanel) {
+      if (unassignedCount > 0) {
+        addBadge.textContent = unassignedCount;
+        addBadge.classList.remove('hidden');
+        if (notifText) notifText.textContent = `You have ${unassignedCount} surplus item${unassignedCount > 1 ? 's' : ''} waiting for location assignment!`;
+        
+        // Auto-show notification panel if we have unassigned and arrived via ?notify=1
+        if (new URLSearchParams(window.location.search).get('notify') === '1') {
+          notifPanel.classList.remove('hidden');
+        }
+      } else {
+        addBadge.classList.add('hidden');
+        notifPanel.classList.add('hidden');
+      }
+    }
+  }
+
+  // =========================================================
+  // ASSIGN MODAL
+  // =========================================================
+  function openAssignModal(pickupId) {
+    const pu = getPickups().find(p => p.id === pickupId);
+    if (!pu) return;
+    document.getElementById('assign-pickup-id').value = pickupId;
+    document.getElementById('assign-food-emoji').textContent = getFoodEmoji(pu.foodType);
+    document.getElementById('assign-food-label').textContent = `${pu.qty} × ${pu.foodType} (${pu.packaging || ''})`;
+    document.getElementById('assign-food-detail').textContent = `Pickup window: ${pu.pickupFrom} – ${pu.pickupTo}`;
+
+    // Populate branch selection with ALL saved locations
+    const sel = document.getElementById('assign-location');
+    sel.innerHTML = '<option value="">Select branch...</option>';
+    const locs = getLocations();
+    locs.forEach(l => {
+      const opt = document.createElement('option');
+      opt.value = l.id;
+      opt.textContent = l.name;
+      sel.appendChild(opt);
+    });
+
+    // Set ETA to pickup-from time as default
+    const eta = document.getElementById('assign-eta');
+    if (pu.pickupFrom) eta.value = pu.pickupFrom;
+
+    // Clear errors & radio
+    ['assign-err-loc','assign-err-vol','assign-err-eta'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
+    document.getElementById('assign-volunteer').value = '';
+
+    document.getElementById('modal-assign-pickup').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAssignModal() {
+    document.getElementById('modal-assign-pickup').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function submitAssignPickup() {
+    const pickupId = document.getElementById('assign-pickup-id').value;
+    const locationId = document.getElementById('assign-location').value;
+    const volunteerName = document.getElementById('assign-volunteer').value.trim();
+    const volunteerETA = document.getElementById('assign-eta').value;
+    const ngoSelect = document.getElementById('assign-ngo');
+    const ngo = ngoSelect.options[ngoSelect.selectedIndex].text.replace(/✨\s*/, '').split(' (')[0];
+
+    let ok = true;
+    document.getElementById('assign-err-loc').classList.toggle('hidden', !!locationId); if (!locationId) ok = false;
+    document.getElementById('assign-err-vol').classList.toggle('hidden', !!volunteerName); if (!volunteerName) ok = false;
+    document.getElementById('assign-err-eta').classList.toggle('hidden', !!volunteerETA); if (!volunteerETA) ok = false;
+    if (!ok) return;
+
+    const loc = getLocations().find(l => l.id === locationId);
+    const accessPoint = loc?.pickupPoints?.[0] || 'Front Gate';
+    
+    const btn = document.getElementById('assign-submit-btn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-sm" style="animation:rotateLoop 1s linear infinite;display:inline-block">sync</span> Saving…';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      updatePickup(pickupId, {
+        status: 'assigned',
+        locationId, locationName: loc?.name || '', accessPoint,
+        volunteerName, volunteerETA, ngo
+      });
+
+      // Update the location's status to Active Surplus if it was No Surplus
+      if (loc && loc.status === 'No Surplus') {
+        const locs = getLocations().map(l => l.id === locationId ? {...l, status: 'Active Surplus'} : l);
+        saveLocations(locs);
+      }
+
+      btn.innerHTML = orig; btn.disabled = false;
+      closeAssignModal();
+      renderPendingPickups();
+      renderGrid();
+      updateStats();
+      toast('Pickup Assigned!', `${volunteerName} will arrive at ${loc?.name} at ${volunteerETA} via ${accessPoint}.`);
+      pushActivity(`<span class="font-bold">${volunteerName}</span> assigned to pickup at <span class="font-bold">${loc?.name || ''}</span> (${accessPoint}) for ${document.getElementById('assign-food-label').textContent} — ETA ${volunteerETA}.`);
+    }, 500);
+  }
+
+  // =========================================================
+  // MARK AS RESCUED (from Locations page)
+  // =========================================================
+  function markPickupRescued(pickupId) {
+    const pu = getPickups().find(p => p.id === pickupId);
+    if (!pu) return;
+    if (!confirm(`Mark "${pu.qty} × ${pu.foodType}" as rescued?`)) return;
+
+    updatePickup(pickupId, { status: 'rescued', rescuedAt: new Date().toISOString() });
+
+    // Update surplus item status to 'rescued' instead of removing
+    const surplus = JSON.parse(localStorage.getItem('annasetu_surplus') || '[]').map(e => {
+      if (e.id === pu.surplusId) return { ...e, status: 'rescued' };
+      return e;
+    });
+    localStorage.setItem('annasetu_surplus', JSON.stringify(surplus));
+
+    // Add to history
+    const hist = JSON.parse(localStorage.getItem('annasetu_history') || '[]');
+    hist.unshift({ date: new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'}), type: pu.foodType, qty: pu.qty, unit: 'meals', ngo: pu.ngo || 'Partner', volunteer: pu.volunteerName, status: 'Rescued', rescuedAt: new Date().toISOString() });
+    localStorage.setItem('annasetu_history', JSON.stringify(hist));
+
+    // Update branch totalRescued
+    const locs = getLocations().map(l => {
+      if (l.id === pu.locationId) return {...l, totalRescued: (l.totalRescued||0) + (pu.qty||0)};
+      return l;
+    });
+    saveLocations(locs);
+
+    renderPendingPickups();
+    renderGrid();
+    updateStats();
+    toast('🎉 Rescued!', `${pu.qty} ${pu.foodType} successfully rescued by ${pu.volunteerName || 'volunteer'}.`);
+    pushActivity(`<span class="font-bold">${pu.qty} × ${pu.foodType}</span> rescued at <span class="font-bold">${pu.locationName || ''}</span> by ${pu.volunteerName || 'Volunteer'}. Delivered to ${pu.ngo || 'NGO'}.`);
+  }
+
 </script>
-</body></html>
+
+<style>
+  @keyframes rotateLoop { to { transform: rotate(360deg); } }
+</style>
+
+</body>
+</html>
