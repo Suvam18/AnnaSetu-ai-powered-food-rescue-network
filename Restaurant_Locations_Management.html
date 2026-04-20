@@ -504,7 +504,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="flex gap-6 px-6 border-b border-stone-100 dark:border-white/10 mt-2">
+    <div id="modal-tabs-container" class="flex gap-6 px-6 border-b border-stone-100 dark:border-white/10 mt-2">
       <button onclick="switchHubTab('tab-saved')" id="btn-tab-saved" class="px-2 py-3 border-b-2 border-primary text-primary font-bold text-sm transition-all focus:outline-none">Saved Locations</button>
       <button onclick="switchHubTab('tab-add')" id="btn-tab-add" class="px-2 py-3 border-b-2 border-transparent text-stone-400 font-bold text-sm transition-all hover:text-stone-600 focus:outline-none">Add Branch</button>
       <button onclick="switchHubTab('tab-vol')" id="btn-tab-vol" class="px-2 py-3 border-b-2 border-transparent text-stone-400 font-bold text-sm transition-all hover:text-stone-600 focus:outline-none">Add Volunteer</button>
@@ -591,6 +591,27 @@
               <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-close">Closes At</label>
               <input id="loc-close" type="time" value="22:00"
                 class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-ngo">Associated NGO</label>
+              <select id="loc-ngo" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+                <option value="Community Food Bank">Community Food Bank</option>
+                <option value="City Hope Shelter">City Hope Shelter</option>
+                <option value="Green Meals Initiative">Green Meals Initiative</option>
+                <option value="Sunrise Relief Trust">Sunrise Relief Trust</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-slate-400 mb-1.5" for="loc-volunteer">Default Volunteer</label>
+              <select id="loc-volunteer" class="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#1A1F35] text-on-surface dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
+                <option value="Unassigned">Unassigned (On-demand)</option>
+                <option value="Arjun Kumar">Arjun Kumar</option>
+                <option value="Priya Sharma">Priya Sharma</option>
+                <option value="Rahul Desai">Rahul Desai</option>
+                <option value="Sneha Patel">Sneha Patel</option>
+              </select>
             </div>
           </div>
           <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl flex items-center gap-2">
@@ -762,19 +783,28 @@
             <p class="font-bold text-xs text-on-surface dark:text-white leading-tight">${loc.ngo||'Auto-assigned'}</p>
           </div>
           <div class="bg-stone-50 dark:bg-[#141928] p-2.5 rounded-lg">
-            <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold mb-0.5">Total Rescued</p>
-            <p class="font-headline font-bold text-primary">${(loc.totalRescued||0).toLocaleString()} kg</p>
+            <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold mb-0.5">Volunteer</p>
+            <p class="font-bold text-xs text-on-surface dark:text-white leading-tight">${loc.volunteer||'Unassigned'}</p>
           </div>
+        </div>
+        <div class="bg-stone-50 dark:bg-[#141928] p-2.5 rounded-lg mb-3 flex justify-between items-center">
+            <p class="text-[10px] uppercase tracking-wider text-stone-400 font-bold">Total Rescued</p>
+            <p class="font-headline font-bold text-primary">${(loc.totalRescued||0).toLocaleString()} kg</p>
         </div>
         `;
       })()}
 
       <div class="flex items-center justify-between pt-4 border-t border-stone-100 dark:border-white/8">
-        <button class="text-sm font-bold text-primary hover:underline underline-offset-4">View Details</button>
+        <button class="btn-edit text-sm font-bold text-primary hover:underline underline-offset-4" data-id="${loc.id}">Edit Details</button>
         <button class="btn-delete p-2 text-stone-400 hover:text-red-500 transition-colors" data-id="${loc.id}" title="Remove">
           <span class="material-symbols-outlined text-lg">delete</span>
         </button>
       </div>`;
+
+    el.querySelector('.btn-edit').addEventListener('click', e => {
+      e.stopPropagation();
+      openEditLocationModal(loc);
+    });
 
     el.querySelector('.btn-delete').addEventListener('click', e => {
       e.stopPropagation();
@@ -908,8 +938,42 @@
     if(tabId === 'tab-vol') populateHubVolDropdown();
   }
 
+  let editingLocId = null;
+
+  function openEditLocationModal(loc) {
+    editingLocId = loc.id;
+    const tabsContainer = document.getElementById('modal-tabs-container');
+    if(tabsContainer) tabsContainer.classList.add('hidden');
+    document.getElementById('btn-tab-add').textContent = 'Edit Branch';
+    document.getElementById('loc-name').value = loc.name;
+    document.getElementById('loc-address').value = loc.address;
+    document.getElementById('loc-open').value = loc.openTime || '09:00';
+    document.getElementById('loc-close').value = loc.closeTime || '22:00';
+    
+    document.querySelectorAll('input[name="loc-type"]').forEach(r => r.checked = (r.value === loc.type));
+    
+    document.querySelectorAll('input[name="pickup-point"]').forEach(cb => {
+      cb.checked = loc.pickupPoints && loc.pickupPoints.includes(cb.value);
+    });
+    
+    if (document.getElementById('loc-ngo')) {
+      document.getElementById('loc-ngo').value = loc.ngo || 'Community Food Bank';
+    }
+    if (document.getElementById('loc-volunteer')) {
+      document.getElementById('loc-volunteer').value = loc.volunteer || 'Unassigned';
+    }
+    
+    document.getElementById('modal-submit').innerHTML = `<span class="material-symbols-outlined text-sm">save</span> Save Changes`;
+    
+    document.getElementById('modal-add-location').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    switchHubTab('tab-add');
+  }
+
   function openAddLocationModal() {
     document.getElementById('modal-add-location').classList.remove('hidden');
+    const tabsContainer = document.getElementById('modal-tabs-container');
+    if(tabsContainer) tabsContainer.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     switchHubTab('tab-saved');
   }
@@ -917,11 +981,18 @@
   function closeAddLocationModal() {
     document.getElementById('modal-add-location').classList.add('hidden');
     document.body.style.overflow = '';
+    const tabsContainer = document.getElementById('modal-tabs-container');
+    if(tabsContainer) tabsContainer.classList.remove('hidden');
     document.getElementById('form-add-location').reset();
     ['err-name', 'err-type', 'err-pickup', 'form-error'].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.classList.add('hidden');
     });
+    editingLocId = null;
+    const btnAdd = document.getElementById('btn-tab-add');
+    if (btnAdd) btnAdd.textContent = 'Add Branch';
+    const btnSubmit = document.getElementById('modal-submit');
+    if (btnSubmit) btnSubmit.innerHTML = `<span class="material-symbols-outlined text-sm">add_location_alt</span> Register Location`;
   }
 
   function renderHubSavedList() {
@@ -993,23 +1064,47 @@
     btn.disabled = true;
 
     setTimeout(() => {
-      const loc = {
-        id: 'loc-' + Date.now(), name, type: typeEl.value, address,
-        pickupPoints: pts,
-        openTime:  document.getElementById('loc-open').value,
-        closeTime: document.getElementById('loc-close').value,
-        ngo: 'Community Food Bank', // Default for now since we removed NGO selection from this form
-        pickupTime: 'No set time', 
-        status: 'Onboarding', totalRescued: 0, addedAt: new Date().toISOString()
-      };
-      addLocation(loc);
-      renderGrid();
-      updateStats();
-      renderHubSavedList(); // REFRESH THE TAB LIST
-      btn.innerHTML = orig; btn.disabled = false;
-      closeAddLocationModal();
-      toast('Location Added!', `${name} is now live on your network.`);
-      pushActivity(`<span class="font-bold">${name}</span> (${loc.type}) was registered with pickup via ${pts.join(', ')}.`);
+      if (editingLocId) {
+        const locs = getLocations();
+        const index = locs.findIndex(l => l.id === editingLocId);
+        if (index !== -1) {
+          locs[index].name = name;
+          locs[index].type = typeEl.value;
+          locs[index].address = address;
+          locs[index].pickupPoints = pts;
+          locs[index].openTime = document.getElementById('loc-open').value;
+          locs[index].closeTime = document.getElementById('loc-close').value;
+          if (document.getElementById('loc-ngo')) locs[index].ngo = document.getElementById('loc-ngo').value;
+          if (document.getElementById('loc-volunteer')) locs[index].volunteer = document.getElementById('loc-volunteer').value;
+          saveLocations(locs);
+        }
+        renderGrid();
+        updateStats();
+        renderHubSavedList();
+        btn.innerHTML = orig; btn.disabled = false;
+        closeAddLocationModal();
+        toast('Location Updated!', `${name} details have been updated.`);
+        pushActivity(`<span class="font-bold">${name}</span> details were updated.`);
+      } else {
+        const loc = {
+          id: 'loc-' + Date.now(), name, type: typeEl.value, address,
+          pickupPoints: pts,
+          openTime:  document.getElementById('loc-open').value,
+          closeTime: document.getElementById('loc-close').value,
+          ngo: document.getElementById('loc-ngo') ? document.getElementById('loc-ngo').value : 'Community Food Bank',
+          volunteer: document.getElementById('loc-volunteer') ? document.getElementById('loc-volunteer').value : 'Unassigned',
+          pickupTime: 'No set time', 
+          status: 'Onboarding', totalRescued: 0, addedAt: new Date().toISOString()
+        };
+        addLocation(loc);
+        renderGrid();
+        updateStats();
+        renderHubSavedList(); // REFRESH THE TAB LIST
+        btn.innerHTML = orig; btn.disabled = false;
+        closeAddLocationModal();
+        toast('Location Added!', `${name} is now live on your network.`);
+        pushActivity(`<span class="font-bold">${name}</span> (${loc.type}) was registered with pickup via ${pts.join(', ')}.`);
+      }
     }, 700);
   }
 

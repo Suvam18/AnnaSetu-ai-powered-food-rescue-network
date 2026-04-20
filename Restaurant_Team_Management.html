@@ -120,115 +120,17 @@
             Manage your kitchen staff and coordination team. Set permissions for surplus logging and confirmation.
           </p>
 </div>
-<button class="bg-primary text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-95">
+<button onclick="openAddMemberModal()" class="bg-primary text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-95">
 <span class="material-symbols-outlined">person_add</span>
-          Invite New Member
+          Add New Member
         </button>
 </div>
 <!-- Main Layout Grid -->
 <div class="grid grid-cols-12 gap-8">
 <!-- Team Members Grid (Bento Style) -->
 <div class="col-span-12 lg:col-span-8 space-y-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<!-- Profile Card 1 -->
-<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
-<div class="flex items-start justify-between mb-4">
-<div class="flex items-center gap-4">
-<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="professional chef in clean white uniform smiling warmly in a commercial kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsMrB8uVhAtvjyDQ5XoPDq5sxWPheXZyLfVHUMwmPrVmoCc7NjIDR1kOHCFPSSWNux4OUD9CBNAEfmonSzZbYoDecwgoHqk34YDPlxin6M92Yux_BDf1VQAZWTvADY_wy7NhEroFnYOhlKMp0Xo-yNnPM_0N4OxrxfF4bhaH-bkL7xPDTFjgTa0JumVpjULj-lwfwFz7wAiHhxKStzB1PyD3WU1Y4qv9e5okRZNi5rgynTzHDUh82Um7RXs1Nf00-bs6yfPWVyiF4"/>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Marco Rossi</h3>
-<span class="text-xs font-label bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full">Executive Chef</span>
-</div>
-</div>
-<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
-</div>
-<div class="space-y-3 pt-2">
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">mail</span>
-                  m.rossi@terranetwork.org
-                </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">verified_user</span>
-                  Full Access: Logging &amp; Confirmations
-                </div>
-</div>
-<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
-<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: 2h ago</span>
-<div class="flex -space-x-2">
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">check_circle</span></div>
-</div>
-</div>
-</div>
-<!-- Profile Card 2 -->
-<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
-<div class="flex items-start justify-between mb-4">
-<div class="flex items-center gap-4">
-<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="young male kitchen assistant in a black apron holding a tray in a vibrant rustic restaurant background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLgRSeB3Zx4OFEV0nwE7tbTSpAMfi2QNh46Tz3g-Lf47_6BAqjA0HJrI-YJWZmVlIsnA0nMAH3H92f1KukNHK-Sw5ulRBHNO9eQG1AfMg591sFIt4u02hACGXC3UmTPDUlCOqNCv6YWRKZkB29X9LsqKuqjm2UxLG2U65gJpXmkG68HIlDPN9cqqyFyxglMwXOP2--fwwOU-sH76J8o4gHxHP0x4zdtHZKAgbyLHtuMSczlYNFIDWVhukZNJbz4W3Aqo57O5am60Y"/>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Julian Chen</h3>
-<span class="text-xs font-label bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full">Kitchen Staff</span>
-</div>
-</div>
-<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
-</div>
-<div class="space-y-3 pt-2">
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">mail</span>
-                  j.chen@terranetwork.org
-                </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">lock_clock</span>
-                  Restricted: Logging Only
-                </div>
-</div>
-<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
-<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: 15m ago</span>
-<div class="flex -space-x-2">
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
-</div>
-</div>
-</div>
-<!-- Profile Card 3 -->
-<div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
-<div class="flex items-start justify-between mb-4">
-<div class="flex items-center gap-4">
-<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" data-alt="smiling woman with glasses and messy bun in a cozy restaurant office setting with plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE6qT1d6yKmVx1mQBrRo3PRhq0EOmhXSxwo21IvqpPCaL__DHBqv2BCa7QK0JVIb5-TErtexkxVUgcvAI6sEi4iYMGUjPzlGhGyskStcki8pIT6ARKkxeBAArZMN-XgJxSNdiWtPNdXLzYh-K3IP1bof9ZCw0FnIKPITEy2QKvZozmWksmUozCKuRD_dBIrQdV0g9uPqAA5a8G1pF6olLliBzs8hQ-21zC2berKvEI7q3BnH5UvaIbzGILG4EJ2ghfoVuDXbbTWOU"/>
-<div>
-<h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">Sarah Miller</h3>
-<span class="text-xs font-label bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full">Floor Manager</span>
-</div>
-</div>
-<button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
-</div>
-<div class="space-y-3 pt-2">
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">mail</span>
-                  s.miller@terranetwork.org
-                </div>
-<div class="flex items-center gap-2 text-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-xs">verified_user</span>
-                  Full Access: All Permissions
-                </div>
-</div>
-<div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
-<span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: Yesterday</span>
-<div class="flex -space-x-2">
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">edit</span></div>
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">check_circle</span></div>
-<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center border-2 border-surface"><span class="material-symbols-outlined text-[10px] text-primary">settings</span></div>
-</div>
-</div>
-</div>
-<!-- Profile Card 4 (Invitation Pending) -->
-<div class="bg-surface-container/50 border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-center opacity-70">
-<div class="w-14 h-14 rounded-full bg-stone-200 flex items-center justify-center mb-4">
-<span class="material-symbols-outlined text-stone-500">mail_outline</span>
-</div>
-<h3 class="font-bold text-on-surface">invite@restaurant.com</h3>
-<p class="text-xs text-on-surface-variant mb-4 italic">Invitation pending confirmation</p>
-<button class="text-primary text-xs font-bold hover:underline">Resend Invite</button>
-</div>
+<div id="team-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Dynamic Profile Cards injected here -->
 </div>
 <!-- Permissions Breakdown -->
 <div class="bg-surface rounded-xl p-8 border border-outline-variant/40 shadow-sm">
@@ -249,21 +151,21 @@
 </thead>
 <tbody class="divide-y divide-outline-variant/20">
 <tr>
-<td class="px-4 py-4 text-sm font-bold">Manager</td>
+<td class="px-4 py-4 text-sm font-bold">👑 Admin (owner)</td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 </tr>
 <tr>
-<td class="px-4 py-4 text-sm font-bold">Chef</td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-4 py-4 text-sm font-bold">📊 Manager (analytics)</td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
 <td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 </tr>
 <tr>
-<td class="px-4 py-4 text-sm font-bold">Kitchen Staff</td>
+<td class="px-4 py-4 text-sm font-bold">👨‍🍳 Staff (add surplus)</td>
 <td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
 <td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
 <td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
@@ -282,47 +184,8 @@
 <span class="material-symbols-outlined text-tertiary">history</span>
               Team Activity
             </h2>
-<div class="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
-<!-- Activity Item -->
-<div class="relative pl-8">
-<span class="absolute left-0 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ring-4 ring-surface-container">
-<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">restaurant</span>
-</span>
-<p class="text-sm text-on-surface">
-<span class="font-bold">Julian Chen</span> logged 12kg of surplus pastries.
-                </p>
-<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Today • 11:42 AM</span>
-</div>
-<!-- Activity Item -->
-<div class="relative pl-8">
-<span class="absolute left-0 top-0 w-6 h-6 bg-tertiary rounded-full flex items-center justify-center ring-4 ring-surface-container">
-<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
-</span>
-<p class="text-sm text-on-surface">
-<span class="font-bold">Marco Rossi</span> confirmed pickup by 'FoodShare' driver.
-                </p>
-<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Today • 09:15 AM</span>
-</div>
-<!-- Activity Item -->
-<div class="relative pl-8">
-<span class="absolute left-0 top-0 w-6 h-6 bg-secondary rounded-full flex items-center justify-center ring-4 ring-surface-container">
-<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">person</span>
-</span>
-<p class="text-sm text-on-surface">
-<span class="font-bold">Sarah Miller</span> updated kitchen staff permissions.
-                </p>
-<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Yesterday • 4:30 PM</span>
-</div>
-<!-- Activity Item -->
-<div class="relative pl-8 opacity-60">
-<span class="absolute left-0 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ring-4 ring-surface-container">
-<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">restaurant</span>
-</span>
-<p class="text-sm text-on-surface">
-<span class="font-bold">Julian Chen</span> logged 4kg of organic produce.
-                </p>
-<span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Yesterday • 10:20 AM</span>
-</div>
+<div id="activity-feed" class="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
+<!-- Dynamic Feed Items Injected Here -->
 </div>
 <button class="w-full mt-8 py-2 text-primary font-bold text-sm hover:bg-primary/5 rounded-lg transition-colors">
               View Full Audit Log
@@ -364,9 +227,194 @@
 </div>
 </div>
 </main>
+
+<!-- Add New Member Modal -->
+<div id="modal-add-member" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface w-full max-w-lg rounded-2xl shadow-xl overflow-hidden flex flex-col">
+    <!-- Header -->
+    <div class="px-6 py-4 border-b border-outline-variant/30 flex justify-between items-center bg-white dark:bg-[#121629]">
+      <h2 class="headline-font text-xl font-bold flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">person_add</span> Add New Member
+      </h2>
+      <button onclick="closeAddMemberModal()" class="w-8 h-8 rounded-full bg-stone-100 dark:bg-white/10 flex items-center justify-center hover:bg-stone-200 transition-colors">
+        <span class="material-symbols-outlined text-stone-500 text-sm">close</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="p-6 bg-stone-50/50 dark:bg-[#1A1F35] overflow-y-auto max-h-[70vh]">
+      <form id="form-add-member" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Full Name <span class="text-error">*</span></label>
+          <input id="mem-name" type="text" required class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+        </div>
+        <div>
+           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Email Address</label>
+           <input id="mem-email" type="email" required class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Designation</label>
+            <input id="mem-desig" type="text" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+          </div>
+          <div>
+             <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Since Year</label>
+             <input id="mem-year" type="number" min="2000" max="2026" value="2024" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+          </div>
+        </div>
+        <div>
+           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Access Level (Role) <span class="text-error">*</span></label>
+           <select id="mem-role" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40">
+             <option value="Admin (owner)">Admin (owner)</option>
+             <option value="Manager (analytics)">Manager (analytics)</option>
+             <option value="Staff (add surplus)">Staff (add surplus)</option>
+           </select>
+        </div>
+        <div>
+           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Shift Assignment</label>
+           <select id="mem-shift" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40">
+             <option value="Morning Shift (6AM - 2PM)">Morning Shift (6AM - 2PM)</option>
+             <option value="Afternoon Shift (2PM - 10PM)">Afternoon Shift (2PM - 10PM)</option>
+             <option value="Night Shift (10PM - 6AM)">Night Shift (10PM - 6AM)</option>
+             <option value="Flexible / Full-Time">Flexible / Full-Time</option>
+           </select>
+        </div>
+      </form>
+    </div>
+    <!-- Footer -->
+    <div class="px-6 py-4 bg-white dark:bg-[#121629] border-t border-outline-variant/30 flex justify-end gap-3 rounded-b-2xl">
+      <button onclick="closeAddMemberModal()" class="px-5 py-2 rounded-lg font-bold text-sm text-stone-500 hover:bg-stone-50 transition-colors">Cancel</button>
+      <button onclick="saveNewMember()" class="px-6 py-2 bg-primary text-white font-bold text-sm rounded-lg hover:shadow-lg transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">save</span> Add Member
+      </button>
+    </div>
+  </div>
+</div>
 <!-- Mobile Navigation Bar (md:hidden as per requirement) -->
 <script>
+    // -- Data Stores --
+    const DEFAULT_TEAM = [
+      { name: 'Marco Rossi', desig: 'Executive Chef', email: 'm.rossi@terranetwork.org', role: 'Admin (owner)', shift: 'Flexible / Full-Time', year: '2020', lastActive: '2h ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsMrB8uVhAtvjyDQ5XoPDq5sxWPheXZyLfVHUMwmPrVmoCc7NjIDR1kOHCFPSSWNux4OUD9CBNAEfmonSzZbYoDecwgoHqk34YDPlxin6M92Yux_BDf1VQAZWTvADY_wy7NhEroFnYOhlKMp0Xo-yNnPM_0N4OxrxfF4bhaH-bkL7xPDTFjgTa0JumVpjULj-lwfwFz7wAiHhxKStzB1PyD3WU1Y4qv9e5okRZNi5rgynTzHDUh82Um7RXs1Nf00-bs6yfPWVyiF4' },
+      { name: 'Julian Chen', desig: 'Kitchen Staff', email: 'j.chen@terranetwork.org', role: 'Staff (add surplus)', shift: 'Morning Shift (6AM - 2PM)', year: '2023', lastActive: '15m ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLgRSeB3Zx4OFEV0nwE7tbTSpAMfi2QNh46Tz3g-Lf47_6BAqjA0HJrI-YJWZmVlIsnA0nMAH3H92f1KukNHK-Sw5ulRBHNO9eQG1AfMg591sFIt4u02hACGXC3UmTPDUlCOqNCv6YWRKZkB29X9LsqKuqjm2UxLG2U65gJpXmkG68HIlDPN9cqqyFyxglMwXOP2--fwwOU-sH76J8o4gHxHP0x4zdtHZKAgbyLHtuMSczlYNFIDWVhukZNJbz4W3Aqo57O5am60Y' },
+      { name: 'Sarah Miller', desig: 'Floor Manager', email: 's.miller@terranetwork.org', role: 'Manager (analytics)', shift: 'Afternoon Shift (2PM - 10PM)', year: '2022', lastActive: 'Yesterday', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE6qT1d6yKmVx1mQBrRo3PRhq0EOmhXSxwo21IvqpPCaL__DHBqv2BCa7QK0JVIb5-TErtexkxVUgcvAI6sEi4iYMGUjPzlGhGyskStcki8pIT6ARKkxeBAArZMN-XgJxSNdiWtPNdXLzYh-K3IP1bof9ZCw0FnIKPITEy2QKvZozmWksmUozCKuRD_dBIrQdV0g9uPqAA5a8G1pF6olLliBzs8hQ-21zC2berKvEI7q3BnH5UvaIbzGILG4EJ2ghfoVuDXbbTWOU' }
+    ];
+
+    const DEFAULT_ACTIVITY = [
+      { text: '<span class="font-bold">Julian Chen</span> logged 12kg of surplus pastries.', icon: 'restaurant', color: 'bg-primary' },
+      { text: '<span class="font-bold">Marco Rossi</span> confirmed pickup by \\'FoodShare\\' driver.', icon: 'local_shipping', color: 'bg-tertiary' },
+      { text: '<span class="font-bold">Sarah Miller</span> updated kitchen staff permissions.', icon: 'person', color: 'bg-secondary' }
+    ];
+
+    let teamMembers = JSON.parse(localStorage.getItem('annaSetuTeam')) || DEFAULT_TEAM;
+    let activityLog = JSON.parse(localStorage.getItem('annaSetuTeamFeed')) || DEFAULT_ACTIVITY;
+
+    function saveState() {
+      localStorage.setItem('annaSetuTeam', JSON.stringify(teamMembers));
+      localStorage.setItem('annaSetuTeamFeed', JSON.stringify(activityLog));
+    }
+
+    function renderTeamGrid() {
+      const grid = document.getElementById('team-grid');
+      if(!grid) return;
+      grid.innerHTML = '';
+      
+      teamMembers.forEach(mem => {
+        let rolePillBg = 'bg-tertiary-fixed text-on-tertiary-fixed';
+        if (mem.role.includes('Staff')) rolePillBg = 'bg-secondary-container text-on-secondary-container';
+        if (mem.role.includes('Manager')) rolePillBg = 'bg-primary-fixed text-on-primary-fixed';
+
+        let accessText = "Restricted Access";
+        if(mem.role.includes('Admin')) accessText = "Full Access: All Permissions";
+        if(mem.role.includes('Manager')) accessText = "Analytics & Pickup Confirmation";
+        if(mem.role.includes('Staff')) accessText = "Restricted: Logging Only";
+
+        // Generate Avatar using initials if image is 'default'
+        let avatarHTML = mem.img !== 'default' 
+          ? `<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" src="${mem.img}"/>`
+          : `<div class="w-14 h-14 rounded-xl bg-stone-200 flex items-center justify-center font-bold text-xl text-stone-500">${mem.name.charAt(0)}</div>`;
+
+        grid.innerHTML += `
+          <div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-4">
+                ${avatarHTML}
+                <div>
+                  <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">${mem.name}</h3>
+                  <span class="text-xs font-label ${rolePillBg} px-2 py-0.5 rounded-full">${mem.role}</span>
+                </div>
+              </div>
+              <button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
+            </div>
+            <div class="space-y-3 pt-2">
+              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                <span class="material-symbols-outlined text-xs">mail</span>
+                ${mem.email}
+              </div>
+              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                <span class="material-symbols-outlined text-xs">verified_user</span>
+                ${accessText}
+              </div>
+              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
+                <span class="material-symbols-outlined text-xs">event</span>
+                Since ${mem.year} &bull; ${mem.shift}
+              </div>
+            </div>
+            <div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+              <span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: ${mem.lastActive}</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderActivityFeed() {
+      const feed = document.getElementById('activity-feed');
+      if(!feed) return;
+      feed.innerHTML = '';
+      activityLog.forEach((log) => {
+        feed.innerHTML += `
+          <div class="relative pl-8">
+            <span class="absolute left-0 top-0 w-6 h-6 ${log.color} rounded-full flex items-center justify-center ring-4 ring-surface-container">
+              <span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">${log.icon}</span>
+            </span>
+            <p class="text-sm text-on-surface">${log.text}</p>
+            <span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Recent</span>
+          </div>
+        `;
+      });
+    }
+
+    window.openAddMemberModal = () => document.getElementById('modal-add-member').classList.remove('hidden');
+    window.closeAddMemberModal = () => document.getElementById('modal-add-member').classList.add('hidden');
+
+    window.saveNewMember = () => {
+      const name = document.getElementById('mem-name').value;
+      const email = document.getElementById('mem-email').value;
+      const desig = document.getElementById('mem-desig').value;
+      const year = document.getElementById('mem-year').value;
+      const role = document.getElementById('mem-role').value;
+      const shift = document.getElementById('mem-shift').value;
+
+      if(!name) { alert('Name is required.'); return; }
+
+      teamMembers.push({ name, email, desig, role, year, shift, lastActive: 'Just now', img: 'default' });
+      
+      activityLog.unshift({ 
+        text: `<span class="font-bold">You</span> added ${name} as ${role}.`, 
+        icon: 'person_add', 
+        color: 'bg-primary' 
+      });
+
+      saveState();
+      renderTeamGrid();
+      renderActivityFeed();
+      closeAddMemberModal();
+      document.getElementById('form-add-member').reset();
+    };
+
     document.addEventListener("DOMContentLoaded", () => {
+        renderTeamGrid();
+        renderActivityFeed();
+        
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
