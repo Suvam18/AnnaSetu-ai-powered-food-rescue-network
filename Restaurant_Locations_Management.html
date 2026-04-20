@@ -3,6 +3,13 @@
 <html class="light" lang="en">
 
 <head>
+<script>
+  // Immediate theme application to prevent FOUC
+  (function() {
+    const savedTheme = localStorage.getItem('annaSetuTheme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.classList.add(savedTheme);
+  })();
+</script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Terra Portal - Locations</title>
@@ -23,52 +30,13 @@
                 extend: {
                     "colors": {
                         "secondary": "#6b6358",
-                        "error-container": "#ffdad8",
-                        "on-primary-container": "#d8f0de",
-                        "primary-fixed-dim": "#8ecf9e",
                         "on-surface": "#2e3230",
-                        "inverse-surface": "#2e3230",
-                        "surface-bright": "#faf6f0",
-                        "surface-tint": "#4a7c59",
-                        "on-secondary-fixed-variant": "#4a4538",
-                        "tertiary-container": "#c4a66a",
-                        "on-primary-fixed": "#002110",
                         "surface": "#faf6f0",
-                        "outline": "#74796e",
                         "outline-variant": "#c4c8bc",
-                        "surface-container-highest": "#e4e0d8",
-                        "secondary-container": "#f0e8db",
-                        "on-background": "#2e3230",
-                        "error": "#b83230",
-                        "on-secondary-container": "#5e5548",
-                        "on-secondary-fixed": "#1e1a13",
-                        "secondary-fixed": "#f0e8db",
-                        "surface-container-lowest": "#ffffff",
-                        "secondary-fixed-dim": "#d4ccbf",
-                        "tertiary-fixed": "#f8e0a8",
-                        "on-error": "#ffffff",
-                        "on-tertiary-container": "#554020",
-                        "on-primary": "#ffffff",
-                        "tertiary-fixed-dim": "#dcc48e",
-                        "primary-container": "#78a886",
                         "background": "#faf6f0",
-                        "tertiary": "#705c30",
-                        "surface-container": "#f0ece4",
-                        "on-tertiary-fixed-variant": "#554020",
-                        "inverse-primary": "#8ecf9e",
-                        "on-surface-variant": "#4a4e4a",
-                        "inverse-on-surface": "#f5f0e8",
-                        "on-secondary": "#ffffff",
-                        "primary-fixed": "#c8e8d0",
-                        "on-primary-fixed-variant": "#2a6038",
-                        "surface-dim": "#dbd7cf",
-                        "on-error-container": "#690005",
-                        "on-tertiary-fixed": "#221a05",
-                        "surface-container-low": "#f5f1ea",
-                        "surface-variant": "#e4e0d8",
-                        "surface-container-high": "#eae6de",
-                        "on-tertiary": "#ffffff",
-                        "primary": "#4a7c59"
+                        "primary": "#4a7c59",
+                        "dark-bg": "#0a0c16",
+                        "dark-surface": "#161b33"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.5rem",
@@ -88,6 +56,13 @@
     <style>
         body {
             font-family: 'Nunito Sans', sans-serif;
+            background-color: #faf6f0;
+            color: #2e3230;
+            transition: background-color 0.3s ease;
+        }
+        .dark body {
+            background-color: #0a0c16;
+            color: #f1f5f9;
         }
 
         h1,
@@ -145,13 +120,13 @@
             <!-- Header Section -->
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <h2 class="text-3xl font-bold text-on-surface mb-2">Location Portfolio</h2>
-                    <p class="text-stone-500 font-body" id="locations-subtitle">Manage registered locations and monitor real-time rescue status across your network.</p>
+                    <h2 class="text-3xl font-bold text-on-surface dark:text-white mb-2">Location Portfolio</h2>
+                    <p class="text-stone-500 dark:text-stone-400 font-body" id="locations-subtitle">Manage registered locations and monitor real-time rescue status across your network.</p>
                 </div>
                 <div class="flex flex-col items-end gap-2">
                     <div class="flex gap-3">
                         <button id="btn-export"
-                            class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-200 bg-white font-bold text-sm text-stone-700 hover:bg-stone-50 transition-all">
+                            class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-white/5 font-bold text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-white/10 transition-all">
                             <span class="material-symbols-outlined text-sm">download</span>
                             Export Data
                         </button>
@@ -198,20 +173,20 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <!-- Live Map & Routing View (Span 8) -->
                 <div
-                    class="lg:col-span-8 bg-surface-container-lowest dark:bg-[#121629] rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 overflow-hidden flex flex-col min-h-[500px]">
+                    class="lg:col-span-8 bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 overflow-hidden flex flex-col min-h-[500px]">
 
                     <!-- Live Map Header -->
-                    <div class="p-6 border-b border-outline-variant/20 dark:border-white/10 relative z-10 bg-surface-container-lowest dark:bg-[#121629]">
-                        <h3 class="text-xl font-bold flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">public</span> Live Route Map
+                    <div class="p-6 border-b border-outline-variant/20 dark:border-white/10 relative z-10 bg-white dark:bg-transparent">
+                        <h3 class="text-xl font-bold flex items-center gap-2 dark:text-white">
+                            <span class="material-symbols-outlined text-primary dark:text-emerald-400">public</span> Live Route Map
                         </h3>
                         <p class="text-xs text-secondary dark:text-slate-400 mt-1">Real-time positions of restaurants, NGOs, and volunteers</p>
                     </div>
 
                     <!-- Google Map Iframe -->
-                    <div class="relative flex-1 bg-stone-100 overflow-hidden">
+                    <div class="relative flex-1 bg-stone-100 dark:bg-[#0a0c16] overflow-hidden">
                         <div class="absolute inset-0 bg-blue-50/10 pointer-events-none z-0"></div>
-                        <iframe class="w-full h-full absolute inset-0 opacity-80" style="border:0;" loading="lazy" allowfullscreen
+                        <iframe class="w-full h-full absolute inset-0 opacity-80 mix-blend-multiply dark:mix-blend-normal dark:invert dark:hue-rotate-180 dark:brightness-75" style="border:0;" loading="lazy" allowfullscreen
                             referrerpolicy="no-referrer-when-downgrade"
                             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12091.246141381!2d-73.9912076!3d40.7441364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1713500000000!5m2!1sen!2sus"></iframe>
 
@@ -247,7 +222,7 @@
                     <!-- Quick Stats Container (Stacked) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div
-                            class="bg-primary text-on-primary p-5 rounded-xl shadow-lg shadow-primary/10 flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                            class="bg-primary text-white p-5 rounded-xl shadow-lg shadow-primary/10 flex flex-col justify-between hover:-translate-y-1 transition-transform">
                             <span class="material-symbols-outlined p-2 bg-white/20 rounded-lg self-start text-sm"
                                 style="font-variation-settings: 'FILL' 1;">eco</span>
                             <div class="mt-4">
@@ -256,9 +231,9 @@
                             </div>
                         </div>
                         <div
-                            class="bg-tertiary-fixed text-on-tertiary-fixed p-5 rounded-xl shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform border border-tertiary/10">
+                            class="bg-white dark:bg-white/5 text-on-surface dark:text-white p-5 rounded-xl shadow-sm flex flex-col justify-between hover:-translate-y-1 transition-transform border border-stone-200 dark:border-white/10">
                             <span
-                                class="material-symbols-outlined p-2 bg-tertiary/10 rounded-lg self-start text-sm">local_shipping</span>
+                                class="material-symbols-outlined p-2 bg-stone-100 dark:bg-white/10 rounded-lg self-start text-sm">local_shipping</span>
                             <div class="mt-4">
                                 <p class="text-2xl xl:text-3xl font-headline font-black mb-0.5" id="stat-scheduled">14</p>
                                 <p class="text-[10px] opacity-90 font-bold uppercase tracking-wider leading-tight mb-2">Active Branches</p>
@@ -278,7 +253,7 @@
 
                     <!-- AI Smart Matches -->
                     <div
-                        class="flex-1 bg-surface-container-lowest dark:bg-[#121629] p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 flex flex-col relative overflow-hidden">
+                        class="flex-1 bg-white dark:bg-white/5 dark:backdrop-blur-md p-6 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-outline-variant/10 dark:border-white/10 flex flex-col relative overflow-hidden">
                         <div class="flex justify-between items-start mb-5 relative z-10">
                             <div class="flex items-center gap-2">
                                 <span class="material-symbols-outlined text-indigo-500 text-xl">auto_awesome</span>
@@ -316,7 +291,7 @@
 
                             <!-- Secondary Match -->
                             <div
-                                class="bg-surface-container-low dark:bg-[#1A1F35]/50 border border-transparent dark:border-white/5 rounded-xl p-4 cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:bg-white dark:hover:bg-[#1A1F35] transition-all">
+                                class="bg-stone-50 dark:bg-[#1A1F35]/50 border border-transparent dark:border-white/5 rounded-xl p-4 cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-500/30 hover:bg-white dark:hover:bg-[#1A1F35] transition-all">
                                 <h4 class="font-bold text-sm text-on-surface dark:text-white">City Hope Shelter</h4>
                                 <p class="text-[11px] text-secondary dark:text-slate-400 mt-1">Medium Need</p>
                                 <div class="grid grid-cols-2 gap-2 mt-4">
@@ -348,7 +323,7 @@
             <!-- 📦 Pending Pickups Section -->
             <div id="pending-pickups-section" class="space-y-4">
               <div class="flex items-center justify-between">
-                <h3 class="text-xl font-bold flex items-center gap-2">
+                <h3 class="text-xl font-bold flex items-center gap-2 dark:text-white">
                   <span class="material-symbols-outlined text-amber-500" style="font-variation-settings:'FILL' 1">pending_actions</span>
                   Pending Pickups
                   <span id="pending-count-badge" class="ml-1 px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-black rounded-full">0</span>
@@ -358,28 +333,28 @@
                 </a>
               </div>
               <div id="pending-pickups-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
-              <div id="no-pending" class="hidden text-center py-8 bg-stone-50 rounded-xl border-2 border-dashed border-stone-200">
-                <span class="material-symbols-outlined text-stone-300 text-3xl block mb-2">check_circle</span>
+              <div id="no-pending" class="hidden text-center py-8 bg-stone-50 dark:bg-white/5 rounded-xl border-2 border-dashed border-stone-200 dark:border-white/10">
+                <span class="material-symbols-outlined text-stone-300 dark:text-white/20 text-3xl block mb-2">check_circle</span>
                 <p class="text-sm font-semibold text-stone-400">All pickups assigned — great work!</p>
               </div>
             </div>
             <!-- Locations Grid -->
             <div class="space-y-4">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-bold">Rescued Surplus Locations</h3>
+                    <h3 class="text-xl font-bold dark:text-white">Rescued Surplus Locations</h3>
                     <div class="flex gap-4">
                         <select id="filter-status"
-                            class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
-                            <option value="all">All Statuses</option>
-                            <option value="Active Surplus">Active Surplus</option>
-                            <option value="No Surplus">No Surplus</option>
-                            <option value="Closed">Closed</option>
-                            <option value="Onboarding">Onboarding</option>
+                            class="bg-transparent border-none text-sm font-bold text-secondary dark:text-gray-300 focus:ring-0 cursor-pointer">
+                            <option class="dark:bg-[#161b33]" value="all">All Statuses</option>
+                            <option class="dark:bg-[#161b33]" value="Active Surplus">Active Surplus</option>
+                            <option class="dark:bg-[#161b33]" value="No Surplus">No Surplus</option>
+                            <option class="dark:bg-[#161b33]" value="Closed">Closed</option>
+                            <option class="dark:bg-[#161b33]" value="Onboarding">Onboarding</option>
                         </select>
                         <select id="sort-by"
-                            class="bg-transparent border-none text-sm font-bold text-secondary focus:ring-0 cursor-pointer">
-                            <option value="name">Sort by Name</option>
-                            <option value="rescued">Sort by Volume</option>
+                            class="bg-transparent border-none text-sm font-bold text-secondary dark:text-gray-300 focus:ring-0 cursor-pointer">
+                            <option class="dark:bg-[#161b33]" value="name">Sort by Name</option>
+                            <option class="dark:bg-[#161b33]" value="rescued">Sort by Volume</option>
                         </select>
                     </div>
                 </div>
@@ -388,27 +363,27 @@
                 </div>
             </div>
             <!-- Recent Network Activity -->
-            <div class="bg-surface-container-high rounded-xl p-8 border border-stone-200/50">
+            <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-xl p-8 border border-stone-200/50 dark:border-white/10 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl font-bold">Recent Network Activity</h3>
-                    <button class="text-sm font-bold text-primary">Full Logs</button>
+                    <h3 class="text-xl font-bold dark:text-white">Recent Network Activity</h3>
+                    <button class="text-sm font-bold text-primary dark:text-emerald-400">Full Logs</button>
                 </div>
                 <div class="space-y-4" id="activity-feed">
-                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-                        <div class="w-2 h-2 bg-primary rounded-full"></div>
-                        <p class="flex-1 text-sm"><span class="font-bold">Main Branch</span> logged 24kg of organic
+                    <div class="flex items-center gap-4 bg-stone-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-primary dark:bg-emerald-400 rounded-full"></div>
+                        <p class="flex-1 text-sm dark:text-stone-300"><span class="font-bold dark:text-white">Main Branch</span> logged 24kg of organic
                             produce for pickup.</p>
                         <span class="text-xs text-stone-400 font-medium">14 mins ago</span>
                     </div>
-                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-                        <div class="w-2 h-2 bg-tertiary rounded-full"></div>
-                        <p class="flex-1 text-sm"><span class="font-bold">Volunteer Team Alpha</span> confirmed pickup
+                    <div class="flex items-center gap-4 bg-stone-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-stone-400 rounded-full"></div>
+                        <p class="flex-1 text-sm dark:text-stone-300"><span class="font-bold dark:text-white">Volunteer Team Alpha</span> confirmed pickup
                             at North Branch.</p>
                         <span class="text-xs text-stone-400 font-medium">2 hours ago</span>
                     </div>
-                    <div class="flex items-center gap-4 bg-white/50 p-4 rounded-lg">
-                        <div class="w-2 h-2 bg-secondary rounded-full"></div>
-                        <p class="flex-1 text-sm"><span class="font-bold">Eastside Branch</span> updated its operating
+                    <div class="flex items-center gap-4 bg-stone-50 dark:bg-white/5 p-4 rounded-lg">
+                        <div class="w-2 h-2 bg-stone-400 rounded-full"></div>
+                        <p class="flex-1 text-sm dark:text-stone-300"><span class="font-bold dark:text-white">Eastside Branch</span> updated its operating
                             hours for the weekend.</p>
                         <span class="text-xs text-stone-400 font-medium">5 hours ago</span>
                     </div>
@@ -480,7 +455,7 @@
         </select>
       </div>
       <div class="flex gap-3 pt-2">
-        <button type="button" onclick="closeAssignModal()" class="flex-1 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-600 font-bold text-sm hover:bg-stone-100 transition-all">Cancel</button>
+        <button type="button" onclick="closeAssignModal()" class="flex-1 py-3 rounded-xl border border-stone-200 dark:border-white/10 bg-stone-50 dark:bg-white/5 text-stone-600 dark:text-stone-400 font-bold text-sm hover:bg-stone-100 dark:hover:bg-white/10 transition-all">Cancel</button>
         <button type="button" id="assign-submit-btn" onclick="submitAssignPickup()" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2">
           <span class="material-symbols-outlined text-sm">check</span> Confirm Assignment
         </button>
@@ -1112,31 +1087,31 @@
   // BOOT
   // =========================================================
   document.addEventListener('DOMContentLoaded', () => {
-    // Theme
-    const themeBtn  = document.getElementById('theme-toggle');
+    // Theme Logic
+    const themeToggleMsg = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
-    if (themeBtn) themeBtn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      document.documentElement.classList.toggle('light');
-      themeIcon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
-      document.documentElement.style.backgroundColor = document.documentElement.classList.contains('dark') ? '#0f1120' : '';
-    });
+    const htmlElement = document.documentElement;
 
-    // Origin toggle
-    document.querySelectorAll('.origin-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.origin-btn').forEach(b => { b.classList.remove('bg-primary','text-white'); b.classList.add('bg-surface-container-low','text-secondary'); });
-        btn.classList.add('bg-primary','text-white'); btn.classList.remove('bg-surface-container-low','text-secondary');
-      });
-    });
+    const syncThemeUI = () => {
+      const isDark = htmlElement.classList.contains('dark');
+      themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+      if (isDark) {
+        htmlElement.style.backgroundColor = '#0a0c16';
+        localStorage.setItem('annaSetuTheme', 'dark');
+      } else {
+        htmlElement.style.backgroundColor = '#faf6f0';
+        localStorage.setItem('annaSetuTheme', 'light');
+      }
+    };
 
-    // Access point toggle
-    document.querySelectorAll('.access-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.access-btn').forEach(b => { b.classList.remove('bg-emerald-50','text-emerald-700'); b.classList.add('bg-surface-container-low','text-secondary'); });
-        btn.classList.add('bg-emerald-50','text-emerald-700'); btn.classList.remove('bg-surface-container-low','text-secondary');
+    if (themeToggleMsg) {
+      themeToggleMsg.addEventListener('click', () => {
+        htmlElement.classList.toggle('dark');
+        htmlElement.classList.toggle('light');
+        syncThemeUI();
       });
-    });
+    }
+    syncThemeUI();
 
     // Export CSV
     document.getElementById('btn-export')?.addEventListener('click', function() {
@@ -1153,8 +1128,6 @@
 
     // Add Location Hub
     document.getElementById('btn-add-location')?.addEventListener('click', openAddLocationModal);
-    document.getElementById('modal-close')?.addEventListener('click', closeAddLocationModal);
-    document.getElementById('modal-cancel')?.addEventListener('click', closeAddLocationModal);
     document.getElementById('modal-backdrop')?.addEventListener('click', closeAddLocationModal);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAddLocationModal(); });
     document.getElementById('form-add-location')?.addEventListener('submit', handleSubmit);

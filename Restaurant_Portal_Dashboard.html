@@ -1,6 +1,12 @@
-<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
+<script>
+  // Immediate theme application to prevent FOUC
+  (function() {
+    const savedTheme = localStorage.getItem('annaSetuTheme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.classList.add(savedTheme);
+  })();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AnnaSetu - Restaurant Dashboard</title>
@@ -18,7 +24,10 @@
           "surface-bright": "#faf6f0",
           "surface-container-low": "#f5f1ea",
           "on-surface": "#2e3230",
-          "outline-variant": "#c4c8bc"
+          "outline-variant": "#c4c8bc",
+          "dark-bg": "#0a0c16",
+          "dark-surface": "#161b33",
+          "dark-card": "rgba(255, 255, 255, 0.05)"
         },
         fontFamily: { "headline": ["Literata"], "body": ["Nunito Sans"] }
       }
@@ -26,7 +35,8 @@
   }
 </script>
 <style>
-  body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; padding-top: 7rem; }
+  body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; padding-top: 7rem; transition: background-color 0.3s ease; }
+  .dark body { background-color: #0a0c16; color: #f1f5f9; }
   h1,h2,h3,h4,.font-headline { font-family: 'Literata', serif; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   
@@ -78,111 +88,111 @@
   
   <!-- Greeting Section -->
   <div>
-    <h1 id="dashboard-greeting" class="text-4xl md:text-5xl font-black text-on-surface tracking-tight">Loading...</h1>
-    <p class="text-stone-500 mt-2 font-medium">Here's what's happening today at your restaurant.</p>
+    <h1 id="dashboard-greeting" class="text-4xl md:text-5xl font-black text-on-surface dark:text-white tracking-tight">Loading...</h1>
+    <p class="text-stone-500 dark:text-stone-400 mt-2 font-medium">Here's what's happening today at your restaurant.</p>
   </div>
 
   <!-- Today's Summary Cards -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <!-- Surplus Generated -->
-    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+    <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-stone-100 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
       <div class="flex items-center justify-between mb-4">
-        <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg material-symbols-outlined">restaurant</span>
-        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">+12%</span>
+        <span class="p-2 bg-emerald-50 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-lg material-symbols-outlined">restaurant</span>
+        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full">+12%</span>
       </div>
-      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Surplus Today</p>
-      <h3 id="stat-surplus" class="text-3xl font-black text-stone-800 mt-1">25</h3>
-      <p class="text-xs text-stone-400 mt-1 font-medium">meals listed for rescue</p>
+      <p class="text-sm font-bold text-stone-400 dark:text-stone-500 uppercase tracking-widest">Surplus Today</p>
+      <h3 id="stat-surplus" class="text-3xl font-black text-stone-800 dark:text-white mt-1">25</h3>
+      <p class="text-xs text-stone-400 dark:text-stone-500 mt-1 font-medium">meals listed for rescue</p>
     </div>
     <!-- Pickups Completed -->
-    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+    <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-stone-100 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
       <div class="flex items-center justify-between mb-4">
-        <span class="p-2 bg-blue-50 text-blue-600 rounded-lg material-symbols-outlined">local_shipping</span>
-        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">Good</span>
+        <span class="p-2 bg-blue-50 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg material-symbols-outlined">local_shipping</span>
+        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-0.5 rounded-full">Good</span>
       </div>
-      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Pickups Done</p>
-      <h3 id="stat-pickups" class="text-3xl font-black text-stone-800 mt-1">18</h3>
-      <p class="text-xs text-stone-400 mt-1 font-medium">successfully rescued</p>
+      <p class="text-sm font-bold text-stone-400 dark:text-stone-500 uppercase tracking-widest">Pickups Done</p>
+      <h3 id="stat-pickups" class="text-3xl font-black text-stone-800 dark:text-white mt-1">18</h3>
+      <p class="text-xs text-stone-400 dark:text-stone-500 mt-1 font-medium">successfully rescued</p>
     </div>
     <!-- Pending / Expiry Card -->
-    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+    <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-stone-100 dark:border-white/10 shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
       <div class="flex items-center justify-between mb-4">
-        <span class="p-2 bg-amber-50 text-amber-600 rounded-lg material-symbols-outlined">timer</span>
-        <span class="text-[10px] font-black text-rose-500 bg-rose-50 px-2 py-0.5 rounded-full uppercase tracking-widest" id="expiry-status-label">Monitoring</span>
+        <span class="p-2 bg-amber-50 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded-lg material-symbols-outlined">timer</span>
+        <span class="text-[10px] font-black text-rose-500 bg-rose-50 dark:bg-rose-500/20 px-2 py-0.5 rounded-full uppercase tracking-widest" id="expiry-status-label">Monitoring</span>
       </div>
-      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Expiration</p>
+      <p class="text-sm font-bold text-stone-400 dark:text-stone-500 uppercase tracking-widest">Expiration</p>
       <div class="flex items-end gap-3 mt-1">
-        <h3 id="stat-pending" class="text-3xl font-black text-stone-800">0</h3>
+        <h3 id="stat-pending" class="text-3xl font-black text-stone-800 dark:text-white">0</h3>
         <p id="stat-expired" class="text-xs font-black text-red-500 mb-1">0 expired</p>
       </div>
-      <p class="text-xs text-stone-400 mt-1 font-medium">active entries monitoring</p>
-      <div class="absolute bottom-0 left-0 w-full h-1 bg-amber-100">
+      <p class="text-xs text-stone-400 dark:text-stone-500 mt-1 font-medium">active entries monitoring</p>
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-amber-100 dark:bg-amber-100/10">
         <div id="expiry-bar" class="h-full bg-amber-400 transition-all duration-1000" style="width: 0%"></div>
       </div>
     </div>
     <!-- Waste Saved -->
-    <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm hover:shadow-md transition-all">
+    <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-stone-100 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
       <div class="flex items-center justify-between mb-4">
-        <span class="p-2 bg-purple-50 text-purple-600 rounded-lg material-symbols-outlined">eco</span>
-        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">Top 5%</span>
+        <span class="p-2 bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-lg material-symbols-outlined">eco</span>
+        <span class="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-500/10 px-2 py-0.5 rounded-full">Top 5%</span>
       </div>
-      <p class="text-sm font-bold text-stone-400 uppercase tracking-widest">Waste Saved</p>
-      <h3 id="stat-waste" class="text-3xl font-black text-stone-800 mt-1">12.4 <span class="text-lg font-semibold">kg</span></h3>
-      <p class="text-xs text-stone-400 mt-1 font-medium">CO2 offset: 25kg</p>
+      <p class="text-sm font-bold text-stone-400 dark:text-stone-500 uppercase tracking-widest">Waste Saved</p>
+      <h3 id="stat-waste" class="text-3xl font-black text-stone-800 dark:text-white mt-1">12.4 <span class="text-lg font-semibold">kg</span></h3>
+      <p class="text-xs text-stone-400 dark:text-stone-500 mt-1 font-medium">CO2 offset: 25kg</p>
     </div>
   </div>
 
   <!-- Realtime Monitoring Section -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Urgent Alerts Panel -->
-    <div class="lg:col-span-1 bg-white rounded-2xl p-6 border border-red-50 shadow-sm flex flex-col h-[400px]">
+    <div class="lg:col-span-1 bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-red-50 dark:border-white/10 shadow-sm flex flex-col h-[400px]">
       <div class="flex items-center justify-between mb-6">
-        <h3 class="text-xl font-bold flex items-center gap-2 text-stone-800">
+        <h3 class="text-xl font-bold flex items-center gap-2 text-stone-800 dark:text-white">
           <span class="material-symbols-outlined text-red-500">notification_important</span> Urgent Alerts
         </h3>
       </div>
       <div id="alerts-list" class="flex-1 overflow-y-auto space-y-4 pr-1">
         <!-- Live Alerts Here -->
-        <div class="flex items-center gap-3 p-4 bg-stone-50 rounded-xl text-stone-400 text-sm">
+        <div class="flex items-center gap-3 p-4 bg-stone-50 dark:bg-white/5 rounded-xl text-stone-400 text-sm">
           <span class="material-symbols-outlined">info</span>
           <p>No critical expirations detected yet.</p>
         </div>
       </div>
-      <a href="Excess_Notification_Center.html" class="mt-4 w-full py-3 bg-red-50 text-red-600 text-center rounded-xl font-bold text-sm hover:bg-red-100 transition-all">
+      <a href="Excess_Notification_Center.html" class="mt-4 w-full py-3 bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 text-center rounded-xl font-bold text-sm hover:bg-red-100 dark:hover:bg-red-500/30 transition-all">
         Manage Surplus Log
       </a>
     </div>
 
     <!-- Live City Map (Animated) -->
-    <div class="lg:col-span-2 bg-[#f8fafc] rounded-3xl p-6 border border-slate-200 shadow-sm overflow-hidden relative group">
-      <div class="absolute top-6 left-6 z-10 bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-slate-100 shadow-sm">
-        <h3 class="text-slate-900 font-bold text-lg flex items-center gap-2">
+    <div class="lg:col-span-2 bg-[#f8fafc] dark:bg-[#121629] rounded-3xl p-6 border border-slate-200 dark:border-white/10 shadow-sm overflow-hidden relative group">
+      <div class="absolute top-6 left-6 z-10 bg-white/50 dark:bg-black/40 backdrop-blur-sm p-3 rounded-2xl border border-slate-100 dark:border-white/10 shadow-sm">
+        <h3 class="text-slate-900 dark:text-white font-bold text-lg flex items-center gap-2">
           <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span> Live Rescue Network
         </h3>
-        <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">
+        <p class="text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest mt-1">
           <span id="active-volunteers-count">3</span> Volunteers Online
         </p>
       </div>
 
       <!-- Map Legend -->
       <div class="absolute bottom-6 left-6 z-10 flex flex-col gap-2">
-        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 bg-white/80 px-2.5 py-1.5 rounded-full border border-slate-100">
+        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-black/60 px-2.5 py-1.5 rounded-full border border-slate-100 dark:border-white/10">
             <span class="material-symbols-outlined text-emerald-600 text-[14px]">restaurant</span> You
         </div>
-        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 bg-white/80 px-2.5 py-1.5 rounded-full border border-slate-100">
+        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-black/60 px-2.5 py-1.5 rounded-full border border-slate-100 dark:border-white/10">
             <span class="material-symbols-outlined text-blue-600 text-[14px]">corporate_fare</span> NGO Hub
         </div>
       </div>
 
       <!-- City Map SVG -->
-      <div class="w-full h-[320px] bg-slate-50 rounded-2xl relative overflow-hidden">
+      <div class="w-full h-[320px] bg-slate-50 dark:bg-[#0a0c16] rounded-2xl relative overflow-hidden">
         <svg id="city-map" class="w-full h-full" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice">
           <!-- Street Network -->
-          <g id="streets" stroke="#e2e8f0" stroke-width="1.5" fill="none">
+          <g id="streets" stroke="#e2e8f0" stroke-width="1.5" fill="none" class="dark:stroke-slate-800">
             <path d="M0 40 H600 M0 120 H600 M0 200 H600 M0 280 H600" />
             <path d="M80 0 V320 M180 0 V320 M280 0 V320 M380 0 V320 M480 0 V320" />
             <!-- Diagonal Arteries -->
-            <path d="M80 40 L 480 280" stroke="#cbd5e1" stroke-width="1" />
+            <path d="M80 40 L 480 280" stroke="#cbd5e1" stroke-width="1" class="dark:stroke-slate-700" />
             <path id="route-primary" d="M180 200 L 280 200 L 280 120 L 380 120" stroke="transparent" />
             <path id="route-secondary" d="M180 200 L 180 120 L 380 120" stroke="transparent" />
             <path id="route-tertiary" d="M180 200 L 280 200 L 380 280 L 480 280 L 480 120 L 380 120" stroke="transparent" />
@@ -191,16 +201,16 @@
           <!-- Main Locations -->
           <!-- Restaurant (You) -->
           <g transform="translate(180, 200)" class="cursor-pointer">
-            <circle r="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" />
+            <circle r="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" class="dark:fill-emerald-500/20" />
             <text font-family="Material Symbols Outlined" x="0" y="6" text-anchor="middle" fill="#059669" font-size="20">restaurant</text>
-            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#065f46" class="uppercase">Restaurant</text>
+            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#065f46" class="uppercase dark:fill-emerald-400">Restaurant</text>
           </g>
 
           <!-- NGO Hub -->
           <g transform="translate(380, 120)" class="cursor-pointer">
-            <circle r="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" />
+            <circle r="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" class="dark:fill-blue-500/20" />
             <text font-family="Material Symbols Outlined" x="0" y="6" text-anchor="middle" fill="#2563eb" font-size="20">corporate_fare</text>
-            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#1e40af" class="uppercase">Rescue NGO</text>
+            <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="900" fill="#1e40af" class="uppercase dark:fill-blue-400">Rescue NGO</text>
           </g>
 
           <!-- Animated Volunteers Group -->
@@ -211,31 +221,31 @@
   </div>
 
   <!-- Live Pickups Feed -->
-  <div class="bg-white rounded-2xl p-6 border border-stone-100 shadow-sm">
+  <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-6 border border-stone-100 dark:border-white/10 shadow-sm">
     <div class="flex items-center justify-between mb-5">
-      <h3 class="text-xl font-bold flex items-center gap-2 text-stone-800">
+      <h3 class="text-xl font-bold flex items-center gap-2 text-stone-800 dark:text-white">
         <span class="material-symbols-outlined text-emerald-500" style="font-variation-settings:'FILL' 1">local_shipping</span>
         Live Pickup Feed
       </h3>
-      <a href="Restaurant_Locations_Management.html" class="text-xs font-bold text-primary hover:underline underline-offset-4 flex items-center gap-1">
+      <a href="Restaurant_Locations_Management.html" class="text-xs font-bold text-primary dark:text-emerald-400 hover:underline underline-offset-4 flex items-center gap-1">
         <span class="material-symbols-outlined text-sm">open_in_new</span> Manage
       </a>
     </div>
     <div id="live-pickups-list" class="space-y-3 max-h-72 overflow-y-auto pr-1">
-      <div class="flex items-center gap-3 p-4 bg-stone-50/50 rounded-2xl text-stone-300 text-xs font-bold uppercase">Loading...</div>
+      <div class="flex items-center gap-3 p-4 bg-stone-50 dark:bg-white/5 rounded-2xl text-stone-300 dark:text-stone-600 text-xs font-bold uppercase">Loading...</div>
     </div>
   </div>
 
   <!-- Surplus Trend & Branch Management -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Surplus Trends (Analytics) -->
-    <div class="lg:col-span-2 bg-white rounded-3xl p-8 border border-stone-100 shadow-sm relative">
+    <div class="lg:col-span-2 bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-3xl p-8 border border-stone-100 dark:border-white/10 shadow-sm relative">
         <div class="flex items-center justify-between mb-8">
           <div>
-            <h3 class="font-headline text-2xl font-bold text-stone-800">Surplus Analytics</h3>
-            <p id="chart-subtitle" class="text-xs text-stone-400 mt-1 font-medium">Last 7 days trends</p>
+            <h3 class="font-headline text-2xl font-bold text-stone-800 dark:text-white">Surplus Analytics</h3>
+            <p id="chart-subtitle" class="text-xs text-stone-400 dark:text-stone-500 mt-1 font-medium">Last 7 days trends</p>
           </div>
-          <select id="trend-range" onchange="renderTrendChart()" class="bg-stone-50 border-none rounded-xl text-xs font-black px-4 py-2 text-stone-600 focus:ring-2 focus:ring-[#4a7c59]/20 cursor-pointer">
+          <select id="trend-range" onchange="renderTrendChart()" class="bg-stone-50 dark:bg-white/5 border-none rounded-xl text-xs font-black px-4 py-2 text-stone-600 dark:text-gray-300 focus:ring-2 focus:ring-[#4a7c59]/20 cursor-pointer">
             <option value="7">Last 7 Days</option>
             <option value="30">Last 30 Days</option>
             <option value="12">This Year (Monthly)</option>
@@ -245,35 +255,35 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
           <!-- Bar Chart -->
           <div class="flex flex-col">
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 mb-4">Meals Listed Over Time</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 dark:text-stone-600 mb-4">Meals Listed Over Time</p>
             <div class="relative h-48 flex-1">
                 <div id="trend-chart" class="absolute inset-0 flex items-end justify-between gap-1.5 px-2"></div>
-                <div id="chart-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-stone-300 bg-stone-50/50 rounded-2xl border-2 border-dashed border-stone-100">
+                <div id="chart-empty" class="hidden absolute inset-0 flex flex-col items-center justify-center text-stone-300 bg-stone-50 rounded-2xl border-2 border-dashed border-stone-100">
                     <span class="material-symbols-outlined text-4xl mb-2">bar_chart</span>
                     <p class="text-xs font-bold">No listed data yet</p>
                 </div>
             </div>
             <!-- Bar Chart Legend/Summary -->
-            <div class="mt-4 pt-4 border-t border-stone-50 flex items-center justify-between">
+            <div class="mt-4 pt-4 border-t border-stone-50 dark:border-white/5 flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <span id="trend-icon" class="material-symbols-outlined text-emerald-500">trending_up</span>
-                    <span id="trend-summary" class="text-xs font-bold text-stone-600">Loading metrics...</span>
+                    <span id="trend-summary" class="text-xs font-bold text-stone-600 dark:text-stone-400">Loading metrics...</span>
                 </div>
-                <span id="trend-total" class="text-[10px] font-black text-stone-300 uppercase"></span>
+                <span id="trend-total" class="text-[10px] font-black text-stone-300 dark:text-stone-600 uppercase"></span>
             </div>
           </div>
 
           <!-- Pie Chart -->
           <div class="flex flex-col">
-            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 mb-4">Surplus By Food Category</p>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 dark:text-stone-600 mb-4">Surplus By Food Category</p>
             <div class="flex items-center gap-6 flex-1">
                 <div class="relative flex-shrink-0">
                     <svg id="pie-chart" width="140" height="140" viewBox="0 0 120 120">
-                        <circle cx="60" cy="60" r="54" fill="#faf6f0"/>
+                        <circle cx="60" cy="60" r="54" fill="#faf6f0" class="dark:fill-white/5"/>
                         <!-- Segments here -->
-                        <circle cx="60" cy="60" r="28" fill="white"/>
+                        <circle cx="60" cy="60" r="28" fill="white" class="dark:fill-[#161b33]"/>
                         <text x="60" y="55" text-anchor="middle" font-size="8" font-family="sans-serif" fill="#999" font-weight="bold">TOTAL</text>
-                        <text x="60" y="72" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#222" font-weight="black" id="pie-center-value">0</text>
+                        <text x="60" y="72" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#222" font-weight="black" id="pie-center-value" class="dark:fill-white">0</text>
                     </svg>
                     <div id="pie-empty" class="hidden absolute inset-0 flex items-center justify-center pointer-events-none">
                         <span class="text-[10px] font-black text-stone-300">NO DATA</span>
@@ -287,10 +297,10 @@
     </div>
 
     <!-- Branches List -->
-    <div class="bg-white rounded-3xl p-8 border border-stone-100 shadow-sm flex flex-col h-[400px]">
+    <div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-3xl p-8 border border-stone-100 dark:border-white/10 shadow-sm flex flex-col h-[400px]">
         <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-bold text-stone-800">My Branches</h3>
-            <button onclick="openAddBranch()" class="p-2 bg-stone-50 text-stone-400 hover:text-[#4a7c59] hover:bg-emerald-50 rounded-lg transition-all">
+            <h3 class="text-xl font-bold text-stone-800 dark:text-white">My Branches</h3>
+            <button onclick="openAddBranch()" class="p-2 bg-stone-50 dark:bg-white/5 text-stone-400 hover:text-[#4a7c59] hover:bg-emerald-50 rounded-lg transition-all">
                 <span class="material-symbols-outlined">add_circle</span>
             </button>
         </div>
@@ -300,13 +310,13 @@
         </div>
 
         <!-- Add Branch Modal (Hidden) -->
-        <div id="add-branch-form" class="hidden mt-4 p-4 bg-stone-50 rounded-2xl space-y-3 animate-in fade-in slide-in-from-bottom-2">
+        <div id="add-branch-form" class="hidden mt-4 p-4 bg-stone-50 dark:bg-white/5 rounded-2xl space-y-3 animate-in fade-in slide-in-from-bottom-2">
             <h4 class="text-xs font-black uppercase tracking-widest text-stone-400">Add New Location</h4>
-            <input id="branch-name" type="text" placeholder="Branch Name" class="w-full text-sm bg-white border-stone-100 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59]"/>
-            <input id="branch-address" type="text" placeholder="Address" class="w-full text-sm bg-white border-stone-100 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59]"/>
+            <input id="branch-name" type="text" placeholder="Branch Name" class="w-full text-sm bg-white dark:bg-[#1A1F35] border-stone-100 dark:border-white/10 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59] dark:text-white"/>
+            <input id="branch-address" type="text" placeholder="Address" class="w-full text-sm bg-white dark:bg-[#1A1F35] border-stone-100 dark:border-white/10 rounded-xl px-4 py-2.5 focus:border-[#4a7c59] focus:ring-[#4a7c59] dark:text-white"/>
             <div class="flex gap-2">
                 <button onclick="saveBranch()" class="flex-1 py-2.5 bg-[#4a7c59] text-white rounded-xl font-bold text-xs hover:bg-[#3d6549] transition-all">Save</button>
-                <button onclick="closeAddBranch()" class="px-4 py-2.5 bg-white text-stone-400 rounded-xl font-bold text-xs hover:bg-stone-100 transition-all">Cancel</button>
+                <button onclick="closeAddBranch()" class="px-4 py-2.5 bg-white dark:bg-white/10 text-stone-400 rounded-xl font-bold text-xs hover:bg-stone-100 dark:hover:bg-white/20 transition-all">Cancel</button>
             </div>
         </div>
     </div>
@@ -381,20 +391,20 @@ function renderBranches() {
 
         const active = todayCount > 0;
         const div = document.createElement('div');
-        div.className = 'flex items-center gap-3 p-3 bg-stone-50/50 hover:bg-stone-50 rounded-2xl transition-all border border-transparent hover:border-stone-100 group';
+        div.className = 'flex items-center gap-3 p-3 bg-stone-50/50 dark:bg-white/5 hover:bg-stone-50 dark:hover:bg-white/10 rounded-2xl transition-all border border-transparent hover:border-stone-100 dark:hover:border-white/10 group';
         div.innerHTML = `
-          <div class="w-12 h-12 rounded-xl bg-white border border-stone-100 flex items-center justify-center text-stone-400 group-hover:text-[#4a7c59] transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-white dark:bg-[#1A1F35] border border-stone-100 dark:border-white/10 flex items-center justify-center text-stone-400 group-hover:text-[#4a7c59] transition-colors">
             <span class="material-symbols-outlined text-xl">${b.icon || 'location_on'}</span>
           </div>
           <div class="flex-1 min-w-0">
-            <h4 class="font-bold text-sm text-stone-800 truncate">${b.name}</h4>
-            <p class="text-[10px] text-stone-400 font-medium truncate">${b.address}</p>
+            <h4 class="font-bold text-sm text-stone-800 dark:text-white truncate">${b.name}</h4>
+            <p class="text-[10px] text-stone-400 dark:text-stone-500 font-medium truncate">${b.address}</p>
           </div>
           <div class="flex flex-col items-end gap-1">
-            <span class="text-[10px] font-black ${active ? 'text-[#4a7c59]' : 'text-stone-300'}">${todayCount} meals</span>
-            <div class="w-2 h-2 rounded-full ${active ? 'bg-emerald-500 animate-pulse' : 'bg-stone-200'}"></div>
+            <span class="text-[10px] font-black ${active ? 'text-[#4a7c59]' : 'text-stone-300 dark:text-stone-600'}">${todayCount} meals</span>
+            <div class="w-2 h-2 rounded-full ${active ? 'bg-emerald-500 animate-pulse' : 'bg-stone-200 dark:bg-stone-700'}"></div>
           </div>
-          <button onclick="deleteBranch(${b.id}, event)" class="ml-2 p-1 text-stone-200 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
+          <button onclick="deleteBranch(${b.id}, event)" class="ml-2 p-1 text-stone-200 dark:text-stone-700 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100">
             <span class="material-symbols-outlined text-xs">delete</span>
           </button>
         `;
@@ -449,12 +459,12 @@ window.renderTrendChart = function() {
             const isToday = (range === 12 && i === now.getMonth()) || (range != 12 && i === range-1);
             const bar = document.createElement('div');
             bar.className = 'flex-1 group flex flex-col items-center justify-end h-full min-w-0';
-            const clr = isToday ? 'bg-[#4a7c59]' : (v > max*0.7 ? 'bg-emerald-200' : 'bg-stone-100');
+            const clr = isToday ? 'bg-[#4a7c59]' : (v > max*0.7 ? 'bg-emerald-200 dark:bg-emerald-500/30' : 'bg-stone-100 dark:bg-white/5');
             bar.innerHTML = `
                 <div class="${clr} w-full rounded-t-lg transition-all duration-700 hover:brightness-95 relative" style="height:${pct}%">
                     ${v > 0 ? `<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-stone-800 text-white text-[8px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">${v}</div>` : ''}
                 </div>
-                <span class="text-[8px] font-black mt-2 uppercase ${isToday ? 'text-[#4a7c59]' : 'text-stone-300'}">${labels[i]}</span>
+                <span class="text-[8px] font-black mt-2 uppercase ${isToday ? 'text-[#4a7c59]' : 'text-stone-300 dark:text-stone-600'}">${labels[i]}</span>
             `;
             chart.appendChild(bar);
         });
@@ -500,8 +510,8 @@ window.renderTrendChart = function() {
             li.className = 'flex items-center gap-3 group';
             li.innerHTML = `
                 <div class="w-1.5 h-1.5 rounded-full" style="background:${color}"></div>
-                <p class="text-[10px] font-black text-stone-500 uppercase flex-1 truncate">${cat}</p>
-                <p class="text-[10px] font-black text-stone-800">${Math.round((val/pTotal)*100)}%</p>
+                <p class="text-[10px] font-black text-stone-500 dark:text-stone-400 uppercase flex-1 truncate">${cat}</p>
+                <p class="text-[10px] font-black text-stone-800 dark:text-white">${Math.round((val/pTotal)*100)}%</p>
             `;
             legend.appendChild(li);
         });
@@ -599,12 +609,12 @@ function loadDashboardStats() {
             list.appendChild(h);
             expiredArr.forEach(e => {
                 const card = document.createElement('div');
-                card.className = 'p-4 rounded-2xl border border-rose-100 bg-rose-50/50 flex gap-3 mb-4';
+                card.className = 'p-4 rounded-2xl border border-rose-100 dark:border-rose-500/30 bg-rose-50/50 dark:bg-rose-500/10 flex gap-3 mb-4';
                 card.innerHTML = `
                     <span class="material-symbols-outlined text-rose-500">cancel</span>
                     <div>
-                        <h4 class="text-[10px] font-black uppercase text-rose-600">Expired Items</h4>
-                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                        <h4 class="text-[10px] font-black uppercase text-rose-600 dark:text-rose-400">Expired Items</h4>
+                        <p class="text-sm font-bold text-stone-800 dark:text-white">${e.foodType} \u00b7 ${e.qty} meals</p>
                     </div>
                 `;
                 list.appendChild(card);
@@ -619,12 +629,12 @@ function loadDashboardStats() {
             soonArr.forEach(e => {
                 const min = Math.round((new Date(e.expiry) - now) / 60000);
                 const card = document.createElement('div');
-                card.className = 'p-4 rounded-2xl border border-amber-100 bg-amber-50/50 flex gap-3 mb-4';
+                card.className = 'p-4 rounded-2xl border border-amber-100 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10 flex gap-3 mb-4';
                 card.innerHTML = `
                     <span class="material-symbols-outlined text-amber-500">timer</span>
                     <div>
-                        <h4 class="text-[10px] font-black uppercase text-amber-600">${min}m remaining</h4>
-                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                        <h4 class="text-[10px] font-black uppercase text-amber-600 dark:text-amber-400">${min}m remaining</h4>
+                        <p class="text-sm font-bold text-stone-800 dark:text-white">${e.foodType} \u00b7 ${e.qty} meals</p>
                     </div>
                 `;
                 list.appendChild(card);
@@ -640,12 +650,12 @@ function loadDashboardStats() {
                 const hr = Math.floor((new Date(e.expiry) - now) / 3600000);
                 const min = Math.round(((new Date(e.expiry) - now) % 3600000) / 60000);
                 const card = document.createElement('div');
-                card.className = 'p-4 rounded-2xl border border-blue-100 bg-blue-50/50 flex gap-3 mb-4';
+                card.className = 'p-4 rounded-2xl border border-blue-100 dark:border-blue-500/30 bg-blue-50/50 dark:bg-blue-500/10 flex gap-3 mb-4';
                 card.innerHTML = `
                     <span class="material-symbols-outlined text-blue-500">more_time</span>
                     <div>
-                        <h4 class="text-[10px] font-black uppercase text-blue-600">Expires in ${hr}h ${min}m</h4>
-                        <p class="text-sm font-bold text-stone-800">${e.foodType} \u00b7 ${e.qty} meals</p>
+                        <h4 class="text-[10px] font-black uppercase text-blue-600 dark:text-blue-400">Expires in ${hr}h ${min}m</h4>
+                        <p class="text-sm font-bold text-stone-800 dark:text-white">${e.foodType} \u00b7 ${e.qty} meals</p>
                     </div>
                 `;
                 list.appendChild(card);
@@ -681,7 +691,7 @@ function renderLivePickups() {
   // Show active first
   pickups.forEach(p => {
     const isAssigned = p.status === 'assigned';
-    const borderColor = p.status === 'unassigned' ? 'border-amber-300 bg-amber-50/50' : 'border-emerald-200 bg-emerald-50/30';
+    const borderColor = p.status === 'unassigned' ? 'border-amber-300 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-500/10' : 'border-emerald-200 dark:border-emerald-500/20 bg-emerald-50/30 dark:bg-emerald-500/5';
     const icon = p.status === 'unassigned' ? 'pending_actions' : 'local_shipping';
     const iconClr = p.status === 'unassigned' ? 'text-amber-500' : 'text-emerald-600';
     const statusLabel = p.status === 'unassigned' ? 'Awaiting Assignment' : `ETA ${p.volunteerETA || 'TBD'}`;
@@ -690,13 +700,13 @@ function renderLivePickups() {
     div.innerHTML = `
       <span class="material-symbols-outlined ${iconClr}" style="font-variation-settings:'FILL' 1">${icon}</span>
       <div class="flex-1 min-w-0">
-        <h4 class="text-[10px] font-black uppercase ${p.status === 'unassigned' ? 'text-amber-600' : 'text-emerald-700'}">${statusLabel}</h4>
-        <p class="text-sm font-bold text-stone-800 truncate">${p.qty} × ${p.foodType}</p>
-        ${isAssigned ? `<p class="text-xs text-stone-500 truncate">${p.volunteerName} → ${p.locationName} (${p.accessPoint})</p>` : `<p class="text-xs text-stone-400">Not assigned yet</p>`}
+        <h4 class="text-[10px] font-black uppercase ${p.status === 'unassigned' ? 'text-amber-600' : 'text-emerald-700 dark:text-emerald-400'}">${statusLabel}</h4>
+        <p class="text-sm font-bold text-stone-800 dark:text-white truncate">${p.qty} × ${p.foodType}</p>
+        ${isAssigned ? `<p class="text-xs text-stone-500 dark:text-stone-400 truncate">${p.volunteerName} → ${p.locationName} (${p.accessPoint})</p>` : `<p class="text-xs text-stone-400 dark:text-stone-600">Not assigned yet</p>`}
       </div>
-      ${isAssigned ? `<button onclick="dashRescue('${p.id}')" class="shrink-0 p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg transition" title="Mark Rescued">
+      ${isAssigned ? `<button onclick="dashRescue('${p.id}')" class="shrink-0 p-1.5 bg-emerald-50 dark:bg-emerald-500/20 hover:bg-emerald-100 dark:hover:bg-emerald-500/30 text-emerald-700 dark:text-emerald-400 rounded-lg transition" title="Mark Rescued">
         <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">check_circle</span>
-      </button>` : `<a href="Restaurant_Locations_Management.html" class="shrink-0 text-[10px] font-black text-amber-600 bg-amber-100 px-2 py-1 rounded-lg hover:bg-amber-200 transition">ASSIGN</a>`}
+      </button>` : `<a href="Restaurant_Locations_Management.html" class="shrink-0 text-[10px] font-black text-amber-600 bg-amber-100 dark:bg-amber-500/20 px-2 py-1 rounded-lg hover:bg-amber-200 transition">ASSIGN</a>`}
     `;
     list.appendChild(div);
   });
@@ -704,13 +714,13 @@ function renderLivePickups() {
   // Show recent rescued
   rescued.forEach(p => {
     const div = document.createElement('div');
-    div.className = 'p-4 rounded-2xl border border-stone-100 bg-stone-50/30 flex gap-3 items-center opacity-70';
+    div.className = 'p-4 rounded-2xl border border-stone-100 dark:border-white/5 bg-stone-50/30 dark:bg-white/5 flex gap-3 items-center opacity-70';
     div.innerHTML = `
       <span class="material-symbols-outlined text-emerald-500" style="font-variation-settings:'FILL' 1">check_circle</span>
       <div class="flex-1 min-w-0">
-        <p class="text-xs font-bold text-emerald-700 uppercase">Rescued</p>
-        <p class="text-sm font-bold text-stone-700 truncate">${p.qty} × ${p.foodType}</p>
-        <p class="text-xs text-stone-400 truncate">${p.volunteerName || 'Volunteer'} → ${p.ngo || 'NGO'}</p>
+        <p class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase">Rescued</p>
+        <p class="text-sm font-bold text-stone-700 dark:text-stone-300 truncate">${p.qty} × ${p.foodType}</p>
+        <p class="text-xs text-stone-400 dark:text-stone-600 truncate">${p.volunteerName || 'Volunteer'} → ${p.ngo || 'NGO'}</p>
       </div>
       <span class="text-[9px] font-black text-stone-400">✓</span>
     `;
@@ -756,8 +766,8 @@ function initMapAnimation() {
         g.innerHTML = `
             <circle r="6" fill="white" stroke="${v.color}" stroke-width="2" />
             <circle r="3" fill="${v.color}" />
-            <rect x="-25" y="-22" width="50" height="12" rx="4" fill="white" fill-opacity="0.9" stroke="#f1f5f9" stroke-width="0.5" />
-            <text y="-13" text-anchor="middle" font-size="7" font-weight="900" fill="#334155" class="uppercase">${v.name}</text>
+            <rect x="-25" y="-22" width="50" height="12" rx="4" fill="white" fill-opacity="0.9" stroke="#f1f5f9" stroke-width="0.5" class="dark:fill-slate-900 dark:stroke-slate-800" />
+            <text y="-13" text-anchor="middle" font-size="7" font-weight="900" fill="#334155" class="uppercase dark:fill-slate-300">${v.name}</text>
         `;
         overlay.appendChild(g);
     });
@@ -789,16 +799,33 @@ function initMapAnimation() {
 
 /* ─── INITIALIZATION ─── */
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme
-    const btn = document.getElementById('theme-toggle');
-    btn.addEventListener('click', () => {
-        const html = document.documentElement;
-        html.classList.toggle('dark');
-        html.classList.toggle('light');
-        document.getElementById('theme-icon').textContent = html.classList.contains('dark') ? 'light_mode' : 'dark_mode';
-        if (html.classList.contains('dark')) html.style.backgroundColor = '#121629';
-        else html.style.backgroundColor = '#faf6f0';
-    });
+    // Theme Engine Sync
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    const syncThemeUI = () => {
+        const isDark = htmlElement.classList.contains('dark');
+        themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        if (isDark) {
+            htmlElement.style.backgroundColor = '#0a0c16';
+            localStorage.setItem('annaSetuTheme', 'dark');
+        } else {
+            htmlElement.style.backgroundColor = '#faf6f0';
+            localStorage.setItem('annaSetuTheme', 'light');
+        }
+    };
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            htmlElement.classList.toggle('light');
+            syncThemeUI();
+        });
+    }
+
+    // Run initial sync
+    syncThemeUI();
 
     // Greeting
     const h = new Date().getHours();

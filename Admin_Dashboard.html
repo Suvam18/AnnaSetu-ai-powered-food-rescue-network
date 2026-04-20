@@ -86,6 +86,86 @@
         .map-gradient {
             background: linear-gradient(180deg, rgba(250,246,240,0) 0%, rgba(250,246,240,0.8) 100%);
         }
+
+        /* ── Team Section ── */
+        .member-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .member-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(74,124,89,0.15);
+        }
+        .access-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 10px; border-radius: 999px; text-transform: uppercase; }
+        .access-admin   { background: #fef3c7; color: #92400e; }
+        .access-manager { background: #dbeafe; color: #1e40af; }
+        .access-editor  { background: #d1fae5; color: #065f46; }
+        .access-viewer  { background: #f3f4f6; color: #374151; }
+
+        /* ── Modal ── */
+        #member-modal-overlay {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #member-modal-overlay.open {
+            opacity: 1; pointer-events: all;
+        }
+        #member-modal {
+            background: #fff;
+            border-radius: 1.5rem;
+            width: 100%; max-width: 520px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+            position: relative;
+        }
+        #member-modal-overlay.open #member-modal {
+            transform: translateY(0) scale(1);
+        }
+        .dark #member-modal {
+            background: #1A1F35;
+            color: #e2e8f0;
+        }
+        .form-field {
+            display: flex; flex-direction: column; gap: 5px;
+        }
+        .form-field label {
+            font-size: 12px; font-weight: 700; color: #4a4e4a; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .dark .form-field label { color: #94a3b8; }
+        .form-field input, .form-field select {
+            padding: 10px 14px;
+            border: 1.5px solid #c4c8bc;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Nunito Sans', sans-serif;
+            background: #faf6f0;
+            color: #2e3230;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .dark .form-field input, .dark .form-field select {
+            background: #0B0F19;
+            border-color: rgba(255,255,255,0.1);
+            color: #e2e8f0;
+        }
+        .form-field input:focus, .form-field select:focus {
+            border-color: #4a7c59;
+        }
+        .avatar-initials {
+            width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 16px; flex-shrink: 0;
+        }
+        @keyframes cardIn {
+            from { opacity:0; transform: translateY(16px) scale(0.97); }
+            to   { opacity:1; transform: translateY(0) scale(1); }
+        }
+        .card-animate { animation: cardIn 0.4s cubic-bezier(0.34,1.2,0.64,1) both; }
     </style>
 </head>
 <body class=\"bg-background dark:bg-[#0B0F19] text-on-surface dark:text-slate-200 antialiased">
@@ -324,7 +404,149 @@
                     </button>
 </div>
 </div>
+
+        <!-- ═══════════════════════════════════════
+             TEAM MANAGEMENT SECTION
+        ═══════════════════════════════════════ -->
+        <section class="mt-12 mb-8">
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-on-surface dark:text-slate-100">Team Management</h2>
+                    <p class="text-secondary dark:text-slate-400 text-sm mt-1">Manage team roles, permissions and members of AnnaSetu.</p>
+                </div>
+                <button
+                    id="open-add-member-btn"
+                    class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-full text-sm font-bold shadow-md hover:shadow-lg hover:bg-emerald-700 active:scale-95 transition-all"
+                >
+                    <span class="material-symbols-outlined text-base" style="font-size:18px">person_add</span>
+                    Add New Member
+                </button>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8" id="team-stats">
+                <div class="bg-surface dark:bg-[#1A1F35] border border-outline-variant/30 dark:border-white/10 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-on-surface dark:text-slate-100" id="stat-total">2</div>
+                    <div class="text-xs text-secondary dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">Total Members</div>
+                </div>
+                <div class="bg-surface dark:bg-[#1A1F35] border border-outline-variant/30 dark:border-white/10 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-emerald-600" id="stat-active">2</div>
+                    <div class="text-xs text-secondary dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">Active</div>
+                </div>
+                <div class="bg-surface dark:bg-[#1A1F35] border border-outline-variant/30 dark:border-white/10 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-amber-500" id="stat-admin">1</div>
+                    <div class="text-xs text-secondary dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">Admins</div>
+                </div>
+                <div class="bg-surface dark:bg-[#1A1F35] border border-outline-variant/30 dark:border-white/10 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-blue-500" id="stat-managers">1</div>
+                    <div class="text-xs text-secondary dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">Managers</div>
+                </div>
+            </div>
+
+            <!-- Member Cards Grid -->
+            <div id="members-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="team-empty-state" class="hidden text-center py-16">
+                <span class="material-symbols-outlined text-6xl text-outline/40" style="font-size:72px">group_off</span>
+                <p class="text-secondary dark:text-slate-400 mt-3 font-semibold">No additional members yet. Click "Add New Member" to get started.</p>
+            </div>
+        </section>
 </main>
+</div>
+
+<!-- ════════════════════════════════════════════
+     ADD NEW MEMBER MODAL
+════════════════════════════════════════════ -->
+<div id="member-modal-overlay">
+    <div id="member-modal">
+        <!-- Close btn -->
+        <button id="close-modal-btn" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container dark:bg-[#0B0F19] flex items-center justify-center hover:bg-error-container transition-colors group">
+            <span class="material-symbols-outlined text-secondary group-hover:text-error" style="font-size:20px">close</span>
+        </button>
+
+        <!-- Modal Header -->
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-11 h-11 rounded-xl bg-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary" style="font-size:22px">person_add</span>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-on-surface dark:text-slate-100">Add New Team Member</h3>
+                <p class="text-xs text-secondary dark:text-slate-400">Fill in the details below and save.</p>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="add-member-form" novalidate class="flex flex-col gap-4">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-field">
+                    <label for="m-name">Full Name *</label>
+                    <input id="m-name" type="text" placeholder="e.g. Priya Sharma" required />
+                </div>
+                <div class="form-field">
+                    <label for="m-designation">Designation *</label>
+                    <input id="m-designation" type="text" placeholder="e.g. Field Coordinator" required />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-field">
+                    <label for="m-email">Email Address *</label>
+                    <input id="m-email" type="email" placeholder="priya@annasetu.org" required />
+                </div>
+                <div class="form-field">
+                    <label for="m-phone">Phone Number</label>
+                    <input id="m-phone" type="tel" placeholder="+91 98765 43210" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-field">
+                    <label for="m-access">Access Level *</label>
+                    <select id="m-access" required>
+                        <option value="" disabled selected>Select access…</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Viewer">Viewer</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="m-status">Status</label>
+                    <select id="m-status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Department -->
+            <div class="form-field">
+                <label for="m-dept">Department</label>
+                <input id="m-dept" type="text" placeholder="e.g. Operations, Outreach, Tech…" />
+            </div>
+
+            <!-- Error msg -->
+            <p id="form-error" class="text-error text-xs font-semibold hidden">⚠ Please fill in all required fields correctly.</p>
+
+            <!-- Actions -->
+            <div class="flex gap-3 mt-2">
+                <button type="button" id="cancel-member-btn"
+                    class="flex-1 py-2.5 border border-outline-variant/60 rounded-xl text-sm font-bold text-secondary dark:text-slate-400 hover:bg-surface-container dark:hover:bg-[#0B0F19] transition-colors">
+                    Cancel
+                </button>
+                <button type="submit"
+                    class="flex-1 py-2.5 bg-primary text-on-primary rounded-xl text-sm font-bold shadow hover:bg-emerald-700 active:scale-95 transition-all">
+                    Save Member
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 <!-- Floating Action Button (Active only on Dashboard) -->
 <button class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center group hover:scale-110 active:scale-90 transition-all z-[60]">
@@ -333,24 +555,228 @@
 </button>
 
 <script>
+    /* ─── Theme Toggle ─── */
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const htmlElement = document.documentElement;
 
     themeToggleBtn?.addEventListener('click', () => {
         htmlElement.classList.toggle('dark');
-        if (htmlElement.classList.contains('dark')) {
-            themeIcon.textContent = 'dark_mode';
-        } else {
-            themeIcon.textContent = 'light_mode';
+        themeIcon.textContent = htmlElement.classList.contains('dark') ? 'dark_mode' : 'light_mode';
+    });
+    themeIcon.textContent = htmlElement.classList.contains('dark') ? 'dark_mode' : 'light_mode';
+
+
+    /* ════════════════════════════════════════
+       TEAM MANAGEMENT
+    ════════════════════════════════════════ */
+
+    // ── Default members (always present) ────────────────────────────────
+    const DEFAULT_MEMBERS = [
+        {
+            id: '__admin_owner__',
+            name: 'Arjun Mehra',
+            designation: 'Founder & CEO',
+            email: 'arjun@annasetu.org',
+            phone: '+91 98100 00001',
+            access: 'Admin',
+            status: 'Active',
+            dept: 'Leadership',
+            isDefault: true
+        },
+        {
+            id: '__operations_manager__',
+            name: 'Sneha Kapoor',
+            designation: 'Operations Manager',
+            email: 'sneha@annasetu.org',
+            phone: '+91 98100 00002',
+            access: 'Manager',
+            status: 'Active',
+            dept: 'Operations',
+            isDefault: true
         }
+    ];
+
+    // ── localStorage helpers ─────────────────────────────────────────────
+    const LS_KEY = 'annasetu_team_members';
+
+    function loadMembers() {
+        const saved = localStorage.getItem(LS_KEY);
+        return saved ? JSON.parse(saved) : [];
+    }
+    function saveMembers(arr) {
+        localStorage.setItem(LS_KEY, JSON.stringify(arr));
+    }
+    function getAllMembers() {
+        return [...DEFAULT_MEMBERS, ...loadMembers()];
+    }
+
+    // ── Avatar helpers ───────────────────────────────────────────────────
+    const AVATAR_PALETTES = [
+        { bg: '#c8e8d0', text: '#2a6038' },
+        { bg: '#dbeafe', text: '#1e40af' },
+        { bg: '#fef3c7', text: '#92400e' },
+        { bg: '#f3e8ff', text: '#6b21a8' },
+        { bg: '#ffe4e6', text: '#9f1239' },
+        { bg: '#d1fae5', text: '#065f46' },
+    ];
+    function getPalette(name) {
+        let hash = 0;
+        for (let c of name) hash = (hash * 31 + c.charCodeAt(0)) & 0xffff;
+        return AVATAR_PALETTES[hash % AVATAR_PALETTES.length];
+    }
+    function initials(name) {
+        return name.trim().split(/\s+/).map(w => w[0]).slice(0,2).join('').toUpperCase();
+    }
+
+    // ── Badge colours ────────────────────────────────────────────────────
+    function accessBadgeClass(access) {
+        const map = { Admin: 'access-admin', Manager: 'access-manager', Editor: 'access-editor', Viewer: 'access-viewer' };
+        return map[access] || 'access-viewer';
+    }
+    function statusColor(status) {
+        return { Active: '#16a34a', Inactive: '#94a3b8', Pending: '#f59e0b' }[status] || '#94a3b8';
+    }
+
+    // ── Render a single card ─────────────────────────────────────────────
+    function buildCard(member, animate) {
+        const pal = getPalette(member.name);
+        const ini = initials(member.name);
+        const badgeCls = accessBadgeClass(member.access);
+        const statusClr = statusColor(member.status);
+        const lockBtn = member.isDefault
+            ? `<span class="material-symbols-outlined text-outline/50" title="Default member – cannot be removed" style="font-size:18px">lock</span>`
+            : `<button onclick="removeMember('${member.id}')" class="w-7 h-7 rounded-full hover:bg-red-100 flex items-center justify-center transition-colors group" title="Remove member">
+                   <span class="material-symbols-outlined text-outline/60 group-hover:text-red-500" style="font-size:18px">person_remove</span>
+               </button>`;
+
+        const card = document.createElement('div');
+        card.className = 'member-card bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col gap-4' + (animate ? ' card-animate' : '');
+        card.dataset.memberId = member.id;
+
+        card.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="avatar-initials flex-shrink-0" style="background:${pal.bg};color:${pal.text}">${ini}</div>
+                    <div class="min-w-0">
+                        <h4 class="font-bold text-sm text-gray-800 truncate">${member.name}</h4>
+                        <p class="text-xs text-gray-500 truncate">${member.designation}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 flex-shrink-0">
+                    <span class="access-badge ${badgeCls}">${member.access}</span>
+                    ${lockBtn}
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-4 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-gray-400" style="font-size:15px">mail</span>
+                    <span class="text-xs text-gray-500 truncate">${member.email}</span>
+                </div>
+                ${member.phone ? `<div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-gray-400" style="font-size:15px">call</span>
+                    <span class="text-xs text-gray-500">${member.phone}</span>
+                </div>` : ''}
+                ${member.dept ? `<div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-gray-400" style="font-size:15px">apartment</span>
+                    <span class="text-xs text-gray-500">${member.dept}</span>
+                </div>` : ''}
+            </div>
+
+            <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full" style="background:${statusClr}"></span>
+                    <span class="text-xs font-semibold" style="color:${statusClr}">${member.status}</span>
+                </div>
+                ${member.isDefault ? '<span class="text-[10px] font-bold text-gray-300 uppercase tracking-wider">Default Account</span>' : ''}
+            </div>`;
+        return card;
+    }
+
+    // ── Render all cards ─────────────────────────────────────────────────
+    function renderGrid() {
+        const grid = document.getElementById('members-grid');
+        grid.innerHTML = '';
+        const all = getAllMembers();
+        all.forEach(m => grid.appendChild(buildCard(m, false)));
+        updateStats(all);
+    }
+
+    // ── Update stats bar ─────────────────────────────────────────────────
+    function updateStats(members) {
+        document.getElementById('stat-total').textContent    = members.length;
+        document.getElementById('stat-active').textContent   = members.filter(m => m.status === 'Active').length;
+        document.getElementById('stat-admin').textContent    = members.filter(m => m.access === 'Admin').length;
+        document.getElementById('stat-managers').textContent = members.filter(m => m.access === 'Manager').length;
+    }
+
+    // ── Remove member ────────────────────────────────────────────────────
+    function removeMember(id) {
+        if (!confirm('Remove this member from the team?')) return;
+        const members = loadMembers().filter(m => m.id !== id);
+        saveMembers(members);
+        renderGrid();
+    }
+    window.removeMember = removeMember;
+
+    // ── Modal open / close ───────────────────────────────────────────────
+    const overlay = document.getElementById('member-modal-overlay');
+    const formErr = document.getElementById('form-error');
+
+    function openModal() {
+        overlay.classList.add('open');
+        document.getElementById('m-name').focus();
+    }
+    function closeModal() {
+        overlay.classList.remove('open');
+        document.getElementById('add-member-form').reset();
+        formErr.classList.add('hidden');
+    }
+
+    document.getElementById('open-add-member-btn').addEventListener('click', openModal);
+    document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+    document.getElementById('cancel-member-btn').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+    // ── Form submit ──────────────────────────────────────────────────────
+    document.getElementById('add-member-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name   = document.getElementById('m-name').value.trim();
+        const desig  = document.getElementById('m-designation').value.trim();
+        const email  = document.getElementById('m-email').value.trim();
+        const phone  = document.getElementById('m-phone').value.trim();
+        const access = document.getElementById('m-access').value;
+        const status = document.getElementById('m-status').value;
+        const dept   = document.getElementById('m-dept').value.trim();
+
+        if (!name || !desig || !email || !access) {
+            formErr.classList.remove('hidden');
+            return;
+        }
+        formErr.classList.add('hidden');
+
+        const newMember = {
+            id: 'member_' + Date.now(),
+            name, designation: desig, email, phone, access, status, dept,
+            isDefault: false
+        };
+
+        const members = loadMembers();
+        members.push(newMember);
+        saveMembers(members);
+
+        // Append new card with animation
+        const grid = document.getElementById('members-grid');
+        const card = buildCard(newMember, true);
+        grid.appendChild(card);
+        updateStats(getAllMembers());
+
+        closeModal();
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
     });
 
-    // Run once on load to ensure icon matches
-    if (htmlElement.classList.contains('dark')) {
-        themeIcon.textContent = 'dark_mode';
-    } else {
-        themeIcon.textContent = 'light_mode';
-    }
+    // ── Initial render ───────────────────────────────────────────────────
+    renderGrid();
 </script>
 </body></html>

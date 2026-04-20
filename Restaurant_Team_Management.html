@@ -3,10 +3,21 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Terra Portal - Team Management</title>
+<title>AnnaSetu Portal - Team Management</title>
+<script>
+    (function() {
+      const theme = localStorage.getItem('annaSetuTheme') || 'light';
+      if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.backgroundColor = '#0a0c16';
+      } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.style.backgroundColor = '#faf6f0';
+      }
+    })();
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;700;900&amp;family=Nunito+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
     tailwind.config = {
@@ -15,6 +26,8 @@
         extend: {
           "colors": {
                   "secondary": "#6b6358",
+                  "dark-bg": "#0a0c16",
+                  "dark-surface": "#161b33",
                   "error-container": "#ffdad8",
                   "on-primary-container": "#d8f0de",
                   "primary-fixed-dim": "#8ecf9e",
@@ -83,6 +96,61 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
+
+    /* ── Member Modal ── */
+    #modal-add-member {
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      background: rgba(10,12,22,0.6); backdrop-blur: 8px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; opacity:0; pointer-events:none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #modal-add-member.open { opacity:1; pointer-events:auto; }
+    #modal-inner {
+      background: #ffffff; width:90%; max-width:600px;
+      border-radius: 2rem; overflow: hidden; transform: translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; max-height: 90vh;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .dark #modal-inner {
+      background: #161b33;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    #modal-add-member.open #modal-inner { transform: translateY(0); }
+
+    .form-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem; }
+    .dark .form-label { color: #9ca3af; }
+    
+    .form-input {
+      width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #e5e7eb;
+      background: #f9fafb; font-weight: 600; font-size: 0.875rem; transition: all 0.2s;
+    }
+    .dark .form-input {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #f3f4f6;
+    }
+    .form-input:focus { outline: none; border-color: #4a7c59; ring: 2px; ring-color: rgba(74,124,89,0.2); }
+    .dark .form-input:focus { border-color: #10b981; }
+
+    /* Matrix Styles */
+    .matrix-table th { @apply text-[10px] font-black uppercase tracking-widest text-stone-400 dark:text-stone-500 py-4 px-6 text-left border-b border-stone-100 dark:border-white/5; }
+    .matrix-table td { @apply border-b border-stone-50 dark:border-white/5; }
+
+    /* Role badges on cards */
+    .rbadge { font-size: 10px; font-weight: 900; letter-spacing: 0.1em;
+              padding: 4px 12px; border-radius: 999px; text-transform: uppercase; }
+    .rbadge-admin   { background:#fef3c7; color:#92400e; }
+    .dark .rbadge-admin { background:#78350f33; color:#fcd34d; border: 1px solid #78350f55; }
+    .rbadge-staff   { background:#dcfce7; color:#166534; }
+    .dark .rbadge-staff { background:#065f4633; color:#34d399; border: 1px solid #065f4655; }
+    .rbadge-manager { background:#e0f2fe; color:#075985; }
+    .dark .rbadge-manager { background:#0c4a6e33; color:#7dd3fc; border: 1px solid #0c4a6e55; }
+
+    @keyframes cardIn {
+      from { opacity:0; transform: translateY(14px) scale(0.97); }
+      to   { opacity:1; transform: translateY(0)   scale(1);    }
+    }
+    .card-in { animation: cardIn 0.35s cubic-bezier(0.34,1.2,0.64,1) both; }
   </style>
 </head>
 <body class="bg-background text-on-surface" style=" padding-top: 7rem;">
@@ -110,66 +178,73 @@
 </header>
 </div>
 <!-- Main Canvas -->
-<main class="pl-64 pt-4 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12 max-w-6xl md:py-14">
-<div class="max-w-7xl mx-auto p-8">
+<main class="pt-4 max-w-7xl mx-auto w-full px-6 py-10 md:px-10 md:py-12">
 <!-- Top Row: Welcome & CTA -->
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
 <div>
-<h1 class="headline-font text-3xl font-black text-on-surface mb-2">Network Team</h1>
-<p class="text-on-surface-variant max-w-md leading-relaxed">
-            Manage your kitchen staff and coordination team. Set permissions for surplus logging and confirmation.
+<h1 class="headline-font text-4xl font-black text-on-surface dark:text-white mb-3">Network Team</h1>
+<p class="text-secondary dark:text-stone-400 max-w-lg leading-relaxed text-lg">
+            Manage your kitchen staff and coordination team. Set hierarchical permissions for surplus logging and confirmation.
           </p>
 </div>
-<button onclick="openAddMemberModal()" class="bg-primary text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-95">
-<span class="material-symbols-outlined">person_add</span>
+<button onclick="openAddMemberModal()" class="bg-primary dark:bg-emerald-600 text-white font-black py-4 px-8 rounded-2xl flex items-center gap-3 shadow-lg shadow-primary/20 dark:shadow-emerald-500/20 hover:scale-105 active:scale-95 transition-all group">
+<span class="material-symbols-outlined group-hover:rotate-90 transition-transform duration-300">person_add</span>
           Add New Member
         </button>
 </div>
 <!-- Main Layout Grid -->
 <div class="grid grid-cols-12 gap-8">
 <!-- Team Members Grid (Bento Style) -->
-<div class="col-span-12 lg:col-span-8 space-y-8">
+<div class="col-span-12 lg:col-span-8 space-y-12">
 <div id="team-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <!-- Dynamic Profile Cards injected here -->
 </div>
 <!-- Permissions Breakdown -->
-<div class="bg-surface rounded-xl p-8 border border-outline-variant/40 shadow-sm">
-<h2 class="headline-font text-xl font-bold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">key</span>
+<div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-8 border border-stone-200/50 dark:border-white/10 shadow-sm relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 dark:bg-white/5 rounded-full blur-3xl"></div>
+<h2 class="headline-font text-2xl font-black mb-8 flex items-center gap-3 dark:text-white">
+<span class="material-symbols-outlined text-primary dark:text-emerald-400 text-3xl p-2 bg-primary/10 dark:bg-white/5 rounded-xl">key</span>
               Access Matrix
             </h2>
-<div class="overflow-hidden rounded-lg">
-<table class="w-full text-left">
-<thead class="bg-surface-container-high">
+<div class="overflow-x-auto rounded-xl border border-stone-100 dark:border-white/5">
+<table class="w-full text-left matrix-table">
+<thead>
 <tr>
-<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Role</th>
-<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Log Surplus</th>
-<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Confirm Pickup</th>
-<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Invite Staff</th>
-<th class="px-4 py-3 text-sm font-bold text-on-surface-variant">Analytics</th>
+<th class="px-6 py-4">Action / Feature</th>
+<th class="px-6 py-4">Admin</th>
+<th class="px-6 py-4">Manager</th>
+<th class="px-6 py-4">Staff</th>
+<th class="px-6 py-4">Volunteer</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-outline-variant/20">
-<tr>
-<td class="px-4 py-4 text-sm font-bold">👑 Admin (owner)</td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<tbody class="divide-y divide-stone-50 dark:divide-white/5">
+<tr class="hover:bg-primary/5 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-5 text-sm font-bold dark:text-stone-300">🏢 Manage Locations</td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
 </tr>
-<tr>
-<td class="px-4 py-4 text-sm font-bold">📊 Manager (analytics)</td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<tr class="hover:bg-primary/5 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-5 text-sm font-bold dark:text-stone-300">👥 Team Oversight</td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
 </tr>
-<tr>
-<td class="px-4 py-4 text-sm font-bold">👨‍🍳 Staff (add surplus)</td>
-<td class="px-4 py-4"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
-<td class="px-4 py-4 text-stone-300"><span class="material-symbols-outlined text-lg">cancel</span></td>
+<tr class="hover:bg-primary/5 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-5 text-sm font-bold dark:text-stone-300">📈 Analytics Dash</td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</td>
+</tr>
+<tr class="hover:bg-primary/5 dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-5 text-sm font-bold dark:text-stone-300">👨‍🍳 Staff (add surplus)</td>
+<td class="px-6 py-5"><span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
+<td class="px-6 py-5 text-stone-300 dark:text-stone-700 text-opacity-40"><span class="material-symbols-outlined">cancel</span></td>
 </tr>
 </tbody>
 </table>
@@ -179,15 +254,15 @@
 <!-- Sidebar Activity Feed & Quick Stats -->
 <div class="col-span-12 lg:col-span-4 space-y-8">
 <!-- Recent Activity Card -->
-<div class="bg-surface-container rounded-xl p-6 shadow-sm border border-outline-variant/20 h-fit">
-<h2 class="headline-font text-xl font-bold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-tertiary">history</span>
+<div class="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-8 shadow-sm border border-stone-200/50 dark:border-white/10 h-fit">
+<h2 class="headline-font text-2xl font-black mb-8 flex items-center gap-3 dark:text-white">
+<span class="material-symbols-outlined text-tertiary dark:text-amber-400 text-3xl p-2 bg-amber-50 dark:bg-white/5 rounded-xl">history</span>
               Team Activity
             </h2>
-<div id="activity-feed" class="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
+<div id="activity-feed" class="space-y-8 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-stone-200 dark:before:bg-white/10">
 <!-- Dynamic Feed Items Injected Here -->
 </div>
-<button class="w-full mt-8 py-2 text-primary font-bold text-sm hover:bg-primary/5 rounded-lg transition-colors">
+<button class="w-full mt-10 py-3 text-primary dark:text-emerald-400 font-black text-sm hover:bg-primary/5 dark:hover:bg-white/5 rounded-xl transition-all border border-transparent hover:border-primary/20 dark:hover:border-emerald-500/20">
               View Full Audit Log
             </button>
 </div>
@@ -228,84 +303,129 @@
 </div>
 </main>
 
-<!-- Add New Member Modal -->
-<div id="modal-add-member" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-  <div class="bg-surface w-full max-w-lg rounded-2xl shadow-xl overflow-hidden flex flex-col">
+<!-- ══ Add New Member Modal ══ -->
+<div id="modal-add-member">
+  <div id="modal-inner">
     <!-- Header -->
-    <div class="px-6 py-4 border-b border-outline-variant/30 flex justify-between items-center bg-white dark:bg-[#121629]">
-      <h2 class="headline-font text-xl font-bold flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary">person_add</span> Add New Member
-      </h2>
-      <button onclick="closeAddMemberModal()" class="w-8 h-8 rounded-full bg-stone-100 dark:bg-white/10 flex items-center justify-center hover:bg-stone-200 transition-colors">
-        <span class="material-symbols-outlined text-stone-500 text-sm">close</span>
+    <div class="px-6 py-5 border-b border-gray-100 dark:border-white/5 flex justify-between items-center flex-shrink-0 bg-white dark:bg-[#1A1F35]">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-2xl bg-green-50 dark:bg-emerald-500/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary dark:text-emerald-400" style="font-size:24px">person_add</span>
+        </div>
+        <div>
+          <h2 id="modal-title" class="headline-font text-xl font-black text-gray-900 dark:text-white">Add New Member</h2>
+          <p id="modal-subtitle" class="text-xs text-gray-400 dark:text-stone-500 font-medium">Fill in details and save to the team.</p>
+        </div>
+      </div>
+      <button onclick="closeAddMemberModal()" class="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center hover:bg-red-50 dark:hover:bg-red-500/20 transition-colors group">
+        <span class="material-symbols-outlined text-gray-400 group-hover:text-red-500" style="font-size:20px">close</span>
       </button>
     </div>
+
     <!-- Body -->
-    <div class="p-6 bg-stone-50/50 dark:bg-[#1A1F35] overflow-y-auto max-h-[70vh]">
-      <form id="form-add-member" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Full Name <span class="text-error">*</span></label>
-          <input id="mem-name" type="text" required class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
-        </div>
-        <div>
-           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Email Address</label>
-           <input id="mem-email" type="email" required class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
-        </div>
+    <div class="p-6 overflow-y-auto flex-1">
+      <form id="form-add-member" class="space-y-4" novalidate>
+        <input type="hidden" id="mem-index" value="-1" />
+
+        <!-- Row 1: Name + Designation -->
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Designation</label>
-            <input id="mem-desig" type="text" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+            <label class="form-label">Full Name <span class="text-red-500">*</span></label>
+            <input id="mem-name" type="text" placeholder="e.g. Chef Priya" class="form-input" required />
           </div>
           <div>
-             <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Since Year</label>
-             <input id="mem-year" type="number" min="2000" max="2026" value="2024" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40"/>
+            <label class="form-label">Designation</label>
+            <input id="mem-desig" type="text" placeholder="e.g. Sous Chef" class="form-input" />
           </div>
         </div>
-        <div>
-           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Access Level (Role) <span class="text-error">*</span></label>
-           <select id="mem-role" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40">
-             <option value="Admin (owner)">Admin (owner)</option>
-             <option value="Manager (analytics)">Manager (analytics)</option>
-             <option value="Staff (add surplus)">Staff (add surplus)</option>
-           </select>
+
+        <!-- Row 2: Email + Phone -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="form-label">Email Address <span class="text-red-500">*</span></label>
+            <input id="mem-email" type="email" placeholder="chef@restaurant.org" class="form-input" required />
+          </div>
+          <div>
+            <label class="form-label">Phone Number</label>
+            <input id="mem-phone" type="tel" placeholder="+91 98765 43210" class="form-input" />
+          </div>
         </div>
-        <div>
-           <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-1.5 border-none">Shift Assignment</label>
-           <select id="mem-shift" class="w-full px-4 py-2 rounded-xl border border-stone-200 dark:border-white/10 bg-white dark:bg-[#121629] text-sm focus:ring-2 focus:ring-primary/40">
-             <option value="Morning Shift (6AM - 2PM)">Morning Shift (6AM - 2PM)</option>
-             <option value="Afternoon Shift (2PM - 10PM)">Afternoon Shift (2PM - 10PM)</option>
-             <option value="Night Shift (10PM - 6AM)">Night Shift (10PM - 6AM)</option>
-             <option value="Flexible / Full-Time">Flexible / Full-Time</option>
-           </select>
+
+        <!-- Row 3: Access Level + Status -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="form-label">Access Level <span class="text-red-500">*</span></label>
+            <select id="mem-role" class="form-input">
+              <option value="Admin (owner)">👑 Admin (owner)</option>
+              <option value="Manager (analytics)">📊 Manager (analytics)</option>
+              <option value="Staff (add surplus)" selected>👨‍🍳 Staff (add surplus)</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Status</label>
+            <select id="mem-status" class="form-input">
+              <option value="Active">🟢 Active</option>
+              <option value="Inactive">⚪ Inactive</option>
+              <option value="Pending">🟡 Pending</option>
+            </select>
+          </div>
         </div>
+
+        <!-- Row 4: Shift + Since Year -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="form-label">Shift Assignment</label>
+            <select id="mem-shift" class="form-input">
+              <option value="Morning Shift (6AM–2PM)">☀️ Morning (6AM–2PM)</option>
+              <option value="Afternoon Shift (2PM–10PM)">🌤 Afternoon (2PM–10PM)</option>
+              <option value="Night Shift (10PM–6AM)">🌙 Night (10PM–6AM)</option>
+              <option value="Flexible / Full-Time">⏱ Flexible / Full-Time</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Since Year</label>
+            <input id="mem-year" type="number" min="2000" max="2026" value="2024" class="form-input" />
+          </div>
+        </div>
+
+        <!-- Row 5: Department -->
+        <div>
+          <label class="form-label">Department</label>
+          <input id="mem-dept" type="text" placeholder="e.g. Kitchen, Operations, Outreach…" class="form-input" />
+        </div>
+
+        <p id="mem-form-err" class="text-red-500 text-xs font-semibold hidden">⚠ Please fill in all required fields.</p>
       </form>
     </div>
+
     <!-- Footer -->
-    <div class="px-6 py-4 bg-white dark:bg-[#121629] border-t border-outline-variant/30 flex justify-end gap-3 rounded-b-2xl">
-      <button onclick="closeAddMemberModal()" class="px-5 py-2 rounded-lg font-bold text-sm text-stone-500 hover:bg-stone-50 transition-colors">Cancel</button>
-      <button onclick="saveNewMember()" class="px-6 py-2 bg-primary text-white font-bold text-sm rounded-lg hover:shadow-lg transition-all flex items-center gap-2">
-        <span class="material-symbols-outlined text-sm">save</span> Add Member
+    <div class="px-6 py-4 border-t border-gray-100 flex justify-end gap-3 flex-shrink-0">
+      <button onclick="closeAddMemberModal()" class="px-5 py-2.5 rounded-xl font-bold text-sm text-gray-500 hover:bg-gray-50 border border-gray-200 transition-colors">Cancel</button>
+      <button id="btn-save-member" onclick="saveNewMember()" class="px-6 py-2.5 bg-primary text-white font-bold text-sm rounded-xl hover:shadow-lg hover:bg-green-700 active:scale-95 transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-size:17px">save</span> Save Member
       </button>
     </div>
-  </div>
+</div>
 </div>
 <!-- Mobile Navigation Bar (md:hidden as per requirement) -->
 <script>
     // -- Data Stores --
     const DEFAULT_TEAM = [
-      { name: 'Marco Rossi', desig: 'Executive Chef', email: 'm.rossi@terranetwork.org', role: 'Admin (owner)', shift: 'Flexible / Full-Time', year: '2020', lastActive: '2h ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsMrB8uVhAtvjyDQ5XoPDq5sxWPheXZyLfVHUMwmPrVmoCc7NjIDR1kOHCFPSSWNux4OUD9CBNAEfmonSzZbYoDecwgoHqk34YDPlxin6M92Yux_BDf1VQAZWTvADY_wy7NhEroFnYOhlKMp0Xo-yNnPM_0N4OxrxfF4bhaH-bkL7xPDTFjgTa0JumVpjULj-lwfwFz7wAiHhxKStzB1PyD3WU1Y4qv9e5okRZNi5rgynTzHDUh82Um7RXs1Nf00-bs6yfPWVyiF4' },
-      { name: 'Julian Chen', desig: 'Kitchen Staff', email: 'j.chen@terranetwork.org', role: 'Staff (add surplus)', shift: 'Morning Shift (6AM - 2PM)', year: '2023', lastActive: '15m ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLgRSeB3Zx4OFEV0nwE7tbTSpAMfi2QNh46Tz3g-Lf47_6BAqjA0HJrI-YJWZmVlIsnA0nMAH3H92f1KukNHK-Sw5ulRBHNO9eQG1AfMg591sFIt4u02hACGXC3UmTPDUlCOqNCv6YWRKZkB29X9LsqKuqjm2UxLG2U65gJpXmkG68HIlDPN9cqqyFyxglMwXOP2--fwwOU-sH76J8o4gHxHP0x4zdtHZKAgbyLHtuMSczlYNFIDWVhukZNJbz4W3Aqo57O5am60Y' },
-      { name: 'Sarah Miller', desig: 'Floor Manager', email: 's.miller@terranetwork.org', role: 'Manager (analytics)', shift: 'Afternoon Shift (2PM - 10PM)', year: '2022', lastActive: 'Yesterday', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE6qT1d6yKmVx1mQBrRo3PRhq0EOmhXSxwo21IvqpPCaL__DHBqv2BCa7QK0JVIb5-TErtexkxVUgcvAI6sEi4iYMGUjPzlGhGyskStcki8pIT6ARKkxeBAArZMN-XgJxSNdiWtPNdXLzYh-K3IP1bof9ZCw0FnIKPITEy2QKvZozmWksmUozCKuRD_dBIrQdV0g9uPqAA5a8G1pF6olLliBzs8hQ-21zC2berKvEI7q3BnH5UvaIbzGILG4EJ2ghfoVuDXbbTWOU' }
+      { name: 'Arjun Mehra', desig: 'Founder & Admin', email: 'arjun@annasetu.org', role: 'Admin (owner)', shift: 'Flexible / Full-Time', year: '2022', lastActive: '2h ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsMrB8uVhAtvjyDQ5XoPDq5sxWPheXZyLfVHUMwmPrVmoCc7NjIDR1kOHCFPSSWNux4OUD9CBNAEfmonSzZbYoDecwgoHqk34YDPlxin6M92Yux_BDf1VQAZWTvADY_wy7NhEroFnYOhlKMp0Xo-yNnPM_0N4OxrxfF4bhaH-bkL7xPDTFjgTa0JumVpjULj-lwfwFz7wAiHhxKStzB1PyD3WU1Y4qv9e5okRZNi5rgynTzHDUh82Um7RXs1Nf00-bs6yfPWVyiF4' },
+      { name: 'Sneha Kapoor', desig: 'Operations Manager', email: 'sneha@annasetu.org', role: 'Manager (analytics)', shift: 'Afternoon Shift (2PM - 10PM)', year: '2023', lastActive: '15m ago', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE6qT1d6yKmVx1mQBrRo3PRhq0EOmhXSxwo21IvqpPCaL__DHBqv2BCa7QK0JVIb5-TErtexkxVUgcvAI6sEi4iYMGUjPzlGhGyskStcki8pIT6ARKkxeBAArZMN-XgJxSNdiWtPNdXLzYh-K3IP1bof9ZCw0FnIKPITEy2QKvZozmWksmUozCKuRD_dBIrQdV0g9uPqAA5a8G1pF6olLliBzs8hQ-21zC2berKvEI7q3BnH5UvaIbzGILG4EJ2ghfoVuDXbbTWOU' }
     ];
 
     const DEFAULT_ACTIVITY = [
-      { text: '<span class="font-bold">Julian Chen</span> logged 12kg of surplus pastries.', icon: 'restaurant', color: 'bg-primary' },
-      { text: '<span class="font-bold">Marco Rossi</span> confirmed pickup by \\'FoodShare\\' driver.', icon: 'local_shipping', color: 'bg-tertiary' },
-      { text: '<span class="font-bold">Sarah Miller</span> updated kitchen staff permissions.', icon: 'person', color: 'bg-secondary' }
+      { text: '<span class="font-bold">Arjun Mehra</span> joined the network.', icon: 'person_add', color: 'bg-emerald-500' },
+      { text: '<span class="font-bold">Sneha Kapoor</span> updated permissions.', icon: 'verified_user', color: 'bg-[#6b6358]' }
     ];
 
-    let teamMembers = JSON.parse(localStorage.getItem('annaSetuTeam')) || DEFAULT_TEAM;
-    let activityLog = JSON.parse(localStorage.getItem('annaSetuTeamFeed')) || DEFAULT_ACTIVITY;
+    // Fix: Properly handle empty arrays in localStorage
+    let storedTeam = JSON.parse(localStorage.getItem('annaSetuTeam'));
+    let teamMembers = (storedTeam && storedTeam.length > 0) ? storedTeam : DEFAULT_TEAM;
+    
+    let storedFeed = JSON.parse(localStorage.getItem('annaSetuTeamFeed'));
+    let activityLog = (storedFeed && storedFeed.length > 0) ? storedFeed : DEFAULT_ACTIVITY;
 
     function saveState() {
       localStorage.setItem('annaSetuTeam', JSON.stringify(teamMembers));
@@ -318,48 +438,75 @@
       grid.innerHTML = '';
       
       teamMembers.forEach(mem => {
-        let rolePillBg = 'bg-tertiary-fixed text-on-tertiary-fixed';
-        if (mem.role.includes('Staff')) rolePillBg = 'bg-secondary-container text-on-secondary-container';
-        if (mem.role.includes('Manager')) rolePillBg = 'bg-primary-fixed text-on-primary-fixed';
+        let roleBadge = 'rbadge-staff';
+        if (mem.role.includes('Admin')) roleBadge = 'rbadge-admin';
+        if (mem.role.includes('Manager')) roleBadge = 'rbadge-manager';
 
-        let accessText = "Restricted Access";
-        if(mem.role.includes('Admin')) accessText = "Full Access: All Permissions";
-        if(mem.role.includes('Manager')) accessText = "Analytics & Pickup Confirmation";
-        if(mem.role.includes('Staff')) accessText = "Restricted: Logging Only";
+        let accessSummary = "View Only Access";
+        if(mem.role.includes('Admin')) accessSummary = "Full Platform Control";
+        if(mem.role.includes('Manager')) accessSummary = "Analytics & Verification";
+        if(mem.role.includes('Staff')) accessSummary = "Surplus Logging Only";
 
-        // Generate Avatar using initials if image is 'default'
-        let avatarHTML = mem.img !== 'default' 
-          ? `<img alt="Team Member" class="w-14 h-14 rounded-xl object-cover" src="${mem.img}"/>`
-          : `<div class="w-14 h-14 rounded-xl bg-stone-200 flex items-center justify-center font-bold text-xl text-stone-500">${mem.name.charAt(0)}</div>`;
+        const hasCustomImg = mem.img && mem.img !== 'default';
+        const avatar = hasCustomImg 
+          ? `<img alt="${mem.name}" class="w-16 h-16 rounded-2xl object-cover shadow-sm ring-2 ring-white dark:ring-white/10" src="${mem.img}"/>`
+          : `<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/10 flex items-center justify-center font-black text-2xl text-emerald-700 dark:text-emerald-400 shadow-sm ring-2 ring-white dark:ring-white/10">${mem.name.charAt(0)}</div>`;
 
         grid.innerHTML += `
-          <div class="bg-surface-container rounded-xl p-6 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-transparent hover:border-primary/20 transition-all group">
-            <div class="flex items-start justify-between mb-4">
+          <div class="bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/50 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:hover:border-emerald-500/30 transition-all group card-in">
+            <div class="flex items-start justify-between mb-5">
               <div class="flex items-center gap-4">
-                ${avatarHTML}
-                <div>
-                  <h3 class="font-bold text-on-surface group-hover:text-primary transition-colors">${mem.name}</h3>
-                  <span class="text-xs font-label ${rolePillBg} px-2 py-0.5 rounded-full">${mem.role}</span>
+                ${avatar}
+                <div class="min-w-0">
+                  <h3 class="font-black text-gray-900 dark:text-white truncate text-lg group-hover:text-primary dark:group-hover:text-emerald-400 transition-colors">${mem.name}</h3>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="rbadge ${roleBadge}">${mem.role}</span>
+                  </div>
                 </div>
               </div>
-              <button class="material-symbols-outlined text-stone-400 hover:text-on-surface">more_vert</button>
-            </div>
-            <div class="space-y-3 pt-2">
-              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                <span class="material-symbols-outlined text-xs">mail</span>
-                ${mem.email}
-              </div>
-              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                <span class="material-symbols-outlined text-xs">verified_user</span>
-                ${accessText}
-              </div>
-              <div class="flex items-center gap-2 text-sm text-on-surface-variant">
-                <span class="material-symbols-outlined text-xs">event</span>
-                Since ${mem.year} &bull; ${mem.shift}
+              <div class="flex items-center gap-1">
+                <button onclick="openEditMemberModal(${teamMembers.indexOf(mem)})" class="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 dark:text-stone-500 hover:bg-primary/10 hover:text-primary dark:hover:text-emerald-400 transition-colors" title="Edit Member">
+                  <span class="material-symbols-outlined text-lg">edit</span>
+                </button>
+                <button onclick="confirmDeleteMember(${teamMembers.indexOf(mem)})" class="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 dark:text-stone-500 hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-500 transition-colors" title="Delete Member">
+                  <span class="material-symbols-outlined text-lg">delete</span>
+                </button>
               </div>
             </div>
-            <div class="mt-6 flex items-center justify-between border-t border-outline-variant/30 pt-4">
-              <span class="text-[10px] uppercase tracking-wider font-bold text-stone-400">Last Active: ${mem.lastActive}</span>
+
+            <div class="space-y-3.5 pt-1">
+              <div class="flex items-center gap-3 text-gray-600 dark:text-stone-400">
+                <div class="w-7 h-7 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center">
+                   <span class="material-symbols-outlined text-[17px]">mail</span>
+                </div>
+                <span class="text-sm font-medium truncate">${mem.email}</span>
+              </div>
+              <div class="flex items-center gap-3 text-gray-600 dark:text-stone-400">
+                <div class="w-7 h-7 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center">
+                   <span class="material-symbols-outlined text-[17px]">shield_person</span>
+                </div>
+                <span class="text-sm font-medium">${accessSummary}</span>
+              </div>
+              <div class="flex items-center gap-3 text-gray-600 dark:text-stone-400">
+                <div class="w-7 h-7 rounded-lg bg-gray-50 dark:bg-white/5 flex items-center justify-center">
+                   <span class="material-symbols-outlined text-[17px]">event_available</span>
+                </div>
+                <span class="text-sm font-medium text-gray-500 dark:text-stone-500">Joined ${mem.year} &bull; ${mem.shift.split('(')[0].trim()}</span>
+              </div>
+            </div>
+
+            <div class="mt-6 flex items-center justify-between border-t border-gray-50 dark:border-white/5 pt-5">
+              <div class="flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-[11px] uppercase tracking-widest font-black text-gray-400 dark:text-stone-500">Last Active: ${mem.lastActive}</span>
+              </div>
+              <div class="flex -space-x-2">
+                <div class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface bg-gray-100 dark:bg-dark-bg flex items-center justify-center text-[10px] text-gray-400 font-bold">1</div>
+                <div class="w-6 h-6 rounded-full border-2 border-white dark:border-dark-surface bg-gray-200 dark:bg-white/10"></div>
+              </div>
             </div>
           </div>
         `;
@@ -372,66 +519,148 @@
       feed.innerHTML = '';
       activityLog.forEach((log) => {
         feed.innerHTML += `
-          <div class="relative pl-8">
-            <span class="absolute left-0 top-0 w-6 h-6 ${log.color} rounded-full flex items-center justify-center ring-4 ring-surface-container">
-              <span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">${log.icon}</span>
+          <div class="relative pl-10 group">
+            <span class="absolute left-0 top-0 w-8 h-8 ${log.color} dark:opacity-80 rounded-2xl flex items-center justify-center ring-4 ring-white dark:ring-dark-bg transition-transform group-hover:scale-110 shadow-lg">
+              <span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">${log.icon}</span>
             </span>
-            <p class="text-sm text-on-surface">${log.text}</p>
-            <span class="text-[10px] text-stone-500 font-bold uppercase tracking-tight">Recent</span>
+            <div class="bg-stone-50/50 dark:bg-white/5 p-4 rounded-2xl border border-stone-100 dark:border-white/10">
+                <p class="text-sm text-stone-800 dark:text-stone-300">${log.text}</p>
+                <span class="text-[10px] text-stone-500 dark:text-stone-500 font-black uppercase tracking-widest mt-2 block">Recent Activity</span>
+            </div>
           </div>
         `;
       });
     }
 
-    window.openAddMemberModal = () => document.getElementById('modal-add-member').classList.remove('hidden');
-    window.closeAddMemberModal = () => document.getElementById('modal-add-member').classList.add('hidden');
+    window.openAddMemberModal  = () => {
+      document.getElementById('modal-title').innerText = "Add New Member";
+      document.getElementById('modal-subtitle').innerText = "Fill in details and save to the team.";
+      document.getElementById('btn-save-member').innerHTML = `<span class="material-symbols-outlined" style="font-size:17px">save</span> Save Member`;
+      document.getElementById('mem-index').value = "-1";
+      document.getElementById('modal-add-member').classList.add('open');
+    };
+
+    window.openEditMemberModal = (index) => {
+      const mem = teamMembers[index];
+      document.getElementById('modal-title').innerText = "Edit Member";
+      document.getElementById('modal-subtitle').innerText = `Updating profile for ${mem.name}`;
+      document.getElementById('btn-save-member').innerHTML = `<span class="material-symbols-outlined" style="font-size:17px">check_circle</span> Update Member`;
+      
+      document.getElementById('mem-index').value = index;
+      document.getElementById('mem-name').value = mem.name;
+      document.getElementById('mem-email').value = mem.email;
+      document.getElementById('mem-desig').value = mem.desig || '';
+      document.getElementById('mem-phone').value = mem.phone || '';
+      document.getElementById('mem-year').value = mem.year;
+      document.getElementById('mem-role').value = mem.role;
+      document.getElementById('mem-shift').value = mem.shift;
+      document.getElementById('mem-dept').value = mem.dept || '';
+      document.getElementById('mem-status').value = mem.status || 'Active';
+
+      document.getElementById('modal-add-member').classList.add('open');
+    };
+
+    window.closeAddMemberModal = () => {
+      document.getElementById('modal-add-member').classList.remove('open');
+      document.getElementById('form-add-member').reset();
+      document.getElementById('mem-form-err').classList.add('hidden');
+    };
+
+    window.confirmDeleteMember = (index) => {
+      const mem = teamMembers[index];
+      if (mem.role.includes('Admin (owner)')) {
+        alert("For security reasons, the primary Admin (owner) cannot be deleted.");
+        return;
+      }
+      if (confirm(`Are you sure you want to remove ${mem.name} from the team?`)) {
+        teamMembers.splice(index, 1);
+        activityLog.unshift({
+          text: `<span class="font-bold">You</span> removed ${mem.name} from the team.`,
+          icon: 'person_remove',
+          color: 'bg-red-500'
+        });
+        saveState();
+        renderTeamGrid();
+        renderActivityFeed();
+      }
+    };
+
+    // Close on backdrop click
+    document.getElementById('modal-add-member').addEventListener('click', function(e) {
+      if (e.target === this) closeAddMemberModal();
+    });
 
     window.saveNewMember = () => {
-      const name = document.getElementById('mem-name').value;
-      const email = document.getElementById('mem-email').value;
-      const desig = document.getElementById('mem-desig').value;
-      const year = document.getElementById('mem-year').value;
-      const role = document.getElementById('mem-role').value;
+      const name  = document.getElementById('mem-name').value.trim();
+      const email = document.getElementById('mem-email').value.trim();
+      const desig = document.getElementById('mem-desig').value.trim();
+      const phone = document.getElementById('mem-phone').value.trim();
+      const year  = document.getElementById('mem-year').value;
+      const role  = document.getElementById('mem-role').value;
       const shift = document.getElementById('mem-shift').value;
+      const dept  = document.getElementById('mem-dept').value.trim();
+      const status= document.getElementById('mem-status').value;
+      const index = parseInt(document.getElementById('mem-index').value);
+      const errEl = document.getElementById('mem-form-err');
 
-      if(!name) { alert('Name is required.'); return; }
+      if (!name || !email) { errEl.classList.remove('hidden'); return; }
+      errEl.classList.add('hidden');
 
-      teamMembers.push({ name, email, desig, role, year, shift, lastActive: 'Just now', img: 'default' });
-      
-      activityLog.unshift({ 
-        text: `<span class="font-bold">You</span> added ${name} as ${role}.`, 
-        icon: 'person_add', 
-        color: 'bg-primary' 
-      });
+      const memberData = { name, email, desig, phone, role, year, shift, dept, status, lastActive: 'Just now', img: 'default' };
+
+      if (index === -1) {
+        teamMembers.push(memberData);
+        activityLog.unshift({
+          text: `<span class="font-bold">You</span> added ${name} as ${role}.`,
+          icon: 'person_add',
+          color: 'bg-primary'
+        });
+      } else {
+        // Keep original image if editing
+        memberData.img = teamMembers[index].img;
+        memberData.lastActive = teamMembers[index].lastActive;
+        teamMembers[index] = memberData;
+        activityLog.unshift({
+          text: `<span class="font-bold">You</span> updated ${name}'s profile.`,
+          icon: 'edit',
+          color: 'bg-blue-500'
+        });
+      }
 
       saveState();
       renderTeamGrid();
       renderActivityFeed();
       closeAddMemberModal();
-      document.getElementById('form-add-member').reset();
     };
 
     document.addEventListener("DOMContentLoaded", () => {
-        renderTeamGrid();
-        renderActivityFeed();
-        
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
+
+        const syncThemeUI = () => {
+          const isDark = htmlElement.classList.contains('dark');
+          themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+          if (isDark) {
+            htmlElement.style.backgroundColor = '#0a0c16';
+            localStorage.setItem('annaSetuTheme', 'dark');
+          } else {
+            htmlElement.style.backgroundColor = '#faf6f0';
+            localStorage.setItem('annaSetuTheme', 'light');
+          }
+          // Re-render components that might need theme-specific JS updates
+          renderTeamGrid();
+          renderActivityFeed();
+        };
 
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 htmlElement.classList.toggle('dark');
                 htmlElement.classList.toggle('light');
-                if (htmlElement.classList.contains('dark')) {
-                    themeIcon.textContent = 'light_mode';
-                    htmlElement.style.backgroundColor = '#111';
-                } else {
-                    themeIcon.textContent = 'dark_mode';
-                    htmlElement.style.backgroundColor = '';
-                }
+                syncThemeUI();
             });
         }
+        syncThemeUI();
     });
 </script>
 </body></html>

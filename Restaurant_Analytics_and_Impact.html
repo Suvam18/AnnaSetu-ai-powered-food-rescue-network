@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
+<script>
+  // Immediate theme application to prevent FOUC
+  (function() {
+    const savedTheme = localStorage.getItem('annaSetuTheme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.classList.add(savedTheme);
+  })();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet"/>
@@ -14,52 +22,12 @@
         extend: {
           "colors": {
                   "secondary": "#6b6358",
-                  "error-container": "#ffdad8",
-                  "on-primary-container": "#d8f0de",
-                  "primary-fixed-dim": "#8ecf9e",
                   "on-surface": "#2e3230",
-                  "inverse-surface": "#2e3230",
-                  "surface-bright": "#faf6f0",
-                  "surface-tint": "#4a7c59",
-                  "on-secondary-fixed-variant": "#4a4538",
-                  "tertiary-container": "#c4a66a",
-                  "on-primary-fixed": "#002110",
                   "surface": "#faf6f0",
-                  "outline": "#74796e",
-                  "outline-variant": "#c4c8bc",
-                  "surface-container-highest": "#e4e0d8",
-                  "secondary-container": "#f0e8db",
-                  "on-background": "#2e3230",
-                  "error": "#b83230",
-                  "on-secondary-container": "#5e5548",
-                  "on-secondary-fixed": "#1e1a13",
-                  "secondary-fixed": "#f0e8db",
-                  "surface-container-lowest": "#ffffff",
-                  "secondary-fixed-dim": "#d4ccbf",
-                  "tertiary-fixed": "#f8e0a8",
-                  "on-error": "#ffffff",
-                  "on-tertiary-container": "#554020",
-                  "on-primary": "#ffffff",
-                  "tertiary-fixed-dim": "#dcc48e",
-                  "primary-container": "#78a886",
                   "background": "#faf6f0",
-                  "tertiary": "#705c30",
-                  "surface-container": "#f0ece4",
-                  "on-tertiary-fixed-variant": "#554020",
-                  "inverse-primary": "#8ecf9e",
-                  "on-surface-variant": "#4a4e4a",
-                  "inverse-on-surface": "#f5f0e8",
-                  "on-secondary": "#ffffff",
-                  "primary-fixed": "#c8e8d0",
-                  "on-primary-fixed-variant": "#2a6038",
-                  "surface-dim": "#dbd7cf",
-                  "on-error-container": "#690005",
-                  "on-tertiary-fixed": "#221a05",
-                  "surface-container-low": "#f5f1ea",
-                  "surface-variant": "#e4e0d8",
-                  "surface-container-high": "#eae6de",
-                  "on-tertiary": "#ffffff",
-                  "primary": "#4a7c59"
+                  "primary": "#4a7c59",
+                  "dark-bg": "#0a0c16",
+                  "dark-surface": "#161b33"
           },
           "borderRadius": {
                   "DEFAULT": "0.5rem",
@@ -77,7 +45,8 @@
     }
   </script>
 <style>
-    body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; }
+    body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; transition: background-color 0.3s ease; }
+    .dark body { background-color: #0a0c16; color: #f1f5f9; }
     .headline-font { font-family: 'Literata', serif; }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     @keyframes rotateLoop { 100% { transform: rotate(360deg); } }
@@ -121,176 +90,176 @@
 </div>
 <!-- Hero Metrics (Bento Style) -->
 <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
-<div class="md:col-span-2 bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between shadow-[0_4px_20px_rgba(46,50,48,0.06)] overflow-hidden relative">
+<div class="md:col-span-2 bg-primary/90 dark:bg-emerald-600/20 dark:backdrop-blur-md p-8 rounded-xl flex flex-col justify-between shadow-lg shadow-primary/10 dark:shadow-emerald-500/10 border border-transparent dark:border-emerald-500/20 overflow-hidden relative group">
 <div class="relative z-10">
-<p class="font-medium opacity-90 mb-1">Cumulative Food Saved</p>
-<h3 class="headline-font text-5xl font-black">2,840 <span class="text-2xl font-normal opacity-80">kg</span></h3>
+<p class="text-white dark:text-emerald-400 font-medium mb-1">Cumulative Food Saved</p>
+<h3 class="headline-font text-5xl font-black text-white">2,840 <span class="text-2xl font-normal opacity-80">kg</span></h3>
 </div>
-<div class="relative z-10 mt-6 flex items-center gap-2 text-on-primary-container bg-white/10 w-fit px-3 py-1 rounded-full text-sm">
+<div class="relative z-10 mt-6 flex items-center gap-2 text-white bg-white/10 dark:bg-white/5 w-fit px-3 py-1 rounded-full text-sm">
 <span class="material-symbols-outlined text-base" data-icon="trending_up">trending_up</span>
             12% vs last month
           </div>
-<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/10 text-[160px] select-none" data-icon="eco">eco</span>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/10 text-[160px] select-none group-hover:scale-110 transition-transform duration-700" data-icon="eco">eco</span>
 </div>
-<div class="md:col-span-2 bg-surface-container-high p-8 rounded-xl flex flex-col justify-between shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-200/50">
+<div class="md:col-span-2 bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-xl flex flex-col justify-between shadow-sm border border-stone-200/50 dark:border-white/10">
 <div>
-<p class="text-secondary font-medium mb-1">Estimated CO2 Offset</p>
-<h3 class="headline-font text-5xl font-black text-on-surface">5.2 <span class="text-2xl font-normal text-secondary">tons</span></h3>
+<p class="text-secondary dark:text-stone-400 font-medium mb-1">Estimated CO2 Offset</p>
+<h3 class="headline-font text-5xl font-black text-on-surface dark:text-white">5.2 <span class="text-2xl font-normal text-secondary dark:text-stone-500">tons</span></h3>
 </div>
-<div class="mt-6 flex items-center gap-2 text-primary font-bold">
+<div class="mt-6 flex items-center gap-2 text-primary dark:text-emerald-400 font-bold">
 <span class="material-symbols-outlined" data-icon="forest">forest</span>
             Equivalent to 84 trees planted
           </div>
 </div>
-<div class="md:col-span-2 bg-tertiary-container p-8 rounded-xl flex flex-col justify-between shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-tertiary/20">
+<div class="md:col-span-2 bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-xl flex flex-col justify-between shadow-sm border border-stone-200/50 dark:border-white/10">
 <div>
-<p class="text-on-tertiary-container font-medium mb-1">Meals Provided</p>
-<h3 class="headline-font text-5xl font-black text-on-tertiary-container">4,730</h3>
+<p class="text-stone-700 dark:text-stone-300 font-medium mb-1">Meals Provided</p>
+<h3 class="headline-font text-5xl font-black text-stone-800 dark:text-white">4,730</h3>
 </div>
-<div class="mt-6 flex items-center gap-2 text-on-tertiary-container/70 text-sm italic">
+<div class="mt-6 flex items-center gap-2 text-stone-500 dark:text-stone-400 text-sm italic">
             "Your surplus fed 150 families this week"
           </div>
 </div>
-<div class="md:col-span-3 bg-white p-8 rounded-xl flex flex-col justify-between shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-200/50">
+<div class="md:col-span-3 bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-xl flex flex-col justify-between shadow-sm border border-stone-200/50 dark:border-white/10">
   <div class="flex items-start justify-between">
     <div>
-      <p class="text-secondary font-medium mb-1">Impact: People Served</p>
-      <h3 class="headline-font text-5xl font-black text-on-surface">3,540</h3>
+      <p class="text-secondary dark:text-stone-400 font-medium mb-1">Impact: People Served</p>
+      <h3 class="headline-font text-5xl font-black text-on-surface dark:text-white">3,540</h3>
     </div>
-    <div class="p-3 bg-primary/10 rounded-xl">
-      <span class="material-symbols-outlined text-primary text-3xl" data-icon="groups">groups</span>
+    <div class="p-3 bg-primary/10 dark:bg-emerald-500/10 rounded-xl">
+      <span class="material-symbols-outlined text-primary dark:text-emerald-400 text-3xl" data-icon="groups">groups</span>
     </div>
   </div>
-  <div class="mt-6 flex items-center gap-2 text-primary font-bold">
+  <div class="mt-6 flex items-center gap-2 text-primary dark:text-emerald-400 font-bold">
     <span class="material-symbols-outlined" data-icon="favorite">favorite</span>
-    Empowering our local community
+    Empowering local community
   </div>
 </div>
-<div class="md:col-span-3 bg-white p-8 rounded-xl flex flex-col justify-between shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-200/50 relative overflow-hidden">
+<div class="md:col-span-3 bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-xl flex flex-col justify-between shadow-sm border border-stone-200/50 dark:border-white/10 relative overflow-hidden">
   <div class="relative z-10 flex items-start justify-between">
     <div>
-      <p class="text-secondary font-medium mb-1">Avg. Volunteer Response Time</p>
-      <h3 class="headline-font text-5xl font-black text-emerald-600">14 <span class="text-2xl font-normal text-emerald-600/70">mins</span></h3>
+      <p class="text-secondary dark:text-stone-400 font-medium mb-1">Avg. Volunteer Response Time</p>
+      <h3 class="headline-font text-5xl font-black text-emerald-600 dark:text-emerald-400">14 <span class="text-2xl font-normal text-emerald-600/70 dark:text-emerald-400/70">mins</span></h3>
     </div>
-    <div class="p-3 bg-emerald-50 rounded-xl">
-      <span class="material-symbols-outlined text-emerald-600 text-3xl" data-icon="timer">timer</span>
+    <div class="p-3 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl">
+      <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-3xl" data-icon="timer">timer</span>
     </div>
   </div>
-  <div class="mt-6 flex items-center gap-2 text-emerald-600 font-bold z-10 relative">
+  <div class="mt-6 flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold z-10 relative">
     <span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
     Faster than 92% of network averages
   </div>
 </div>
 </div>
 <!-- Detailed Analytics Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
 <!-- Surplus Trends Chart -->
-<div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100">
+<div class="lg:col-span-2 bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-2xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 dark:border-white/10">
 <div class="flex justify-between items-center mb-8">
-<h4 class="headline-font text-xl font-bold">Surplus Trends</h4>
-<div class="flex bg-surface-container p-1 rounded-lg">
-<button id="btn-trend-daily" class="px-4 py-1.5 text-sm font-bold bg-white shadow-sm rounded-md text-primary transition-all">Daily</button>
-<button id="btn-trend-weekly" class="px-4 py-1.5 text-sm font-medium text-secondary hover:text-primary transition-all">Weekly</button>
+<h4 class="headline-font text-xl font-bold dark:text-white">Surplus Trends</h4>
+<div class="flex bg-stone-100 dark:bg-white/5 p-1 rounded-lg">
+<button id="btn-trend-daily" class="px-4 py-1.5 text-sm font-bold bg-white dark:bg-white/10 shadow-sm rounded-md text-primary dark:text-emerald-400 transition-all">Daily</button>
+<button id="btn-trend-weekly" class="px-4 py-1.5 text-sm font-medium text-secondary dark:text-stone-400 hover:text-primary dark:hover:text-emerald-400 transition-all">Weekly</button>
 </div>
 </div>
 <div class="h-64 flex items-end justify-between gap-2 sm:gap-4 px-2" id="trend-chart">
 <div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 ease-out h-[60%]"></div>
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-primary dark:bg-emerald-600 rounded-t-lg transition-all duration-700 ease-out h-[60%]"></div>
 </div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Mon</span>
-</div>
-<div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 ease-out h-[85%]"></div>
-</div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Tue</span>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Mon</span>
 </div>
 <div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 ease-out h-[45%]"></div>
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-primary dark:bg-emerald-600 rounded-t-lg transition-all duration-700 ease-out h-[85%]"></div>
 </div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Wed</span>
-</div>
-<div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 ease-out h-[95%]"></div>
-</div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Thu</span>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Tue</span>
 </div>
 <div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 ease-out h-[70%]"></div>
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-primary dark:bg-emerald-600 rounded-t-lg transition-all duration-700 ease-out h-[45%]"></div>
 </div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Fri</span>
-</div>
-<div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-tertiary rounded-t-lg transition-all duration-700 ease-out h-[40%]"></div>
-</div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Sat</span>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Wed</span>
 </div>
 <div class="flex-1 flex flex-col items-center gap-2 group">
-<div class="w-full bg-primary/10 rounded-t-lg relative h-48 group-hover:bg-primary/20 transition-colors">
-<div class="trend-bar absolute bottom-0 w-full bg-tertiary rounded-t-lg transition-all duration-700 ease-out h-[25%]"></div>
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-primary dark:bg-emerald-600 rounded-t-lg transition-all duration-700 ease-out h-[95%]"></div>
 </div>
-<span class="trend-label text-xs text-secondary font-bold text-center">Sun</span>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Thu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-primary dark:bg-emerald-600 rounded-t-lg transition-all duration-700 ease-out h-[70%]"></div>
+</div>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Fri</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-stone-400 dark:bg-stone-700 rounded-t-lg transition-all duration-700 ease-out h-[40%]"></div>
+</div>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Sat</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 dark:bg-white/5 rounded-t-lg relative h-48 group-hover:bg-primary/20 dark:group-hover:bg-white/10 transition-colors">
+<div class="trend-bar absolute bottom-0 w-full bg-stone-400 dark:bg-stone-700 rounded-t-lg transition-all duration-700 ease-out h-[25%]"></div>
+</div>
+<span class="trend-label text-xs text-secondary dark:text-stone-500 font-bold text-center">Sun</span>
 </div>
 </div>
-<div class="mt-8 pt-6 border-t border-stone-50 flex gap-8">
+<div class="mt-8 pt-6 border-t border-stone-50 dark:border-white/10 flex gap-8">
 <div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-primary"></span>
-<span id="trend-avg-1" class="text-sm text-secondary">Weekday Average: 84kg</span>
+<span class="w-3 h-3 rounded-full bg-primary dark:bg-emerald-400"></span>
+<span id="trend-avg-1" class="text-sm text-secondary dark:text-stone-400">Weekday Average: 84kg</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-tertiary"></span>
-<span id="trend-avg-2" class="text-sm text-secondary">Weekend Average: 32kg</span>
+<span class="w-3 h-3 rounded-full bg-stone-400 dark:bg-stone-700"></span>
+<span id="trend-avg-2" class="text-sm text-secondary dark:text-stone-400">Weekend Average: 32kg</span>
 </div>
 </div>
 </div>
 <!-- Food Category Breakdown -->
-<div class="bg-white p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 flex flex-col">
-<h4 class="headline-font text-xl font-bold mb-6">Category Breakdown</h4>
+<div class="bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-2xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 dark:border-white/10 flex flex-col">
+<h4 class="headline-font text-xl font-bold mb-6 dark:text-white">Category Breakdown</h4>
 <div class="space-y-6 flex-1">
 <div class="group">
 <div class="flex justify-between mb-2">
-<span class="font-bold text-on-surface">Prepared Meals</span>
-<span class="text-primary font-bold">45%</span>
+<span class="font-bold text-on-surface dark:text-stone-300">Prepared Meals</span>
+<span class="text-primary dark:text-emerald-400 font-bold">45%</span>
 </div>
-<div class="w-full h-3 bg-stone-100 rounded-full overflow-hidden">
-<div class="h-full bg-primary w-[45%] rounded-full"></div>
-</div>
-</div>
-<div class="group">
-<div class="flex justify-between mb-2">
-<span class="font-bold text-on-surface">Bakery &amp; Grains</span>
-<span class="text-primary font-bold">30%</span>
-</div>
-<div class="w-full h-3 bg-stone-100 rounded-full overflow-hidden">
-<div class="h-full bg-primary-container w-[30%] rounded-full"></div>
+<div class="w-full h-3 bg-stone-100 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary dark:bg-emerald-600 w-[45%] rounded-full"></div>
 </div>
 </div>
 <div class="group">
 <div class="flex justify-between mb-2">
-<span class="font-bold text-on-surface">Fresh Produce</span>
-<span class="text-primary font-bold">18%</span>
+<span class="font-bold text-on-surface dark:text-stone-300">Bakery &amp; Grains</span>
+<span class="text-primary dark:text-emerald-400 font-bold">30%</span>
 </div>
-<div class="w-full h-3 bg-stone-100 rounded-full overflow-hidden">
-<div class="h-full bg-tertiary-container w-[18%] rounded-full"></div>
+<div class="w-full h-3 bg-stone-100 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary dark:opacity-70 w-[30%] rounded-full"></div>
 </div>
 </div>
 <div class="group">
 <div class="flex justify-between mb-2">
-<span class="font-bold text-on-surface">Other</span>
-<span class="text-primary font-bold">7%</span>
+<span class="font-bold text-on-surface dark:text-stone-300">Fresh Produce</span>
+<span class="text-primary dark:text-emerald-400 font-bold">18%</span>
 </div>
-<div class="w-full h-3 bg-stone-100 rounded-full overflow-hidden">
-<div class="h-full bg-outline-variant w-[7%] rounded-full"></div>
+<div class="w-full h-3 bg-stone-100 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-stone-400 dark:bg-stone-500 w-[18%] rounded-full"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="font-bold text-on-surface dark:text-stone-300">Other</span>
+<span class="text-primary dark:text-emerald-400 font-bold">7%</span>
+</div>
+<div class="w-full h-3 bg-stone-100 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-stone-300 dark:bg-stone-700 w-[7%] rounded-full"></div>
 </div>
 </div>
 </div>
-<div class="mt-6 p-4 bg-surface rounded-lg">
-<p class="text-sm text-secondary italic">Tip: Optimizing dinner prep batches could reduce Prepared Meal surplus by 10%.</p>
+<div class="mt-6 p-4 bg-stone-50 dark:bg-white/5 rounded-lg border border-stone-100 dark:border-white/10">
+<p class="text-sm text-secondary dark:text-stone-400 italic">Tip: Optimizing dinner prep batches could reduce Prepared Meal surplus by 10%.</p>
 </div>
 </div>
 </div>
@@ -329,29 +298,30 @@
 </div>
 
 <!-- City Ranking / Leaderboard -->
-<div class="bg-white p-8 rounded-xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 flex flex-col md:flex-row gap-8 pb-12 mb-8 relative overflow-hidden">
+<!-- City Ranking / Leaderboard -->
+<div class="bg-white dark:bg-white/5 dark:backdrop-blur-md p-8 rounded-2xl shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-stone-100 dark:border-white/10 flex flex-col md:flex-row gap-8 pb-12 mb-8 relative overflow-hidden">
   
   <!-- Left Side: Restaurant's own stats -->
-  <div class="flex-1 flex flex-col justify-center border-r border-stone-100 pr-0 md:pr-8">
-    <h4 class="headline-font text-2xl font-bold mb-2">City Leaderboard</h4>
-    <p class="text-secondary text-sm mb-6">Rankings based on total surplus rescued this month across the Portland metro area.</p>
+  <div class="flex-1 flex flex-col justify-center border-r border-stone-100 dark:border-white/10 pr-0 md:pr-8">
+    <h4 class="headline-font text-2xl font-bold mb-2 dark:text-white">City Leaderboard</h4>
+    <p class="text-secondary dark:text-stone-400 text-sm mb-6">Rankings based on total surplus rescued this month across the Portland metro area.</p>
 
-    <div class="bg-surface-container-high p-6 rounded-lg mb-4 flex items-center justify-between">
+    <div class="bg-stone-50 dark:bg-white/5 p-6 rounded-xl mb-4 flex items-center justify-between border border-stone-100 dark:border-white/5">
       <div>
-        <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Your Rank</p>
-        <p class="text-3xl font-black text-on-surface">#3 <span class="text-sm font-normal text-secondary">of 124</span></p>
+        <p class="text-xs font-bold uppercase tracking-widest text-secondary dark:text-stone-500 mb-1">Your Rank</p>
+        <p class="text-3xl font-black text-on-surface dark:text-white">#3 <span class="text-sm font-normal text-secondary dark:text-stone-500">of 124</span></p>
       </div>
-      <span class="material-symbols-outlined text-4xl text-primary" data-icon="workspace_premium">workspace_premium</span>
+      <span class="material-symbols-outlined text-4xl text-primary dark:text-emerald-400" data-icon="workspace_premium">workspace_premium</span>
     </div>
 
-    <div class="bg-surface-container-high p-6 rounded-lg flex items-center justify-between">
+    <div class="bg-stone-50 dark:bg-white/5 p-6 rounded-xl flex items-center justify-between border border-stone-100 dark:border-white/5">
       <div>
-        <p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Your Rating</p>
-        <p class="text-2xl font-black text-on-surface">4.9 <span class="text-xl text-yellow-500">★★★★★</span></p>
+        <p class="text-xs font-bold uppercase tracking-widest text-secondary dark:text-stone-500 mb-1">Your Rating</p>
+        <p class="text-2xl font-black text-on-surface dark:text-white">4.9 <span class="text-xl text-yellow-500">★★★★★</span></p>
       </div>
       <div class="text-right">
-        <p class="text-sm text-secondary font-bold">120 Reviews</p>
-        <p class="text-xs text-secondary">from Volunteers</p>
+        <p class="text-sm text-secondary dark:text-stone-400 font-bold">120 Reviews</p>
+        <p class="text-xs text-secondary dark:text-stone-500">from Volunteers</p>
       </div>
     </div>
   </div>
@@ -359,54 +329,54 @@
   <!-- Right Side: Leaderboard List -->
   <div class="flex-1 flex flex-col justify-center">
     <!-- Item 1 -->
-    <div class="flex items-center gap-4 p-4 border-b border-stone-50 hover:bg-stone-50 rounded-lg transition-colors group">
-      <div class="w-8 h-8 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center font-bold text-sm">1</div>
+    <div class="flex items-center gap-4 p-4 border-b border-stone-50 dark:border-white/5 hover:bg-stone-50 dark:hover:bg-white/5 rounded-xl transition-colors group">
+      <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 flex items-center justify-center font-bold text-sm">1</div>
       <div class="flex-1">
-        <p class="font-bold text-on-surface group-hover:text-primary transition-colors">Green Bites Cafe</p>
-        <p class="text-xs text-secondary">Downtown</p>
+        <p class="font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-emerald-400 transition-colors">Green Bites Cafe</p>
+        <p class="text-xs text-secondary dark:text-stone-500">Downtown</p>
       </div>
       <div class="text-right">
-        <p class="font-bold text-primary">3,120 kg</p>
-        <p class="text-[10px] text-secondary uppercase tracking-wider">Rescued</p>
+        <p class="font-bold text-primary dark:text-emerald-400">3,120 kg</p>
+        <p class="text-[10px] text-secondary dark:text-stone-500 uppercase tracking-wider">Rescued</p>
       </div>
     </div>
     
     <!-- Item 2 -->
-    <div class="flex items-center gap-4 p-4 border-b border-stone-50 hover:bg-stone-50 rounded-lg transition-colors group">
-      <div class="w-8 h-8 rounded-full bg-stone-200 text-stone-600 flex items-center justify-center font-bold text-sm">2</div>
+    <div class="flex items-center gap-4 p-4 border-b border-stone-50 dark:border-white/5 hover:bg-stone-50 dark:hover:bg-white/5 rounded-xl transition-colors group">
+      <div class="w-8 h-8 rounded-full bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-400 flex items-center justify-center font-bold text-sm">2</div>
       <div class="flex-1">
-        <p class="font-bold text-on-surface group-hover:text-primary transition-colors">The Rustic Oven</p>
-        <p class="text-xs text-secondary">Pearl District</p>
+        <p class="font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-emerald-400 transition-colors">The Rustic Oven</p>
+        <p class="text-xs text-secondary dark:text-stone-500">Pearl District</p>
       </div>
       <div class="text-right">
-        <p class="font-bold text-primary">2,950 kg</p>
-        <p class="text-[10px] text-secondary uppercase tracking-wider">Rescued</p>
+        <p class="font-bold text-primary dark:text-emerald-400">2,950 kg</p>
+        <p class="text-[10px] text-secondary dark:text-stone-500 uppercase tracking-wider">Rescued</p>
       </div>
     </div>
     
     <!-- Item 3 (Current User highlighted) -->
-    <div class="flex items-center gap-4 p-4 bg-primary/5 border border-primary/20 rounded-lg transition-colors group transform md:scale-105 shadow-sm my-2">
-      <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">3</div>
+    <div class="flex items-center gap-4 p-4 bg-primary/5 dark:bg-emerald-500/10 border border-primary/20 dark:border-emerald-500/30 rounded-xl transition-colors group transform md:scale-105 shadow-sm my-2">
+      <div class="w-8 h-8 rounded-full bg-primary dark:bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">3</div>
       <div class="flex-1">
-        <p class="font-bold text-primary flex items-center gap-2">Your Restaurant <span class="material-symbols-outlined text-sm" data-icon="star">star</span></p>
-        <p class="text-xs text-secondary">Current Location</p>
+        <p class="font-bold text-primary dark:text-emerald-400 flex items-center gap-2">Your Restaurant <span class="material-symbols-outlined text-sm" data-icon="star">star</span></p>
+        <p class="text-xs text-secondary dark:text-stone-500">Current Location</p>
       </div>
       <div class="text-right">
-        <p class="font-bold text-primary">2,840 kg</p>
-        <p class="text-[10px] text-secondary uppercase tracking-wider">Rescued</p>
+        <p class="font-bold text-primary dark:text-emerald-400">2,840 kg</p>
+        <p class="text-[10px] text-secondary dark:text-stone-500 uppercase tracking-wider">Rescued</p>
       </div>
     </div>
     
     <!-- Item 4 -->
-    <div class="flex items-center gap-4 p-4 hover:bg-stone-50 rounded-lg transition-colors group">
-      <div class="w-8 h-8 rounded-full bg-stone-100 text-stone-500 flex items-center justify-center font-bold text-sm">4</div>
+    <div class="flex items-center gap-4 p-4 hover:bg-stone-50 dark:hover:bg-white/5 rounded-xl transition-colors group">
+      <div class="w-8 h-8 rounded-full bg-stone-100 dark:bg-white/5 text-stone-500 dark:text-stone-600 flex items-center justify-center font-bold text-sm">4</div>
       <div class="flex-1">
-        <p class="font-bold text-on-surface group-hover:text-primary transition-colors">Ocean Breeze Seafood</p>
-        <p class="text-xs text-secondary">NW Portland</p>
+        <p class="font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-emerald-400 transition-colors">Ocean Breeze Seafood</p>
+        <p class="text-xs text-secondary dark:text-stone-500">NW Portland</p>
       </div>
       <div class="text-right">
-        <p class="font-bold text-primary">2,100 kg</p>
-        <p class="text-[10px] text-secondary uppercase tracking-wider">Rescued</p>
+        <p class="font-bold text-primary dark:text-emerald-400">2,100 kg</p>
+        <p class="text-[10px] text-secondary dark:text-stone-500 uppercase tracking-wider">Rescued</p>
       </div>
     </div>
   </div>
@@ -448,19 +418,26 @@
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
 
+        const syncThemeUI = () => {
+          const isDark = htmlElement.classList.contains('dark');
+          themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+          if (isDark) {
+            htmlElement.style.backgroundColor = '#0a0c16';
+            localStorage.setItem('annaSetuTheme', 'dark');
+          } else {
+            htmlElement.style.backgroundColor = '#faf6f0';
+            localStorage.setItem('annaSetuTheme', 'light');
+          }
+        };
+
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 htmlElement.classList.toggle('dark');
                 htmlElement.classList.toggle('light');
-                if (htmlElement.classList.contains('dark')) {
-                    themeIcon.textContent = 'light_mode';
-                    htmlElement.style.backgroundColor = '#111';
-                } else {
-                    themeIcon.textContent = 'dark_mode';
-                    htmlElement.style.backgroundColor = '';
-                }
+                syncThemeUI();
             });
         }
+        syncThemeUI();
         // Chart Interactivity
         const btnDaily = document.getElementById('btn-trend-daily');
         const btnWeekly = document.getElementById('btn-trend-weekly');
@@ -478,13 +455,13 @@
         function setChartMode(mode) {
             // Update Buttons
             if (mode === 'daily') {
-                btnDaily.className = "px-4 py-1.5 text-sm font-bold bg-white shadow-sm rounded-md text-primary transition-all";
-                btnWeekly.className = "px-4 py-1.5 text-sm font-medium text-secondary hover:text-primary transition-all";
+                btnDaily.className = "px-4 py-1.5 text-sm font-bold bg-white dark:bg-white/10 shadow-sm rounded-md text-primary dark:text-emerald-400 transition-all";
+                btnWeekly.className = "px-4 py-1.5 text-sm font-medium text-secondary dark:text-stone-400 hover:text-primary transition-all";
                 avg1.textContent = "Weekday Average: 84kg";
                 avg2.textContent = "Weekend Average: 32kg";
             } else {
-                btnWeekly.className = "px-4 py-1.5 text-sm font-bold bg-white shadow-sm rounded-md text-primary transition-all";
-                btnDaily.className = "px-4 py-1.5 text-sm font-medium text-secondary hover:text-primary transition-all";
+                btnWeekly.className = "px-4 py-1.5 text-sm font-bold bg-white dark:bg-white/10 shadow-sm rounded-md text-primary dark:text-emerald-400 transition-all";
+                btnDaily.className = "px-4 py-1.5 text-sm font-medium text-secondary dark:text-stone-400 hover:text-primary transition-all";
                 avg1.textContent = "Previous Month Avg: 410kg";
                 avg2.textContent = "This Month Current: 380kg";
             }
