@@ -5,14 +5,13 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AnnaSetu Portal - Team Management</title>
 <script>
+    // Immediate theme application to prevent FOUC
     (function() {
-      const theme = localStorage.getItem('annaSetuTheme') || 'light';
-      if (theme === 'dark') {
+      const savedTheme = localStorage.getItem('annaSetuTheme') || 'light';
+      if (savedTheme === 'dark') {
           document.documentElement.classList.add('dark');
-          document.documentElement.style.backgroundColor = '#0a0c16';
       } else {
           document.documentElement.classList.remove('dark');
-          document.documentElement.style.backgroundColor = '#faf6f0';
       }
     })();
 </script>
@@ -91,7 +90,8 @@
     }
   </script>
 <style>
-    body { font-family: 'Nunito Sans', sans-serif; }
+    body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; color: #2e3230; transition: background-color 0.3s ease, color 0.3s ease; }
+    .dark body { background-color: #0a0c16; color: #f1f5f9; }
     .headline-font { font-family: 'Literata', serif; }
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -153,7 +153,7 @@
     .card-in { animation: cardIn 0.35s cubic-bezier(0.34,1.2,0.64,1) both; }
   </style>
 </head>
-<body class="bg-background text-on-surface" style=" padding-top: 7rem;">
+<body class="antialiased" style="padding-top: 7rem;">
 <!-- SideNavBar -->
 <!-- TopAppBar -->
 <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
@@ -170,6 +170,9 @@
 <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
 </nav>
 <div class="flex items-center gap-4">
+<a class="hidden md:flex px-5 py-2.5 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 rounded-full font-bold text-xs hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all duration-300" href="Admin_Dashboard.html">
+<span class="material-symbols-outlined text-sm mr-1">group</span> Rescue Partner View
+</a>
 <a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
 <button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" id="theme-toggle">
 <span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
@@ -641,13 +644,8 @@
         const syncThemeUI = () => {
           const isDark = htmlElement.classList.contains('dark');
           themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
-          if (isDark) {
-            htmlElement.style.backgroundColor = '#0a0c16';
-            localStorage.setItem('annaSetuTheme', 'dark');
-          } else {
-            htmlElement.style.backgroundColor = '#faf6f0';
-            localStorage.setItem('annaSetuTheme', 'light');
-          }
+          localStorage.setItem('annaSetuTheme', isDark ? 'dark' : 'light');
+          
           // Re-render components that might need theme-specific JS updates
           renderTeamGrid();
           renderActivityFeed();

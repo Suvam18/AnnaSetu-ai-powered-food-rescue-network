@@ -464,6 +464,7 @@
                 }
                 showAlert(`Welcome Back ${validUser.fname}.... Redirecting!`, true);
                 localStorage.setItem('annasetu_session', JSON.stringify(validUser));
+                localStorage.setItem('annaSetuTheme', 'light');
                 
                 setTimeout(() => {
                     if (currentRole === 'restaurant') {
