@@ -69,9 +69,7 @@
 <a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#facc15] hover:-translate-y-0.5 transition-all duration-300" href="Restaurant_Team_Management.html">Team</a>
 </nav>
 <div class="flex items-center gap-4">
-<a class="hidden md:flex px-5 py-2.5 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 rounded-full font-bold text-xs hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all duration-300" href="Admin_Dashboard.html">
-<span class="material-symbols-outlined text-sm mr-1">group</span> Rescue Partner View
-</a>
+
 <a class="hidden md:flex px-6 py-2.5 bg-[#facc15] text-[#1e1b4b] rounded-full font-bold text-sm tracking-wide hover:bg-[#fef08a] transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.2)] hover:scale-105" href="index.html">Logout</a>
 <button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-[#1e243b] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" id="theme-toggle">
 <span class="material-symbols-outlined text-lg" id="theme-icon">dark_mode</span>
@@ -387,12 +385,6 @@
 
 </div>
 </main>
-<!-- Floating Action Indicator (Contextual) -->
-<div class="fixed bottom-8 right-8 z-50 hidden md:block">
-<button class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all">
-<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
-</button>
-</div>
 
 <!-- Mobile Bottom Navigation (Instagram Style) -->
 <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-[#121629] border-t border-gray-200/80 dark:border-white/10 z-50 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
@@ -441,6 +433,7 @@
             });
         }
         syncThemeUI();
+        
         // Chart Interactivity
         const btnDaily = document.getElementById('btn-trend-daily');
         const btnWeekly = document.getElementById('btn-trend-weekly');
@@ -449,14 +442,13 @@
         const avg1 = document.getElementById('trend-avg-1');
         const avg2 = document.getElementById('trend-avg-2');
 
-        const dataDaily = [60, 85, 45, 95, 70, 40, 25]; // initial daily percentages
-        const dataWeekly = [40, 55, 70, 30, 80, 95, 85]; // mock weekly percentages
+        const dataDaily = [60, 85, 45, 95, 70, 40, 25];
+        const dataWeekly = [40, 55, 70, 30, 80, 95, 85];
 
         const labelsDaily = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         const labelsWeekly = ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6', 'Wk 7'];
 
         function setChartMode(mode) {
-            // Update Buttons
             if (mode === 'daily') {
                 btnDaily.className = "px-4 py-1.5 text-sm font-bold bg-white dark:bg-white/10 shadow-sm rounded-md text-primary dark:text-emerald-400 transition-all";
                 btnWeekly.className = "px-4 py-1.5 text-sm font-medium text-secondary dark:text-stone-400 hover:text-primary transition-all";
@@ -469,32 +461,14 @@
                 avg2.textContent = "This Month Current: 380kg";
             }
 
-            // Update Bars and Labels
             const dataTarget = mode === 'daily' ? dataDaily : dataWeekly;
             const labelsTarget = mode === 'daily' ? labelsDaily : labelsWeekly;
 
             bars.forEach((bar, index) => {
-                bar.style.height = '0%'; // shrink to bottom first
+                bar.style.height = '0%';
                 setTimeout(() => {
                     bar.style.height = `${dataTarget[index]}%`;
-                }, 150); // slight stagger or delay
-                
-                // Color change logic: if weekly, all same color or alternate
-                if (mode === 'weekly') {
-                    bar.classList.remove('bg-tertiary');
-                    bar.classList.add('bg-primary');
-                    if (index >= 5) {
-                        bar.classList.add('bg-tertiary'); // just for visual variance
-                        bar.classList.remove('bg-primary');
-                    }
-                } else {
-                    bar.classList.remove('bg-tertiary');
-                    bar.classList.add('bg-primary');
-                    if (index >= 5) {
-                        bar.classList.remove('bg-primary');
-                        bar.classList.add('bg-tertiary');
-                    }
-                }
+                }, 150);
             });
 
             labels.forEach((lbl, index) => {
@@ -502,7 +476,6 @@
                 setTimeout(() => {
                     lbl.textContent = labelsTarget[index];
                     lbl.style.opacity = '1';
-                    lbl.style.transition = 'opacity 0.3s ease';
                 }, 150);
             });
         }
@@ -516,14 +489,11 @@
         const downloadBtn = document.getElementById('btn-download');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => {
-                // UI feedback
                 const origHtml = downloadBtn.innerHTML;
                 downloadBtn.innerHTML = `<span class="material-symbols-outlined inline-block" style="animation:rotateLoop 1s linear infinite;">sync</span> Downloading...`;
                 downloadBtn.disabled = true;
 
-                // Simulate data fetch delay
                 setTimeout(() => {
-                    // Generate mock CSV data
                     const headers = "Date,Category,Rescued_kg,CO2_Offset_tons\n";
                     const rows = [
                         "2023-10-01,Prepared Meals,45,0.08",
@@ -532,25 +502,24 @@
                         "2023-10-04,Prepared Meals,50,0.09"
                     ].join("\n");
                     const csvContent = headers + rows;
-
-                    // Create Blob and download link
                     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement("a");
                     link.setAttribute("href", url);
                     link.setAttribute("download", "annasetu_analytics_report.csv");
-                    link.style.visibility = 'hidden';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-
-                    // Reset button and show toast
                     downloadBtn.innerHTML = origHtml;
                     downloadBtn.disabled = false;
-                    alert("Download complete! annasetu_analytics_report.csv has been saved.");
                 }, 1200);
             });
         }
     });
 </script>
+
+<!-- AI Support Assistant Integration -->
+<script src="ai_assistant.js"></script>
+<!-- User Profile Manager Integration -->
+<script src="profile_manager.js"></script>
 </body></html>
