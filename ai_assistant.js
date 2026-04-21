@@ -197,6 +197,13 @@
             30% { transform: translateY(-4px); }
         }
 
+        @media (max-width: 768px) {
+            #annasetu-chat-container {
+                bottom: 180px !important; /* Lift significantly above mobile bottom nav */
+                right: 16px !important;
+            }
+        }
+
         @media (max-width: 480px) {
             #annasetu-chat-window {
                 width: calc(100vw - 40px);

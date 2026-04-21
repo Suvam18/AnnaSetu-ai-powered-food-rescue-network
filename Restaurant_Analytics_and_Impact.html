@@ -2,6 +2,10 @@
 
 <html class="light" lang="en">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
 <script>
   // Immediate theme application to prevent FOUC
   (function() {
@@ -50,9 +54,58 @@
     .headline-font { font-family: 'Literata', serif; }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     @keyframes rotateLoop { 100% { transform: rotate(360deg); } }
-  </style>
+</style>
+
+
+
+<style id="mobile-nav-css">
+  #annasetu-mobile-nav {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    #annasetu-mobile-nav {
+      display: flex !important;
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 64px !important;
+      z-index: 2147483647 !important;
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-top: 1px solid #e5e7eb !important;
+      justify-content: space-around !important;
+      align-items: center !important;
+      padding-bottom: env(safe-area-inset-bottom) !important;
+    }
+    #annasetu-mobile-nav a {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 1 !important;
+      height: 100% !important;
+      color: #78716c !important;
+      text-decoration: none !important;
+      font-size: 9px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      transition: color 0.2s !important;
+      position: relative !important;
+    }
+    #annasetu-mobile-nav a:hover {
+      color: #4a7c59 !important;
+    }
+    #annasetu-mobile-nav a.active {
+      color: #4a7c59 !important;
+    }
+    body { padding-bottom: 6rem !important; }
+  }
+</style>
 </head>
-<body class="bg-surface text-on-surface antialiased" style=" padding-top: 7rem;">
+<body id="annasetu-body" class="bg-surface text-on-surface antialiased" style=" padding-top: 7rem;">
 <!-- SideNavBar -->
 <!-- TopAppBar -->
 <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">
@@ -386,26 +439,7 @@
 </div>
 </main>
 
-<!-- Mobile Bottom Navigation (Instagram Style) -->
-<nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-[#121629] border-t border-gray-200/80 dark:border-white/10 z-50 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-  <div class="flex justify-around items-center h-16">
-    <a href="Restaurant_Portal_Dashboard.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors">
-      <span class="material-symbols-outlined text-[28px]">home</span>
-    </a>
-    <a href="Excess_Notification_Center.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors">
-      <span class="material-symbols-outlined text-[28px]">edit_document</span>
-    </a>
-    <a href="Restaurant_Locations_Management.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors">
-      <span class="material-symbols-outlined text-[28px]">location_on</span>
-    </a>
-    <a href="Restaurant_Analytics_and_Impact.html" class="flex flex-col items-center justify-center w-full h-full text-primary">
-      <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
-    </a>
-    <a href="Restaurant_Team_Management.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-primary transition-colors">
-      <span class="material-symbols-outlined text-[28px]">group</span>
-    </a>
-  </div>
-</nav>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -519,7 +553,40 @@
 </script>
 
 <!-- AI Support Assistant Integration -->
-<script src="ai_assistant.js"></script>
+<script src="ai_assistant.js?v=4"></script>
 <!-- User Profile Manager Integration -->
 <script src="profile_manager.js"></script>
+
+
+
+
+
+<!-- Mobile Bottom Navigation -->
+<nav id="annasetu-mobile-nav">
+    <a href="Restaurant_Portal_Dashboard.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">dashboard</span>
+        <span>Dashboard</span>
+        
+    </a>
+    <a href="Excess_Notification_Center.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">inventory_2</span>
+        <span>Surplus log</span>
+        
+    </a>
+    <a href="Restaurant_Locations_Management.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">pin_drop</span>
+        <span>Locations</span>
+        <span id="mobile-nav-loc-badge" style="display:none;position:absolute;top:4px;right:12px;min-width:14px;height:14px;padding:0 2px;background:#ef4444;color:#fff;font-size:8px;font-weight:900;border-radius:9999px;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3);">0</span>
+    </a>
+    <a href="Restaurant_Analytics_and_Impact.html" class="active">
+        <span class="material-symbols-outlined" style="font-size:24px; font-variation-settings:'FILL' 1">insert_chart</span>
+        <span>Analytics</span>
+        
+    </a>
+    <a href="Restaurant_Team_Management.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">groups</span>
+        <span>Team</span>
+        
+    </a>
+</nav>
 </body></html>

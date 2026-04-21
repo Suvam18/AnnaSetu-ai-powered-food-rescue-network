@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
 <script>
   // Immediate theme application to prevent FOUC
   (function() {
@@ -75,6 +79,55 @@
   }
   .dark .ai-shimmer {
     background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 25%, rgba(16, 185, 129, 0.2) 50%, rgba(16, 185, 129, 0.1) 75%);
+  }
+</style>
+
+
+
+<style id="mobile-nav-css">
+  #annasetu-mobile-nav {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    #annasetu-mobile-nav {
+      display: flex !important;
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 64px !important;
+      z-index: 2147483647 !important;
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-top: 1px solid #e5e7eb !important;
+      justify-content: space-around !important;
+      align-items: center !important;
+      padding-bottom: env(safe-area-inset-bottom) !important;
+    }
+    #annasetu-mobile-nav a {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 1 !important;
+      height: 100% !important;
+      color: #78716c !important;
+      text-decoration: none !important;
+      font-size: 9px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      transition: color 0.2s !important;
+      position: relative !important;
+    }
+    #annasetu-mobile-nav a:hover {
+      color: #4a7c59 !important;
+    }
+    #annasetu-mobile-nav a.active {
+      color: #4a7c59 !important;
+    }
+    body { padding-bottom: 6rem !important; }
   }
 </style>
 </head>
@@ -926,8 +979,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <!-- AI Support Assistant Integration -->
-<script src="ai_assistant.js"></script>
+<script src="ai_assistant.js?v=4"></script>
 <!-- User Profile Manager Integration -->
 <script src="profile_manager.js"></script>
+
+
+
+
+
+<!-- Mobile Bottom Navigation -->
+<nav id="annasetu-mobile-nav">
+    <a href="Restaurant_Portal_Dashboard.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">dashboard</span>
+        <span>Dashboard</span>
+        
+    </a>
+    <a href="Excess_Notification_Center.html" class="active">
+        <span class="material-symbols-outlined" style="font-size:24px; font-variation-settings:'FILL' 1">inventory_2</span>
+        <span>Surplus log</span>
+        
+    </a>
+    <a href="Restaurant_Locations_Management.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">pin_drop</span>
+        <span>Locations</span>
+        <span id="mobile-nav-loc-badge" style="display:none;position:absolute;top:4px;right:12px;min-width:14px;height:14px;padding:0 2px;background:#ef4444;color:#fff;font-size:8px;font-weight:900;border-radius:9999px;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3);">0</span>
+    </a>
+    <a href="Restaurant_Analytics_and_Impact.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">insert_chart</span>
+        <span>Analytics</span>
+        
+    </a>
+    <a href="Restaurant_Team_Management.html">
+        <span class="material-symbols-outlined" style="font-size:24px;">groups</span>
+        <span>Team</span>
+        
+    </a>
+</nav>
 </body>
 </html>
