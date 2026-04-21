@@ -63,54 +63,33 @@
 
 
 
-<style id="mobile-nav-css">
-  #annasetu-mobile-nav {
-    display: none;
-  }
-  @media (max-width: 1024px) {
-    #annasetu-mobile-nav {
-      display: flex !important;
-      position: fixed !important;
-      bottom: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      height: 64px !important;
-      z-index: 2147483647 !important;
-      background-color: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
-      border-top: 1px solid #e5e7eb !important;
-      justify-content: space-around !important;
-      align-items: center !important;
-      padding-bottom: env(safe-area-inset-bottom) !important;
-    }
-    #annasetu-mobile-nav a {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex: 1 !important;
-      height: 100% !important;
-      color: #78716c !important;
-      text-decoration: none !important;
-      font-size: 9px !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.05em !important;
-      transition: color 0.2s !important;
-      position: relative !important;
-    }
-    #annasetu-mobile-nav a:hover {
-      color: #4a7c59 !important;
-    }
-    #annasetu-mobile-nav a.active {
-      color: #4a7c59 !important;
-    }
-    body { padding-bottom: 6rem !important; }
-  }
 </style>
 </head>
-<body>
+<body class="pb-24 lg:pb-0">
+
+<!-- ═══════════════ MOBILE BOTTOM NAV ═══════════════ -->
+<nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-[#121629]/95 backdrop-blur-xl border-t border-gray-200/80 dark:border-white/10 z-[2147483647] flex justify-between items-center px-2 py-2 pb-5 shadow-[0_-4px_16px_rgba(0,0,0,0.05)]">
+  <a href="Restaurant_Portal_Dashboard.html" class="flex flex-col items-center gap-1 text-[10px] font-bold text-[#4a7c59] flex-1">
+    <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+    <span>Dashboard</span>
+  </a>
+  <a href="Excess_Notification_Center.html" class="flex flex-col items-center gap-1 text-[10px] font-bold text-gray-500 dark:text-gray-400 hover:text-[#4a7c59] flex-1 transition-colors">
+    <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+    <span>Surplus</span>
+  </a>
+  <a href="Restaurant_Locations_Management.html" class="flex flex-col items-center gap-1 text-[10px] font-bold text-gray-500 dark:text-gray-400 hover:text-[#4a7c59] flex-1 transition-colors">
+    <span class="material-symbols-outlined text-[24px]">location_on</span>
+    <span>Locations</span>
+  </a>
+  <a href="Restaurant_Analytics_and_Impact.html" class="flex flex-col items-center gap-1 text-[10px] font-bold text-gray-500 dark:text-gray-400 hover:text-[#4a7c59] flex-1 transition-colors">
+    <span class="material-symbols-outlined text-[24px]">monitoring</span>
+    <span>Analytics</span>
+  </a>
+  <a href="Restaurant_Team_Management.html" class="flex flex-col items-center gap-1 text-[10px] font-bold text-gray-500 dark:text-gray-400 hover:text-[#4a7c59] flex-1 transition-colors">
+    <span class="material-symbols-outlined text-[24px]">group</span>
+    <span>Team</span>
+  </a>
+</nav>
 
 <!-- ═══════════════ NAVBAR ═══════════════ -->
 <div class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 flex justify-center">

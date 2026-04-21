@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Impact & Reporting | AnnaSetu NGO</title>
+  <meta name="description" content="Quantifying our community's environmental and social growth."/>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+  <script>
+    (function(){
+      var s = JSON.parse(localStorage.getItem('annasetu_session')||'null');
+      if(!s||s.role!=='ngo'){ window.location.href='signin.html'; }
+    })();
+  </script>
+  <style>
+    :root {
+      --primary:#4a7c59; --primary-dark:#3d664a; --primary-light:#78a886;
+      --bg:#faf6f0; --surface:#ffffff; --surface-tint:#f0ece4;
+      --tertiary:#705c30; --tertiary-light:#c4a66a;
+      --on-bg:#2e3230; --on-surface-var:#4a4e4a;
+      --outline:#74796e; --outline-var:#c4c8bc;
+      --error:#b83230; --success:#3a7d44;
+      --shadow:0 4px 20px rgba(46,50,48,0.07);
+      --radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--on-bg);min-height:100vh;overflow-x:hidden;}
+
+    /* ── Top Navbar ─────────────────────── */
+    .navbar-container {
+      position: fixed;
+      top: 20px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .navbar {
+      background: var(--surface);
+      width: 100%;
+      max-width: 1200px;
+      height: 72px;
+      padding: 0 24px;
+      border-radius: 999px;
+      box-shadow: 0 8px 32px rgba(46,50,48,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+    }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--on-bg); }
+    .nav-logo .material-symbols-outlined { color:var(--primary); font-size:28px; }
+    .nav-logo .name { font-family:'Literata',serif; font-weight:700; font-size:20px; }
+
+    .nav-center { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      padding: 8px 16px;
+      text-decoration: none;
+      color: var(--on-surface-var);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 999px;
+      transition: all .2s;
+    }
+    .nav-link:hover { color: var(--primary); background: rgba(74,124,89,0.05); }
+    .nav-link.active { color: var(--primary); background: rgba(74,124,89,0.1); font-weight: 700; }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .logout-btn {
+      background: #ffcc00;
+      color: #2e3230;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .logout-btn:hover { background: #f0c000; transform: translateY(-1px); }
+    
+    .profile-circle { width: 40px; height: 40px; border-radius: 50%; background: #5c6bc0; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--on-surface-var); transition: background .2s; }
+    .theme-toggle:hover { background: var(--surface-tint); }
+
+    /* ── Main Layout ────────────────────── */
+    .main {
+      padding: 120px 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .page-title { font-family:'Literata',serif; font-weight:700; font-size:26px; color:var(--on-bg); }
+    .page-subtitle { font-size:14px; color:var(--on-surface-var); margin-top:2px; }
+
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
+    .metric-card { background: var(--surface); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); border: 1px solid var(--outline-var); }
+    .metric-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .metric-icon { width: 56px; height: 56px; border-radius: 14px; background: rgba(74,124,89,.1); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+    .trend { font-size: 12px; font-weight: 800; color: var(--success); background: rgba(58,125,68,0.1); padding: 4px 12px; border-radius: 999px; }
+    .val { font-size: 42px; font-weight: 800; font-family: 'Literata', serif; margin-bottom: 4px; }
+    .lab { font-size: 16px; font-weight: 700; }
+    .desc { font-size: 14px; color: var(--on-surface-var); margin-top: 8px; line-height: 1.5; }
+
+    .content-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
+    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--outline-var); overflow: hidden; }
+    .card-header { padding: 20px 24px; border-bottom: 1px solid var(--outline-var); display: flex; justify-content: space-between; align-items: center; }
+    
+    .partner-item { padding: 24px; border-bottom: 1px solid var(--outline-var); display: flex; gap: 20px; }
+    .partner-item:last-child { border-bottom: none; }
+    .partner-logo { width: 56px; height: 56px; border-radius: 12px; background: var(--surface-tint); display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+    .partner-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .partner-desc { font-size: 14px; color: var(--on-surface-var); line-height: 1.6; }
+
+    /* ── Bottom Nav (Mobile) ── */
+    .bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--outline-var);
+      padding: 10px 16px 20px;
+      z-index: 2147483647;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.05);
+    }
+    html.dark-mode .bottom-nav { background: rgba(30, 33, 30, 0.98); border-color: var(--outline-var); box-shadow: 0 -4px 16px rgba(0,0,0,0.4); }
+    
+    .b-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      text-decoration: none; color: var(--on-surface-var);
+      font-size: 11px; font-weight: 700; flex: 1; transition: 0.2s;
+    }
+    .b-nav-item .material-symbols-outlined { font-size: 24px; transition: transform 0.2s; }
+    .b-nav-item:hover { color: var(--primary); }
+    .b-nav-item:hover .material-symbols-outlined { transform: translateY(-2px); }
+    .b-nav-item.active { color: var(--primary); }
+    .b-nav-item.active .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+
+    @media (max-width: 1024px) { 
+      .nav-center { display: none; }
+      .metrics-grid-2 { grid-template-columns: 1fr; }
+      .bottom-nav { display: flex; }
+      .main { padding-bottom: 100px; }
+    }
+    @media (max-width: 400px) {
+      .b-nav-item span:not(.material-symbols-outlined) { font-size: 9px; }
+    }
+    @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- Bottom Navigation for Mobile -->
+<nav class="bottom-nav">
+  <a href="NGO_Dispatch_Dashboard.html" class="b-nav-item">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span>Dashboard</span>
+  </a>
+  <a href="NGO_Alert_Management.html" class="b-nav-item">
+    <span class="material-symbols-outlined">notification_important</span>
+    <span>Alerts</span>
+  </a>
+  <a href="NGO_Volunteer_Fleet.html" class="b-nav-item">
+    <span class="material-symbols-outlined">local_shipping</span>
+    <span>Fleet</span>
+  </a>
+  <a href="NGO_Rescue_Coordination.html" class="b-nav-item">
+    <span class="material-symbols-outlined">route</span>
+    <span>Logistics</span>
+  </a>
+  <a href="NGO_Impact_Reporting.html" class="b-nav-item active">
+    <span class="material-symbols-outlined">monitoring</span>
+    <span>Impact</span>
+  </a>
+</nav>
+
+<div class="navbar-container">
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="NGO_Dispatch_Dashboard.html" class="nav-logo">
+        <span class="material-symbols-outlined">soup_kitchen</span>
+        <span class="name">AnnaSetu</span>
+      </a>
+    </div>
+
+    <nav class="nav-center">
+      <a href="NGO_Dispatch_Dashboard.html" class="nav-link">Dashboard</a>
+      <a href="NGO_Alert_Management.html" class="nav-link">Rescue Alert</a>
+      <a href="NGO_Volunteer_Fleet.html" class="nav-link">Volunteer</a>
+      <a href="NGO_Rescue_Coordination.html" class="nav-link">Logistics</a>
+      <a href="NGO_Impact_Reporting.html" class="nav-link active">Impact</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+      <div class="profile-circle" id="user-initial">N</div>
+      <div class="theme-toggle">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main class="main">
+  <div class="page-header">
+    <div>
+      <div class="page-title">Impact & Reporting</div>
+      <div class="page-subtitle">Quantifying our community's environmental and social growth.</div>
+    </div>
+    <button class="logout-btn" style="background:var(--primary);color:#fff;padding:10px 24px;"><span class="material-symbols-outlined" style="font-size:18px;">download</span> Annual Report</button>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-head">
+        <div class="metric-icon"><span class="material-symbols-outlined">co2</span></div>
+        <span class="trend">+14% vs last mo</span>
+      </div>
+      <div class="val">4.2 Tons</div>
+      <div class="lab">CO2 Emissions Saved</div>
+      <div class="desc">Carbon footprint offset through zero-emission rescue logistics.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-head">
+        <div class="metric-icon" style="background:rgba(112,92,48,0.1);color:var(--tertiary);"><span class="material-symbols-outlined">family_restroom</span></div>
+        <span class="trend">2,482 Families</span>
+      </div>
+      <div class="val">12.5k</div>
+      <div class="lab">Nutritious Meals Served</div>
+      <div class="desc">Total meals distributed to local shelters and communities.</div>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-header"><div style="font-weight:700;">Partnership Highlights</div></div>
+      <div class="partner-list">
+        <div class="partner-item">
+          <div class="partner-logo"><span class="material-symbols-outlined">water_drop</span></div>
+          <div>
+            <div class="partner-name">Willow Creek Partnership</div>
+            <div class="partner-desc">Diverted 5,000kg of surplus organic vegetables to their evening meal program.</div>
+          </div>
+        </div>
+        <div class="partner-item">
+          <div class="partner-logo"><span class="material-symbols-outlined">hub</span></div>
+          <div>
+            <div class="partner-name">Central Market Hub</div>
+            <div class="partner-desc">Pioneered end-of-day harvest rescue, reducing market waste by 30%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <div class="card" style="padding:24px; background:var(--primary); color:#fff; border:none;">
+        <div style="font-family:'Literata',serif; font-size:20px; font-weight:700; margin-bottom:8px;">Zero-Emission Logistics</div>
+        <p style="font-size:13px; opacity:.9; line-height:1.6;">Green Logistics Co. provided full electric fleet access for city-core operations.</p>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-weight:700; margin-bottom:12px;">Rescue Composition</div>
+        <div style="height:120px; background:var(--surface-tint); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--outline); font-size:12px;">[ Visualization Placeholder ]</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const session = JSON.parse(localStorage.getItem('annasetu_session')||'{}');
+  if(session.fname){ document.getElementById('user-initial').textContent = session.fname.charAt(0).toUpperCase(); }
+  function handleLogout(){ localStorage.removeItem('annasetu_session'); window.location.href='signin.html'; }
+</script>
+</body>
+</html>

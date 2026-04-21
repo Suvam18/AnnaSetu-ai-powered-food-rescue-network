@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer Fleet | AnnaSetu NGO</title>
+  <meta name="description" content="Manage your active rescue network and community partners."/>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+  <script>
+    (function(){
+      var s = JSON.parse(localStorage.getItem('annasetu_session')||'null');
+      if(!s||s.role!=='ngo'){ window.location.href='signin.html'; }
+      if(localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark-mode');
+    })();
+  </script>
+  <style>
+    :root {
+      --primary:#4a7c59; --primary-dark:#3d664a; --primary-light:#78a886;
+      --bg:#faf6f0; --surface:#ffffff; --surface-tint:#f0ece4;
+      --tertiary:#705c30; --tertiary-light:#c4a66a;
+      --on-bg:#2e3230; --on-surface-var:#4a4e4a;
+      --outline:#74796e; --outline-var:#c4c8bc;
+      --error:#b83230; --success:#3a7d44;
+      --shadow:0 4px 20px rgba(46,50,48,0.07);
+      --radius:16px;
+    }
+    html.dark-mode {
+      --bg: #121412; --surface: #1e211e; --surface-tint: #2a2e2a;
+      --on-bg: #e6e8e3; --on-surface-var: #b0b4ac;
+      --outline: #74796e; --outline-var: #424641;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    html.dark-mode .navbar { border-color: rgba(255,255,255,0.05); }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--on-bg);min-height:100vh;overflow-x:hidden;transition:background 0.3s, color 0.3s;}
+    
+    /* ── Top Navbar ─────────────────────── */
+    .navbar-container { position: fixed; top: 20px; left: 0; right: 0; z-index: 1000; padding: 0 20px; display: flex; justify-content: center; }
+    .navbar { background: var(--surface); width: 100%; max-width: 1200px; height: 72px; padding: 0 24px; border-radius: 999px; box-shadow: 0 8px 32px rgba(46,50,48,0.08); display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.8); backdrop-filter: blur(8px); transition: background 0.3s; }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--on-bg); }
+    .nav-logo .material-symbols-outlined { color:var(--primary); font-size:28px; }
+    .nav-logo .name { font-family:'Literata',serif; font-weight:700; font-size:20px; }
+    .nav-center { display: flex; align-items: center; gap: 8px; }
+    .nav-link { padding: 8px 16px; text-decoration: none; color: var(--on-surface-var); font-size: 14px; font-weight: 600; border-radius: 999px; transition: all .2s; }
+    .nav-link:hover { color: var(--primary); background: rgba(74,124,89,0.05); }
+    .nav-link.active { color: var(--primary); background: rgba(74,124,89,0.1); font-weight: 700; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .logout-btn { background: #ffcc00; color: #1e1a13; border: none; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 800; cursor: pointer; transition: all .2s; }
+    .logout-btn:hover { background: #ffb300; transform: translateY(-1px); }
+    .profile-circle { width: 40px; height: 40px; border-radius: 50%; background: #5c6bc0; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--on-surface-var); transition: background .2s; }
+    .theme-toggle:hover { background: var(--surface-tint); color:var(--primary); }
+
+    /* ── Main Layout ────────────────────── */
+    .main { padding: 120px 20px 40px; max-width: 1200px; margin: 0 auto; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .page-title { font-family:'Literata',serif; font-weight:700; font-size:26px; color:var(--on-bg); }
+    .page-subtitle { font-size:14px; color:var(--on-surface-var); margin-top:2px; }
+
+    .main-layout { display: grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start; }
+    .content-col { display: flex; flex-direction: column; gap: 32px; }
+
+    /* ── Fleet Grid ── */
+    .fleet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--outline-var); padding: 24px; position: relative; transition: transform .3s, border-color .3s; }
+    .card:hover { transform: translateY(-6px); border-color: var(--primary-light); }
+    .status-badge { position: absolute; top: 16px; right: 16px; font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+    .available { background: rgba(58,125,68,0.1); color: var(--success); }
+    .mission { background: rgba(112,92,48,0.1); color: var(--tertiary); }
+    html.dark-mode .available { color: #81c784; } html.dark-mode .mission { color: #ffd54f; }
+    
+    .v-profile { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+    .v-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--surface-tint); display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800; font-size: 18px; border: 2px solid var(--bg); box-shadow: inset 0 0 0 1px var(--outline-var); }
+    .v-info { flex:1; }
+    .v-name { font-size: 18px; font-weight: 800; color: var(--on-bg); line-height:1.2; margin-bottom:2px; }
+    
+    .skills-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .skill-tag { background: var(--surface-tint); color: var(--on-surface-var); padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; display:flex; align-items:center; gap:4px; border:1px solid var(--outline-var); }
+    
+    .v-metrics { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: rgba(74,124,89,0.03); border-radius: 12px; border: 1px solid rgba(74,124,89,0.1); margin-bottom: 20px; }
+    html.dark-mode .v-metrics { background: rgba(255,255,255,0.02); border-color: var(--outline-var); }
+    .m-line { display: flex; justify-content: space-between; font-size: 12px; }
+    .m-line span:first-child { color: var(--on-surface-var); font-weight: 700; display:flex; align-items:center; gap:4px; }
+    .m-line span:last-child { color: var(--on-bg); font-weight: 800; }
+    
+    .card-actions { display: flex; gap: 8px; }
+    .btn { flex: 1; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 800; border: none; cursor: pointer; transition: all .2s; }
+    .btn-outline { background: var(--surface-tint); color: var(--on-bg); border: 1px solid var(--outline-var); }
+    .btn-outline:hover { background: var(--bg); color: var(--primary); border-color: var(--primary); }
+    .btn-fill { background: var(--primary); color: #fff; display:flex; align-items:center; justify-content:center; gap:8px;}
+    .btn-fill:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+    /* ── History Roadmap Section ── */
+    .history-card { background: var(--surface); border-radius: var(--radius); padding: 24px; border: 1px solid var(--outline-var); box-shadow: var(--shadow); }
+    .h-header { font-family: 'Literata', serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; display:flex; align-items:center; gap:8px; }
+    
+    .timeline { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 16px; }
+    .timeline::before { content: ''; position: absolute; top: 8px; bottom: 0; left: 5px; width: 2px; background: var(--outline-var); }
+    .tl-item { position: relative; display: flex; flex-direction: column; gap: 4px; animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from{ opacity:0; transform:translateX(-10px); } to { opacity:1; transform:translateX(0); } }
+    .tl-dot { position: absolute; left: -17px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 3px solid var(--primary); }
+    .tl-head { display:flex; justify-content:space-between; align-items:center; margin-bottom: 2px;}
+    .tl-time { font-size: 11px; color: var(--on-surface-var); font-weight: 800; font-family: monospace; }
+    .tl-title { font-weight: 800; color: var(--on-bg); font-size:14px; }
+    .tl-desc { font-size: 13px; color: var(--on-surface-var); display:flex; align-items:center; gap:6px; }
+    .tl-desc img { width:20px; height:20px; border-radius:50%; object-fit:cover; border:1px solid var(--outline-var); }
+
+    /* ── Sidebar ── */
+    .sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 120px; }
+    .info-card { background: var(--surface); border-radius: var(--radius); padding: 24px; border: 1px solid var(--outline-var); box-shadow: var(--shadow); }
+    .info-head { font-weight: 800; font-size: 13px; text-transform: uppercase; margin-bottom: 16px; color: var(--on-surface-var); letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+    
+    /* Smart Engine Metrics */
+    .ai-metric { margin-bottom: 16px; }
+    .ai-metric:last-child { margin-bottom: 0; }
+    .ai-lab { display:flex; justify-content:space-between; font-size:12px; font-weight:800; color:var(--on-bg); margin-bottom:6px; }
+    .pg-bar { height:6px; background:var(--surface-tint); border-radius:3px; overflow:hidden;}
+    .pg-fill { height:100%; width:0%; transition:1s ease; background:var(--primary); }
+    .fill-speed { background: #2196f3; } .fill-rel { background: #9c27b0; }
+
+    /* Scheduler */
+    .shift-list { display: flex; flex-direction: column; gap: 12px; }
+    .shift-item { padding: 12px; border-radius: 12px; background: rgba(74,124,89,0.05); border: 1px solid rgba(74,124,89,0.1); display: flex; flex-direction: column; gap: 4px; }
+    html.dark-mode .shift-item { background: rgba(255,255,255,0.02); border-color: var(--outline-var); }
+    .s-time { font-weight: 800; color: var(--primary); font-size: 14px; display:flex; align-items:center; gap:4px; }
+    .s-det { font-size: 12px; color: var(--on-surface-var); font-weight: 600; }
+
+    /* ── Modal (Add Volunteer) ── */
+    .modal-backdrop { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-box { background: var(--surface); color: var(--on-bg); padding: 32px; border-radius: var(--radius); width: 100%; max-width: 480px; box-shadow: 0 24px 64px rgba(0,0,0,0.3); border: 1px solid var(--outline-var); position: relative; animation: modalIn 0.3s ease-out; }
+    @keyframes modalIn { from{ transform:scale(0.95); opacity:0;} to{ transform:scale(1); opacity:1;} }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--on-surface-var); }
+    .m-header { font-family: 'Literata', serif; font-size: 24px; font-weight: 700; margin-bottom: 24px; color: var(--primary); display:flex; align-items:center; gap:8px;}
+    .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--on-surface-var); letter-spacing: 0.5px; }
+    .form-control { background: var(--bg); border: 1px solid var(--outline-var); color: var(--on-bg); padding: 12px 16px; border-radius: 12px; font-size: 14px; font-family: inherit; font-weight: 600; width:100%; }
+    .form-control:focus { outline: none; border-color: var(--primary); }
+    
+    /* ── Toast ── */
+    #toast-container { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 9999; pointer-events: none; }
+    .toast { background: var(--success); color: #fff; padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; animation: toastIn 0.4s ease forwards; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .toast.hide { animation: toastOut 0.4s ease forwards; }
+    @keyframes toastOut { to { opacity: 0; transform: translateY(20px); } }
+
+    /* ── Bottom Nav (Mobile) ── */
+    .bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--outline-var);
+      padding: 10px 16px 20px;
+      z-index: 2147483647;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.05);
+    }
+    html.dark-mode .bottom-nav { background: rgba(30, 33, 30, 0.98); border-color: var(--outline-var); box-shadow: 0 -4px 16px rgba(0,0,0,0.4); }
+    
+    .b-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      text-decoration: none; color: var(--on-surface-var);
+      font-size: 11px; font-weight: 700; flex: 1; transition: 0.2s;
+    }
+    .b-nav-item .material-symbols-outlined { font-size: 24px; transition: transform 0.2s; }
+    .b-nav-item:hover { color: var(--primary); }
+    .b-nav-item:hover .material-symbols-outlined { transform: translateY(-2px); }
+    .b-nav-item.active { color: var(--primary); }
+    .b-nav-item.active .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+
+    @media (max-width: 1024px) { 
+      .nav-center { display: none; } 
+      .main-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .bottom-nav { display: flex; }
+      .main { padding-bottom: 100px; }
+    }
+    @media (max-width: 400px) {
+      .b-nav-item span:not(.material-symbols-outlined) { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Bottom Navigation for Mobile -->
+<nav class="bottom-nav">
+  <a href="NGO_Dispatch_Dashboard.html" class="b-nav-item">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span>Dashboard</span>
+  </a>
+  <a href="NGO_Alert_Management.html" class="b-nav-item">
+    <span class="material-symbols-outlined">notification_important</span>
+    <span>Alerts</span>
+  </a>
+  <a href="NGO_Volunteer_Fleet.html" class="b-nav-item active">
+    <span class="material-symbols-outlined">local_shipping</span>
+    <span>Fleet</span>
+  </a>
+  <a href="NGO_Rescue_Coordination.html" class="b-nav-item">
+    <span class="material-symbols-outlined">route</span>
+    <span>Logistics</span>
+  </a>
+  <a href="NGO_Impact_Reporting.html" class="b-nav-item">
+    <span class="material-symbols-outlined">monitoring</span>
+    <span>Impact</span>
+  </a>
+</nav>
+
+<div class="navbar-container">
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="NGO_Dispatch_Dashboard.html" class="nav-logo">
+        <span class="material-symbols-outlined">soup_kitchen</span>
+        <span class="name">AnnaSetu</span>
+      </a>
+    </div>
+    <nav class="nav-center">
+      <a href="NGO_Dispatch_Dashboard.html" class="nav-link">Dashboard</a>
+      <a href="NGO_Alert_Management.html" class="nav-link">Rescue Alert</a>
+      <a href="NGO_Volunteer_Fleet.html" class="nav-link active">Volunteer</a>
+      <a href="NGO_Rescue_Coordination.html" class="nav-link">Logistics</a>
+      <a href="NGO_Impact_Reporting.html" class="nav-link">Impact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+      <div class="profile-circle" id="user-initial">N</div>
+      <div class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main class="main">
+  <div class="page-header">
+    <div>
+      <div class="page-title">Volunteer Fleet</div>
+      <div class="page-subtitle">Manage active network profiles and smart logistics metrics.</div>
+    </div>
+    <button class="btn-fill" style="padding:12px 24px;border-radius:12px;width:auto;flex:none; font-size:14px;" onclick="openAddModal()">
+      <span class="material-symbols-outlined" style="font-size:20px;">person_add</span> Add Volunteer
+    </button>
+  </div>
+
+  <div class="main-layout">
+    
+    <!-- LEFT CONTENT: Grid & History -->
+    <div class="content-col">
+      <div class="fleet-grid" id="fleet-list">
+        
+        <!-- Vol 1 -->
+        <div class="card">
+          <span class="status-badge mission">On Mission</span>
+          <div class="v-profile">
+            <div class="v-avatar">DC</div>
+            <div class="v-info">
+              <div class="v-name">David Chen</div>
+              <div class="skills-row">
+                <span class="skill-tag">Driver 🚚</span>
+                <span class="skill-tag">Heavy load 💪</span>
+              </div>
+            </div>
+          </div>
+          <div class="v-metrics">
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>1.2km</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>4 mins</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">4.9 ⭐</span></div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('David Chen', 'DC', '<span class=\'skill-tag\'>Driver 🚚</span><span class=\'skill-tag\'>Heavy load 💪</span>', '124', 'On Mission', 'var(--tertiary)')">View Full Profile</button>
+          </div>
+        </div>
+
+        <!-- Vol 2 -->
+        <div class="card">
+          <span class="status-badge available">Available</span>
+          <div class="v-profile">
+            <div class="v-avatar" style="background:#e8f0eb;">ER</div>
+            <div class="v-info">
+              <div class="v-name">Elena Rodriguez</div>
+              <div class="skills-row">
+                <span class="skill-tag">Bike 🛵</span>
+                <span class="skill-tag" style="background:rgba(211,47,47,0.1); color:#d32f2f; border-color:transparent;">First Aid ⚕️</span>
+              </div>
+            </div>
+          </div>
+           <div class="v-metrics">
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>3.0km</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>2 mins</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">4.8 ⭐</span></div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('Elena Rodriguez', 'ER', '<span class=\'skill-tag\'>Bike 🛵</span><span class=\'skill-tag\' style=\'background:rgba(211,47,47,0.1); color:#d32f2f; border-color:transparent;\'>First Aid ⚕️</span>', '89', 'Available', 'var(--success)')">View Full Profile</button>
+          </div>
+        </div>
+
+        <!-- Vol 3 -->
+        <div class="card">
+          <span class="status-badge available">Available</span>
+          <div class="v-profile">
+            <div class="v-avatar" style="background:#f5f0e8;">MT</div>
+            <div class="v-info">
+              <div class="v-name">Marcus Thorne</div>
+              <div class="skills-row">
+                <span class="skill-tag">Manual 🚶</span>
+              </div>
+            </div>
+          </div>
+           <div class="v-metrics">
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>0.5km</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>6 mins</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">5.0 ⭐</span></div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('Marcus Thorne', 'MT', '<span class=\'skill-tag\'>Manual 🚶</span>', '215', 'Available', 'var(--success)')">View Full Profile</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fleet Appointing History -->
+      <div class="history-card">
+         <div class="h-header"><span class="material-symbols-outlined">history</span> Appointing History</div>
+         <div class="timeline" id="fleet-history">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-head"><div class="tl-title">David Chen Appointed</div> <div class="tl-time">14:30 PM</div></div>
+              <div class="tl-desc">Dispatched for Mexican Fiesta Bowls (Heavy Load requirement auto-matched).</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color:var(--outline-var);"></div>
+              <div class="tl-head"><div class="tl-title">Elena Rodriguez Returned</div> <div class="tl-time">13:15 PM</div></div>
+              <div class="tl-desc">Completed 12km routing, returned to base available.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color:#b8860b;"></div>
+              <div class="tl-head"><div class="tl-title">Shift Verification Started</div> <div class="tl-time">09:00 AM</div></div>
+              <div class="tl-desc">3 Fleet members signed in for duty.</div>
+            </div>
+         </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT CONTENT: Sidebar -->
+    <aside class="sidebar">
+       
+       <!-- Smart Engine Visuals -->
+       <div class="info-card">
+         <div class="info-head">
+          <span class="material-symbols-outlined" style="color:var(--primary);">psychology</span> Smart Assignment Engine
+         </div>
+         <p style="font-size:12px; color:var(--on-surface-var); line-height:1.4; margin-bottom:16px;">
+           The AnnaSetu backend automatically routes rescue alerts to volunteers based on these weighted system metrics:
+         </p>
+         
+         <div class="ai-metric">
+            <div class="ai-lab"><span>Live Distance (GPS)</span> <span>High Priority</span></div>
+            <div class="pg-bar"><div class="pg-fill" style="width:85%;"></div></div>
+         </div>
+         <div class="ai-metric">
+            <div class="ai-lab"><span>Asset Capability (Tag Match)</span> <span>High Priority</span></div>
+            <div class="pg-bar"><div class="pg-fill fill-speed" style="width:70%;"></div></div>
+         </div>
+         <div class="ai-metric">
+            <div class="ai-lab"><span>Past Reliability Score</span> <span>Medium Priority</span></div>
+            <div class="pg-bar"><div class="pg-fill fill-rel" style="width:50%;"></div></div>
+         </div>
+       </div>
+
+       <!-- Shift Scheduling System -->
+       <div class="info-card">
+         <div class="info-head">
+          <span class="material-symbols-outlined" style="color:var(--tertiary);">calendar_month</span> Shift Scheduling System
+         </div>
+         
+         <div class="shift-list">
+            <div class="shift-item">
+               <div class="s-time"><span class="material-symbols-outlined" style="font-size:16px;">schedule</span> Today, 16:00 - 20:00</div>
+               <div class="s-det">Elena Rodriguez · Pre-scheduled for Sector 7 route.</div>
+            </div>
+            <div class="shift-item">
+               <div class="s-time"><span class="material-symbols-outlined" style="font-size:16px;">schedule</span> Tomorrow, 08:00 - 12:00</div>
+               <div class="s-det">Marcus Thorne · Downtown Morning Sweep.</div>
+            </div>
+            <div class="shift-item" style="border: 1px dashed var(--outline-var); background: transparent; align-items:center; cursor:pointer;">
+               <span style="font-size:13px; font-weight:800; color:var(--primary); padding:4px;">+ Request Coverage</span>
+            </div>
+         </div>
+       </div>
+
+    </aside>
+
+  </div>
+</main>
+
+<!-- Add Volunteer Modal -->
+<div class="modal-backdrop" id="modal-add-vol">
+  <div class="modal-box">
+      <button class="modal-close" onclick="closeAddModal()"><span class="material-symbols-outlined">close</span></button>
+      <div class="m-header"><span class="material-symbols-outlined" style="font-size:28px;">person_add</span> Enlist Volunteer</div>
+      
+      <form id="add-vol-form" onsubmit="submitVolunteer(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" id="f-name" required placeholder="e.g. Samarth Gupta">
+        </div>
+
+        <div class="form-group">
+          <label>Primary Capability Skill</label>
+          <select class="form-control" id="f-skill">
+             <option value="Bike 🛵">Bike 🛵</option>
+             <option value="Driver 🚚">Driver 🚚</option>
+             <option value="Heavy load 💪">Heavy load 💪</option>
+             <option value="Manual 🚶">Manual 🚶</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Assigned Sector</label>
+          <input type="text" class="form-control" id="f-sector" required placeholder="e.g. Sector 12">
+        </div>
+
+        <div class="form-group">
+          <label>Availability Starting Time (Shift)</label>
+          <input type="time" class="form-control" id="f-time" required>
+        </div>
+
+        <button type="submit" class="btn-fill" style="width:100%; margin-top:16px; padding:14px; font-size:15px;">Add to Fleet Roster</button>
+      </form>
+  </div>
+</div>
+
+<!-- View Profile Modal -->
+<div class="modal-backdrop" id="modal-view-profile">
+  <div class="modal-box">
+      <button class="modal-close" onclick="closeProfileModal()"><span class="material-symbols-outlined">close</span></button>
+      
+      <div style="display:flex; align-items:center; gap:20px; margin-bottom:24px;">
+         <div class="v-avatar" id="p-avatar" style="width:80px; height:80px; font-size:28px;">--</div>
+         <div>
+            <div class="m-header" id="p-name" style="margin-bottom:8px; line-height:1.1;">Loading...</div>
+            <div class="skills-row" id="p-skills" style="margin-bottom:0;"></div>
+         </div>
+      </div>
+      
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:24px;">
+         <div class="m-line" style="flex-direction:column; background:var(--surface-tint); padding:16px; border-radius:12px; gap:8px;">
+            <span style="font-size:11px; text-transform:uppercase;">Completed Rescues</span> 
+            <span id="p-rescues" style="font-size:24px;">--</span>
+         </div>
+         <div class="m-line" style="flex-direction:column; background:var(--surface-tint); padding:16px; border-radius:12px; gap:8px;">
+            <span style="font-size:11px; text-transform:uppercase;">Current Fleet Status</span> 
+            <span id="p-status" style="font-size:20px;">--</span>
+         </div>
+      </div>
+
+      <div class="form-group" style="border-top:1px solid var(--outline-var); padding-top:20px;">
+        <label>Recent Logging</label>
+        <div class="shift-item" style="margin-bottom:0;">
+           <div class="s-time"><span class="material-symbols-outlined" style="font-size:16px;">check_circle</span> Today</div>
+           <div class="s-det">Verified active and responding to pings within sector bounds.</div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script>
+  // Session & Theme
+  const session = JSON.parse(localStorage.getItem('annasetu_session')||'{}');
+  if(session.fname){ document.getElementById('user-initial').textContent = session.fname.charAt(0).toUpperCase(); }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const icon = document.querySelector('#theme-btn .material-symbols-outlined');
+    icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+  }
+  if(document.documentElement.classList.contains('dark-mode')) {
+    document.querySelector('#theme-btn .material-symbols-outlined').textContent = 'light_mode';
+  }
+
+  function handleLogout(){ localStorage.removeItem('annasetu_session'); window.location.href='signin.html'; }
+
+  function showToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast`;
+    toast.innerHTML = `<span class="material-symbols-outlined">check_circle</span> ${message}`;
+    container.appendChild(toast);
+    setTimeout(() => { toast.classList.add('hide'); setTimeout(() => toast.remove(), 400); }, 4000);
+  }
+
+  // Modal Logic
+  function openAddModal() { document.getElementById('modal-add-vol').style.display = 'flex'; }
+  function closeAddModal() { document.getElementById('modal-add-vol').style.display = 'none'; document.getElementById('add-vol-form').reset(); }
+
+  function openProfileModal(name, initials, skillsHtml, rescues, statusText, statusColor) {
+     document.getElementById('p-name').textContent = name;
+     document.getElementById('p-avatar').textContent = initials;
+     document.getElementById('p-skills').innerHTML = skillsHtml;
+     document.getElementById('p-rescues').textContent = rescues;
+     
+     const statusEl = document.getElementById('p-status');
+     statusEl.textContent = statusText;
+     statusEl.style.color = statusColor;
+     
+     document.getElementById('modal-view-profile').style.display = 'flex';
+  }
+  function closeProfileModal() { document.getElementById('modal-view-profile').style.display = 'none'; }
+
+  function submitVolunteer(e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const skill = document.getElementById('f-skill').value;
+    const sector = document.getElementById('f-sector').value;
+    const initials = name.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
+
+    // 1. Inject Card to Grid
+    const newCard = `
+      <div class="card" style="animation: toastIn 0.4s ease-out;">
+        <span class="status-badge available">Available</span>
+        <div class="v-profile">
+          <div class="v-avatar" style="background:#e3f2fd; color:#1976d2; border-color:#fff;">${initials}</div>
+          <div class="v-info">
+            <div class="v-name">${name}</div>
+            <div class="skills-row">
+              <span class="skill-tag">${skill}</span>
+              <span class="skill-tag" style="background:rgba(74,124,89,0.1); color:var(--primary); border-color:transparent;">Newcomer</span>
+            </div>
+          </div>
+        </div>
+         <div class="v-metrics">
+          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Base Area</span> <span>${sector}</span></div>
+          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>--</span></div>
+          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">New</span></div>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('${name}', '${initials}', '<span class=\\'skill-tag\\'>${skill}</span>', '0', 'Available', 'var(--success)')">View Full Profile</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('fleet-list').insertAdjacentHTML('beforeend', newCard);
+
+    // 2. Inject to History Timeline
+    const history = document.getElementById('fleet-history');
+    const now = new Date();
+    const tStr = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const historyEntry = `
+       <div class="tl-item" style="animation: toastIn 0.4s ease-out;">
+          <div class="tl-dot" style="border-color:var(--success);"></div>
+          <div class="tl-head"><div class="tl-title">New Fleet Member Onboarded</div> <div class="tl-time">${tStr}</div></div>
+          <div class="tl-desc">${name} officially joined and marked Active in ${sector}. Capabilities: ${skill}.</div>
+       </div>
+    `;
+    history.insertAdjacentHTML('afterbegin', historyEntry);
+
+    showToast(`${name} added to volunteer fleet!`);
+    closeAddModal();
+  }
+</script>
+</body>
+</html>
