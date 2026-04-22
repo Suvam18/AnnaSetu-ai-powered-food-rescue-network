@@ -883,9 +883,20 @@
        showToast(`Mission Accepted! Dispatched fleet for ${currentActionContext.food}.`, 'success');
        appendToRoadmap(`Dispatched: ${currentActionContext.food}`, `Assigned to ${volName}. ETA: ${eta} mins.`, 'var(--success)');
        
-       let missions = JSON.parse(localStorage.getItem('ng_active_missions') || '[]');
-       missions.push({ id: currentActionContext.id, item: currentActionContext.food, status: 'dispatched', vol: volName, timestamp: new Date().toISOString() });
-       localStorage.setItem('ng_active_missions', JSON.stringify(missions));
+        let missions = JSON.parse(localStorage.getItem('annasetu_active_missions') || '[]');
+        missions.push({ 
+          id: 'TR-' + Math.floor(100+Math.random()*900), 
+          item: currentActionContext.food, 
+          vol: volName, 
+          initials: volName.split(' ').map(n=>n[0]).join(''),
+          from: 'Pickup Location',
+          to: 'Drop Location',
+          eta: eta + ' mins',
+          step: 1,
+          status: 'Ready to Go',
+          timestamp: new Date().toISOString() 
+        });
+        localStorage.setItem('annasetu_active_missions', JSON.stringify(missions));
      }
 
      removeCard(currentActionContext.id);
