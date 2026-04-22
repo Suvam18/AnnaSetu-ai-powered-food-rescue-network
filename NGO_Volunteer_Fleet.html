@@ -43,6 +43,31 @@
     .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--on-bg); }
     .nav-logo .material-symbols-outlined { color:var(--primary); font-size:28px; }
     .nav-logo .name { font-family:'Literata',serif; font-weight:700; font-size:20px; }
+
+    /* ── Badge Styling ── */
+    .nav-link { position: relative; }
+    .badge {
+      position: absolute; top: 0; right: 4px;
+      background: var(--error); color: #fff;
+      font-size: 10px; font-weight: 800;
+      min-width: 18px; height: 18px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--surface);
+      box-shadow: 0 2px 8px rgba(184,50,48,0.3);
+      display: none;
+    }
+    .b-nav-item { position: relative; }
+    .b-badge {
+      position: absolute; top: 2px; right: 25%;
+      background: var(--error); color: #fff;
+      font-size: 9px; font-weight: 800;
+      min-width: 16px; height: 16px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--bg);
+      display: none;
+    }
     .nav-center { display: flex; align-items: center; gap: 8px; }
     .nav-link { padding: 8px 16px; text-decoration: none; color: var(--on-surface-var); font-size: 14px; font-weight: 600; border-radius: 999px; transition: all .2s; }
     .nav-link:hover { color: var(--primary); background: rgba(74,124,89,0.05); }
@@ -233,6 +258,7 @@
   <a href="NGO_Alert_Management.html" class="b-nav-item">
     <span class="material-symbols-outlined">notification_important</span>
     <span>Alerts</span>
+    <span class="b-badge" id="b-alert-badge">0</span>
   </a>
   <a href="NGO_Volunteer_Fleet.html" class="b-nav-item active" style="color: #4a7c59;">
     <span class="material-symbols-outlined">local_shipping</span>
@@ -260,7 +286,7 @@
     </div>
     <nav class="nav-center">
       <a href="NGO_Dispatch_Dashboard.html" class="nav-link">Dashboard</a>
-      <a href="NGO_Alert_Management.html" class="nav-link">Rescue Alert</a>
+      <a href="NGO_Alert_Management.html" class="nav-link">Rescue Alert <span class="badge" id="top-alert-badge">0</span></a>
       <a href="NGO_Volunteer_Fleet.html" class="nav-link active">Volunteer</a>
       <a href="NGO_Rescue_Coordination.html" class="nav-link">Logistics</a>
       <a href="NGO_Impact_Reporting.html" class="nav-link">Impact</a>
@@ -466,6 +492,23 @@
 
   function handleLogout(){ localStorage.removeItem('annasetu_session'); window.location.href='signin.html'; }
 
+  function updateBadgeUI() {
+    const count = parseInt(localStorage.getItem('annasetu_pending_alert_count') || '0');
+    const topBadge = document.getElementById('top-alert-badge');
+    const bBadge = document.getElementById('b-alert-badge');
+    
+    if(topBadge) {
+      topBadge.textContent = count;
+      topBadge.style.display = count > 0 ? 'flex' : 'none';
+    }
+    if(bBadge) {
+      bBadge.textContent = count;
+      bBadge.style.display = count > 0 ? 'flex' : 'none';
+    }
+  }
+  updateBadgeUI();
+
+  // Initial Sync
   function showToast(message) {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
