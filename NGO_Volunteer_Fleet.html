@@ -51,8 +51,45 @@
     .logout-btn { background: #ffcc00; color: #1e1a13; border: none; padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 800; cursor: pointer; transition: all .2s; }
     .logout-btn:hover { background: #ffb300; transform: translateY(-1px); }
     .profile-circle { width: 40px; height: 40px; border-radius: 50%; background: #5c6bc0; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
-    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--on-surface-var); transition: background .2s; }
     .theme-toggle:hover { background: var(--surface-tint); color:var(--primary); }
+    
+    /* ── Bottom Nav (Mobile) ── */
+    .bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--outline-var);
+      padding: 10px 16px 20px;
+      z-index: 2147483647;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.05);
+    }
+    html.dark-mode .bottom-nav { background: rgba(30, 33, 30, 0.98); border-color: var(--outline-var); box-shadow: 0 -4px 16px rgba(0,0,0,0.4); }
+    
+    .b-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      text-decoration: none; color: var(--on-surface-var);
+      font-size: 11px; font-weight: 700; flex: 1; transition: 0.2s;
+    }
+    .b-nav-item .material-symbols-outlined { font-size: 24px; transition: transform 0.2s; }
+    .b-nav-item:hover { color: var(--primary); }
+    .b-nav-item:hover .material-symbols-outlined { transform: translateY(-2px); }
+    .b-nav-item.active { color: var(--primary); }
+    .b-nav-item.active .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) { 
+      .nav-center { display: none; }
+      .bottom-nav { display: flex; }
+      .main { padding-bottom: 120px; }
+      .main-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 400px) {
+      .b-nav-item span:not(.material-symbols-outlined) { font-size: 9px; }
+    }
 
     /* ── Main Layout ────────────────────── */
     .main { padding: 120px 20px 40px; max-width: 1200px; margin: 0 auto; }
@@ -188,7 +225,7 @@
 <body>
 
 <!-- Bottom Navigation for Mobile -->
-<nav class="bottom-nav">
+<nav class="bottom-nav" style="box-shadow: 0 -4px 20px rgba(0,0,0,0.1); background: #ffffff; border-top: 2px solid #4a7c59;">
   <a href="NGO_Dispatch_Dashboard.html" class="b-nav-item">
     <span class="material-symbols-outlined">dashboard</span>
     <span>Dashboard</span>
@@ -197,9 +234,9 @@
     <span class="material-symbols-outlined">notification_important</span>
     <span>Alerts</span>
   </a>
-  <a href="NGO_Volunteer_Fleet.html" class="b-nav-item active">
+  <a href="NGO_Volunteer_Fleet.html" class="b-nav-item active" style="color: #4a7c59;">
     <span class="material-symbols-outlined">local_shipping</span>
-    <span>Fleet</span>
+    <span>Volunteer</span>
   </a>
   <a href="NGO_Rescue_Coordination.html" class="b-nav-item">
     <span class="material-symbols-outlined">route</span>
@@ -210,6 +247,8 @@
     <span>Impact</span>
   </a>
 </nav>
+
+
 
 <div class="navbar-container">
   <header class="navbar">
@@ -252,75 +291,7 @@
     <!-- LEFT CONTENT: Grid & History -->
     <div class="content-col">
       <div class="fleet-grid" id="fleet-list">
-        
-        <!-- Vol 1 -->
-        <div class="card">
-          <span class="status-badge mission">On Mission</span>
-          <div class="v-profile">
-            <div class="v-avatar">DC</div>
-            <div class="v-info">
-              <div class="v-name">David Chen</div>
-              <div class="skills-row">
-                <span class="skill-tag">Driver 🚚</span>
-                <span class="skill-tag">Heavy load 💪</span>
-              </div>
-            </div>
-          </div>
-          <div class="v-metrics">
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>1.2km</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>4 mins</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">4.9 ⭐</span></div>
-          </div>
-          <div class="card-actions">
-            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('David Chen', 'DC', '<span class=\'skill-tag\'>Driver 🚚</span><span class=\'skill-tag\'>Heavy load 💪</span>', '124', 'On Mission', 'var(--tertiary)')">View Full Profile</button>
-          </div>
-        </div>
-
-        <!-- Vol 2 -->
-        <div class="card">
-          <span class="status-badge available">Available</span>
-          <div class="v-profile">
-            <div class="v-avatar" style="background:#e8f0eb;">ER</div>
-            <div class="v-info">
-              <div class="v-name">Elena Rodriguez</div>
-              <div class="skills-row">
-                <span class="skill-tag">Bike 🛵</span>
-                <span class="skill-tag" style="background:rgba(211,47,47,0.1); color:#d32f2f; border-color:transparent;">First Aid ⚕️</span>
-              </div>
-            </div>
-          </div>
-           <div class="v-metrics">
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>3.0km</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>2 mins</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">4.8 ⭐</span></div>
-          </div>
-          <div class="card-actions">
-            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('Elena Rodriguez', 'ER', '<span class=\'skill-tag\'>Bike 🛵</span><span class=\'skill-tag\' style=\'background:rgba(211,47,47,0.1); color:#d32f2f; border-color:transparent;\'>First Aid ⚕️</span>', '89', 'Available', 'var(--success)')">View Full Profile</button>
-          </div>
-        </div>
-
-        <!-- Vol 3 -->
-        <div class="card">
-          <span class="status-badge available">Available</span>
-          <div class="v-profile">
-            <div class="v-avatar" style="background:#f5f0e8;">MT</div>
-            <div class="v-info">
-              <div class="v-name">Marcus Thorne</div>
-              <div class="skills-row">
-                <span class="skill-tag">Manual 🚶</span>
-              </div>
-            </div>
-          </div>
-           <div class="v-metrics">
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Live Location</span> <span>0.5km</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>6 mins</span></div>
-            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">5.0 ⭐</span></div>
-          </div>
-          <div class="card-actions">
-            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('Marcus Thorne', 'MT', '<span class=\'skill-tag\'>Manual 🚶</span>', '215', 'Available', 'var(--success)')">View Full Profile</button>
-          </div>
-        </div>
-
+        <!-- Volunteers will be rendered here by JavaScript -->
       </div>
 
       <!-- Fleet Appointing History -->
@@ -452,12 +423,17 @@
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:24px;">
          <div class="m-line" style="flex-direction:column; background:var(--surface-tint); padding:16px; border-radius:12px; gap:8px;">
             <span style="font-size:11px; text-transform:uppercase;">Completed Rescues</span> 
-            <span id="p-rescues" style="font-size:24px;">--</span>
+            <span id="p-rescues" style="font-size:24px; font-weight:800; color:var(--primary);">--</span>
          </div>
          <div class="m-line" style="flex-direction:column; background:var(--surface-tint); padding:16px; border-radius:12px; gap:8px;">
-            <span style="font-size:11px; text-transform:uppercase;">Current Fleet Status</span> 
-            <span id="p-status" style="font-size:20px;">--</span>
+            <span style="font-size:11px; text-transform:uppercase;">Assigned Sector</span> 
+            <span id="p-sector" style="font-size:20px; font-weight:800;">--</span>
          </div>
+      </div>
+
+      <div class="m-line" style="margin-bottom:24px; background:var(--surface-tint); padding:16px; border-radius:12px; justify-content:space-between;">
+         <span style="font-size:11px; text-transform:uppercase;">Current Fleet Status</span> 
+         <span id="p-status" style="font-size:18px; font-weight:800;">--</span>
       </div>
 
       <div class="form-group" style="border-top:1px solid var(--outline-var); padding-top:20px;">
@@ -481,10 +457,11 @@
     const isDark = document.documentElement.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     const icon = document.querySelector('#theme-btn .material-symbols-outlined');
-    icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    if(icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
   }
   if(document.documentElement.classList.contains('dark-mode')) {
-    document.querySelector('#theme-btn .material-symbols-outlined').textContent = 'light_mode';
+    const icon = document.querySelector('#theme-btn .material-symbols-outlined');
+    if(icon) icon.textContent = 'light_mode';
   }
 
   function handleLogout(){ localStorage.removeItem('annasetu_session'); window.location.href='signin.html'; }
@@ -498,23 +475,73 @@
     setTimeout(() => { toast.classList.add('hide'); setTimeout(() => toast.remove(), 400); }, 4000);
   }
 
-  // Modal Logic
+    function openProfileModal(name, initials, skill, sector, rescues, statusText, statusColor) {
+      document.getElementById('p-name').textContent = name;
+      document.getElementById('p-avatar').textContent = initials;
+      document.getElementById('p-skills').innerHTML = `<span class="skill-tag">${skill}</span>`;
+      document.getElementById('p-rescues').textContent = rescues;
+      document.getElementById('p-sector').textContent = sector;
+      
+      const statusEl = document.getElementById('p-status');
+      statusEl.textContent = statusText;
+      statusEl.style.color = statusColor;
+      
+      document.getElementById('modal-view-profile').style.display = 'flex';
+  }
+  function closeProfileModal() { document.getElementById('modal-view-profile').style.display = 'none'; }
+
   function openAddModal() { document.getElementById('modal-add-vol').style.display = 'flex'; }
   function closeAddModal() { document.getElementById('modal-add-vol').style.display = 'none'; document.getElementById('add-vol-form').reset(); }
 
-  function openProfileModal(name, initials, skillsHtml, rescues, statusText, statusColor) {
-     document.getElementById('p-name').textContent = name;
-     document.getElementById('p-avatar').textContent = initials;
-     document.getElementById('p-skills').innerHTML = skillsHtml;
-     document.getElementById('p-rescues').textContent = rescues;
-     
-     const statusEl = document.getElementById('p-status');
-     statusEl.textContent = statusText;
-     statusEl.style.color = statusColor;
-     
-     document.getElementById('modal-view-profile').style.display = 'flex';
+  // ── Volunteer Data Persistence ────────────────────────
+  const DEFAULT_VOLUNTEERS = [
+    { name: 'David Chen', skill: 'Driver 🚚', sector: 'Downtown', initials: 'DC', rescues: '124', status: 'On Mission', color: 'var(--tertiary)', badge: 'mission' },
+    { name: 'Elena Rodriguez', skill: 'Bike 🛵', sector: 'Sector 7', initials: 'ER', rescues: '89', status: 'Available', color: 'var(--success)', badge: 'available' },
+    { name: 'Marcus Thorne', skill: 'Manual 🚶', sector: 'Central Hub', initials: 'MT', rescues: '215', status: 'Available', color: 'var(--success)', badge: 'available' }
+  ];
+
+  function loadVolunteers() {
+    let saved = JSON.parse(localStorage.getItem('annasetu_volunteers') || '[]');
+    // Ensure default volunteers are always present if list is empty or fresh
+    if (saved.length === 0) {
+      saved = DEFAULT_VOLUNTEERS;
+      localStorage.setItem('annasetu_volunteers', JSON.stringify(saved));
+    }
+    return saved;
   }
-  function closeProfileModal() { document.getElementById('modal-view-profile').style.display = 'none'; }
+
+  function renderVolunteerList() {
+    const list = document.getElementById('fleet-list');
+    const vols = loadVolunteers();
+    list.innerHTML = '';
+
+    vols.forEach(v => {
+      const card = `
+        <div class="card" style="animation: toastIn 0.4s ease-out;">
+          <span class="status-badge ${v.badge || 'available'}">${v.status || 'Available'}</span>
+          <div class="v-profile">
+            <div class="v-avatar" style="background:${v.status === 'On Mission' ? '#e3f2fd' : '#e8f0eb'}; color:${v.status === 'On Mission' ? '#1976d2' : 'inherit'};">${v.initials}</div>
+            <div class="v-info">
+              <div class="v-name">${v.name}</div>
+              <div class="skills-row">
+                <span class="skill-tag">${v.skill}</span>
+                ${v.newcomer ? '<span class="skill-tag" style="background:rgba(74,124,89,0.1); color:var(--primary); border-color:transparent;">Newcomer</span>' : ''}
+              </div>
+            </div>
+          </div>
+          <div class="v-metrics">
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> ${v.status === 'On Mission' ? 'Live Location' : 'Base Area'}</span> <span>${v.status === 'On Mission' ? '1.2km' : v.sector}</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>${v.avgResponse || '4 mins'}</span></div>
+            <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">${v.performance || '4.9 ⭐'}</span></div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('${v.name.replace(/'/g, "\\'")}', '${v.initials}', '${v.skill}', '${v.sector}', '${v.rescues}', '${v.status}', '${v.color}')">View Full Profile</button>
+          </div>
+        </div>
+      `;
+      list.insertAdjacentHTML('beforeend', card);
+    });
+  }
 
   function submitVolunteer(e) {
     e.preventDefault();
@@ -523,33 +550,24 @@
     const sector = document.getElementById('f-sector').value;
     const initials = name.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
 
-    // 1. Inject Card to Grid
-    const newCard = `
-      <div class="card" style="animation: toastIn 0.4s ease-out;">
-        <span class="status-badge available">Available</span>
-        <div class="v-profile">
-          <div class="v-avatar" style="background:#e3f2fd; color:#1976d2; border-color:#fff;">${initials}</div>
-          <div class="v-info">
-            <div class="v-name">${name}</div>
-            <div class="skills-row">
-              <span class="skill-tag">${skill}</span>
-              <span class="skill-tag" style="background:rgba(74,124,89,0.1); color:var(--primary); border-color:transparent;">Newcomer</span>
-            </div>
-          </div>
-        </div>
-         <div class="v-metrics">
-          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">location_on</span> Base Area</span> <span>${sector}</span></div>
-          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">timer</span> Avg Response</span> <span>--</span></div>
-          <div class="m-line"><span><span class="material-symbols-outlined" style="font-size:14px;">star</span> Performance</span> <span style="color:#b8860b;">New</span></div>
-        </div>
-        <div class="card-actions">
-          <button class="btn btn-outline" style="width:100%;" onclick="openProfileModal('${name}', '${initials}', '<span class=\\'skill-tag\\'>${skill}</span>', '0', 'Available', 'var(--success)')">View Full Profile</button>
-        </div>
-      </div>
-    `;
-    document.getElementById('fleet-list').insertAdjacentHTML('beforeend', newCard);
+    const newVol = {
+      name, skill, sector, initials,
+      rescues: '0',
+      status: 'Available',
+      color: 'var(--success)',
+      badge: 'available',
+      newcomer: true,
+      avgResponse: '--',
+      performance: 'New'
+    };
 
-    // 2. Inject to History Timeline
+    const vols = loadVolunteers();
+    vols.push(newVol);
+    localStorage.setItem('annasetu_volunteers', JSON.stringify(vols));
+
+    renderVolunteerList();
+
+    // Inject to History Timeline
     const history = document.getElementById('fleet-history');
     const now = new Date();
     const tStr = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -565,6 +583,9 @@
     showToast(`${name} added to volunteer fleet!`);
     closeAddModal();
   }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', renderVolunteerList);
 </script>
 </body>
 </html>

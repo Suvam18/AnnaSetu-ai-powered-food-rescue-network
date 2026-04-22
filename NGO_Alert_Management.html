@@ -53,7 +53,7 @@
     .nav-left { display: flex; align-items: center; gap: 12px; }
     .nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--on-bg); }
     .nav-logo .material-symbols-outlined { color:var(--primary); font-size:28px; }
-    .name-logo { font-family:'Literata',serif; font-weight:700; font-size:20px; }
+    .nav-logo .name { font-family:'Literata',serif; font-weight:700; font-size:20px; }
     .nav-center { display: flex; align-items: center; gap: 8px; }
     .nav-link { padding: 8px 16px; text-decoration: none; color: var(--on-surface-var); font-size: 14px; font-weight: 600; border-radius: 999px; transition: all .2s; }
     .nav-link:hover { color: var(--primary); background: rgba(74,124,89,0.05); }
@@ -242,7 +242,8 @@
       .alert-grid { grid-template-columns: 1fr; }
       .sidebar-stats { position: static; }
       .bottom-nav { display: flex; }
-      .main { padding-bottom: 100px; }
+      .main { padding-bottom: 120px; }
+      .navbar { height: 64px; }
     }
     @media (max-width: 600px) {
       .alert-list { grid-template-columns: 1fr; }
@@ -256,18 +257,18 @@
 <body>
 
 <!-- Bottom Navigation for Mobile -->
-<nav class="bottom-nav">
+<nav class="bottom-nav" style="box-shadow: 0 -4px 20px rgba(0,0,0,0.1); background: #ffffff; border-top: 2px solid #4a7c59;">
   <a href="NGO_Dispatch_Dashboard.html" class="b-nav-item">
     <span class="material-symbols-outlined">dashboard</span>
     <span>Dashboard</span>
   </a>
-  <a href="NGO_Alert_Management.html" class="b-nav-item active">
+  <a href="NGO_Alert_Management.html" class="b-nav-item active" style="color: #4a7c59;">
     <span class="material-symbols-outlined">notification_important</span>
     <span>Alerts</span>
   </a>
   <a href="NGO_Volunteer_Fleet.html" class="b-nav-item">
     <span class="material-symbols-outlined">local_shipping</span>
-    <span>Fleet</span>
+    <span>Volunteer</span>
   </a>
   <a href="NGO_Rescue_Coordination.html" class="b-nav-item">
     <span class="material-symbols-outlined">route</span>
@@ -284,7 +285,7 @@
     <div class="nav-left">
       <a href="NGO_Dispatch_Dashboard.html" class="nav-logo">
         <span class="material-symbols-outlined">soup_kitchen</span>
-        <span class="name-logo">AnnaSetu</span>
+        <span class="name">AnnaSetu</span>
       </a>
     </div>
     <nav class="nav-center">
@@ -729,7 +730,13 @@
     const isDark = document.documentElement.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     const icon = document.querySelector('#theme-btn .material-symbols-outlined');
-    icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    if(icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+  }
+  
+  // Initialize theme icon
+  if(document.documentElement.classList.contains('dark-mode')) {
+    const icon = document.querySelector('#theme-btn .material-symbols-outlined');
+    if(icon) icon.textContent = 'light_mode';
   }
   if(document.documentElement.classList.contains('dark-mode')) {
     document.querySelector('#theme-btn .material-symbols-outlined').textContent = 'light_mode';
