@@ -250,6 +250,23 @@
     .track-anim { animation: trackMove 30s linear forwards; }
 
 
+    /* ── Responsive ── */
+    @media (max-width: 1024px) { 
+      .nav-center { display: none; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .bottom-nav { display: flex; }
+      .main { padding-top: 110px; padding-bottom: 120px; }
+      .map-container { height: 280px; }
+      .navbar { padding: 0 16px; gap: 8px; }
+      .logout-btn { padding: 6px 12px; font-size: 12px; }
+    }
+    @media (max-width: 600px) {
+      .mission-path { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .mission-path span { transform: rotate(90deg); margin-left: 10px; }
+    }
+    @media (max-width: 400px) {
+      .b-nav-item span:not(.material-symbols-outlined) { font-size: 9px; }
+    }
   </style>
 </head>
 <body>
@@ -745,5 +762,7 @@
     }
   }
 </script>
+  <script src="profile_manager.js"></script>
+  <script src="ai_assistant.js"></script>
 </body>
 </html>

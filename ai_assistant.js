@@ -330,13 +330,36 @@
     function getAIResponse(query) {
         query = query.toLowerCase();
         
-        // Context Awareness based on page title
+        // Context Awareness based on page title or content
         const pageTitle = document.title.toLowerCase();
+        const isNGO = pageTitle.includes('ngo') || document.body.innerText.toLowerCase().includes('rescue coordination');
 
         if (query.includes('hello') || query.includes('hi')) {
-            return "Hi there! I'm ready to help you with your AnnaSetu dashboard. What's on your mind?";
+            return isNGO 
+                ? "Hello! I'm your NGO Operations Assistant. How can I help you coordinate rescues or manage volunteers today?"
+                : "Hi there! I'm ready to help you with your AnnaSetu restaurant dashboard. What's on your mind?";
         }
         
+        // NGO Specific Logic
+        if (isNGO) {
+            if (query.includes('dispatch') || query.includes('track') || query.includes('driver')) {
+                return "In the Dispatch Dashboard, you can track live rescues and assign drivers to pending pickups. Would you like to see the current active routes?";
+            }
+            if (query.includes('alert') || query.includes('notification') || query.includes('pending')) {
+                return "The Alert Management section shows all incoming surplus notifications from restaurants. You should prioritize alerts marked as 'Expiring Soon'.";
+            }
+            if (query.includes('volunteer') || query.includes('fleet') || query.includes('team')) {
+                return "You can manage your fleet of 24 active volunteers in the Volunteer Fleet section. You can see their current status, location, and assigned tasks.";
+            }
+            if (query.includes('rescue') || query.includes('coordination') || query.includes('assign')) {
+                return "Rescue Coordination is where you match surplus food with nearby hunger centers. Our AI suggests the most efficient pairings to minimize travel time.";
+            }
+            if (query.includes('impact') || query.includes('report') || query.includes('stats')) {
+                return "Your impact reporting shows you've served over 12,500 meals this month! You can generate a full transparency report for your donors in the Impact section.";
+            }
+        }
+
+        // Restaurant Specific Logic
         if (query.includes('impact') || query.includes('analytics') || query.includes('kg') || query.includes('saved')) {
             return "Based on your data, you've saved 2,840 kg of food this month, preventing 5.2 tons of CO2 emissions. Your impact is in the top 5% of local restaurants!";
         }
@@ -348,22 +371,22 @@
         if (query.includes('location') || query.includes('branch')) {
             return "You have 6 active locations registered. You can manage their individual inventory and staff access in the 'Locations' tab.";
         }
-
+        
         if (query.includes('team') || query.includes('member') || query.includes('staff')) {
             return "You can add or remove team members and assign roles (Manager, Staff, Volunteer) in the 'Team' section.";
         }
 
         if (query.includes('report') || query.includes('download')) {
-            return "You can download a comprehensive PDF or CSV impact report from the Analytics page. It's great for your sustainability audits!";
+            return "You can download a comprehensive PDF or CSV impact report. It's great for your sustainability audits!";
         }
 
         if (query.includes('help') || query.includes('how to')) {
-            return "I can help you navigate the portal, understand your impact stats, or guide you through logging surplus. Try asking 'How do I add a new location?' or 'What is my CO2 offset?'";
+            return "I can help you navigate the portal, understand your operations, or guide you through tasks. Try asking about " + (isNGO ? "volunteer assignments" : "logging surplus") + ".";
         }
 
-        // Generic fallback with "Learning" vibe
-        return "That's a great question! While I'm still learning some of your specific operational details, I can tell you that most users find that information in the " + 
-               (pageTitle.includes('dashboard') ? "Analytics" : "Dashboard") + " section. Is there something specific about that you'd like to know?";
+        // Generic fallback
+        return "That's a great question! I'm here to help you optimize your food rescue operations. Is there something specific about the " + 
+               (pageTitle.includes('dashboard') ? "current view" : "features") + " you'd like to explore?";
     }
 
 })();
