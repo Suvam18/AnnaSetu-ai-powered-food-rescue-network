@@ -36,7 +36,8 @@ Smart NGO matching based on location<br>
 Volunteer coordination and assignment<br>
 Pickup and delivery tracking<br>
 Role-based dashboards (Restaurant, NGO, Volunteer)<br>
-Impact analytics (meals served, food saved)<br>
+Impact analytics (meals served, food saved)<br><br>
+
 🛠️ Tech Stack<br>
 Frontend<br>
 React.js<br>
@@ -54,17 +55,20 @@ Google Maps API (Location tracking)<br>
 Deployment<br>
 Vercel <br>
 MongoDB Atlas (Database)<br><br>
+
 🎯 Beneficiaries<br>
 Needy people (access to food)<br>
 Restaurants (reduce waste)<br>
 NGOs (better coordination)<br>
 Volunteers (easy participation)<br>
 Environment (less food waste)<br><br>
+
 📊 Impact<br>
 Reduces food wastage<br>
 Helps fight hunger<br>
 Improves coordination between stakeholders<br>
 Creates measurable social impact<br><br>
+
 🔮 Future Scope<br>
 AI-based demand prediction<br>
 Route optimization for delivery<br>
