@@ -13,10 +13,10 @@ Many people still suffer from hunger and lack of food access<br>
 Lack of coordination between food donors and NGOs<br>
 Delay in food distribution leads to spoilage<br><br>
 
-🔗 Live Prototype Link : https://anna-setu-ai-powered-food-rescue-ne.vercel.app/
-🔗 Demo Video (G-Drive Link) : https://drive.google.com/file/d/1pz1liIhSF4u8-HkdPR64JXP4IRiaMwok/view?usp=sharing
-🔗 Demo MVP Video (G-Drive Link) : https://drive.google.com/file/d/1lCZVlU4pJpSQXTz4PudCPoMzMGpApUaM/view?usp=sharing
-🔗 PPT (G-Drive Link) : https://drive.google.com/file/d/144YdYOzsHQIwz4m1m39MhOdDpre0vBzz/view?usp=sharing
+🔗 Live Prototype Link : https://anna-setu-ai-powered-food-rescue-ne.vercel.app/<br>
+🔗 Demo Video (G-Drive Link) : https://drive.google.com/file/d/1pz1liIhSF4u8-HkdPR64JXP4IRiaMwok/view?usp=sharing<br>
+🔗 Demo MVP Video (G-Drive Link) : https://drive.google.com/file/d/1lCZVlU4pJpSQXTz4PudCPoMzMGpApUaM/view?usp=sharing<br>
+🔗 PPT (G-Drive Link) : https://drive.google.com/file/d/144YdYOzsHQIwz4m1m39MhOdDpre0vBzz/view?usp=sharing<br><br>
 
 💡 Solution<br>
 AnnaSetu provides a digital platform that enables:<br>
