@@ -92,6 +92,7 @@ Contributions are welcome. Feel free to fork the repo and submit a pull request.
 Author - Suvam Chatterjee<br>
 College - University Institue of Technology , The University of Burdwan<br>
 Deparment - Infromation Technology<br>
-For queries or collaboration (mail id) - suvamchatterjee873@gmail.com<br>
-Linkedin Profile - https://www.linkedin.com/in/suvam-chatterjee-ba6b922b2/<br>
-Insta Handle - https://www.instagram.com/suv_am28/<br>
+For queries or collaboration -<br>
+📩 Mail Id - suvamchatterjee873@gmail.com<br>
+💼 Linkedin Profile - https://www.linkedin.com/in/suvam-chatterjee-ba6b922b2/<br>
+📸 Insta Handle - https://www.instagram.com/suv_am28/<br>
