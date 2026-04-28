@@ -13,6 +13,11 @@ Many people still suffer from hunger and lack of food access<br>
 Lack of coordination between food donors and NGOs<br>
 Delay in food distribution leads to spoilage<br><br>
 
+🔗 Live Prototype Link : https://anna-setu-ai-powered-food-rescue-ne.vercel.app/
+🔗 Demo Video (G-Drive Link) : https://drive.google.com/file/d/1pz1liIhSF4u8-HkdPR64JXP4IRiaMwok/view?usp=sharing
+🔗 Demo MVP Video (G-Drive Link) : https://drive.google.com/file/d/1lCZVlU4pJpSQXTz4PudCPoMzMGpApUaM/view?usp=sharing
+🔗 PPT (G-Drive Link) : https://drive.google.com/file/d/144YdYOzsHQIwz4m1m39MhOdDpre0vBzz/view?usp=sharing
+
 💡 Solution<br>
 AnnaSetu provides a digital platform that enables:<br>
 Real-time reporting of surplus food<br>
@@ -21,7 +26,8 @@ Volunteer-based pickup and delivery<br>
 Efficient and fast food redistribution<br><br>
 
 📊 Diagram of Workflow<br>
-<img width="540" height="1612" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/ca774b13-03b8-45c0-a38d-b4f70df53e27" />
+<img width="1117" height="929" alt="Screenshot 2026-04-28 211252" src="https://github.com/user-attachments/assets/38aba170-0358-4b95-8124-cdeb6d5c1e16" />
+
 <br><br>
 
 ⚙️ How It Works<br>
