@@ -20,6 +20,10 @@ Instant NGO notification and response<br>
 Volunteer-based pickup and delivery<br>
 Efficient and fast food redistribution<br><br>
 
+📊 Diagram of Workflow<br>
+<img width="540" height="1612" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/ca774b13-03b8-45c0-a38d-b4f70df53e27" />
+<br><br>
+
 ⚙️ How It Works<br>
 Restaurant uploads excess food details on the website<br>
 System sends instant alerts to nearby NGOs<br>
